@@ -9,7 +9,7 @@ defmodule JsonCorp.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      JsonCorp.Repo,
+      # JsonCorp.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: JsonCorp.PubSub}
       # Start a worker by calling: JsonCorp.Worker.start_link(arg)
