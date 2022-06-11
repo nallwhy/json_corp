@@ -20,7 +20,7 @@ defmodule JsonCorpWeb.Router do
     get "/", PageController, :index
   end
 
-  forward "/timeout", TimeoutWeb.Router
+  forward "/test_api", TestApiWeb.Router
 
   # Other scopes may use custom stacks.
   # scope "/api", JsonCorpWeb do
