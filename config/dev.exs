@@ -25,7 +25,8 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
   secret_key_base: "jEJVnRRjK7KAdp/PZdOHxAl1mbjg3ovmIoUXGSau53IloeOccUFToPRhXYFMpd3y",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    esbuild: {Esbuild, :install_and_run, [:test_api, ~w(--sourcemap=inline --watch)]}
   ]
 
 # ## SSL Support
