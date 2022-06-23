@@ -14,6 +14,10 @@ defmodule JsonCorpWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug :admin_basic_auth
+  end
+
   scope "/", JsonCorpWeb do
     pipe_through :browser
 
@@ -34,14 +38,12 @@ defmodule JsonCorpWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through :browser
+  scope "/" do
+    pipe_through [:browser, :admin]
 
-      live_dashboard "/dashboard", metrics: JsonCorpWeb.Telemetry
-    end
+    live_dashboard "/dashboard", metrics: JsonCorpWeb.Telemetry
   end
 
   # Enables the Swoosh mailbox preview in development.
@@ -54,5 +56,12 @@ defmodule JsonCorpWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  defp admin_basic_auth(conn, _opts) do
+    username = System.fetch_env!("AUTH_USERNAME")
+    password = System.fetch_env!("AUTH_PASSWORD")
+
+    Plug.BasicAuth.basic_auth(conn, username: username, password: password)
   end
 end

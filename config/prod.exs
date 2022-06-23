@@ -11,7 +11,8 @@ import Config
 # before starting your production server.
 config :json_corp_web, JsonCorpWeb.Endpoint,
   url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["//json.media", "//www.json.media"]
 
 # ## SSL Support
 #
