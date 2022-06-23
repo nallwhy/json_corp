@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "postinstall": "cd ../../../deps/test_api/asset`s && npm i"
+  }
+}
