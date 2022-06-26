@@ -3,7 +3,7 @@ defmodule JsonCorp.Blog do
 
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
-  @spec list_posts :: [%Post{title: String.to(), body: String.t() | nil}]
+  @spec list_posts :: [%Post{title: String.t(), body: String.t() | nil}]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
