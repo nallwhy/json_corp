@@ -3,12 +3,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   alias JsonCorp.Blog
   alias JsonCorp.Blog.Post
 
+  @impl true
   def mount(_params, _session, socket) do
     socket = socket |> assign_new(:posts, fn -> Blog.list_posts() end)
 
     {:ok, socket}
   end
 
+  @impl true
   def render(assigns) do
     ~H"""
     Post List
