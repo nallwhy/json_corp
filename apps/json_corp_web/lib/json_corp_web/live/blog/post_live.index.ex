@@ -16,12 +16,21 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     Post List
 
     <div>
-    <%= for %Post{title: title} <- @posts do %>
-      <div>
+    <%= for %Post{title: title, slug: slug} <- @posts do %>
+      <div phx-click="move_to_post" phx-value-post_slug={slug}>
         <p>title: <%= title %></p>
       </div>
     <% end %>
     </div>
     """
+  end
+
+  @impl true
+  def handle_event("move_to_post", %{"post_slug" => slug}, socket) do
+    socket =
+      socket
+      |> push_redirect(to: Routes.blog_post_show_path(socket, :show, slug))
+
+    {:noreply, socket}
   end
 end

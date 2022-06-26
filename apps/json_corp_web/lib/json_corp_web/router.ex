@@ -24,7 +24,7 @@ defmodule JsonCorpWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/blog", JsonCorpWeb.Blog do
+  scope "/blog", JsonCorpWeb.Blog, as: :blog do
     pipe_through :browser
 
     live "/", PostLive.Index, :index
