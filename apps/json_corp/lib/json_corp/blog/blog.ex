@@ -6,15 +6,15 @@ defmodule JsonCorp.Blog do
   @spec list_posts :: [%Post{title: String.t(), body: String.t() | nil}]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
-    |> Enum.map(&read_post/1)
+    |> Enum.map(&read_post(&1, posts_path))
   end
 
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
   def fetch_post(slug, posts_path \\ @posts_path) do
     list_post_paths(posts_path)
-    |> Enum.find(&Regex.match?(~r/\d{6}_#{slug}\.md/, &1))
+    |> find_by_slug(slug)
     |> case do
-      path when not is_nil(path) -> {:ok, read_post(path)}
+      filename when not is_nil(filename) -> {:ok, read_post(filename, posts_path)}
       nil -> :error
     end
   end
@@ -24,22 +24,34 @@ defmodule JsonCorp.Blog do
     |> File.ls!()
     |> Enum.filter(fn filename -> String.ends_with?(filename, ".md") end)
     |> Enum.sort()
-    |> Enum.map(fn filename -> posts_path <> "/" <> filename end)
   end
 
-  defp read_post(path) do
-    path
+  defp find_by_slug(filenames, slug) do
+    filenames
+    |> Enum.find(&(extract_meta_from_filename(&1).slug == slug))
+  end
+
+  defp read_post(filename, posts_path) do
+    meta_from_filename = extract_meta_from_filename(filename)
+
+    (posts_path <> "/" <> filename)
     |> File.read!()
-    |> parse_post()
+    |> parse_post(meta_from_filename)
   end
 
-  defp parse_post(raw_post) do
+  defp parse_post(raw_post, %{slug: slug}) do
     [meta_str, body] =
       raw_post
       |> String.split("---", part: 2, trim: true)
 
     {meta, _binding} = meta_str |> Code.eval_string()
 
-    %Post{title: meta |> Map.get(:title), body: body}
+    %Post{slug: slug, title: meta |> Map.get(:title), body: body}
+  end
+
+  defp extract_meta_from_filename(filename) do
+    %{"slug" => slug} = Regex.named_captures(~r/\d{6}_(?<slug>.+)\.md$/, filename)
+
+    %{slug: slug}
   end
 end

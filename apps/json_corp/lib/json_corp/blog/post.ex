@@ -1,4 +1,4 @@
 defmodule JsonCorp.Blog.Post do
-  @enforce_keys [:title, :body]
+  @enforce_keys [:slug, :title, :body]
   defstruct @enforce_keys
 end
