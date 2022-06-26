@@ -24,6 +24,13 @@ defmodule JsonCorpWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/blog", JsonCorpWeb.Blog, as: :blog do
+    pipe_through :browser
+
+    live "/", PostLive.Index, :index
+    live "/:slug", PostLive.Show, :show
+  end
+
   forward "/test_api", TestApiWeb.Router
 
   # Other scopes may use custom stacks.
