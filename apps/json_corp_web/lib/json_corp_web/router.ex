@@ -27,8 +27,8 @@ defmodule JsonCorpWeb.Router do
   scope "/blog", JsonCorpWeb.Blog do
     pipe_through :browser
 
-    # Blog
     live "/", PostLive.Index, :index
+    live "/:slug", PostLive.Show, :show
   end
 
   forward "/test_api", TestApiWeb.Router
