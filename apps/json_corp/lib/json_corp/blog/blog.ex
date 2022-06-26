@@ -9,6 +9,11 @@ defmodule JsonCorp.Blog do
     |> Enum.map(&read_post/1)
   end
 
+  @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
+  def fetch_post(_slug, _posts_path \\ @posts_path) do
+    {:ok, %Post{title: "Test Title", body: "# Test Body"}}
+  end
+
   defp list_post_paths(posts_path) do
     posts_path
     |> File.ls!()
