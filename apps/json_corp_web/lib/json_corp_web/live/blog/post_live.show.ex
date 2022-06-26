@@ -6,7 +6,10 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   @impl true
   def mount(%{"slug" => slug}, _session, socket) do
-    socket = socket |> assign_new(:post, fn -> load_post(slug) end)
+    socket =
+      socket
+      |> assign_new(:post, fn -> load_post(slug) end)
+      |> assign_new(:page_title, fn %{post: %{title: title}} -> title end)
 
     {:ok, socket}
   end
