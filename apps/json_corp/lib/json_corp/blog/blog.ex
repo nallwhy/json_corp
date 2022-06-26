@@ -10,8 +10,13 @@ defmodule JsonCorp.Blog do
   end
 
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
-  def fetch_post(_slug, _posts_path \\ @posts_path) do
-    {:ok, %Post{title: "Test Title", body: "# Test Body"}}
+  def fetch_post(slug, posts_path \\ @posts_path) do
+    list_post_paths(posts_path)
+    |> Enum.find(&Regex.match?(~r/\d{6}_#{slug}\.md/, &1))
+    |> case do
+      path when not is_nil(path) -> {:ok, read_post(path)}
+      nil -> :error
+    end
   end
 
   defp list_post_paths(posts_path) do
