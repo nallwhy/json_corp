@@ -40,7 +40,10 @@ defmodule JsonCorp.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.2"},
-      {:swoosh, "~> 1.3"}
+      {:swoosh, "~> 1.3"},
+      {:earmark, "~> 1.4"},
+      {:makeup, "~> 1.1"},
+      {:makeup_elixir, "~> 0.16.0"}
     ]
   end
 
