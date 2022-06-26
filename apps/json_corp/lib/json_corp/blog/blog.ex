@@ -4,17 +4,17 @@ defmodule JsonCorp.Blog do
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
   @spec list_posts :: [%Post{title: String.to(), body: String.t() | nil}]
-  def list_posts() do
-    list_post_paths()
+  def list_posts(posts_path \\ @posts_path) do
+    list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
   end
 
-  defp list_post_paths() do
-    @posts_path
+  defp list_post_paths(posts_path) do
+    posts_path
     |> File.ls!()
     |> Enum.filter(fn filename -> String.ends_with?(filename, ".md") end)
     |> Enum.sort()
-    |> Enum.map(fn filename -> @posts_path <> "/" <> filename end)
+    |> Enum.map(fn filename -> posts_path <> "/" <> filename end)
   end
 
   defp read_post(path) do
