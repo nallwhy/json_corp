@@ -63,7 +63,12 @@ defmodule JsonCorpWeb.MixProject do
     [
       setup: ["deps.get"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "esbuild test_api --minify", "phx.digest"]
+      "assets.deploy": [
+        "tailwind default --minify",
+        "esbuild default --minify",
+        "esbuild test_api --minify",
+        "phx.digest"
+      ]
     ]
   end
 end
