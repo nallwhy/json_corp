@@ -51,7 +51,8 @@ defmodule JsonCorpWeb.MixProject do
       {:json_corp, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:test_api, github: "nallwhy/test_api", tag: "v0.2"}
+      {:test_api, github: "nallwhy/test_api", tag: "v0.2"},
+      {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev}
     ]
   end
 
