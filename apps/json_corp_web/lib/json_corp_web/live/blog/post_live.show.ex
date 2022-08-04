@@ -17,7 +17,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="prose">
       <h1><%= @post.title %></h1>
       <div>
         <%= @post.body |> MarkdownRenderer.html() |> raw() %>
