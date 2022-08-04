@@ -44,9 +44,11 @@ defmodule JsonCorp.Blog do
       raw_post
       |> String.split("---", part: 2, trim: true)
 
-    {meta, _binding} = meta_str |> Code.eval_string()
+    {meta_map, _binding} = meta_str |> Code.eval_string()
 
-    %Post{slug: slug, title: meta |> Map.get(:title), body: body}
+    title = meta_map |> Map.fetch!(:title)
+
+    %Post{slug: slug, title: title, body: body}
   end
 
   defp extract_meta_from_filename(filename) do
