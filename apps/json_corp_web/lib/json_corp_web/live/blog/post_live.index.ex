@@ -7,7 +7,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> assign_new(:posts, fn -> Blog.list_posts() end)
+      |> assign(:posts, Blog.list_posts())
       |> assign_new(:page_title, fn -> "Blog" end)
 
     {:ok, socket}
