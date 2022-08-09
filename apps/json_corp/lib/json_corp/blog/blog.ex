@@ -19,6 +19,11 @@ defmodule JsonCorp.Blog do
     end
   end
 
+  @spec list_categories() :: [atom()]
+  def list_categories() do
+    [:talk, :dev]
+  end
+
   defp list_post_paths(posts_path) do
     posts_path
     |> File.ls!()
