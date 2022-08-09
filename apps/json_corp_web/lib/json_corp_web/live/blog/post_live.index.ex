@@ -15,7 +15,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
-  def handle_params(_params, _uri, socket) do
+  def handle_params(params, _uri, socket) do
+    category = params |> Map.get("category") |> String.to_existing_atom()
+
+    socket = socket |> assign(:category, category)
+
     {:noreply, socket}
   end
 
@@ -31,7 +35,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     </div>
 
     <div>
-    <%= for %Post{title: title, slug: slug} <- @posts do %>
+    <%= for %Post{title: title, slug: slug} <- posts_of_category(@posts, @category) do %>
       <div phx-click="move_to_post" phx-value-post_slug={slug}>
         <p>title: <%= title %></p>
       </div>
@@ -47,5 +51,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       |> push_redirect(to: Routes.blog_post_show_path(socket, :show, slug))
 
     {:noreply, socket}
+  end
+
+  defp posts_of_category(posts, nil) do
+    posts
+  end
+
+  defp posts_of_category(posts, category) do
+    posts |> Enum.filter(fn %Post{category: post_category} -> post_category == category end)
   end
 end
