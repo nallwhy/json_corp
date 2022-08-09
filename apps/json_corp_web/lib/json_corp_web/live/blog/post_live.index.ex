@@ -2,6 +2,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   use JsonCorpWeb, :live_view
   alias JsonCorp.Blog
   alias JsonCorp.Blog.Post
+  alias JsonCorp.Core.Nillable
 
   @impl true
   def mount(_params, _session, socket) do
@@ -16,7 +17,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(params, _uri, socket) do
-    category = params |> Map.get("category") |> String.to_existing_atom()
+    category = params |> Map.get("category") |> Nillable.map(&String.to_existing_atom(&1))
 
     socket = socket |> assign(:category, category)
 
@@ -29,6 +30,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     Post List
 
     <div>
+      <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index) %>
       <%= for category <- @categories do %>
       <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category) %>
       <% end %>
