@@ -47,8 +47,9 @@ defmodule JsonCorp.Blog do
     {meta_map, _binding} = meta_str |> Code.eval_string()
 
     title = meta_map |> Map.fetch!(:title)
+    category = meta_map |> Map.fetch!(:category)
 
-    %Post{slug: slug, title: title, body: body}
+    %Post{title: title, category: category, slug: slug, body: body}
   end
 
   defp extract_meta_from_filename(filename) do

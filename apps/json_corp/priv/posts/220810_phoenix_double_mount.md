@@ -1,5 +1,6 @@
 %{
-title: "Phoenix LiveView Double Mount"
+title: "Phoenix LiveView Double Mount",
+category: :dev
 }
 
 ---
