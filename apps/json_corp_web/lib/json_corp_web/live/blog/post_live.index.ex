@@ -8,15 +8,27 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     socket =
       socket
       |> assign(:posts, Blog.list_posts())
+      |> assign(:categories, Blog.list_categories())
       |> assign_new(:page_title, fn -> "Blog" end)
 
     {:ok, socket}
   end
 
   @impl true
+  def handle_params(_params, _uri, socket) do
+    {:noreply, socket}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     Post List
+
+    <div>
+      <%= for category <- @categories do %>
+      <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category) %>
+      <% end %>
+    </div>
 
     <div>
     <%= for %Post{title: title, slug: slug} <- @posts do %>
