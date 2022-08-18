@@ -8,12 +8,11 @@ defmodule JsonCorp.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      JsonCorp.Core.Cache,
       # Start the Ecto repository
       # JsonCorp.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: JsonCorp.PubSub}
-      # Start a worker by calling: JsonCorp.Worker.start_link(arg)
-      # {JsonCorp.Worker, arg}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: JsonCorp.Supervisor)
