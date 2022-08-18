@@ -17,10 +17,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="prose">
-      <h1><%= @post.title %></h1>
+    <div>
       <div>
-        <%= @post.body |> MarkdownRenderer.html() |> raw() %>
+        <%= link "<- 전체 글 보기", to: Routes.blog_post_index_path(@socket, :index) %>
+      </div>
+      <div class="prose">
+        <h1><%= @post.title %></h1>
+        <div>
+          <%= @post.body |> MarkdownRenderer.html() |> raw() %>
+        </div>
       </div>
     </div>
     """
