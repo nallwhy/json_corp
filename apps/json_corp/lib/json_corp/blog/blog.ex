@@ -1,8 +1,11 @@
 defmodule JsonCorp.Blog do
+  use Nebulex.Caching
   alias JsonCorp.Blog.Post
+  alias JsonCorp.Core.Cache
 
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
+  @decorate cacheable(cache: Cache)
   @spec list_posts() :: [Post.t()]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
@@ -10,6 +13,7 @@ defmodule JsonCorp.Blog do
     |> Enum.sort_by(fn %Post{date: date} -> date end, :desc)
   end
 
+  @decorate cacheable(cache: Cache, key: slug, match: &Cache.default_matcher/1)
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
   def fetch_post(slug, posts_path \\ @posts_path) do
     list_post_paths(posts_path)
