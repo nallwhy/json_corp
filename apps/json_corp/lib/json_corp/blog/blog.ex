@@ -21,7 +21,7 @@ defmodule JsonCorp.Blog do
 
   @spec list_categories() :: [atom()]
   def list_categories() do
-    [:talk, :dev]
+    [:talk, :dev, :consulting]
   end
 
   defp list_post_paths(posts_path) do
