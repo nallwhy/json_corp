@@ -44,7 +44,9 @@ defmodule JsonCorp.MixProject do
       {:earmark, "~> 1.4"},
       {:makeup, "~> 1.1"},
       {:makeup_elixir, "~> 0.16.0"},
-      {:timex, "~> 3.7"}
+      {:timex, "~> 3.7"},
+      {:nebulex, "~> 2.4"},
+      {:decorator, "~> 1.4"}
     ]
   end
 
