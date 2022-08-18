@@ -25,11 +25,23 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
+  def handle_event("open_random_post", _, socket) do
+    %{slug: post_slug} = socket.assigns.posts |> Enum.random()
+
+    socket =
+      socket
+      |> push_redirect(to: Routes.blog_post_show_path(socket, :show, post_slug))
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     Post List
 
     <div>
+      <%= link "Random", to: "#", phx_click: "open_random_post" %>
       <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index) %>
       <%= for category <- @categories do %>
       <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category) %>
