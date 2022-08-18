@@ -7,6 +7,7 @@ defmodule JsonCorp.Blog do
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post(&1, posts_path))
+    |> Enum.sort_by(fn %Post{date: date} -> date end, :desc)
   end
 
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
