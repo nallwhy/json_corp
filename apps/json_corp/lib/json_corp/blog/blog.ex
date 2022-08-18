@@ -44,7 +44,7 @@ defmodule JsonCorp.Blog do
     |> parse_post(meta_from_filename)
   end
 
-  defp parse_post(raw_post, %{slug: slug}) do
+  defp parse_post(raw_post, %{slug: slug, date: date}) do
     [meta_str, body] =
       raw_post
       |> String.split("---", part: 2, trim: true)
@@ -54,12 +54,15 @@ defmodule JsonCorp.Blog do
     title = meta_map |> Map.fetch!(:title)
     category = meta_map |> Map.fetch!(:category)
 
-    %Post{title: title, category: category, slug: slug, body: body}
+    %Post{title: title, category: category, slug: slug, body: body, date: date}
   end
 
   defp extract_meta_from_filename(filename) do
-    %{"slug" => slug} = Regex.named_captures(~r/\d{6}_(?<slug>.+)\.md$/, filename)
+    %{"date" => date_str, "slug" => slug} =
+      Regex.named_captures(~r/(?<date>\d{8})_(?<slug>.+)\.md$/, filename)
 
-    %{slug: slug}
+    date = date_str |> Timex.parse!("{YYYY}{0M}{0D}")
+
+    %{slug: slug, date: date}
   end
 end

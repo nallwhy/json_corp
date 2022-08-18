@@ -3,9 +3,10 @@ defmodule JsonCorp.Blog.Post do
           title: String.t(),
           category: atom(),
           slug: String.t(),
-          body: String.t()
+          body: String.t(),
+          date: Date.t()
         }
 
-  @enforce_keys [:title, :category, :slug, :body]
+  @enforce_keys [:title, :category, :slug, :body, :date]
   defstruct @enforce_keys
 end
