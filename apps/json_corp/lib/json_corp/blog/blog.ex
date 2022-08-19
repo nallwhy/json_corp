@@ -16,10 +16,10 @@ defmodule JsonCorp.Blog do
   @decorate cacheable(cache: Cache, key: slug, match: &Cache.default_matcher/1)
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
   def fetch_post(slug, posts_path \\ @posts_path) do
-    list_post_paths(posts_path)
-    |> find_by_slug(slug)
+    list_posts(posts_path)
+    |> Enum.find(fn %Post{slug: post_slug} -> post_slug == slug end)
     |> case do
-      filename when not is_nil(filename) -> {:ok, read_post(filename, posts_path)}
+      %Post{} = post -> {:ok, post}
       nil -> :error
     end
   end
@@ -34,11 +34,6 @@ defmodule JsonCorp.Blog do
     |> File.ls!()
     |> Enum.filter(fn filename -> String.ends_with?(filename, ".md") end)
     |> Enum.sort()
-  end
-
-  defp find_by_slug(filenames, slug) do
-    filenames
-    |> Enum.find(&(extract_meta_from_filename(&1).slug == slug))
   end
 
   defp read_post(filename, posts_path) do
