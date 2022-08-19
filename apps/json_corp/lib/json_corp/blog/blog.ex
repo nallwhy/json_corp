@@ -9,7 +9,7 @@ defmodule JsonCorp.Blog do
   @spec list_posts() :: [Post.t()]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
-    |> Enum.map(&read_post(&1, posts_path))
+    |> Enum.map(&read_post/1)
     |> Enum.sort_by(fn %Post{date: date} -> date end, :desc)
   end
 
@@ -35,18 +35,16 @@ defmodule JsonCorp.Blog do
   end
 
   defp list_post_paths(posts_path) do
-    posts_path
-    |> File.ls!()
-    |> Enum.filter(fn filename -> String.ends_with?(filename, ".md") end)
-    |> Enum.sort()
+    (posts_path <> "/*.md")
+    |> Path.wildcard()
   end
 
-  defp read_post(filename, posts_path) do
-    meta_from_filename = extract_meta_from_filename(filename)
+  defp read_post(post_path) do
+    post_meta = extract_post_meta(post_path)
 
-    (posts_path <> "/" <> filename)
+    post_path
     |> File.read!()
-    |> parse_post(meta_from_filename)
+    |> parse_post(post_meta)
   end
 
   defp parse_post(raw_post, %{slug: slug, date: date}) do
@@ -62,9 +60,9 @@ defmodule JsonCorp.Blog do
     %Post{title: title, category: category, slug: slug, body: body, date: date}
   end
 
-  defp extract_meta_from_filename(filename) do
+  defp extract_post_meta(post_path) do
     %{"date" => date_str, "slug" => slug} =
-      Regex.named_captures(~r/(?<date>\d{8})_(?<slug>.+)\.md$/, filename)
+      Regex.named_captures(~r/\/(?<date>\d{8})_(?<slug>.+)\.md$/, post_path)
 
     date = date_str |> Timex.parse!("{YYYY}{0M}{0D}")
 
