@@ -5,7 +5,7 @@ defmodule JsonCorp.Blog do
 
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
-  @decorate cacheable(cache: Cache)
+  @decorate cacheable(cache: Cache, key: posts_path, opts: cache_opts())
   @spec list_posts() :: [Post.t()]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
@@ -13,7 +13,12 @@ defmodule JsonCorp.Blog do
     |> Enum.sort_by(fn %Post{date: date} -> date end, :desc)
   end
 
-  @decorate cacheable(cache: Cache, key: slug, match: &Cache.default_matcher/1)
+  @decorate cacheable(
+              cache: Cache,
+              key: {posts_path, slug},
+              match: &Cache.default_matcher/1,
+              opts: cache_opts()
+            )
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
   def fetch_post(slug, posts_path \\ @posts_path) do
     list_posts(posts_path)
@@ -64,5 +69,10 @@ defmodule JsonCorp.Blog do
     date = date_str |> Timex.parse!("{YYYY}{0M}{0D}")
 
     %{slug: slug, date: date}
+  end
+
+  case Mix.env() do
+    :dev -> defp cache_opts(), do: [ttl: 0]
+    _ -> defp cache_opts(), do: [ttl: :infinity]
   end
 end
