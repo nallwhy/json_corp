@@ -47,22 +47,24 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    Post List
+    <div class="px-8 py-4">
+      <h1 class="mb-4 text-2xl font-bold">Posts</h1>
 
-    <div>
-      <%= link "Random", to: "#", phx_click: "open_random_post" %>
-      <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index) %>
-      <%= for category <- @categories do %>
-      <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category) %>
-      <% end %>
-    </div>
-
-    <div>
-    <%= for %Post{title: title, slug: slug} <- posts_of_category(@posts, @category) do %>
-      <div phx-click="open_post" phx-value-post_slug={slug}>
-        <p>title: <%= title %></p>
+      <div class="mb-4 flex">
+        <%= link "Random", to: "#", phx_click: "open_random_post", class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
+        <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
+        <%= for category <- @categories do %>
+        <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
+        <% end %>
       </div>
-    <% end %>
+
+      <div>
+      <%= for %Post{title: title, slug: slug} <- posts_of_category(@posts, @category) do %>
+        <article class="py-4 border-b-2 cursor-pointer" phx-click="open_post" phx-value-post_slug={slug}>
+          <h2 class="text-xl"><%= title %></h2>
+        </article>
+      <% end %>
+      </div>
     </div>
     """
   end
