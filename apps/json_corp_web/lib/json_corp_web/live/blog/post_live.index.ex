@@ -36,15 +36,6 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
-  def handle_event("open_post", %{"post_slug" => slug}, socket) do
-    socket =
-      socket
-      |> push_redirect(to: Routes.blog_post_show_path(socket, :show, slug))
-
-    {:noreply, socket}
-  end
-
-  @impl true
   def render(assigns) do
     ~H"""
     <div class="px-8 py-4">
@@ -60,9 +51,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
       <div>
       <%= for %Post{title: title, slug: slug} <- posts_of_category(@posts, @category) do %>
-        <article class="py-4 border-b-2 cursor-pointer" phx-click="open_post" phx-value-post_slug={slug}>
-          <h2 class="text-xl"><%= title %></h2>
-        </article>
+        <%= link to: Routes.blog_post_show_path(@socket, :show, slug) do %>
+          <article class="py-4 border-b-2 cursor-pointer">
+            <h2 class="text-xl"><%= title %></h2>
+          </article>
+        <% end %>
       <% end %>
       </div>
     </div>
