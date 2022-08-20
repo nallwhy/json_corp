@@ -17,8 +17,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <div>
-      <div>
+    <div class="p-8">
+      <div class="mb-4">
         <%= live_redirect "<- 전체 글 보기", to: Routes.blog_post_index_path(@socket, :index) %>
       </div>
       <div class="prose">
