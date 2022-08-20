@@ -10,8 +10,17 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <header>
-      Json Media
+    <header class="px-8 py-6 flex items-center">
+      <div class="flex-none w-32">
+        <%= link "Json Media", to: Routes.page_path(@conn, :index), class: "cursor-pointer text-xl hover:font-bold" %>
+      </div>
+      <div class="flex-1 ml-16">
+        <ul class="flex">
+          <li class="px-2 border-y-2 border-white hover:border-b-primary">
+            <%= live_redirect "Blog", to: Routes.blog_post_index_path(@conn, :index) %>
+          </li>
+        </ul>
+      </div>
     </header>
     <%= @inner_content %>
   </body>
