@@ -47,6 +47,19 @@ defmodule JsonCorpWeb do
       use Phoenix.LiveView,
         layout: {JsonCorpWeb.LayoutView, "live.html"}
 
+      def assign_page_meta(socket, meta) when is_map(meta) do
+        socket = socket |> assign(:page_meta, meta)
+
+        case meta do
+          %{title: title} -> socket |> assign(:page_title, title)
+          _ -> socket
+        end
+      end
+
+      def assign_page_meta(socket, fun) when is_function(fun) do
+        assign_page_meta(socket, fun.(socket.assigns))
+      end
+
       unquote(view_helpers())
     end
   end

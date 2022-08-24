@@ -10,7 +10,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> assign(:posts, Blog.list_posts())
       |> assign(:categories, Blog.list_categories())
-      |> assign(:page_meta, %{title: "Blog"})
+      |> assign_page_meta(%{title: "Blog"})
 
     {:ok, socket}
   end
