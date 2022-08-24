@@ -56,8 +56,16 @@ defmodule JsonCorp.Blog do
 
     title = meta_map |> Map.fetch!(:title)
     category = meta_map |> Map.fetch!(:category)
+    description = meta_map |> Map.get(:description)
 
-    %Post{title: title, category: category, slug: slug, body: body, date: date}
+    %Post{
+      title: title,
+      description: description,
+      category: category,
+      slug: slug,
+      body: body,
+      date: date
+    }
   end
 
   defp extract_post_meta(post_path) do
