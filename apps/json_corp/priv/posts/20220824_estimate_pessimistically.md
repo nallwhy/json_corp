@@ -74,4 +74,4 @@ category: :dev
 
 일을 점점 더 빨리 처리하는 개발자가 되고 싶다면 추정을 빡빡하게 하지 말고 여유롭게 하자.
 
-[1]: Happiness and the Productivity of Software Engineers: https://link.springer.com/chapter/10.1007/978-1-4842-4221-6_10
+[1]: [Happiness and the Productivity of Software Engineers](https://link.springer.com/chapter/10.1007/978-1-4842-4221-6_10)
