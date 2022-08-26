@@ -14,12 +14,24 @@
   color: #569cd6;
 }
 
+.makeup .mi {
+  color: #b5cea8;
+}
+
+.makeup .na {
+  color: #9cdcfe;
+}
+
 .makeup .nc {
   color: #4ec9b0;
 }
 
 .makeup .nf {
   color: #dcdcaa;
+}
+
+.makeup .ow {
+  color: #c485bf;
 }
 
 .makeup .p {
@@ -30,6 +42,10 @@
   color: #ce9178;
 }
 
+.makeup .si {
+  color: #569cd6;
+}
+
 .makeup .ss {
   color: #569cd6;
 }
@@ -38,3 +54,10 @@
   color: #ce9178;
 }
 
+.makeup .c {
+  color: #6a9955;
+}
+
+.makeup .c1 {
+  color: #6a9955;
+}
