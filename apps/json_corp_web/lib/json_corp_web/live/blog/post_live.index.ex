@@ -50,13 +50,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       </div>
 
       <div>
-      <%= for %Post{title: title, slug: slug, description: description} <- posts_of_category(@posts, @category) do %>
-        <%= live_redirect to: Routes.blog_post_show_path(@socket, :show, slug) do %>
+      <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
+        <%= live_redirect to: Routes.blog_post_show_path(@socket, :show, post.slug) do %>
           <article class="py-4 border-b-2 cursor-pointer">
-            <h2 class="text-xl"><%= title %></h2>
-            <%= if description do %>
-              <p class="mt-6"><%= description %></p>
+            <h2 class="text-xl"><%= post.title %></h2>
+            <%= if post.description do %>
+              <p class="mt-6"><%= post.description %></p>
             <% end %>
+            <p class="mt-6"><%= post.date_created %></p>
           </article>
         <% end %>
       <% end %>
