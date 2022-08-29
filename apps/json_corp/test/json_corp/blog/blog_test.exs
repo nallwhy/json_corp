@@ -10,20 +10,24 @@ defmodule JsonCorp.BlogTest do
 
     [fetched_post | _] = fetched_posts
 
-    assert fetched_post.title == "Test Title 0"
-    assert fetched_post.category == :dev
-    assert fetched_post.slug == "post00"
+    assert fetched_post.title == "Test Title 1"
+    assert fetched_post.description == "description 1"
+    assert fetched_post.category == :talk
+    assert fetched_post.slug == "post0"
     assert fetched_post.body =~ "# Test Body"
+    assert fetched_post.date_created == ~D[2022-06-27]
   end
 
   describe "fetch_post/2" do
     test "with valid slug" do
-      assert {:ok, fetched_post} = Blog.fetch_post("post0", @fixture_path)
+      assert {:ok, fetched_post} = Blog.fetch_post("post00", @fixture_path)
 
-      assert fetched_post.title == "Test Title 1"
-      assert fetched_post.category == :talk
-      assert fetched_post.slug == "post0"
+      assert fetched_post.title == "Test Title 0"
+      assert fetched_post.description == "description 0"
+      assert fetched_post.category == :dev
+      assert fetched_post.slug == "post00"
       assert fetched_post.body =~ "# Test Body"
+      assert fetched_post.date_created == ~D[2022-06-26]
     end
 
     test "with invalid slug" do
