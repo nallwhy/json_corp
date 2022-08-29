@@ -10,7 +10,7 @@ defmodule JsonCorp.Blog do
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
-    |> Enum.sort_by(fn %Post{date: date} -> date end, :desc)
+    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, :desc)
   end
 
   @decorate cacheable(
@@ -47,7 +47,7 @@ defmodule JsonCorp.Blog do
     |> parse_post(post_meta)
   end
 
-  defp parse_post(raw_post, %{slug: slug, date: date}) do
+  defp parse_post(raw_post, %{slug: slug, date_created: date_created}) do
     [meta_str, body] =
       raw_post
       |> String.split("---", part: 2, trim: true)
@@ -64,17 +64,17 @@ defmodule JsonCorp.Blog do
       category: category,
       slug: slug,
       body: body,
-      date: date
+      date_created: date_created
     }
   end
 
   defp extract_post_meta(post_path) do
-    %{"date" => date_str, "slug" => slug} =
-      Regex.named_captures(~r/\/(?<date>\d{8})_(?<slug>.+)\.md$/, post_path)
+    %{"date_created" => date_created_str, "slug" => slug} =
+      Regex.named_captures(~r/\/(?<date_created>\d{8})_(?<slug>.+)\.md$/, post_path)
 
-    date = date_str |> Timex.parse!("{YYYY}{0M}{0D}")
+    date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
 
-    %{slug: slug, date: date}
+    %{slug: slug, date_created: date_created}
   end
 
   case Mix.env() do
