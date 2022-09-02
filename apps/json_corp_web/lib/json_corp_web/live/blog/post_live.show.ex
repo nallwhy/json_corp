@@ -26,7 +26,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <div class="prose">
         <h1 class="break-words"><%= @post.title %></h1>
         <p><%= @post.description %></p>
-        <p>Date created: <%= @post.date_created %></p>
+        <div><time>Date created: <%= @post.date_created %></time></div>
         <hr>
         <div>
           <%= @post.body |> MarkdownRenderer.html() |> raw() %>

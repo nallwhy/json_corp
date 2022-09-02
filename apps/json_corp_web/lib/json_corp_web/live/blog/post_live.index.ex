@@ -57,7 +57,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
             <%= if post.description do %>
               <p class="mt-6"><%= post.description %></p>
             <% end %>
-            <p class="mt-6"><%= post.date_created %></p>
+            <div class="mt-2">
+              Date created: <time><%= post.date_created %></time>
+            </div>
           </article>
         <% end %>
       <% end %>
