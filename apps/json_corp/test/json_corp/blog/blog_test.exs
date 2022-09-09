@@ -15,7 +15,7 @@ defmodule JsonCorp.BlogTest do
     assert fetched_post.category == :talk
     assert fetched_post.slug == "post0"
     assert fetched_post.body =~ "# Test Body"
-    assert fetched_post.date_created == ~D[2022-06-27]
+    assert fetched_post.date_created == ~D[2022-07-24]
   end
 
   describe "fetch_post/2" do

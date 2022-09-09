@@ -10,7 +10,7 @@ defmodule JsonCorp.Blog do
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
-    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, :desc)
+    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
   @decorate cacheable(
