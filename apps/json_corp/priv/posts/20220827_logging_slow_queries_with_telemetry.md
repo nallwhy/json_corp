@@ -1,6 +1,6 @@
 %{
 title: "Elixir 에서 Telemetry 로 Ecto 의 Slow Query 로깅하기",
-description: "Elixir 에서 event 를 dynamic 하게 handling 하는 방법",
+description: "앗! Slow Query 로깅 신발보다 싸다",
 category: :dev
 }
 
@@ -54,7 +54,7 @@ end
 
 ```elixir
 defmodule MyApp.Application do
-  def start() do
+  def start(_type, _args) do
     ...
     :ok = :telemetry.attach("slow-query", [:my_app, :repo, :query], &MyApp.Telemetry.handle_event/4, %{})
     ...
