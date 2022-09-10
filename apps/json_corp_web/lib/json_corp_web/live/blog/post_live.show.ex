@@ -24,7 +24,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <%= live_redirect "<- 전체 글 보기", to: Routes.blog_post_index_path(@socket, :index) %>
       </div>
       <div class="prose">
-        <h1 class="break-words"><%= @post.title %></h1>
+        <h1><%= @post.title %></h1>
         <p><%= @post.description %></p>
         <div><time>Date created: <%= @post.date_created %></time></div>
         <hr>

@@ -4,6 +4,9 @@
 @import "./code_highlight.css";
 
 /* This file is for your main application CSS */
+.prose {
+  overflow-wrap: break-word;
+}
 
 /* Alerts and form errors used by phx.new */
 .alert {
