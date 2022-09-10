@@ -119,23 +119,31 @@ end
 
 참고: https://hexdocs.pm/nebulex/Nebulex.Caching.html
 
-- `cacheable` decorator
-  - cache key 에 해당하는 cache 가 없으면 함수를 실행한 후 cache 를 생성하고, 있으면 함수를 실행하지 않고 cache 를 반환한다.
-  - args
-    - `cache`: cache module
-    - `key` or `keys`: cache key. cache module 내에서 unique 한 identifier 가 된다.
-    - `match`: 함수의 결과에 따라 cache 여부, 저장할 값을 결정한다. (optional)
-    - `opts`: 기타 ttl 등의 옵션을 설정한다. (optional)
-- `cache_put` decorator
-  - `cacheable` decorator 와는 다르게 항상 함수가 실행되고 cache key 에 해당하는 cache 를 생성/변경 한다.
-  - args
-    - cacheable 과 동일
-- `cache_evict` decorator
-  - cache key 에 해당하는 cache 를 evict 한다.
-  - args
-    - `cache`: cache module
-    - `key` or `keys`: cache key (optional)
-    - `all_entries`: `true` 로 설정되면 cache module 의 모든 cache 를 evict 한다. (optional)
+#### `cacheable` decorator
+
+cache key 에 해당하는 cache 가 없으면 함수를 실행한 후 cache 를 생성하고, 있으면 함수를 실행하지 않고 cache 를 반환한다.
+
+- args
+  - `cache`: cache module
+  - `key` or `keys`: cache key. cache module 내에서 unique 한 identifier 가 된다.
+  - `match`: 함수의 결과에 따라 cache 여부, 저장할 값을 결정한다. (optional)
+  - `opts`: 기타 ttl 등의 옵션을 설정한다. (optional)
+
+#### `cache_put` decorator
+
+`cacheable` decorator 와는 다르게 항상 함수가 실행되고 cache key 에 해당하는 cache 를 생성/변경 한다.
+
+- args
+  - cacheable 과 동일
+
+#### `cache_evict` decorator
+
+cache key 에 해당하는 cache 를 evict 한다.
+
+- args
+  - `cache`: cache module
+  - `key` or `keys`: cache key (optional)
+  - `all_entries`: `true` 로 설정되면 cache module 의 모든 cache 를 evict 한다. (optional)
 
 #### Nebulex 함수 직접 사용
 
