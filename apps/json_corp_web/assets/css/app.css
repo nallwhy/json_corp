@@ -4,6 +4,16 @@
 @import "./code_highlight.css";
 
 /* This file is for your main application CSS */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  font-size: inherit;
+  color: inherit;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
 .prose {
   overflow-wrap: break-word;
 }

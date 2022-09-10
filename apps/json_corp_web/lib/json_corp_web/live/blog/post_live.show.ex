@@ -21,7 +21,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="p-8 py-4">
       <div class="mb-8">
-        <%= live_redirect "<- 전체 글 보기", to: Routes.blog_post_index_path(@socket, :index) %>
+        <%= live_redirect to: Routes.blog_post_index_path(@socket, :index) do %>
+           <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
+        <% end %>
       </div>
       <div class="prose">
         <h1><%= @post.title %></h1>
