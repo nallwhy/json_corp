@@ -10,6 +10,7 @@ config :json_corp, JsonCorp.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "json_corp_test#{System.get_env("MIX_TEST_PARTITION")}",
+  port: 48945,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

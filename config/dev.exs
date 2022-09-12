@@ -6,6 +6,7 @@ config :json_corp, JsonCorp.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "json_corp_dev",
+  port: 48945,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
