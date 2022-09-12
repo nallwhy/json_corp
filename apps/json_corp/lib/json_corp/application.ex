@@ -10,7 +10,7 @@ defmodule JsonCorp.Application do
     children = [
       JsonCorp.Core.Cache,
       # Start the Ecto repository
-      # JsonCorp.Repo,
+      JsonCorp.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: JsonCorp.PubSub}
     ]
