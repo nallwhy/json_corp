@@ -9,8 +9,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     socket =
       socket
       |> assign(:post, load_post(slug))
-      |> assign_page_meta(fn %{post: %{title: title, description: description}} ->
-        %{title: title, description: description}
+      |> assign_page_meta(fn %{
+                               post: %{
+                                 title: title,
+                                 description: description,
+                                 cover_url: cover_url
+                               }
+                             } ->
+        %{title: title, description: description, cover_url: cover_url}
       end)
 
     {:ok, socket}
