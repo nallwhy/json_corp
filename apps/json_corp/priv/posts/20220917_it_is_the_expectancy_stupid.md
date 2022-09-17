@@ -1,7 +1,8 @@
 %{
 title: "인간의 모든 문제는 기대와 그에 미치지 못하는 현실에서 온다",
 description: "기대가 큰 만큼 실망도 큰 법이지",
-category: :talk
+category: :talk,
+cover_url: "https://json.media/images/blog/20220917_cover.jpg"
 }
 
 ---
