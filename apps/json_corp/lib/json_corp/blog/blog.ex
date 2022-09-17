@@ -57,6 +57,7 @@ defmodule JsonCorp.Blog do
     title = meta_map |> Map.fetch!(:title)
     category = meta_map |> Map.fetch!(:category)
     description = meta_map |> Map.get(:description)
+    cover_url = meta_map |> Map.get(:cover_url)
 
     %Post{
       title: title,
@@ -64,7 +65,8 @@ defmodule JsonCorp.Blog do
       category: category,
       slug: slug,
       body: body,
-      date_created: date_created
+      date_created: date_created,
+      cover_url: cover_url
     }
   end
 
