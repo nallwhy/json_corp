@@ -35,7 +35,7 @@ defmodule JsonCorp.Blog do
   end
 
   defp list_post_paths(posts_path) do
-    (posts_path <> "/*.md")
+    (posts_path <> "/*.{md,livemd}")
     |> Path.wildcard()
   end
 
@@ -72,7 +72,7 @@ defmodule JsonCorp.Blog do
 
   defp extract_post_meta(post_path) do
     %{"date_created" => date_created_str, "slug" => slug} =
-      Regex.named_captures(~r/\/(?<date_created>\d{8})_(?<slug>.+)\.md$/, post_path)
+      Regex.named_captures(~r/\/(?<date_created>\d{8})_(?<slug>.+)\.(md|livemd)$/, post_path)
 
     date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
 
