@@ -25,20 +25,20 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="p-8 py-4">
-      <div class="mb-8">
-        <%= live_redirect to: Routes.blog_post_index_path(@socket, :index) do %>
-           <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
+    <div class="px-8 py-4">
+      <div class="pb-4">
+        <%= live_redirect to: Routes.blog_post_index_path(@socket, :index), class: "block mb-6" do %>
+          <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
         <% end %>
-      </div>
-      <div class="prose">
-        <h1><%= @post.title %></h1>
-        <p><%= @post.description %></p>
-        <div><time>Date created: <%= @post.date_created %></time></div>
-        <hr>
-        <div>
-          <%= @post.body |> MarkdownRenderer.html() |> raw() %>
+        <div class="prose">
+          <h1><%= @post.title %></h1>
+          <p><%= @post.description %></p>
+          <div><time>Date created: <%= @post.date_created %></time></div>
         </div>
+      </div>
+      <hr>
+      <div class="prose pt-4">
+        <%= @post.body |> MarkdownRenderer.html() |> raw() %>
       </div>
     </div>
     """
