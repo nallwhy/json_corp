@@ -38,6 +38,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       </div>
       <hr>
       <div class="prose pt-4">
+        <%= if @post.cover_url do %>
+          <img src={@post.cover_url} alt={@post.title} class="w-full">
+        <% end %>
         <%= @post.body |> MarkdownRenderer.html() |> raw() %>
       </div>
     </div>
