@@ -39,10 +39,12 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def render(assigns) do
     ~H"""
     <div class="px-8 py-4">
-      <h1 class="mb-4 text-2xl font-bold">Posts</h1>
+      <div class="flex justify-between items-baseline">
+        <h1 class="mb-4 text-2xl font-bold">Posts</h1>
+        <%= link "?", to: "#", phx_click: "open_random_post", class: "" %>
+      </div>
 
       <div class="mb-4 flex">
-        <%= link "Random", to: "#", phx_click: "open_random_post", class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
         <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
         <%= for category <- @categories do %>
         <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
