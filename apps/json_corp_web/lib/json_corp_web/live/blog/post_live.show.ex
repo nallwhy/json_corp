@@ -36,7 +36,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           <div><time>Date created: <%= @post.date_created %></time></div>
         </div>
       </div>
-      <hr>
+      <hr class="prose">
       <div class="prose pt-4">
         <%= if @post.cover_url do %>
           <img src={@post.cover_url} alt={@post.title} class="w-full">
