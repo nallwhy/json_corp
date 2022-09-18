@@ -45,9 +45,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       </div>
 
       <div class="mb-4 flex">
-        <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
+        <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index), class: "px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}" %>
         <%= for category <- @categories do %>
-        <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category), class: "px-4 first:pl-0 border-r-2 last:border-r-0" %>
+          <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category), class: "px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}" %>
         <% end %>
       </div>
 
