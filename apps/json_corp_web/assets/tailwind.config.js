@@ -22,6 +22,6 @@ module.exports = {
     plugin(({addVariant}) => addVariant('phx-change-loading', ['&.phx-change-loading', '.phx-change-loading &']))
   ],
   daisyui: {
-    themes: ["light"]
+    themes: ["light", "dark"]
   }
 }
