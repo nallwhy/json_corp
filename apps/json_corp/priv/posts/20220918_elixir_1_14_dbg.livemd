@@ -13,6 +13,8 @@ cover_url: "https://opengraph.githubassets.com/d7811f58d3c80b5881c265bd02999a354
 
 이 문서는 Livebook 으로 작성되었습니다.
 
+[![Run in Livebook](https://livebook.dev/badge/v1/blue.svg)](https://livebook.dev/run?url=https%3A%2F%2Fgithub.com%2Fnallwhy%2Fjson_corp%2Fblob%2Fc16a6dbaea28d5fbc5027aeee5ba48b827344075%2Fapps%2Fjson_corp%2Fpriv%2Fposts%2F20220918_elixir_1_14_dbg.livemd)
+
 <!-- livebook:{"break_markdown":true} -->
 
 Elixir v1.14 가 출시되었다! [1](https://elixir-lang.org/blog/2022/09/01/elixir-v1-14-0-released/)
