@@ -7,7 +7,8 @@ defmodule JsonCorpWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_json_corp_web_key",
-    signing_salt: "pUOZ+rij"
+    signing_salt: "pUOZ+rij",
+    max_age: 10 * 365 * 24 * 60 * 60
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
