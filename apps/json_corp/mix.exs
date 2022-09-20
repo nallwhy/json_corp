@@ -46,7 +46,8 @@ defmodule JsonCorp.MixProject do
       {:makeup_elixir, "~> 0.16.0"},
       {:timex, "~> 3.7"},
       {:nebulex, "~> 2.4"},
-      {:decorator, "~> 1.4"}
+      {:decorator, "~> 1.4"},
+      {:uuid, "~> 1.1"}
     ]
   end
 
