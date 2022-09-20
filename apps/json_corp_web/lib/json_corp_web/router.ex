@@ -8,6 +8,7 @@ defmodule JsonCorpWeb.Router do
     plug :put_root_layout, {JsonCorpWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug JsonCorpWeb.SessionPlug
   end
 
   pipeline :api do
