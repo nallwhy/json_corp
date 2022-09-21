@@ -147,9 +147,7 @@ str #=> "Elixir is cool!"
 
 IEx 에서는 `dbg` 에 자체적인 backend 로 코드를 단계별로 실행하며 디버깅 할 수 있는 prying 기능을 지원한다.
 
-[Elixir's new "dbg" with IEx breakpoints on pipes](https://asciinema.org/a/509509)
-
-<script id="asciicast-509509" src="https://asciinema.org/a/509509.js" async></script>
+[![asciicast](https://asciinema.org/a/509509.svg)](https://asciinema.org/a/509509)
 
 <!-- livebook:{"break_markdown":true} -->
 
