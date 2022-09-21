@@ -32,8 +32,10 @@ defmodule JsonCorpWeb.Router do
   scope "/blog", JsonCorpWeb.Blog, as: :blog do
     pipe_through :browser
 
-    live "/", PostLive.Index, :index
-    live "/:slug", PostLive.Show, :show
+    live_session :blog, on_mount: JsonCorpWeb.ViewLogHook do
+      live "/", PostLive.Index, :index
+      live "/:slug", PostLive.Show, :show
+    end
   end
 
   scope "/test_api" do
