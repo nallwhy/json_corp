@@ -53,7 +53,8 @@ defmodule JsonCorpWeb.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:test_api, github: "nallwhy/test_api", tag: "v0.2"},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
-      {:doumi_phoenix_svg, "~> 0.1"}
+      {:doumi_phoenix_svg, "~> 0.1"},
+      {:uuid, "~> 1.1"}
     ]
   end
 
