@@ -23,7 +23,7 @@ Elixir v1.14 가 출시되었다! [1](https://elixir-lang.org/blog/2022/09/01/el
 
 "한동안 DX 에 집중해왔다니? 언어 발전은 없고 이거 망해가는 것 아닌가요?" 라고 생각할 수도 있겠지만, **Elixir 는 v1.9 에서 이미 마지막으로 예정되어있던 기능인 Releases 를 완성했다**.
 
-> Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned.
+> "Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
 >
 > \- José Valim [2](https://elixir-lang.org/blog/2019/06/24/elixir-v1-9-0-released/)
 

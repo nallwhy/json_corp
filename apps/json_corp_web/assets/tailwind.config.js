@@ -10,7 +10,16 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            'blockquote p:first-of-type::before': null,
+            'blockquote p:last-of-type::after': null,
+          },
+        },
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
