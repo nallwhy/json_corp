@@ -2,7 +2,6 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   use JsonCorpWeb, :live_view
   alias JsonCorp.Blog
   alias JsonCorp.Blog.Post
-  alias JsonCorp.Core.Nillable
 
   @impl true
   def mount(_params, _session, socket) do
@@ -10,14 +9,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> assign(:posts, Blog.list_posts())
       |> assign(:categories, Blog.list_categories())
+      |> assign(:category, nil)
       |> assign_page_meta(%{title: "Blog"})
 
     {:ok, socket}
   end
 
   @impl true
-  def handle_params(params, _uri, socket) do
-    category = params |> Map.get("category") |> Nillable.map(&String.to_existing_atom(&1))
+  def handle_params(%{"category" => category_str}, _uri, socket) do
+    category = category_str |> String.to_existing_atom()
 
     socket = socket |> assign(:category, category)
 
@@ -25,7 +25,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
-  def handle_event("open_random_post", _, socket) do
+  def handle_params(%{"random" => _}, _uri, socket) do
     %{slug: post_slug} = socket.assigns.posts |> Enum.random()
 
     socket =
@@ -36,12 +36,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
+  def handle_params(_params, _uri, socket) do
+    socket = socket |> assign(:category, nil)
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def render(assigns) do
     ~H"""
     <div class="px-8 py-4">
       <div class="flex justify-between items-baseline">
         <h1 class="mb-4 text-2xl font-bold">Posts</h1>
-        <%= link "?", to: "#", phx_click: "open_random_post", class: "" %>
+        <%= live_patch "?", to: Routes.blog_post_index_path(@socket, :index, random: true), class: "" %>
       </div>
 
       <div class="mb-4 flex">
