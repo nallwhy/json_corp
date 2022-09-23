@@ -105,7 +105,7 @@ binding() #=> [fun: #Function<42.3316493/1 in :erl_eval.expr/6>, str: "Elixir is
 
 <!-- livebook:{"break_markdown":true} -->
 
-`Kernel.dbg/2` 를 arguments(code pipeline) 와 함께 사용하면, 코드를 분성하여 매 단계 마다의 디버깅 정보를 출력한다.
+`Kernel.dbg/2` 를 arguments(code pipeline) 와 함께 사용하면, 코드를 분석하여 매 단계 마다의 디버깅 정보를 출력한다.
 
 ```elixir
 fun = fn str ->
