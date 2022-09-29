@@ -20,6 +20,9 @@
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
             <%= live_redirect "Blog", to: Routes.blog_post_index_path(@conn, :index) %>
           </li>
+          <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
+            <%= link "Projects", to: Routes.project_path(@conn, :index) %>
+          </li>
         </ul>
       </div>
     </header>
