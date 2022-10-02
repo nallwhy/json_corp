@@ -18,4 +18,10 @@ defmodule JsonCorp.Stats.ViewLog do
     %__MODULE__{}
     |> changeset_for_create(params)
   end
+
+  def get_count_by_uri(uri) do
+    __MODULE__
+    |> where([vl], ilike(vl.uri, ^"#{uri}%"))
+    |> select([vl], count())
+  end
 end
