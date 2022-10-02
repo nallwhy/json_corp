@@ -1,8 +1,7 @@
 defmodule JsonCorp.Stats do
-  use Nebulex.Caching
+  use JsonCorp.Core.Cache
   alias JsonCorp.Stats.ViewLog
   alias JsonCorp.Repo
-  alias JsonCorp.Core.Cache
 
   defmacro __using__([]) do
     quote do
@@ -19,7 +18,7 @@ defmodule JsonCorp.Stats do
   end
 
   @decorate cacheable(
-              cache: Cache,
+              cache: Cache.Local,
               key: {Stats, :get_view_count_by_uri, [uri]},
               opts: [ttl: :timer.minutes(1)]
             )

@@ -8,7 +8,7 @@ defmodule JsonCorp.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      JsonCorp.Core.Cache,
+      JsonCorp.Core.Cache.Local,
       # Start the Ecto repository
       JsonCorp.Repo,
       # Start the PubSub system

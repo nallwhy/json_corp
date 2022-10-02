@@ -1,11 +1,14 @@
 defmodule JsonCorp.Blog do
-  use Nebulex.Caching
+  use JsonCorp.Core.Cache
   alias JsonCorp.Blog.Post
-  alias JsonCorp.Core.Cache
 
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
-  @decorate cacheable(cache: Cache, key: {Blog, :list_posts, [posts_path]}, opts: cache_opts())
+  @decorate cacheable(
+              cache: Cache.Local,
+              key: {Blog, :list_posts, [posts_path]},
+              opts: cache_opts()
+            )
   @spec list_posts() :: [Post.t()]
   def list_posts(posts_path \\ @posts_path) do
     list_post_paths(posts_path)
@@ -14,7 +17,7 @@ defmodule JsonCorp.Blog do
   end
 
   @decorate cacheable(
-              cache: Cache,
+              cache: Cache.Local,
               key: {Blog, :fetch_post, [slug, posts_path]},
               match: &Cache.default_matcher/1,
               opts: cache_opts()
