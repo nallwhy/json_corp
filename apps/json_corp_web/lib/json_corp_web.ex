@@ -37,6 +37,8 @@ defmodule JsonCorpWeb do
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
+      import Phoenix.Component
+
       # Include shared imports and aliases for views
       unquote(view_helpers())
     end
@@ -46,6 +48,8 @@ defmodule JsonCorpWeb do
     quote do
       use Phoenix.LiveView,
         layout: {JsonCorpWeb.LayoutView, "live.html"}
+
+      import Phoenix.Component
 
       alias JsonCorpWeb.Components.Icon
 

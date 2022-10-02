@@ -30,7 +30,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
     socket =
       socket
-      |> push_redirect(to: Routes.blog_post_show_path(socket, :show, post_slug))
+      |> push_navigate(to: Routes.blog_post_show_path(socket, :show, post_slug))
 
     {:noreply, socket}
   end
@@ -48,19 +48,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     <div class="px-8 py-4">
       <div class="flex justify-between items-baseline">
         <h1 class="mb-4 text-2xl font-bold">Posts</h1>
-        <%= live_patch "?", to: Routes.blog_post_index_path(@socket, :index, random: true), class: "" %>
+        <.link navigate={Routes.blog_post_index_path(@socket, :index, random: true)}>?</.link>
       </div>
 
       <div class="mb-4 flex">
-        <%= live_patch "All", to: Routes.blog_post_index_path(@socket, :index), class: "px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}" %>
+        <.link patch={Routes.blog_post_index_path(@socket, :index)} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}>All</.link>
         <%= for category <- @categories do %>
-          <%= live_patch category, to: Routes.blog_post_index_path(@socket, :index, category: category), class: "px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}" %>
+          <.link patch={Routes.blog_post_index_path(@socket, :index, category: category)} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}><%= category %></.link>
         <% end %>
       </div>
 
       <div>
       <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
-        <%= live_redirect to: Routes.blog_post_show_path(@socket, :show, post.slug) do %>
+        <.link navigate={Routes.blog_post_show_path(@socket, :show, post.slug)}>
           <article class="py-4 border-b-2 cursor-pointer">
             <h2 class="text-xl"><%= post.title %></h2>
             <%= if post.description do %>
@@ -70,7 +70,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
               Date created: <time><%= post.date_created %></time>
             </div>
           </article>
-        <% end %>
+        </.link>
       <% end %>
       </div>
     </div>

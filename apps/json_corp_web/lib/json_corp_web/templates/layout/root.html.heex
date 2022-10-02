@@ -13,15 +13,15 @@
   <body>
     <header class="px-8 py-6 flex items-center">
       <div class="flex-none w-32">
-        <%= link "Json Media", to: Routes.page_path(@conn, :index), class: "cursor-pointer text-xl hover:font-bold" %>
+        <.link href={Routes.page_path(@conn, :index)} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
       <div class="flex-1 ml-16">
         <ul class="flex">
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <%= live_redirect "Blog", to: Routes.blog_post_index_path(@conn, :index) %>
+            <.link navigate={Routes.blog_post_index_path(@conn, :index)}>Blog</.link>
           </li>
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <%= link "Projects", to: Routes.project_path(@conn, :index) %>
+            <.link href={Routes.project_path(@conn, :index)}>Projects</.link>
           </li>
         </ul>
       </div>

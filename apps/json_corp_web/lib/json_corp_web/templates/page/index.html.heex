@@ -2,6 +2,11 @@
   <h1 class="text-2xl mb-4"><%= gettext "Welcome to %{name}!", name: "Json Media" %></h1>
   <p>I'm a purely arrogant person.</p>
   <br>
-  <p>This site is made with <%= link "Phoenix", to: "https://github.com/phoenixframework/phoenix", class: "link" %> & <%= link "Phoenix LiveView", to: "https://github.com/phoenixframework/phoenix_live_view", class: "link" %>.</p>
-  <%= link "GitHub Repository", to: "https://github.com/nallwhy/json_corp", class: "link" %>
+  <p>
+    This site is made with
+    <.link href="https://github.com/phoenixframework/phoenix" class="link">Phoenix</.link>
+     &
+    <.link href="https://github.com/phoenixframework/phoenix_live_view" class="link">Phoenix LiveView</.link>.
+  </p>
+  <.link href="https://github.com/nallwhy/json_corp" class="link">GitHub Repository</.link>
 </section>

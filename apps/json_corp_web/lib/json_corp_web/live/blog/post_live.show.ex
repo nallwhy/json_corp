@@ -27,9 +27,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="px-8 py-4">
       <div class="pb-4">
-        <%= live_redirect to: Routes.blog_post_index_path(@socket, :index), class: "block mb-6" do %>
+        <.link navigate={Routes.blog_post_index_path(@socket, :index)} class="block mb-6">
           <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
-        <% end %>
+        </.link>
         <div class="prose">
           <h1><%= @post.title %></h1>
           <p><%= @post.description %></p>
