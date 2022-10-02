@@ -24,6 +24,7 @@ defmodule JsonCorp.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import JsonCorp.DataCase
+      import JsonCorp.Factory
     end
   end
 
