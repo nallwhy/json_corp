@@ -11,7 +11,6 @@ defmodule JsonCorpWeb.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -41,9 +40,9 @@ defmodule JsonCorpWeb.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17.5"},
+      {:phoenix_live_view, "~> 0.18.1"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix_live_dashboard, "~> 0.7.0"},
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -51,7 +50,7 @@ defmodule JsonCorpWeb.MixProject do
       {:json_corp, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:test_api, github: "nallwhy/test_api", tag: "v0.2"},
+      {:test_api, github: "nallwhy/test_api", tag: "v0.3"},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
       {:doumi_phoenix_svg, "~> 0.1"},
       {:uuid, "~> 1.1"}
