@@ -62,7 +62,9 @@ defmodule JsonCorpWeb.Router do
   scope "/" do
     pipe_through [:browser, :admin]
 
-    live_dashboard "/dashboard", metrics: JsonCorpWeb.Telemetry
+    live_dashboard "/dashboard",
+      metrics: JsonCorpWeb.Telemetry,
+      ecto_psql_extras_options: [long_running_queries: [threshold: "200 milliseconds"]]
   end
 
   # Enables the Swoosh mailbox preview in development.
