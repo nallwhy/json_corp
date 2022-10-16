@@ -47,7 +47,9 @@ defmodule JsonCorp.MixProject do
       {:timex, "~> 3.7"},
       {:nebulex, "~> 2.4"},
       {:decorator, "~> 1.4"},
-      {:uuid, "~> 1.1"}
+      {:uuid, "~> 1.1"},
+      {:req, "~> 0.3"},
+      {:floki, "~> 0.33"}
     ]
   end
 
