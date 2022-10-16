@@ -67,6 +67,8 @@ config :phoenix, :json_library, Jason
 
 config :json_corp, JsonCorp.Core.Cache.Local, stats: true
 
+config :json_corp, :slack, webhook_url: ""
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
