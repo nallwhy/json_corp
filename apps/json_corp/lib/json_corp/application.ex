@@ -20,10 +20,7 @@ defmodule JsonCorp.Application do
   end
 
   if Mix.env() == :prod do
-    defp prod_children,
-      do: [
-        JsonCorp.Worker.Kirin
-      ]
+    defp prod_children, do: []
   else
     defp prod_children, do: []
   end
