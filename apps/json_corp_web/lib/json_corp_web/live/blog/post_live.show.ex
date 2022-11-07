@@ -1,7 +1,7 @@
 defmodule JsonCorpWeb.Blog.PostLive.Show do
   use JsonCorpWeb, :live_view
   alias JsonCorp.Blog
-  alias JsonCorp.Blog.Post
+  alias JsonCorp.Blog.{Post, SecretPost}
   alias JsonCorp.Blog.MarkdownRenderer
   alias JsonCorp.Stats
 
@@ -25,6 +25,35 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       |> assign(:view_count, load_view_count(normalized_uri))
 
     {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("unlock_post", %{"door" => %{"password" => password}}, socket) do
+    socket =
+      case socket.assigns.post.password do
+        ^password ->
+          socket
+          |> assign(:locked, false)
+
+        _ ->
+          socket
+          |> put_flash(:error, "Denied")
+      end
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def render(%{locked: true} = assigns) do
+    ~H"""
+    <div class="px-8 py-4">
+      <.form :let={f} for={:door} phx-submit="unlock_post">
+        <%= password_input f, :password, class: "input input-bordered", placeholder: "password" %>
+
+        <button class="btn">Open</button>
+      </.form>
+    </div>
+    """
   end
 
   @impl true
@@ -55,9 +84,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   defp load_post(socket, slug) do
     case Blog.fetch_post(slug) do
-      {:ok, %Post{} = post} ->
+      {:ok, post} ->
         socket
         |> assign(:post, post)
+        |> assign_new(:locked, fn
+          %{post: %SecretPost{}} -> true
+          %{post: %Post{}} -> false
+        end)
         |> assign_page_meta(fn %{
                                post: %{
                                  title: title,
