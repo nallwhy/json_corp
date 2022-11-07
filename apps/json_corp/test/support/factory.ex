@@ -1,6 +1,7 @@
 defmodule JsonCorp.Factory do
   alias JsonCorp.Repo
   alias JsonCorp.Stats.ViewLog
+  alias JsonCorp.Seq
 
   def build(factory_name, attrs \\ [])
 
@@ -16,5 +17,17 @@ defmodule JsonCorp.Factory do
   def insert(factory_name, attrs \\ []) do
     build(factory_name, attrs)
     |> Repo.insert!()
+  end
+
+  defp seq_s(key) do
+    "#{key}-#{seq(key)}"
+  end
+
+  # defp seq(key, fun) do
+  #   seq(key) |> fun.()
+  # end
+
+  defp seq(key) do
+    Seq.get(key)
   end
 end
