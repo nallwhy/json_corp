@@ -9,17 +9,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def mount(%{"slug" => slug}, _session, socket) do
     socket =
       socket
-      |> assign(:post, load_post(slug))
+      |> load_post(slug)
       |> assign(:view_count, nil)
-      |> assign_page_meta(fn %{
-                               post: %{
-                                 title: title,
-                                 description: description,
-                                 cover_url: cover_url
-                               }
-                             } ->
-        %{title: title, description: description, cover_url: cover_url}
-      end)
 
     {:ok, socket}
   end
@@ -62,10 +53,25 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     """
   end
 
-  defp load_post(slug) do
-    {:ok, %Post{} = post} = Blog.fetch_post(slug)
+  defp load_post(socket, slug) do
+    case Blog.fetch_post(slug) do
+      {:ok, %Post{} = post} ->
+        socket
+        |> assign(:post, post)
+        |> assign_page_meta(fn %{
+                               post: %{
+                                 title: title,
+                                 description: description,
+                                 cover_url: cover_url
+                               }
+                             } ->
+        %{title: title, description: description, cover_url: cover_url}
+      end)
 
-    post
+      _ ->
+        socket
+        |> push_navigate(to: Routes.blog_post_index_path(socket, :index))
+    end
   end
 
   def load_view_count(uri) do
