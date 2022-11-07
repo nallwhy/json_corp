@@ -1,6 +1,6 @@
 %{
 title: "Doumi.Phoenix.SVG is published",
-category: :dev
+category: "dev"
 }
 
 ---

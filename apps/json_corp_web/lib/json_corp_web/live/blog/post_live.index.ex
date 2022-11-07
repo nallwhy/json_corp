@@ -16,9 +16,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
-  def handle_params(%{"category" => category_str}, _uri, socket) do
-    category = category_str |> String.to_existing_atom()
-
+  def handle_params(%{"category" => category}, _uri, socket) do
     socket = socket |> assign(:category, category)
 
     {:noreply, socket}

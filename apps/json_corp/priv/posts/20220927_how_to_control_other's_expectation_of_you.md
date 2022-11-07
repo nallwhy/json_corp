@@ -1,7 +1,7 @@
 %{
 title: "나에 대한 타인의 기대를 조절하는 방법",
 description: "일관적으로 행동하기",
-category: :talk,
+category: "talk",
 cover_url: "https://json.media/images/blog/20220927_cover.jpg"
 }
 

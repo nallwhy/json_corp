@@ -1,7 +1,7 @@
 %{
 title: "나에 대한 타인의 기대를 과하게 높이는 방법",
 description: "저 사람이 잘 안해서 그렇지 했다 하면 ...",
-category: :talk,
+category: "talk",
 cover_url: "https://json.media/images/blog/20221003_cover.jpg"
 }
 

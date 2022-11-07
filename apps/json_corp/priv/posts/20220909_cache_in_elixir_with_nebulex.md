@@ -1,7 +1,7 @@
 %{
 title: "Elixir 에서 Nebulex 로 cache 설정하기",
 description: "앗! Cache 설정 신발보다 싸다",
-category: :dev
+category: "dev"
 }
 
 ---

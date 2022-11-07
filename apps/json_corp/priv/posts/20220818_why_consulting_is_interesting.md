@@ -1,6 +1,6 @@
 %{
 title: "나는 왜 컨설팅이 재밌는가",
-category: :consulting
+category: "consulting"
 }
 
 ---

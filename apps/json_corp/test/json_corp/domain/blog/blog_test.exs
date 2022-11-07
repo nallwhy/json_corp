@@ -12,7 +12,7 @@ defmodule JsonCorp.BlogTest do
 
     assert fetched_post.title == "Test Title 1"
     assert fetched_post.description == "description 1"
-    assert fetched_post.category == :talk
+    assert fetched_post.category == "talk"
     assert fetched_post.slug == "post0"
     assert fetched_post.body =~ "# Test Body"
     assert fetched_post.date_created == ~D[2022-07-24]
@@ -25,7 +25,7 @@ defmodule JsonCorp.BlogTest do
 
       assert fetched_post.title == "Test Title 0"
       assert fetched_post.description == "description 0"
-      assert fetched_post.category == :dev
+      assert fetched_post.category == "dev"
       assert fetched_post.slug == "post00"
       assert fetched_post.body =~ "# Test Body"
       assert fetched_post.date_created == ~D[2022-06-26]

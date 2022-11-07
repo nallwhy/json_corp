@@ -1,6 +1,6 @@
 %{
 title: "Phoenix LiveView Double Mount",
-category: :dev
+category: "dev"
 }
 
 ---
