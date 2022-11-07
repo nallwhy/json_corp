@@ -1,5 +1,5 @@
 defmodule JsonCorp.BlogTest do
-  use ExUnit.Case, async: true
+  use JsonCorp.DataCase, async: true
   alias JsonCorp.Blog
 
   @fixture_path JsonCorp.Fixture.path("./blog")
@@ -30,6 +30,23 @@ defmodule JsonCorp.BlogTest do
       assert fetched_post.body =~ "# Test Body"
       assert fetched_post.date_created == ~D[2022-06-26]
       assert fetched_post.cover_url == "https://json.corp/images/blog/example.jpg"
+    end
+
+    test "with valid secret slug" do
+      secret_post = insert(:secret_post)
+
+      assert {:ok, fetched_secret_post} = Blog.fetch_post(secret_post.slug, @fixture_path)
+
+      assert same_fields?(fetched_secret_post, secret_post, [
+               :title,
+               :description,
+               :category,
+               :slug,
+               :body,
+               :date_created,
+               :cover_url,
+               :password
+             ])
     end
 
     test "with invalid slug" do

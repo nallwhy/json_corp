@@ -1,6 +1,7 @@
 defmodule JsonCorp.Blog do
   use JsonCorp.Core.Cache
-  alias JsonCorp.Blog.Post
+  alias JsonCorp.Blog.{Post, SecretPost}
+  alias JsonCorp.Repo
 
   @posts_path Application.app_dir(:json_corp, "priv/posts")
 
@@ -22,12 +23,21 @@ defmodule JsonCorp.Blog do
               match: &Cache.default_matcher/1,
               opts: cache_opts()
             )
-  @spec fetch_post(slug :: String.t()) :: {:ok, %Post{}} | :error
+  @spec fetch_post(slug :: String.t()) :: {:ok, %Post{} | %SecretPost{}} | :error
   def fetch_post(slug, posts_path \\ @posts_path) do
     list_posts(posts_path)
     |> Enum.find(fn %Post{slug: post_slug} -> post_slug == slug end)
     |> case do
       %Post{} = post -> {:ok, post}
+      nil -> fetch_secret_post(slug)
+    end
+  end
+
+  defp fetch_secret_post(slug) do
+    SecretPost.fetch(slug)
+    |> Repo.one()
+    |> case do
+      %SecretPost{} = secret_post -> {:ok, secret_post}
       nil -> :error
     end
   end

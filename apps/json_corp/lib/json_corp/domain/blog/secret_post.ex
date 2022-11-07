@@ -13,4 +13,9 @@ defmodule JsonCorp.Blog.SecretPost do
 
     timestamps()
   end
+
+  def fetch(slug) do
+    __MODULE__
+    |> where([sp], sp.slug == ^slug)
+  end
 end
