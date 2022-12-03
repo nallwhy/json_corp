@@ -49,7 +49,8 @@ defmodule JsonCorp.MixProject do
       {:decorator, "~> 1.4"},
       {:uuid, "~> 1.1"},
       {:req, "~> 0.3"},
-      {:floki, "~> 0.33"}
+      {:floki, "~> 0.33"},
+      {:doumi, "~> 0.2.3", only: :test}
     ]
   end
 

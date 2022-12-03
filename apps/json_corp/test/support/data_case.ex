@@ -25,6 +25,7 @@ defmodule JsonCorp.DataCase do
       import Ecto.Query
       import JsonCorp.DataCase
       import JsonCorp.Factory
+      import Doumi.CaseHelper
     end
   end
 
