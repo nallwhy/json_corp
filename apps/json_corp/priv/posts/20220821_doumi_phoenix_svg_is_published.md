@@ -1,5 +1,6 @@
 %{
 title: "Doumi.Phoenix.SVG is published",
+description: "Phoenix 에서 SVG 를 가장 깔끔하게 사용하는 방법",
 category: "dev"
 }
 
@@ -75,4 +76,8 @@ end
 
 [Doumi.Phoenix.SVG] 를 사용한 예제는 [이 commit](https://github.com/nallwhy/json_corp/commit/80fd9d40104d811de26d6abc5adc20a9911d241d) 에서 확인할 수 있다.
 
-[doumi.phoenix.svg]: https://github.com/nallwhy/doumi_phoenix_svg
+### 자매품
+
+- [Doumi.URI.Query](https://json.media/blog/doumi_uri_query_is_published): Nested map, list 를 URI query string 으로 encoding 하는 방법
+
+[Doumi.Phoenix.SVG]: https://github.com/nallwhy/doumi_phoenix_svg
