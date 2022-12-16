@@ -36,13 +36,14 @@ defmodule JsonCorpWeb.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.6"},
+      {:phoenix, "~> 1.7.0-rc.0", override: true},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.18.1"},
+      {:phoenix_live_reload, "~> 1.4", only: :dev},
+      {:phoenix_live_view, "~> 0.18.3"},
+      {:phoenix_view, "~> 2.0"},
       {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.7.0"},
+      {:phoenix_live_dashboard, "~> 0.7.2"},
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -50,7 +51,7 @@ defmodule JsonCorpWeb.MixProject do
       {:json_corp, in_umbrella: true},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:test_api, github: "nallwhy/test_api", tag: "v0.3"},
+      {:test_api, github: "nallwhy/test_api", tag: "v0.4"},
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
       {:doumi_phoenix_svg, "~> 0.1"},
       {:uuid, "~> 1.1"},

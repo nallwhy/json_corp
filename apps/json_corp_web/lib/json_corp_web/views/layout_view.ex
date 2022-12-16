@@ -1,5 +1,6 @@
 defmodule JsonCorpWeb.LayoutView do
   use JsonCorpWeb, :view
+  alias Phoenix.Flash
   alias JsonCorpWeb.Components.Icon
 
   # Phoenix LiveDashboard is available only in development by default,
