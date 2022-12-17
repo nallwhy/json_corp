@@ -21,7 +21,7 @@ defmodule JsonCorpWeb.Endpoint do
     at: "/",
     from: :json_corp_web,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: JsonCorpWeb.static_paths()
 
   plug Plug.Static,
     at: "/test_api",

@@ -61,7 +61,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="px-8 py-4">
       <div class="pb-4">
-        <.link navigate={Routes.blog_post_index_path(@socket, :index)} class="block mb-6">
+        <.link navigate={~p"/blog"} class="block mb-6">
           <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
         </.link>
         <div class="prose">
@@ -92,18 +92,18 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           %{post: %Post{}} -> false
         end)
         |> assign_page_meta(fn %{
-                               post: %{
-                                 title: title,
-                                 description: description,
-                                 cover_url: cover_url
-                               }
-                             } ->
-        %{title: title, description: description, cover_url: cover_url}
-      end)
+                                 post: %{
+                                   title: title,
+                                   description: description,
+                                   cover_url: cover_url
+                                 }
+                               } ->
+          %{title: title, description: description, cover_url: cover_url}
+        end)
 
       _ ->
         socket
-        |> push_navigate(to: Routes.blog_post_index_path(socket, :index))
+        |> push_navigate(to: ~p"/blog")
     end
   end
 

@@ -9,21 +9,21 @@
       <%= assigns[:page_title] || "Home" %>
     </.live_title>
     <%= render "_meta.html", assigns %>
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"}/>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
   </head>
   <body>
     <header class="px-8 py-6 flex items-center">
       <div class="flex-none w-32">
-        <.link href={Routes.page_path(@conn, :index)} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
+        <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
       <div class="flex-1 ml-16">
         <ul class="flex">
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <.link navigate={Routes.blog_post_index_path(@conn, :index)}>Blog</.link>
+            <.link navigate={~p"/blog"}>Blog</.link>
           </li>
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <.link href={Routes.project_path(@conn, :index)}>Projects</.link>
+            <.link href={~p"/projects"}>Projects</.link>
           </li>
         </ul>
       </div>

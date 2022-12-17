@@ -9,6 +9,7 @@ defmodule JsonCorp.Blog.Post do
           cover_url: String.t()
         }
 
+  @derive {Phoenix.Param, key: :slug}
   @enforce_keys [:title, :description, :category, :slug, :body, :date_created, :cover_url]
   defstruct @enforce_keys
 end

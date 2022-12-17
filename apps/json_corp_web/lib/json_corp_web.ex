@@ -17,6 +17,8 @@ defmodule JsonCorpWeb do
   and import those modules here.
   """
 
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: JsonCorpWeb
@@ -24,6 +26,8 @@ defmodule JsonCorpWeb do
       import Plug.Conn
       import JsonCorpWeb.Gettext
       alias JsonCorpWeb.Router.Helpers, as: Routes
+
+      unquote(verified_routes())
     end
   end
 
@@ -115,6 +119,17 @@ defmodule JsonCorpWeb do
       import JsonCorpWeb.ErrorHelpers
       import JsonCorpWeb.Gettext
       alias JsonCorpWeb.Router.Helpers, as: Routes
+
+      unquote(verified_routes())
+    end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: JsonCorpWeb.Endpoint,
+        router: JsonCorpWeb.Router,
+        statics: JsonCorpWeb.static_paths()
     end
   end
 

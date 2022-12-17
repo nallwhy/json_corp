@@ -24,11 +24,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"random" => _}, _uri, socket) do
-    %{slug: post_slug} = socket.assigns.posts |> Enum.random()
+    post = socket.assigns.posts |> Enum.random()
 
     socket =
       socket
-      |> push_navigate(to: Routes.blog_post_show_path(socket, :show, post_slug))
+      |> push_navigate(to: ~p"/blog/#{post}")
 
     {:noreply, socket}
   end
@@ -46,19 +46,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     <div class="px-8 py-4">
       <div class="flex justify-between items-baseline">
         <h1 class="mb-4 text-2xl font-bold">Posts</h1>
-        <.link navigate={Routes.blog_post_index_path(@socket, :index, random: true)}>?</.link>
+        <.link navigate={~p"/blog?random"}>?</.link>
       </div>
 
       <div class="mb-4 flex">
-        <.link patch={Routes.blog_post_index_path(@socket, :index)} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}>All</.link>
+        <.link patch={~p"/blog"} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}>All</.link>
         <%= for category <- @categories do %>
-          <.link patch={Routes.blog_post_index_path(@socket, :index, category: category)} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}><%= category %></.link>
+          <.link patch={~p"/blog?category=#{category}"} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}><%= category %></.link>
         <% end %>
       </div>
 
       <div>
       <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
-        <.link navigate={Routes.blog_post_show_path(@socket, :show, post.slug)}>
+        <.link navigate={~p"/blog/#{post}"}>
           <article class="py-4 border-b-2 cursor-pointer">
             <h2 class="text-xl"><%= post.title %></h2>
             <%= if post.description do %>

@@ -19,15 +19,17 @@ defmodule JsonCorpWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint JsonCorpWeb.Endpoint
+
+      use JsonCropWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import JsonCorpWeb.ConnCase
 
       alias JsonCorpWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint JsonCorpWeb.Endpoint
     end
   end
 
