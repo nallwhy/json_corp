@@ -25,7 +25,6 @@ defmodule JsonCorpWeb do
 
       import Plug.Conn
       import JsonCorpWeb.Gettext
-      alias JsonCorpWeb.Router.Helpers, as: Routes
 
       unquote(verified_routes())
     end
@@ -90,7 +89,7 @@ defmodule JsonCorpWeb do
 
   def router do
     quote do
-      use Phoenix.Router
+      use Phoenix.Router, helpers: false
 
       import Plug.Conn
       import Phoenix.Controller
@@ -118,7 +117,6 @@ defmodule JsonCorpWeb do
 
       import JsonCorpWeb.ErrorHelpers
       import JsonCorpWeb.Gettext
-      alias JsonCorpWeb.Router.Helpers, as: Routes
 
       unquote(verified_routes())
     end
