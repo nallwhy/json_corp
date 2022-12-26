@@ -63,7 +63,7 @@ defmodule JsonCorp.Blog do
   defp parse_post(raw_post, %{slug: slug, date_created: date_created}) do
     [meta_str, body] =
       raw_post
-      |> String.split("---", part: 2, trim: true)
+      |> String.split("---", parts: 2, trim: true)
 
     {meta_map, _binding} = meta_str |> Code.eval_string()
 

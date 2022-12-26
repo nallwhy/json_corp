@@ -22,7 +22,7 @@ defmodule JsonCorpWeb.ConnCase do
       # The default endpoint for testing
       @endpoint JsonCorpWeb.Endpoint
 
-      use JsonCropWeb, :verified_routes
+      use JsonCorpWeb, :verified_routes
 
       # Import conveniences for testing with connections
       import Plug.Conn
