@@ -19,14 +19,121 @@ defmodule JsonCorpWeb do
 
   def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
 
+  def router do
+    quote do
+      use Phoenix.Router, helpers: false
+
+      import Plug.Conn
+      import Phoenix.Controller
+      import Phoenix.LiveView.Router
+    end
+  end
+
+  def channel do
+    quote do
+      use Phoenix.Channel
+      import JsonCorpWeb.Gettext
+    end
+  end
+
   def controller do
     quote do
-      use Phoenix.Controller, namespace: JsonCorpWeb
+      use Phoenix.Controller,
+        namespace: JsonCorpWeb,
+        formats: [:html, :json],
+        layouts: [html: JsonCorpWeb.Layouts]
 
       import Plug.Conn
       import JsonCorpWeb.Gettext
 
       unquote(verified_routes())
+    end
+  end
+
+  def component do
+    quote do
+      use Phoenix.Component
+
+      import Phoenix.HTML
+
+      alias Phoenix.LiveView.JS
+
+      unquote(verified_routes())
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView, layout: {JsonCorpWeb.Layouts, :app}
+
+      import Phoenix.Component
+
+      alias JsonCorpWeb.Components.Icon
+
+      def assign_page_meta(socket, meta) when is_map(meta) do
+        socket = socket |> assign(:page_meta, meta)
+
+        case meta do
+          %{title: title} -> socket |> assign(:page_title, title)
+          _ -> socket
+        end
+      end
+
+      def assign_page_meta(socket, fun) when is_function(fun) do
+        assign_page_meta(socket, fun.(socket.assigns))
+      end
+
+      unquote(html_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(html_helpers())
+    end
+  end
+
+  def html do
+    quote do
+      use Phoenix.Component
+
+      # Import convenience functions from controllers
+      import Phoenix.Controller,
+        only: [get_csrf_token: 0, view_module: 1, view_template: 1]
+
+      # Include general helpers for rendering HTML
+      unquote(html_helpers())
+    end
+  end
+
+  defp html_helpers do
+    quote do
+      # HTML escaping functionality
+      import Phoenix.HTML
+      import Phoenix.HTML.Form
+      import Phoenix.View
+
+      # Core UI components and translation
+      import JsonCorpWeb.CoreComponents
+      import JsonCorpWeb.Components
+      import JsonCorpWeb.Gettext
+
+      # Shortcut for generating JS commands
+      alias Phoenix.LiveView.JS
+
+      # Routes generation with the ~p sigil
+      unquote(verified_routes())
+    end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: JsonCorpWeb.Endpoint,
+        router: JsonCorpWeb.Router,
+        statics: JsonCorpWeb.static_paths()
     end
   end
 
@@ -46,64 +153,6 @@ defmodule JsonCorpWeb do
     end
   end
 
-  def live_view do
-    quote do
-      use Phoenix.LiveView, layout: {JsonCorpWeb.LayoutView, :live}
-
-      import Phoenix.Component
-
-      alias JsonCorpWeb.Components.Icon
-
-      def assign_page_meta(socket, meta) when is_map(meta) do
-        socket = socket |> assign(:page_meta, meta)
-
-        case meta do
-          %{title: title} -> socket |> assign(:page_title, title)
-          _ -> socket
-        end
-      end
-
-      def assign_page_meta(socket, fun) when is_function(fun) do
-        assign_page_meta(socket, fun.(socket.assigns))
-      end
-
-      unquote(view_helpers())
-    end
-  end
-
-  def live_component do
-    quote do
-      use Phoenix.LiveComponent
-
-      unquote(view_helpers())
-    end
-  end
-
-  def component do
-    quote do
-      use Phoenix.Component
-
-      unquote(view_helpers())
-    end
-  end
-
-  def router do
-    quote do
-      use Phoenix.Router, helpers: false
-
-      import Plug.Conn
-      import Phoenix.Controller
-      import Phoenix.LiveView.Router
-    end
-  end
-
-  def channel do
-    quote do
-      use Phoenix.Channel
-      import JsonCorpWeb.Gettext
-    end
-  end
-
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)
@@ -119,15 +168,6 @@ defmodule JsonCorpWeb do
       import JsonCorpWeb.Gettext
 
       unquote(verified_routes())
-    end
-  end
-
-  def verified_routes do
-    quote do
-      use Phoenix.VerifiedRoutes,
-        endpoint: JsonCorpWeb.Endpoint,
-        router: JsonCorpWeb.Router,
-        statics: JsonCorpWeb.static_paths()
     end
   end
 
