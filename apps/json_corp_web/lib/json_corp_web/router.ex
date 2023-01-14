@@ -27,6 +27,7 @@ defmodule JsonCorpWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/consulting", PageController, :consulting
     get "/projects", PageController, :project
   end
 

@@ -20,10 +20,13 @@ defmodule JsonCorpWeb.Components do
       <div class="flex-none w-32">
         <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
-      <div class="flex-1 ml-16">
+      <div class="flex-1 ml-4">
         <ul class="flex">
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
             <.link navigate={~p"/blog"}>Blog</.link>
+          </li>
+          <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
+            <.link href={~p"/consulting"}>Consulting</.link>
           </li>
           <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
             <.link href={~p"/projects"}>Projects</.link>
