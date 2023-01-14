@@ -32,7 +32,10 @@ config :json_corp_web,
 # Configures the endpoint
 config :json_corp_web, JsonCorpWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: JsonCorpWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    formats: [html: JsonCorpWeb.ErrorHTML, json: JsonCorpWeb.ErrorJSON],
+    layout: false
+  ],
   pubsub_server: JsonCorp.PubSub,
   live_view: [signing_salt: "O1MGp8KB"]
 

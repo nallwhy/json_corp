@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <%= csrf_meta_tag() %>
-    <.live_title suffix=" · Json Media">
-      <%= assigns[:page_title] || "Home" %>
-    </.live_title>
-    <%= render "_meta.html", assigns %>
-    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"}/>
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
-  </head>
-  <body>
+defmodule JsonCorpWeb.Components do
+  use JsonCorpWeb, :component
+  alias JsonCorpWeb.Components.Icon
+
+  def meta(assigns) do
+    ~H"""
+    <meta name="description" content={meta_of(assigns, :description) || "Json's Playground"} />
+    <meta name="keywords" content="software development, software engineer, consulting, elixir" />
+    <meta property="og:title" content={meta_of(assigns, :title) || "Json Media"} />
+    <meta property="og:description" content={meta_of(assigns, :description)} />
+    <%= if cover_url = meta_of(assigns, :cover_url) do %>
+      <meta property="og:image" content={cover_url} />
+    <% end %>
+    """
+  end
+
+  def header(assigns) do
+    ~H"""
     <header class="px-8 py-6 flex items-center">
       <div class="flex-none w-32">
         <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
@@ -28,7 +31,11 @@
         </ul>
       </div>
     </header>
-    <%= @inner_content %>
+    """
+  end
+
+  def footer(assigns) do
+    ~H"""
     <footer class="footer p-8">
       <div>
         <span class="footer-title">Social</span>
@@ -39,5 +46,10 @@
         </div>
       </div>
     </footer>
-  </body>
-</html>
+    """
+  end
+
+  defp meta_of(assigns, type) when type in [:title, :description, :cover_url] do
+    assigns |> get_in([:page_meta, type])
+  end
+end
