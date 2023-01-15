@@ -10,6 +10,16 @@ defmodule JsonCorpWeb.PageController do
   end
 
   def project(conn, _params) do
-    render(conn, :project)
+    render(conn, :project, projects: projects())
+  end
+
+  defp projects() do
+    [
+      %{
+        name: "Test API",
+        description: "Simple API that is (maybe) useful for testing",
+        url: "https://json.media/test_api"
+      }
+    ]
   end
 end

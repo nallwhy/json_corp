@@ -1,10 +1,12 @@
 <section class="px-8">
   <h1 class="text-2xl mb-4">Projects</h1>
   <div class="flex flex-wrap">
-    <.project_card
-      name="Test API"
-      description="Simple API that is (maybe) useful for testing"
-      url="https://json.media/test_api"
-    />
+    <%= for project <- @projects do %>
+      <.project_card
+        name={project.name}
+        description={project.description}
+        url={project.url}
+      />
+    <% end %>
   </div>
 </section>
