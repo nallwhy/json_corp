@@ -1,7 +1,7 @@
 %{
 title: "완전함을 추구하고 불완전함을 사랑하라",
 description: "현실을 사랑하는 이상주의자가 되는 과정",
-category: :talk
+category: "talk"
 }
 
 ---
