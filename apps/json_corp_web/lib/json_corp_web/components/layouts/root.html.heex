@@ -7,7 +7,7 @@
     <.live_title suffix=" · Json Media">
       <%= assigns[:page_title] || "Home" %>
     </.live_title>
-    <.meta assigns />
+    <.meta {assigns} />
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"}/>
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
   </head>
