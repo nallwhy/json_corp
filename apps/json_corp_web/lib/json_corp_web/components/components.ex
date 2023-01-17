@@ -52,7 +52,17 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
-  defp meta_of(assigns, type) when type in [:title, :description, :cover_url] do
+  defp meta_of(assigns, type) when type in [:title, :description] do
     assigns |> get_in([:page_meta, type])
+  end
+
+  defp meta_of(assigns, :cover_url) do
+    cover_url = assigns |> get_in([:page_meta, :cover_url])
+
+    cond do
+      cover_url == nil -> nil
+      String.starts_with?(cover_url, "https://") -> cover_url
+      true -> JsonCorpWeb.Endpoint.url() <> cover_url
+    end
   end
 end
