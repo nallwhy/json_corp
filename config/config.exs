@@ -31,7 +31,7 @@ config :json_corp_web,
 
 # Configures the endpoint
 config :json_corp_web, JsonCorpWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "localhost", port: 4000],
   render_errors: [
     formats: [html: JsonCorpWeb.ErrorHTML, json: JsonCorpWeb.ErrorJSON],
     layout: false
