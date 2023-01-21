@@ -70,6 +70,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           <div><time>Date created: <%= @post.date_created %></time></div>
           <div>View count: <%= @view_count %></div>
         </div>
+        <%= if @post.tags do %>
+          <div class="mt-2">
+            <%= for tag <- @post.tags do %>
+              <.link navigate={~p"/blog?tag=#{tag}"}>
+                <span class="mr-2 tag">#<%= tag %></span>
+              </.link>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <hr class="prose" />
       <div class="prose pt-4">
