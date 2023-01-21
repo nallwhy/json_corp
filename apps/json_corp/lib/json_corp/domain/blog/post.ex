@@ -17,4 +17,12 @@ defmodule JsonCorp.Blog.Post do
   def is_category(%__MODULE__{category: post_category}, category) do
     post_category == category
   end
+
+  def has_tag(%__MODULE__{tags: tags}, tag) when is_list(tags) do
+    tag in tags
+  end
+
+  def has_tag(%__MODULE__{tags: nil}, _tag) do
+    false
+  end
 end

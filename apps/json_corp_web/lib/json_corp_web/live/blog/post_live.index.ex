@@ -7,9 +7,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def mount(_params, _session, socket) do
     socket =
       socket
+      |> reset_assigns()
       |> assign(:posts, Blog.list_posts())
       |> assign(:categories, Blog.list_categories())
-      |> assign(:category, nil)
       |> assign_page_meta(%{title: "Blog"})
 
     {:ok, socket}
@@ -17,7 +17,20 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"category" => category}, _uri, socket) do
-    socket = socket |> assign(:category, category)
+    socket =
+      socket
+      |> reset_assigns()
+      |> assign(:category, category)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_params(%{"tag" => tag}, _uri, socket) do
+    socket =
+      socket
+      |> reset_assigns()
+      |> assign(:tag, tag)
 
     {:noreply, socket}
   end
@@ -35,7 +48,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(_params, _uri, socket) do
-    socket = socket |> assign(:category, nil)
+    socket = socket |> reset_assigns()
 
     {:noreply, socket}
   end
@@ -77,6 +90,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
               <div class="mt-6">
                 Date created: <time><%= post.date_created %></time>
               </div>
+              <%= if post.tags do %>
+                <div class="mt-6">
+                  <%= for tag <- post.tags do %>
+                    <.link patch={~p"/blog?tag=#{tag}"}>
+                      <span class="mr-2 tag">#<%= tag %></span>
+                    </.link>
+                  <% end %>
+                </div>
+              <% end %>
             </article>
           </.link>
         <% end %>
@@ -89,7 +111,17 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     posts |> Enum.filter(&Post.is_category(&1, category))
   end
 
+  defp filtered_posts(%{posts: posts, tag: tag}) when not is_nil(tag) do
+    posts |> Enum.filter(&Post.has_tag(&1, tag))
+  end
+
   defp filtered_posts(%{posts: posts}) do
     posts
+  end
+
+  defp reset_assigns(socket) do
+    socket
+    |> assign(:category, nil)
+    |> assign(:tag, nil)
   end
 end
