@@ -5,10 +5,10 @@ defmodule JsonCorpWeb.ErrorViewTest do
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(JsonCorpWeb.ErrorView, "404.html", []) == "Not Found"
+    assert render_to_string(JsonCorpWeb.ErrorHTML, "404.html", []) == "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(JsonCorpWeb.ErrorView, "500.html", []) == "Internal Server Error"
+    assert render_to_string(JsonCorpWeb.ErrorHTML, "500.html", []) == "Internal Server Error"
   end
 end
