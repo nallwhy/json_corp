@@ -6,10 +6,11 @@ defmodule JsonCorp.Blog.Post do
           slug: String.t(),
           body: String.t(),
           date_created: Date.t(),
-          cover_url: String.t()
+          cover_url: String.t(),
+          tags: [String.t()]
         }
 
   @derive {Phoenix.Param, key: :slug}
-  @enforce_keys [:title, :description, :category, :slug, :body, :date_created, :cover_url]
+  @enforce_keys [:title, :description, :category, :slug, :body, :date_created, :cover_url, :tags]
   defstruct @enforce_keys
 end

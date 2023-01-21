@@ -17,6 +17,7 @@ defmodule JsonCorp.BlogTest do
     assert fetched_post.body =~ "# Test Body"
     assert fetched_post.date_created == ~D[2022-07-24]
     assert fetched_post.cover_url == nil
+    assert fetched_post.tags == nil
   end
 
   describe "fetch_post/2" do
@@ -30,6 +31,7 @@ defmodule JsonCorp.BlogTest do
       assert fetched_post.body =~ "# Test Body"
       assert fetched_post.date_created == ~D[2022-06-26]
       assert fetched_post.cover_url == "https://json.corp/images/blog/example.jpg"
+      assert fetched_post.tags == ["tag0", "tag1"]
     end
 
     test "with valid secret slug" do
