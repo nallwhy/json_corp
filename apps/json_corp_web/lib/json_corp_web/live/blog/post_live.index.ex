@@ -67,7 +67,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       </div>
 
       <div>
-        <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
+        <%= for %Post{} = post <- filtered_posts(assigns) do %>
           <.link navigate={~p"/blog/#{post}"}>
             <article class="py-4 border-b-2 cursor-pointer">
               <h2 class="text-xl"><%= post.title %></h2>
@@ -85,11 +85,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     """
   end
 
-  defp posts_of_category(posts, nil) do
-    posts
+  defp filtered_posts(%{posts: posts, category: category}) when not is_nil(category) do
+    posts |> Enum.filter(&Post.is_category(&1, category))
   end
 
-  defp posts_of_category(posts, category) do
-    posts |> Enum.filter(fn %Post{category: post_category} -> post_category == category end)
+  defp filtered_posts(%{posts: posts}) do
+    posts
   end
 end
