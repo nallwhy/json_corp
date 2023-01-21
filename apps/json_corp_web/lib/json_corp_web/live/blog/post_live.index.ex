@@ -50,26 +50,36 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       </div>
 
       <div class="mb-4 flex">
-        <.link patch={~p"/blog"} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}>All</.link>
+        <.link
+          patch={~p"/blog"}
+          class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}
+        >
+          All
+        </.link>
         <%= for category <- @categories do %>
-          <.link patch={~p"/blog?category=#{category}"} class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}><%= category %></.link>
+          <.link
+            patch={~p"/blog?category=#{category}"}
+            class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
+          >
+            <%= category %>
+          </.link>
         <% end %>
       </div>
 
       <div>
-      <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
-        <.link navigate={~p"/blog/#{post}"}>
-          <article class="py-4 border-b-2 cursor-pointer">
-            <h2 class="text-xl"><%= post.title %></h2>
-            <%= if post.description do %>
-              <p class="mt-2"><%= post.description %></p>
-            <% end %>
-            <div class="mt-6">
-              Date created: <time><%= post.date_created %></time>
-            </div>
-          </article>
-        </.link>
-      <% end %>
+        <%= for %Post{} = post <- posts_of_category(@posts, @category) do %>
+          <.link navigate={~p"/blog/#{post}"}>
+            <article class="py-4 border-b-2 cursor-pointer">
+              <h2 class="text-xl"><%= post.title %></h2>
+              <%= if post.description do %>
+                <p class="mt-2"><%= post.description %></p>
+              <% end %>
+              <div class="mt-6">
+                Date created: <time><%= post.date_created %></time>
+              </div>
+            </article>
+          </.link>
+        <% end %>
       </div>
     </div>
     """

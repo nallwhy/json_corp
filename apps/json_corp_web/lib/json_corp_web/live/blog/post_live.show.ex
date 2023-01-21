@@ -48,7 +48,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="px-8 py-4">
       <.form :let={f} for={:door} phx-submit="unlock_post">
-        <%= password_input f, :password, class: "input input-bordered", placeholder: "password" %>
+        <%= password_input(f, :password, class: "input input-bordered", placeholder: "password") %>
 
         <button class="btn">Open</button>
       </.form>
@@ -62,7 +62,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     <div class="px-8 py-4">
       <div class="pb-4">
         <.link navigate={~p"/blog"} class="block mb-6">
-          <Icon.arrow_left class="icon mr-1"/><span class="text-gray-500">Back to posts</span>
+          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-500">Back to posts</span>
         </.link>
         <div class="prose">
           <h1><%= @post.title %></h1>
@@ -71,10 +71,10 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           <div>View count: <%= @view_count %></div>
         </div>
       </div>
-      <hr class="prose">
+      <hr class="prose" />
       <div class="prose pt-4">
         <%= if @post.cover_url do %>
-          <img src={@post.cover_url} alt={@post.title} class="w-full">
+          <img src={@post.cover_url} alt={@post.title} class="w-full" />
         <% end %>
         <%= @post.body |> MarkdownRenderer.html() |> raw() %>
       </div>
