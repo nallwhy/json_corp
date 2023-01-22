@@ -1,7 +1,8 @@
 %{
 title: "논리는 가치 위에 있다",
 description: "논리적 설득이 잘 먹히지 않는 이유",
-category: "talk"
+category: "talk",
+tags: ["인간", "논리", "가치", "설득"]
 }
 
 ---

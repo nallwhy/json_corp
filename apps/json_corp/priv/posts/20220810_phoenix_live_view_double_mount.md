@@ -1,6 +1,7 @@
 %{
 title: "Phoenix LiveView Double Mount",
-category: "dev"
+category: "dev",
+tags: ["Elixir", "Phoenix", "LiveView"]
 }
 
 ---

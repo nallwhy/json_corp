@@ -1,7 +1,8 @@
 %{
 title: "롤 팀운에 대한 수학적 고찰",
 description: "과연 나는 팀운이 없는 것일까?",
-category: "talk"
+category: "talk",
+tags: ["수학", "확률"]
 }
 
 ---

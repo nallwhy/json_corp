@@ -1,7 +1,8 @@
 %{
 title: "Elixir 에서 Telemetry 로 Ecto 의 Slow Query 로깅하기",
 description: "앗! Slow Query 로깅 신발보다 싸다",
-category: "dev"
+category: "dev",
+tags: ["Elixir", "Telemetry", "Ecto"]
 }
 
 ---

@@ -2,7 +2,8 @@
 title: "CSS 상호 피드백",
 description: "모두가 기다리는 피드백 시간이 있다?",
 category: "consulting",
-cover_url: "/images/blog/20230118_css_feedback.png"
+cover_url: "/images/blog/20230118_css_feedback.png",
+tags: ["컨설팅", "피드백", "CSS"]
 }
 
 ---
