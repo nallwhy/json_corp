@@ -17,12 +17,16 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   @impl true
   def handle_params(_params, uri, socket) do
-    normalized_uri =
-      uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
+    pid = self()
 
-    socket =
-      socket
-      |> assign(:view_count, load_view_count(normalized_uri))
+    Task.start(fn ->
+      normalized_uri =
+        uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
+
+      view_count = load_view_count(normalized_uri)
+
+      send(pid, {:view_count, view_count})
+    end)
 
     {:noreply, socket}
   end
@@ -40,6 +44,20 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           |> put_flash(:error, "Denied")
       end
 
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info({:view_count, view_count}, socket) do
+    socket =
+      socket
+      |> assign(:view_count, view_count)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(_, socket) do
     {:noreply, socket}
   end
 
@@ -68,7 +86,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           <h1><%= @post.title %></h1>
           <p><%= @post.description %></p>
           <div><time>Date created: <%= @post.date_created %></time></div>
-          <div>View count: <%= @view_count %></div>
+          <div>View count: <%= @view_count || "-" %></div>
         </div>
         <%= if @post.tags do %>
           <div class="mt-2">
