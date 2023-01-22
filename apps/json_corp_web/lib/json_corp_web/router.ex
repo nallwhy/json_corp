@@ -29,6 +29,10 @@ defmodule JsonCorpWeb.Router do
     get "/", PageController, :home
     get "/consulting", PageController, :consulting
     get "/projects", PageController, :project
+
+    if Mix.env() == :dev do
+      live "/test", TestLive
+    end
   end
 
   scope "/blog", JsonCorpWeb.Blog, as: :blog do
