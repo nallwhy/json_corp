@@ -13,8 +13,8 @@ defmodule JsonCorpWeb.Components do
     />
     <meta property="og:title" content={meta_of(assigns, :title) || "Json Media"} />
     <meta property="og:description" content={meta_of(assigns, :description)} />
-    <%= if cover_url = meta_of(assigns, :cover_url) do %>
-      <meta property="og:image" content={cover_url} />
+    <%= if image = meta_of(assigns, :image) do %>
+      <meta property="og:image" content={image} />
     <% end %>
     """
   end
@@ -61,13 +61,13 @@ defmodule JsonCorpWeb.Components do
     assigns |> get_in([:page_meta, type])
   end
 
-  defp meta_of(assigns, :cover_url) do
-    cover_url = assigns |> get_in([:page_meta, :cover_url])
+  defp meta_of(assigns, :image) do
+    image = assigns |> get_in([:page_meta, :image])
 
     cond do
-      cover_url == nil -> nil
-      String.starts_with?(cover_url, "https://") -> cover_url
-      true -> JsonCorpWeb.Endpoint.url() <> cover_url
+      image == nil -> nil
+      String.starts_with?(image, "https://") -> image
+      true -> JsonCorpWeb.Endpoint.url() <> image
     end
   end
 end

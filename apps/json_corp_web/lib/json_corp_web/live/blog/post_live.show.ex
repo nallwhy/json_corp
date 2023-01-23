@@ -129,7 +129,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           %{
             title: title,
             description: description,
-            cover_url: cover_url,
+            image: cover_url,
             keywords: tags |> Enum.join(", ")
           }
         end)
