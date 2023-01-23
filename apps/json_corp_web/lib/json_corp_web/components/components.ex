@@ -5,7 +5,12 @@ defmodule JsonCorpWeb.Components do
   def meta(assigns) do
     ~H"""
     <meta name="description" content={meta_of(assigns, :description) || "Json's Playground"} />
-    <meta name="keywords" content="software development, software engineer, consulting, elixir" />
+    <meta
+      name="keywords"
+      content={
+        meta_of(assigns, :keywords) || "Software Development, Software Engineer, Consulting, Elixir"
+      }
+    />
     <meta property="og:title" content={meta_of(assigns, :title) || "Json Media"} />
     <meta property="og:description" content={meta_of(assigns, :description)} />
     <%= if cover_url = meta_of(assigns, :cover_url) do %>
@@ -52,7 +57,7 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
-  defp meta_of(assigns, type) when type in [:title, :description] do
+  defp meta_of(assigns, type) when type in [:title, :description, :keywords] do
     assigns |> get_in([:page_meta, type])
   end
 

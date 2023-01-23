@@ -122,10 +122,16 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
                                  post: %{
                                    title: title,
                                    description: description,
-                                   cover_url: cover_url
+                                   cover_url: cover_url,
+                                   tags: tags
                                  }
                                } ->
-          %{title: title, description: description, cover_url: cover_url}
+          %{
+            title: title,
+            description: description,
+            cover_url: cover_url,
+            keywords: tags |> Enum.join(", ")
+          }
         end)
 
       _ ->
