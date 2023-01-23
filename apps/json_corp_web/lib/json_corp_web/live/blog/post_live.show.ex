@@ -80,7 +80,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     <div class="px-8 py-4">
       <div class="pb-4">
         <.link navigate={~p"/blog"} class="block mb-6">
-          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-500">Back to posts</span>
+          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
         </.link>
         <div class="prose">
           <h1><%= @post.title %></h1>
