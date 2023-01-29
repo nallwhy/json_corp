@@ -49,7 +49,7 @@ defmodule JsonCorpWeb.Components do
         <span class="footer-title">Social</span>
         <div class="grid grid-flow-col gap-4">
           <a href="https://github.com/nallwhy" target="_blank">
-            <Icon.github class="fill-gray-500 hover:fill-black" width="24" height="24" />
+            <Icon.github class="fill-gray-400 hover:fill-black" width="24" height="24" />
           </a>
         </div>
       </div>
