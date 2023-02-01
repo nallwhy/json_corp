@@ -14,7 +14,7 @@ tags: ["개발", "React", "Next.js"]
 
 ### `Next.js` 란 무엇인가?
 
-`Next.js` 홈페이지(https://nextjs.org/)에 `Next.js` 는 'The React Framework for the Web' 이라고 설명되어있다.
+`Next.js` 홈페이지(https://nextjs.org) 에 `Next.js` 는 'The React Framework for the Web' 이라고 설명되어있다.
 
 <figure>
   <img src="/images/blog/20230202_nextjs.png" alt="Next.js is the React Framework for the Web">
@@ -24,7 +24,7 @@ React 를 이용한 Web application 을 만들기 위한 framework 임을 나타
 
 ### 그러면 `React` 는 무엇인가?
 
-`React` 홈페이지(https://reactjs.org/)에 `React` 는 'A JavaScript library for building user interfaces' 라고 설명되어있다.
+`React` 홈페이지(https://reactjs.org) 에 `React` 는 'A JavaScript library for building user interfaces' 라고 설명되어있다.
 
 `React` 와 곧잘 비교되는 `Angular` 의 설명은 아래와 같다.\
 (https://angular.io/docs)
