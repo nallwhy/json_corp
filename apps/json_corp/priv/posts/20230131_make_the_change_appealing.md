@@ -56,3 +56,7 @@ tags: ["인간", "변화"]
 따라서 집단을 대상으로 메시지를 전달할 때, 미래에 대한 긍정적 메시지로 변화가 더 매력적으로 보이게 하면 변화할 가능성을 높일 수 있을 것이다. 😎
 
 (꼭 변화를 통해 얻을 수 있는 것 말고도 '함께 하는 즐거움', '변화하는 자신에 대한 멋짐' 등 여러가지 매력을 사용해볼 수 있다!)
+
+---
+
+Cover Image: https://www.seekpng.com/ipng/u2t4y3i1e6y3q8t4_wearing-cat-github-sunglasses-sunscreen-free-transparent-cool/
