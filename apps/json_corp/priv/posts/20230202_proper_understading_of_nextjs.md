@@ -34,9 +34,9 @@ React 를 이용한 Web application 을 만들기 위한 framework 임을 나타
 `React` 는 library 로 표현되고, `Angular` 는 framework, platform 으로 표현된다.\
 이는 `Angular` 와는 달리 `React` 가 application 이 아닌 그 중 일부인 UI 만 담당한다는 사실이 드러나는 부분이다.
 
-`React` 는 철저하게 UI 만을 다뤄왔고, 그렇기 때문에 그동안 `React` 를 이용하는 application 을 만들기 위해 필요한 나머지 부분들은 third-party library 들이 만들어지면서 해결되어왔다.
+`React` 는 철저하게 UI 만을 다뤄왔고, 그렇기 때문에 그동안 `React` 를 이용하는 application(이하 `React` application) 을 만들기 위해 필요한 나머지 부분들은 third-party library 들이 만들어지면서 해결되어왔다.
 
-그러나 이러한 `React` 생태계는 여러가지 문제점들을 가져왔다.
+그러나 이러한 `React` 생태계는 여러가지 문제점들 또한 가지게 되었다.
 
 - 서로 다른 third-party library 사이의 궁합이 보장되지 않음
 - Best practice 의 부재
@@ -50,7 +50,7 @@ React 를 이용한 Web application 을 만들기 위한 framework 임을 나타
 
 `React` 는 쓰기 싫었지만 `Next.js` 를 접하고서 '이건 써도 되겠다'라고 생각했다.
 
-`Next.js` 는 위에서 말했던 `React` 생태계의 문제점을 해결하기 위해, application 을 만들기 위해 필요한 `React` 이외의 나머지 부분들을 다 채워주는 framework 을 제시했다.
+`Next.js` 는 위에서 말했던 `React` 생태계의 문제점을 해결하기 위해, `React` application 을 만들기 위해 필요한 나머지 부분들을 다 채워주는 framework 을 제시했다.
 
 <figure>
   <img src="/images/blog/20230202_next_app.png" alt="Next.js Framework">
@@ -70,7 +70,7 @@ React 를 이용한 Web application 을 만들기 위한 framework 임을 나타
 - Scalability
 - Developer Experience
 
-SSR 는 단지 저 중 `Rendering` 의 한 파트로 포함되어 있을 뿐이다.
+SSR 는 `Next.js` 가 제공하는 많은 기능 중 `Rendering` 의 한 파트로 포함되어 있을 뿐이다.
 
 `Next.js` 는 `React` 생태계의 first-party 급 framework 로 자리잡았다.
 
@@ -78,15 +78,15 @@ SSR 는 단지 저 중 `Rendering` 의 한 파트로 포함되어 있을 뿐이�
 
 Trusted partner 라는 관점에서 `React` 의 **second-party** 로 볼 수 있을 것 같다.
 
-이제 기존에 비해 매우 쉽고 신뢰할 수 있는 `React` 를 이용하는 application 을 만들 수 있게 되었다.
+이제 기존에 비해 매우 쉽고 신뢰할 수 있는 `React` application 을 만들 수 있게 되었다.
 
 ### 마무리
 
-`React` 를 사용하는 application 을 만들기 위해 꼭 `Next.js` 를 사용할 필요는 없다. 직접 비어있는 부분들을 조합하거나 만들어서도 application 을 만들 수 있고, 기존에 그렇게 해왔다.
+`React` application 을 만들기 위해 꼭 `Next.js` 를 사용할 필요는 없다. 비어있는 부분들을 다른 framework, library 들로 조합하거나 직접 만들어서도 application 을 만들 수 있고, 기존에 우리는 그렇게 해왔다.
 
-하지만 딱히 다른 이유가 있는 것이 아니라면, 앞으로 `React` 를 사용하는 application 을 만들 때는 `Next.js` 를 사용하는 것을 추천하고 싶다.
+하지만 딱히 다른 이유가 있는 것이 아니라면, 앞으로 `React` application 을 만들 때는 `Next.js` 를 사용하는 것을 추천하고 싶다.
 
-그러면 기존에 `React` 를 하면서 겪던 
+그러면 기존에 `React` 를 하면서 겪던
 
 - Application 을 만들기 위해 어떤 library 조합을 사용할지 고민하고
 - 여러 library 들을 사용하면서 생기는 원인을 알 수 없는 에러에 스트레스 받고
