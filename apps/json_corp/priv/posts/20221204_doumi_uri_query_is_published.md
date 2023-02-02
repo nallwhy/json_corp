@@ -2,7 +2,7 @@
 title: "Doumi.URI.Query is published",
 description: "map, list query string encoding 지원",
 category: "dev",
-tags: ["Elixir", "Open Source", "Library"]
+tags: ["개발", "Elixir", "Open Source", "Library"]
 }
 
 ---

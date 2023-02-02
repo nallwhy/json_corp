@@ -3,7 +3,7 @@ title: "Elixir 는 어떻게 10년도 안되어 성숙한 언어가 되었나",
 description: "Elixir v2.0 계획이 없는 이유",
 category: "dev",
 cover_url: "https://json.media/images/blog/20220928_cover.png",
-tags: ["Elixir"]
+tags: ["개발", "Elixir"]
 }
 
 ---
