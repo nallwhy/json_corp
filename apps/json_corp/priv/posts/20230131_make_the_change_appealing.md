@@ -69,7 +69,8 @@ tags: ["인간", "변화"]
 그랬다면 지금쯤 다들 영어를 매우 잘해야할 것 같습니다.
 
 사람들이 현재 상태를 손해라고 인지하는 경우는 잘 보지 못했습니다.\
-**인간은 현재를 대체로 매우 자연스럽게 느끼고, 변화하기 보다 현재를 유지하고자하는 경향이 있습니다.**
+**인간은 현재를 대체로 매우 자연스럽게 느끼고, 변화하기 보다 현재를 유지하고자하는 경향이 있습니다.**\
+(찾아보니 이에 대한 이론 중 하나로 [Competing Commitment](https://hbr.org/2001/11/the-real-reason-people-wont-change) 라는 개념이 있네요.)
 
 회사도 마찬가지 입니다.\
 현재 상태를 뭔가 손해보고 있다고 생각하는 경우는 잘 없습니다. 그랬으면 이미 변하지 않았을까요?
@@ -86,6 +87,11 @@ tags: ["인간", "변화"]
 피해야할 미래는 원하고 믿을 수 없습니다.
 
 따라서 저는 '손실 회피 성향' 으로도 '변화는 매력적이어야 한다'는 이야기가 잘 설명된다고 생각합니다.
+
+References:\
+https://en.wikipedia.org/wiki/Loss_aversion
+https://newspeppermint.com/2022/04/10/npc_lossaversion/
+https://gscaltexmediahub.com/story/change-management/
 
 ---
 
