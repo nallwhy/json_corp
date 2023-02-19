@@ -13,6 +13,8 @@ defmodule JsonCorpWeb.Endpoint do
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
+  plug(:canonical_host)
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -54,4 +56,16 @@ defmodule JsonCorpWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug JsonCorpWeb.Router
+
+  defp canonical_host(conn, _opts) do
+    Application.get_env(:json_corp_web, :canonical_host)
+    |> case do
+      host when is_binary(host) ->
+        opts = PlugCanonicalHost.init(canonical_host: host)
+        PlugCanonicalHost.call(conn, opts)
+
+      _ ->
+        conn
+    end
+  end
 end

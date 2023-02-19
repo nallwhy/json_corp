@@ -50,3 +50,5 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :json_corp_web, canonical_host: "json.media"

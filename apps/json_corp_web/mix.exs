@@ -56,7 +56,8 @@ defmodule JsonCorpWeb.MixProject do
       {:doumi_phoenix_svg, "~> 0.1"},
       {:uuid, "~> 1.1"},
       {:ecto_psql_extras, "~> 0.6"},
-      {:heroicons, "~> 0.5.0"}
+      {:heroicons, "~> 0.5.0"},
+      {:plug_canonical_host, "~> 2.0"}
     ]
   end
 
