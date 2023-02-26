@@ -21,22 +21,35 @@ defmodule JsonCorpWeb.Components do
 
   def header(assigns) do
     ~H"""
-    <header class="px-8 py-6 flex items-center">
+    <header class="navbar px-8 py-6 place-content-between">
       <div class="flex-none w-32">
         <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
-      <div class="flex-1 ml-4">
+      <div class="hidden sm:block flex-1 pl-12">
         <ul class="flex">
-          <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <.link navigate={~p"/blog"}>Blog</.link>
-          </li>
-          <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <.link href={~p"/consulting"}>Consulting</.link>
-          </li>
-          <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-            <.link href={~p"/projects"}>Projects</.link>
-          </li>
+          <%= for {menu_name, menu_route} <- list_menus() do %>
+            <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
+              <.link href={menu_route}><%= menu_name %></.link>
+            </li>
+          <% end %>
         </ul>
+      </div>
+      <div class="sm:hidden flex-none">
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-ghost">
+            <Icon.bar_3 class="hover:fill-black" width="24" height="24" />
+          </label>
+          <ul
+            tabindex="0"
+            class="menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 border-2"
+          >
+            <%= for {menu_name, menu_route} <- list_menus() do %>
+              <li>
+                <.link href={menu_route}><%= menu_name %></.link>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </header>
     """
@@ -69,5 +82,13 @@ defmodule JsonCorpWeb.Components do
       String.starts_with?(image, "https://") -> image
       true -> JsonCorpWeb.Endpoint.url() <> image
     end
+  end
+
+  defp list_menus() do
+    [
+      {"Blog", ~p"/blog"},
+      {"Consulting", ~p"/consulting"},
+      {"Projects", ~p"/projects"}
+    ]
   end
 end
