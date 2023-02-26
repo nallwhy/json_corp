@@ -1,0 +1,54 @@
+%{
+title: "Verifying requests from Slack in Elixir",
+category: :dev
+}
+
+---
+
+```elixir
+defmodule CarrierWeb.SlackValidator do
+  import Plug.Conn
+
+  def init(opts), do: opts
+
+  def call(conn, _opts) do
+    case check_bot_secret(conn) do
+      :ok ->
+        conn
+
+      :error ->
+        conn
+        |> send_resp(401, "Unauthorized")
+        |> halt()
+    end
+  end
+
+  defp check_bot_secret(conn) do
+    signing_secret = Application.get_env(:carrier, :slack)[:signing_secret]
+    system_timestamp = :os.system_time(:seconds)
+
+    req_body = conn.assigns[:raw_body]
+
+    req_timestamp =
+      conn |> get_req_header("x-slack-request-timestamp") |> List.first() |> String.to_integer()
+
+    req_signature = conn |> get_req_header("x-slack-signature") |> List.first()
+
+    message = "v0:#{req_timestamp}:#{req_body}"
+    hash = :crypto.mac(:hmac, :sha256, signing_secret, message) |> Base.encode16(case: :lower)
+    signature = "v0=" <> hash
+    threshold_s = 60 * 5
+
+    with true <- abs(system_timestamp - req_timestamp) < threshold_s,
+         true <- :crypto.hash_equals(signature, req_signature) do
+      :ok
+    else
+      _ -> :error
+    end
+  end
+end
+
+```
+
+Reference: \
+https://api.slack.com/authentication/verifying-requests-from-slack

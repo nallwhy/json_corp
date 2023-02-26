@@ -48,7 +48,7 @@ defmodule JsonCorp.Blog do
   end
 
   defp list_post_paths(posts_path) do
-    (posts_path <> "/*.{md,livemd}")
+    (posts_path <> "/**/*.{md,livemd}")
     |> Path.wildcard()
   end
 
