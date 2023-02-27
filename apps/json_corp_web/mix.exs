@@ -74,7 +74,8 @@ defmodule JsonCorpWeb.MixProject do
         "esbuild default --minify",
         "esbuild test_api --minify",
         "phx.digest"
-      ]
+      ],
+      "release.setup": ["assets.deploy"]
     ]
   end
 end
