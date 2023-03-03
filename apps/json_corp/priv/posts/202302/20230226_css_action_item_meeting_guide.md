@@ -3,7 +3,7 @@ title: "CSS 액션 아이템을 정하기 위한 1:1 미팅 가이드",
 description: "액션 아이템 자체가 중요한 것이 아니다",
 cover_url: "/images/blog/20230226_cover.png",
 category: "consulting",
-tags: ["컨설팅", "피드백", "CSS", "조직문화"],
+tags: ["컨설팅", "피드백", "CSS", "조직문화"]
 }
 
 ---
