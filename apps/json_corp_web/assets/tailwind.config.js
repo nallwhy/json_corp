@@ -32,7 +32,7 @@ module.exports = {
   ],
   daisyui: {
     themes: [
-      "light",
+      "bumblebee",
       {
         dark: {
           "primary": "#FDBA74",
