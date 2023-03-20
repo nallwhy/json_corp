@@ -64,47 +64,43 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   @impl true
   def render(%{locked: true} = assigns) do
     ~H"""
-    <div class="px-8 py-4">
-      <.form :let={f} for={:door} phx-submit="unlock_post">
-        <%= password_input(f, :password, class: "input input-bordered", placeholder: "password") %>
+    <.form :let={f} for={:door} phx-submit="unlock_post">
+      <%= password_input(f, :password, class: "input input-bordered", placeholder: "password") %>
 
-        <button class="btn">Open</button>
-      </.form>
-    </div>
+      <button class="btn">Open</button>
+    </.form>
     """
   end
 
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="px-8 py-4">
-      <div class="pb-4">
-        <.link navigate={~p"/blog"} class="block mb-6">
-          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
-        </.link>
-        <div class="prose">
-          <h1><%= @post.title %></h1>
-          <p><%= @post.description %></p>
-          <div><time>Date created: <%= @post.date_created %></time></div>
-          <div>View count: <%= @view_count || "-" %></div>
+    <div class="pb-4">
+      <.link navigate={~p"/blog"} class="block mb-6">
+        <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
+      </.link>
+      <div class="prose">
+        <h1><%= @post.title %></h1>
+        <p><%= @post.description %></p>
+        <div><time>Date created: <%= @post.date_created %></time></div>
+        <div>View count: <%= @view_count || "-" %></div>
+      </div>
+      <%= if @post.tags do %>
+        <div class="mt-2">
+          <%= for tag <- @post.tags do %>
+            <.link navigate={~p"/blog?tag=#{tag}"}>
+              <span class="mr-2 tag">#<%= tag %></span>
+            </.link>
+          <% end %>
         </div>
-        <%= if @post.tags do %>
-          <div class="mt-2">
-            <%= for tag <- @post.tags do %>
-              <.link navigate={~p"/blog?tag=#{tag}"}>
-                <span class="mr-2 tag">#<%= tag %></span>
-              </.link>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <hr class="prose" />
-      <div class="prose pt-4">
-        <%= if @post.cover_url do %>
-          <img src={@post.cover_url} alt={@post.title} class="w-full" />
-        <% end %>
-        <%= @post.body |> MarkdownRenderer.html() |> raw() %>
-      </div>
+      <% end %>
+    </div>
+    <hr class="prose" />
+    <div class="prose pt-4">
+      <%= if @post.cover_url do %>
+        <img src={@post.cover_url} alt={@post.title} class="w-full" />
+      <% end %>
+      <%= @post.body |> MarkdownRenderer.html() |> raw() %>
     </div>
     """
   end

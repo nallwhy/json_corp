@@ -1,12 +1,10 @@
-<section class="px-8">
-  <h1 class="text-2xl mb-4">Projects</h1>
-  <div class="flex flex-wrap">
-    <%= for project <- @projects do %>
-      <.project_card
-        name={project.name}
-        description={project.description}
-        url={project.url}
-      />
-    <% end %>
-  </div>
-</section>
+<h1 class="text-2xl mb-4">Projects</h1>
+<div class="flex flex-wrap">
+  <%= for project <- @projects do %>
+    <.project_card
+      name={project.name}
+      description={project.description}
+      url={project.url}
+    />
+  <% end %>
+</div>
