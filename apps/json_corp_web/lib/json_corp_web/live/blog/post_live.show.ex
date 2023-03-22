@@ -17,16 +17,18 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   @impl true
   def handle_params(_params, uri, socket) do
-    pid = self()
+    if connected?(socket) do
+      pid = self()
 
-    Task.start(fn ->
-      normalized_uri =
-        uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
+      Task.start(fn ->
+        normalized_uri =
+          uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
 
-      view_count = load_view_count(normalized_uri)
+        view_count = load_view_count(normalized_uri)
 
-      send(pid, {:view_count, view_count})
-    end)
+        send(pid, {:view_count, view_count})
+      end)
+    end
 
     {:noreply, socket}
   end
