@@ -37,7 +37,8 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
     layout: false
   ],
   pubsub_server: JsonCorp.PubSub,
-  live_view: [signing_salt: "O1MGp8KB"]
+  live_view: [signing_salt: "O1MGp8KB"],
+  adapter: Bandit.PhoenixAdapter
 
 # Configure esbuild (the version is required)
 config :esbuild,
