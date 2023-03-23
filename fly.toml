@@ -6,10 +6,6 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[build]
-  builder = "heroku/buildpacks:20"
-  buildpacks = ["https://cnb-shim.herokuapp.com/v1/hashnuke/elixir"]
-
 [env]
   PORT = "8080"
 

@@ -3,15 +3,13 @@ defmodule JsonCorp.Blog do
   alias JsonCorp.Blog.{Post, SecretPost}
   alias JsonCorp.Repo
 
-  @posts_path Application.app_dir(:json_corp, "priv/posts")
-
   @decorate cacheable(
               cache: Cache.Local,
               key: {Blog, :list_posts, [posts_path]},
               opts: cache_opts()
             )
   @spec list_posts() :: [Post.t()]
-  def list_posts(posts_path \\ @posts_path) do
+  def list_posts(posts_path \\ posts_path()) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
     |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
@@ -24,7 +22,7 @@ defmodule JsonCorp.Blog do
               opts: cache_opts()
             )
   @spec fetch_post(slug :: String.t()) :: {:ok, %Post{} | %SecretPost{}} | :error
-  def fetch_post(slug, posts_path \\ @posts_path) do
+  def fetch_post(slug, posts_path \\ posts_path()) do
     list_posts(posts_path)
     |> Enum.find(fn %Post{slug: post_slug} -> post_slug == slug end)
     |> case do
@@ -89,6 +87,10 @@ defmodule JsonCorp.Blog do
     date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
 
     %{slug: slug, date_created: date_created}
+  end
+
+  defp posts_path() do
+    Application.app_dir(:json_corp, "priv/posts")
   end
 
   case Mix.env() do
