@@ -23,7 +23,7 @@ defmodule JsonCorpWeb.Endpoint do
     at: "/",
     from: :json_corp_web,
     gzip: true,
-    only: JsonCorpWeb.static_paths()
+    only_matching: JsonCorpWeb.static_paths()
 
   plug Plug.Static,
     at: "/test_api",
