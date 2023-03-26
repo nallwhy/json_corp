@@ -48,6 +48,7 @@ defmodule JsonCorpWeb.Router do
     pipe_through :browser
 
     live "/form", FormLive
+    live "/chat", ChatLive
   end
 
   scope "/test_api" do
