@@ -11,9 +11,10 @@ defmodule JsonCorpWeb.Application do
       # Start the Telemetry supervisor
       JsonCorpWeb.Telemetry,
       # Start the Endpoint (http/https)
-      JsonCorpWeb.Endpoint
+      JsonCorpWeb.Endpoint,
       # Start a worker by calling: JsonCorpWeb.Worker.start_link(arg)
-      # {JsonCorpWeb.Worker, arg}
+      # {JsonCorpWeb.Worker, arg},
+      JsonCorpWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
