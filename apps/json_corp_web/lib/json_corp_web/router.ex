@@ -49,6 +49,7 @@ defmodule JsonCorpWeb.Router do
 
     live "/", PlaygroundLive
     live "/form", FormLive
+    live "/chat", ChatLive
   end
 
   scope "/test_api" do
