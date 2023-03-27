@@ -26,6 +26,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
         module={JsonCorpWeb.Playgrounds.ChatLive.Channel}
         id={@channel_name}
         channel_name={@channel_name}
+        session_id={@session_id}
       />
     </div>
     """

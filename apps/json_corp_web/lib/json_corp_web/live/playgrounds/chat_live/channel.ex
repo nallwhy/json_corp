@@ -5,6 +5,10 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
 
   @impl true
   def mount(socket) do
+    socket =
+      socket
+      |> assign(:message, "")
+
     {:ok, socket}
   end
 
@@ -39,6 +43,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   def render(assigns) do
     ~H"""
     <div>
+      <p>Your ID: <%= @session_id %></p>
       <.h2><%= @channel_name %></.h2>
       <div>
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
@@ -47,11 +52,46 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
           <p><%= message.body %></p>
         </div>
       </div>
+      <.simple_form
+        for={%{}}
+        phx-change="update_message"
+        phx-submit="send_message"
+        phx-target={@myself}
+        phx-debounce
+      >
+        <.input type="text" name="message" value={@message} />
+        <:actions>
+          <.button type="submit" disabled={@message == ""}>Send</.button>
+        </:actions>
+      </.simple_form>
     </div>
     """
   end
 
-  def assign_messages(socket, channel_name) do
+  @impl true
+  def handle_event("update_message", %{"message" => message}, socket) do
+    socket =
+      socket
+      |> assign(:message, message)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("send_message", %{"message" => message}, socket) do
+    Chat.send_message(socket.assigns.channel_name, %{
+      user_id: socket.assigns.session_id,
+      body: message
+    })
+
+    socket =
+      socket
+      |> assign(:message, "")
+
+    {:noreply, socket}
+  end
+
+  defp assign_messages(socket, channel_name) do
     {:ok, messages} = Chat.list_messages(channel_name)
 
     socket |> stream(:messages, messages)
