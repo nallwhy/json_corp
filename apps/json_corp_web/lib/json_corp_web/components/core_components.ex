@@ -14,6 +14,14 @@ defmodule JsonCorpWeb.CoreComponents do
   alias Phoenix.LiveView.JS
   import JsonCorpWeb.Gettext
 
+  slot :inner_block, required: true
+
+  def h1(assigns) do
+    ~H"""
+    <h1 class="text-2xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    """
+  end
+
   @doc """
   Renders a modal.
 

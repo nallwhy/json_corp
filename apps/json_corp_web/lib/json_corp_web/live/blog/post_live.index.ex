@@ -57,7 +57,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def render(assigns) do
     ~H"""
     <div class="flex justify-between items-baseline">
-      <h1 class="mb-4 text-2xl font-bold">Posts</h1>
+      <.h1>Posts</.h1>
       <.link navigate={~p"/blog?random"}>?</.link>
     </div>
 
