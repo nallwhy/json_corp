@@ -22,6 +22,12 @@ defmodule JsonCorpWeb.CoreComponents do
     """
   end
 
+  def h2(assigns) do
+    ~H"""
+    <h1 class="text-xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    """
+  end
+
   @doc """
   Renders a modal.
 
