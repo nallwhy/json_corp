@@ -4,6 +4,7 @@ defmodule JsonCorp.Chat.ChatServer do
   alias JsonCorp.Chat.Message
 
   @server_name :chat
+  @default_channel_name "general"
   @message_limit 100
 
   def start_link(opts) do
@@ -51,6 +52,9 @@ defmodule JsonCorp.Chat.ChatServer do
   @impl true
   def init(_) do
     :ets.new(@server_name, [:set, :protected, :named_table, read_concurrency: true])
+
+    # init default channel
+    :ets.insert(@server_name, {@default_channel_name, []})
 
     {:ok, nil}
   end
