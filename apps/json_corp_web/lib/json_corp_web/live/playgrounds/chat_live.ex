@@ -30,4 +30,15 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
     </div>
     """
   end
+
+  @impl true
+  def handle_info(message, socket) do
+    send_update(JsonCorpWeb.Playgrounds.ChatLive.Channel,
+      id: socket.assigns.channel_name,
+      channel_name: socket.assigns.channel_name,
+      event_message: message
+    )
+
+    {:noreply, socket}
+  end
 end
