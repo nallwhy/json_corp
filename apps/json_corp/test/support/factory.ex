@@ -22,7 +22,7 @@ defmodule JsonCorp.Factory do
 
   def build(:view_log, attrs) do
     %ViewLog{
-      session_id: Ecto.UUID.generate(),
+      session_id: UUID.uuid4(),
       uri: "https://json.media/blog/post0",
       created_at: DateTime.utc_now()
     }

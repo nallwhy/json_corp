@@ -14,13 +14,19 @@ defmodule JsonCorp.Chat.ChatServer do
     GenServer.call(__MODULE__, {:create_channel, channel_name})
   end
 
+  def delete_channel(channel_name) do
+    GenServer.call(__MODULE__, {:delete_channel, channel_name})
+  end
+
   def list_channels() do
     query =
       fun do
         {channel_name, _messages} -> channel_name
       end
 
-    {:ok, :ets.select(@server_name, query)}
+    channels = :ets.select(@server_name, query) |> Enum.sort()
+
+    {:ok, channels}
   end
 
   def send_message(channel_name, %Message{} = message) do
@@ -35,7 +41,11 @@ defmodule JsonCorp.Chat.ChatServer do
 
     [messages] = :ets.select(@server_name, query)
 
-    {:ok, messages}
+    {:ok, messages |> Enum.reverse()}
+  end
+
+  def reset() do
+    GenServer.call(__MODULE__, :reset)
   end
 
   @impl true
@@ -47,7 +57,27 @@ defmodule JsonCorp.Chat.ChatServer do
 
   @impl true
   def handle_call({:create_channel, channel_name}, _from, state) do
-    :ets.insert(@server_name, {channel_name, []})
+    case :ets.lookup(@server_name, channel_name) do
+      [] ->
+        :ets.insert(@server_name, {channel_name, []})
+
+      _ ->
+        :ok
+    end
+
+    {:reply, :ok, state}
+  end
+
+  @impl true
+  def handle_call({:delete_channel, channel_name}, _from, state) do
+    :ets.delete(@server_name, channel_name)
+
+    {:reply, :ok, state}
+  end
+
+  @impl true
+  def handle_call(:reset, _from, state) do
+    :ets.delete_all_objects(@server_name)
 
     {:reply, :ok, state}
   end
@@ -59,14 +89,18 @@ defmodule JsonCorp.Chat.ChatServer do
         {^channel_name, messages} -> messages
       end
 
-    [messages] = :ets.select(@server_name, query)
+    case :ets.select(@server_name, query) do
+      [messages] ->
+        new_messages =
+          [message | messages]
+          |> Enum.take(@message_limit)
 
-    new_messages =
-      [message | messages]
-      |> Enum.take(@message_limit)
+        :ets.insert(@server_name, {channel_name, new_messages})
 
-    :ets.insert(@server_name, {channel_name, new_messages})
+        {:reply, :ok, state}
 
-    {:reply, :ok, state}
+      [] ->
+        {:reply, {:error, :invalid_channel}, state}
+    end
   end
 end
