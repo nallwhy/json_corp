@@ -17,9 +17,21 @@ defmodule JsonCorp.Chat do
     message = Message.new(message_params)
 
     ChatServer.send_message(channel_name, message)
+
+    broadcast_channel(channel_name, {:message_sent, message})
+
+    :ok
   end
 
   def list_messages(channel_name) do
     ChatServer.list_messages(channel_name)
+  end
+
+  def subscribe_channel(channel_name) do
+    Phoenix.PubSub.subscribe(JsonCorp.PubSub, "chat:#{channel_name}")
+  end
+
+  defp broadcast_channel(channel_name, message) do
+    Phoenix.PubSub.broadcast(JsonCorp.PubSub, "chat:#{channel_name}", message)
   end
 end
