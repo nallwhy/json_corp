@@ -13,7 +13,8 @@ defmodule JsonCorp.Application do
         # Start the Ecto repository
         JsonCorp.Repo,
         # Start the PubSub system
-        {Phoenix.PubSub, name: JsonCorp.PubSub}
+        {Phoenix.PubSub, name: JsonCorp.PubSub},
+        JsonCorp.Chat.ChatServer
       ] ++ prod_children()
 
     Supervisor.start_link(children, strategy: :one_for_one, name: JsonCorp.Supervisor)

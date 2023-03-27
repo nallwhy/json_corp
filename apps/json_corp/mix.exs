@@ -51,7 +51,8 @@ defmodule JsonCorp.MixProject do
       {:uuid, "~> 1.1"},
       {:req, "~> 0.3"},
       {:floki, "~> 0.33"},
-      {:doumi, "~> 0.2.3", only: :test}
+      {:doumi, "~> 0.2.3", only: :test},
+      {:ex2ms, "~> 1.0"}
     ]
   end
 
