@@ -22,6 +22,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
     ~H"""
     <.h1>Chat</.h1>
     <div class="flex">
+      <.live_component module={JsonCorpWeb.Playgrounds.ChatLive.Channels} id="channels" />
       <.live_component
         module={JsonCorpWeb.Playgrounds.ChatLive.Channel}
         id={@channel_name}
@@ -33,7 +34,17 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   end
 
   @impl true
-  def handle_info(message, socket) do
+  def handle_info({:channel_created, _} = message, socket) do
+    send_update(JsonCorpWeb.Playgrounds.ChatLive.Channels,
+      id: "channels",
+      event_message: message
+    )
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info({:message_sent, _} = message, socket) do
     send_update(JsonCorpWeb.Playgrounds.ChatLive.Channel,
       id: socket.assigns.channel_name,
       channel_name: socket.assigns.channel_name,
