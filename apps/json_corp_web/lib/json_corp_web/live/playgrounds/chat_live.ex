@@ -25,12 +25,21 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
       <.live_component module={JsonCorpWeb.Playgrounds.ChatLive.Channels} id="channels" />
       <.live_component
         module={JsonCorpWeb.Playgrounds.ChatLive.Channel}
-        id={@channel_name}
+        id="channel"
         channel_name={@channel_name}
         session_id={@session_id}
       />
     </div>
     """
+  end
+
+  @impl true
+  def handle_event("select_channel", %{"channel_name" => channel_name}, socket) do
+    socket =
+      socket
+      |> assign(:channel_name, channel_name)
+
+    {:noreply, socket}
   end
 
   @impl true
@@ -46,7 +55,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   @impl true
   def handle_info({:message_sent, _} = message, socket) do
     send_update(JsonCorpWeb.Playgrounds.ChatLive.Channel,
-      id: socket.assigns.channel_name,
+      id: "channel",
       channel_name: socket.assigns.channel_name,
       event_message: message
     )

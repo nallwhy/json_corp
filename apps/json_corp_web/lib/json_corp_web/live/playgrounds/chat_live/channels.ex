@@ -40,7 +40,9 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channels do
     <div>
       <div class="h-96 overflow-y-auto">
         <div :for={channel_name <- @channels} class="mt-4">
-          <p># <%= channel_name %></p>
+          <.link phx-click={JS.push("select_channel", value: %{channel_name: channel_name})}>
+            <p># <%= channel_name %></p>
+          </.link>
         </div>
       </div>
       <.simple_form

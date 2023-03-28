@@ -26,10 +26,15 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   # init
   @impl true
   def update(assigns, socket) do
+    old_channel_name = socket.assigns[:channel_name]
     new_channel_name = assigns.channel_name
 
     if connected?(socket) do
-      Chat.subscribe_channel(new_channel_name)
+      if old_channel_name do
+        :ok = Chat.unsubscribe_channel(old_channel_name)
+      end
+
+      :ok = Chat.subscribe_channel(new_channel_name)
     end
 
     socket =
