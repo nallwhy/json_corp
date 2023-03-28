@@ -18,6 +18,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
     socket =
       socket
       |> stream_insert(:messages, message)
+      |> push_event("message_sent", %{})
 
     {:ok, socket}
   end
@@ -45,7 +46,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
     <div>
       <p>Your ID: <%= @session_id %></p>
       <.h2><%= @channel_name %></.h2>
-      <div>
+      <div id="messages" class="h-96 overflow-y-auto" phx-hook="ChatMessages">
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>
           <p><%= message.created_at %></p>
@@ -94,6 +95,8 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   defp assign_messages(socket, channel_name) do
     {:ok, messages} = Chat.list_messages(channel_name)
 
-    socket |> stream(:messages, messages)
+    socket
+    |> stream(:messages, messages)
+    |> push_event("message_sent", %{})
   end
 end
