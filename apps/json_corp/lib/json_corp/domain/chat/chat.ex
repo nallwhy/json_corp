@@ -39,6 +39,10 @@ defmodule JsonCorp.Chat do
     Phoenix.PubSub.subscribe(JsonCorp.PubSub, "chat:#{channel_name}")
   end
 
+  def unsubscribe_channel(channel_name) do
+    Phoenix.PubSub.unsubscribe(JsonCorp.PubSub, "chat:#{channel_name}")
+  end
+
   defp broadcast_channels(message) do
     Phoenix.PubSub.broadcast(JsonCorp.PubSub, "chat", message)
   end

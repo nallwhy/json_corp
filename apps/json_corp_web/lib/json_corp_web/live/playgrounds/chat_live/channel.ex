@@ -26,10 +26,15 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   # init
   @impl true
   def update(assigns, socket) do
+    old_channel_name = socket.assigns[:channel_name]
     new_channel_name = assigns.channel_name
 
     if connected?(socket) do
-      Chat.subscribe_channel(new_channel_name)
+      if old_channel_name do
+        :ok = Chat.unsubscribe_channel(old_channel_name)
+      end
+
+      :ok = Chat.subscribe_channel(new_channel_name)
     end
 
     socket =
@@ -96,6 +101,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   defp assign_messages(socket, channel_name) do
     {:ok, messages} = Chat.list_messages(channel_name)
 
+    # TODO: after https://elixirforum.com/t/phoenix-liveview-stream-api-for-inserting-many/54202/4
     socket
     |> stream(:messages, messages)
     |> push_event("message_sent", %{})
