@@ -44,9 +44,9 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   def render(assigns) do
     ~H"""
     <div>
+      <.h2># <%= @channel_name %></.h2>
       <p>Your ID: <%= @session_id %></p>
-      <.h2><%= @channel_name %></.h2>
-      <div id="messages" class="h-96 overflow-y-auto" phx-hook="ChatMessages">
+      <div id="messages" class="h-96 overflow-y-auto" phx-update="stream" phx-hook="ChatMessages">
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>
           <p><%= message.created_at %></p>
@@ -80,10 +80,11 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
 
   @impl true
   def handle_event("send_message", %{"message" => message}, socket) do
-    Chat.send_message(socket.assigns.channel_name, %{
-      user_id: socket.assigns.session_id,
-      body: message
-    })
+    :ok =
+      Chat.send_message(socket.assigns.channel_name, %{
+        user_id: socket.assigns.session_id,
+        body: message
+      })
 
     socket =
       socket
