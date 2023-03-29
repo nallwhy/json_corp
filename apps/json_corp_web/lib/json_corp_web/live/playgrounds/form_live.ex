@@ -29,6 +29,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
       socket
       |> assign(:routines, [])
       |> assign(:form, form)
+      |> assign(:hour, "")
 
     {:ok, socket}
   end
@@ -37,17 +38,22 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   def render(assigns) do
     ~H"""
     <div>
-      <form>
-        <label for="hour">Time(Hour)</label>
-        <select id="hour" name="hour" phx-change="select_hour">
-          <%= Phoenix.HTML.Form.options_for_select(1..24, nil) %>
-        </select>
-      </form>
+      <.simple_form for={%{}}>
+        <.input
+          label="Time(Hour)"
+          type="select"
+          name="hour"
+          prompt="Select hour"
+          options={1..24}
+          value={@hour}
+          phx-change="select_hour"
+        />
+      </.simple_form>
       <.simple_form for={@form} phx-change="validate" phx-submit="submit">
         <.input type="text" field={@form[:name]} label="Name" />
         <.input type="hidden" field={@form[:time]} />
         <:actions>
-          <.button type="submit" class="btn" disabled={!@form.source.valid?}>Submit</.button>
+          <.button type="submit" disabled={!@form.source.valid?}>Submit</.button>
         </:actions>
       </.simple_form>
 
@@ -79,22 +85,17 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   def handle_event("select_hour", %{"hour" => hour_str}, socket) do
     time = Time.new!(hour_str |> String.to_integer(), 0, 0)
 
-    # TODO
-    name = socket.assigns.form.source.changes[:name]
-
-    params = %{
-      "name" => name,
-      "time" => time
-    }
-
     form =
-      Routine.changeset(params)
+      socket.assigns.form.source.params
+      |> Map.put("time", time)
+      |> Routine.changeset()
       |> Map.put(:action, :validate)
       |> to_form(as: :routine)
 
     socket =
       socket
       |> assign(:form, form)
+      |> assign(:hour, hour_str)
 
     {:noreply, socket}
   end
