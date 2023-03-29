@@ -47,6 +47,7 @@ defmodule JsonCorpWeb.Router do
   scope "/playgrounds", JsonCorpWeb.Playgrounds, as: :playgrounds do
     pipe_through :browser
 
+    live "/", PlaygroundLive
     live "/form", FormLive
   end
 

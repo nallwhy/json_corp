@@ -88,6 +88,7 @@ defmodule JsonCorpWeb.Components do
     [
       {"Blog", ~p"/blog"},
       {"Consulting", ~p"/consulting"},
+      {"Playgrounds", ~p"/playgrounds"},
       {"Projects", ~p"/projects"}
     ]
   end
