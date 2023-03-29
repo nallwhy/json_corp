@@ -1,6 +1,8 @@
 defmodule JsonCorpWeb.Playgrounds.FormLive do
   use JsonCorpWeb, :live_view
 
+  @code_url "https://github.com/nallwhy/json_corp/blob/main/apps/json_corp_web/lib/json_corp_web/live/playgrounds/form_live.ex"
+
   defmodule Routine do
     use Ecto.Schema
     import Ecto.Changeset
@@ -27,6 +29,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
     socket =
       socket
+      |> assign(:code_url, @code_url)
       |> assign(:routines, [])
       |> assign(:form, form)
       |> assign(:hour, "")
@@ -37,6 +40,8 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   @impl true
   def render(assigns) do
     ~H"""
+    <.h1>Form</.h1>
+    <.link href={@code_url} class="underline" target="_blank">Open Code</.link>
     <div>
       <.simple_form for={%{}}>
         <.input
