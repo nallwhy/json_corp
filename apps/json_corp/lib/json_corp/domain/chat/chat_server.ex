@@ -5,7 +5,7 @@ defmodule JsonCorp.Chat.ChatServer do
 
   @server_name :chat
   @default_channel_name "general"
-  @message_limit 100
+  @message_limit 25
 
   def start_link(opts) do
     GenServer.start_link(__MODULE__, opts, name: __MODULE__)
