@@ -1,6 +1,5 @@
 defmodule JsonCorpWeb.Playgrounds.FormLive do
   use JsonCorpWeb, :live_view
-  alias JsonCorpWeb.Helpers.Params
 
   @code_url "https://github.com/nallwhy/json_corp/blob/main/apps/json_corp_web/lib/json_corp_web/live/playgrounds/form_live.ex"
 

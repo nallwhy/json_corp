@@ -123,6 +123,8 @@ defmodule JsonCorpWeb do
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
 
+      alias Doumi.Phoenix.Params
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end
