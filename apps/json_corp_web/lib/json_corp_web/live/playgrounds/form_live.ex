@@ -1,5 +1,6 @@
 defmodule JsonCorpWeb.Playgrounds.FormLive do
   use JsonCorpWeb, :live_view
+  alias JsonCorpWeb.Helpers.Params
 
   @code_url "https://github.com/nallwhy/json_corp/blob/main/apps/json_corp_web/lib/json_corp_web/live/playgrounds/form_live.ex"
 
@@ -23,9 +24,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    form =
-      Routine.changeset(%{})
-      |> to_form(as: :routine)
+    form = %{} |> Params.to_form(Routine, as: :routine, validate: false)
 
     socket =
       socket
@@ -74,10 +73,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def handle_event("validate", %{"routine" => params}, socket) do
-    form =
-      Routine.changeset(params)
-      |> Map.put(:action, :validate)
-      |> to_form(as: :routine)
+    form = params |> Params.to_form(Routine, as: :routine)
 
     socket =
       socket
@@ -91,11 +87,9 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
     time = Time.new!(hour_str |> String.to_integer(), 0, 0)
 
     form =
-      socket.assigns.form.source.params
-      |> Map.put("time", time)
-      |> Routine.changeset()
-      |> Map.put(:action, :validate)
-      |> to_form(as: :routine)
+      socket.assigns.form
+      |> Params.to_params(%{"time" => time})
+      |> Params.to_form(Routine, as: :routine)
 
     socket =
       socket
