@@ -23,7 +23,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    form = %{} |> Params.to_form(Routine, as: :routine, validate: false)
+    form = Params.to_form(%Routine{}, %{}, as: :routine, validate: false)
 
     socket =
       socket
@@ -72,7 +72,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def handle_event("validate", %{"routine" => params}, socket) do
-    form = params |> Params.to_form(Routine, as: :routine)
+    form = Params.to_form(%Routine{}, params, as: :routine)
 
     socket =
       socket
@@ -85,10 +85,11 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   def handle_event("select_hour", %{"hour" => hour_str}, socket) do
     time = Time.new!(hour_str |> String.to_integer(), 0, 0)
 
-    form =
+    params =
       socket.assigns.form
       |> Params.to_params(%{"time" => time})
-      |> Params.to_form(Routine, as: :routine)
+
+    form = Params.to_form(%Routine{}, params, as: :routine)
 
     socket =
       socket
@@ -101,8 +102,8 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   @impl true
   def handle_event("submit", %{"routine" => params}, socket) do
     routine =
-      Routine.changeset(params)
-      |> Ecto.Changeset.apply_changes()
+      Params.to_form(%Routine{}, params, as: :routine)
+      |> Params.to_map()
 
     socket =
       socket
