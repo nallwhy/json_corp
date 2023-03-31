@@ -1,10 +1,15 @@
 defmodule JsonCorpWeb.Playgrounds.ChatLive do
   use JsonCorpWeb, :live_view
 
+  @code_url "https://github.com/nallwhy/json_corp/blob/main/apps/json_corp_web/lib/json_corp_web/live/playgrounds/chat_live.ex"
   @default_channel_name "general"
 
   @impl true
   def mount(_params, _session, socket) do
+    socket =
+      socket
+      |> assign(:code_url, @code_url)
+
     {:ok, socket}
   end
 
@@ -21,6 +26,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   def render(assigns) do
     ~H"""
     <.h1>Chat</.h1>
+    <.link href={@code_url} class="underline" target="_blank">Open Code</.link>
     <div class="flex">
       <.live_component module={JsonCorpWeb.Playgrounds.ChatLive.Channels} id="channels" />
       <.live_component
