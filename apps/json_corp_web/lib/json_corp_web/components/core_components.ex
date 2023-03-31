@@ -22,6 +22,12 @@ defmodule JsonCorpWeb.CoreComponents do
     """
   end
 
+  def h2(assigns) do
+    ~H"""
+    <h1 class="text-xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    """
+  end
+
   @doc """
   Renders a modal.
 
@@ -266,6 +272,7 @@ defmodule JsonCorpWeb.CoreComponents do
       class={[
         "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
         "text-sm font-semibold leading-6 text-white active:text-white/80",
+        "disabled:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-75",
         @class
       ]}
       {@rest}

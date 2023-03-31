@@ -38,7 +38,8 @@ defmodule JsonCorpWeb.Playgrounds.PlaygroundLive do
 
   defp list_playgrounds() do
     [
-      {"Form", "Example of LiveView form binding", ~p"/playgrounds/form"}
+      {"Form", "Example of LiveView form binding", ~p"/playgrounds/form"},
+      {"Chat", "Example of PubSub with LiveView", ~p"/playgrounds/chat"}
     ]
   end
 end
