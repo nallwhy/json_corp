@@ -41,7 +41,8 @@ defmodule JsonCorp.Umbrella.MixProject do
     [
       # run `mix setup` in all child apps
       setup: ["cmd mix setup"],
-      "release.setup": ["cmd mix release.setup"]
+      "release.setup": ["cmd mix release.setup"],
+      sobelow: ["cmd mix sobelow"]
     ]
   end
 
