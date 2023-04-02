@@ -61,8 +61,7 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/json_corp_web/(live|views)/.*(ex)$",
-      ~r"lib/json_corp_web/templates/.*(eex)$"
+      ~r"lib/json_corp_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 
