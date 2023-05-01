@@ -48,10 +48,10 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   @impl true
   def render(assigns) do
     ~H"""
-    <div>
+    <div class="flex flex-col">
       <.h2># <%= @channel_name %></.h2>
-      <p>Your ID: <%= @session_id %></p>
-      <div id="messages" class="h-96 overflow-y-auto" phx-hook="ChatMessages">
+      <div id="messages" class="flex-1 overflow-y-auto" phx-hook="ChatMessages">
+        <p>Your ID: <%= @session_id %></p>
         <div :for={message <- @messages} class="mt-4">
           <p>User id: <%= message.user_id %></p>
           <p><%= message.created_at %></p>
@@ -65,9 +65,9 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
         phx-target={@myself}
         phx-debounce
       >
-        <.input type="text" name="message" value={@message} />
+        <.input type="text" name="message" label="New Message" value={@message} />
         <:actions>
-          <.button type="submit" disabled={@message == ""}>Send</.button>
+          <.button type="submit" disabled={@message == ""}>Send Message</.button>
         </:actions>
       </.simple_form>
     </div>
