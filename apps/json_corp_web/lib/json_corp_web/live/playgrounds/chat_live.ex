@@ -49,11 +49,15 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   end
 
   @impl true
-  def handle_info({:channel_created, _} = message, socket) do
+  def handle_info({:channel_created, channel_name} = message, socket) do
     send_update(JsonCorpWeb.Playgrounds.ChatLive.Channels,
       id: "channels",
       event_message: message
     )
+
+    socket =
+      socket
+      |> assign(:channel_name, channel_name)
 
     {:noreply, socket}
   end
