@@ -48,7 +48,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="flex flex-col">
+    <div class="flex-1 flex flex-col">
       <.h2># <%= @channel_name %></.h2>
       <div id="messages" class="flex-1 overflow-y-auto" phx-hook="ChatMessages">
         <p>Your ID: <%= @session_id %></p>
