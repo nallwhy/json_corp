@@ -47,8 +47,18 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
-  def handle_params(_params, _uri, socket) do
+  def handle_params(params, _uri, socket) do
     socket = socket |> reset_assigns()
+
+    socket =
+      case params["test"] do
+        nil ->
+          socket
+          |> push_patch(to: ~p"/blog?test=1", replace: true)
+
+        _ ->
+          socket
+      end
 
     {:noreply, socket}
   end
