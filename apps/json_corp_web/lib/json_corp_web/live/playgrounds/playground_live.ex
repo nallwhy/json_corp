@@ -10,6 +10,7 @@ defmodule JsonCorpWeb.Playgrounds.PlaygroundLive do
   def render(assigns) do
     ~H"""
     <.h1>Playgrounds</.h1>
+    <.link navigate={~p"/blog"} class="btn btn-primary">Go to blog</.link>
     <div class="flex flex-wrap gap-6">
       <.playground_card
         :for={{name, description, path} <- list_playgrounds()}
