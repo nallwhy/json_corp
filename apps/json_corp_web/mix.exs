@@ -60,7 +60,7 @@ defmodule JsonCorpWeb.MixProject do
       {:heroicons, "~> 0.5.0"},
       {:plug_canonical_host, "~> 2.0"},
       {:bandit, "~> 0.7"},
-      {:doumi_phoenix_params, "~> 0.3"}
+      {:doumi_phoenix_params, "~> 0.3.1"}
     ]
   end
 
