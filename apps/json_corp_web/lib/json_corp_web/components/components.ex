@@ -70,6 +70,22 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  slot :inner_block, required: true
+
+  def h1(assigns) do
+    ~H"""
+    <h1 class="text-2xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    """
+  end
+
+  slot :inner_block, required: true
+
+  def h2(assigns) do
+    ~H"""
+    <h1 class="text-xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    """
+  end
+
   defp meta_of(assigns, type) when type in [:title, :description, :keywords] do
     assigns |> get_in([:page_meta, type])
   end
