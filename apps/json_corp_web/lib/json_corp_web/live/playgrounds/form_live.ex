@@ -5,6 +5,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   defmodule Routine do
     use Ecto.Schema
+    use Doumi.Phoenix.Params, as: :routine
     import Ecto.Changeset
 
     @primary_key false
@@ -23,7 +24,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    form = Params.to_form(%Routine{}, %{}, as: :routine, validate: false)
+    form = Routine.to_form(%{}, validate: false)
 
     socket =
       socket
@@ -72,7 +73,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
   @impl true
   def handle_event("validate", %{"routine" => params}, socket) do
-    form = Params.to_form(%Routine{}, params, as: :routine)
+    form = Routine.to_form(params)
 
     socket =
       socket
@@ -89,7 +90,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
       socket.assigns.form
       |> Params.to_params(%{"time" => time})
 
-    form = Params.to_form(%Routine{}, params, as: :routine)
+    form = Routine.to_form(params)
 
     socket =
       socket
@@ -102,7 +103,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
   @impl true
   def handle_event("submit", %{"routine" => params}, socket) do
     routine =
-      Params.to_form(%Routine{}, params, as: :routine)
+      Routine.to_form(params)
       |> Params.to_map()
 
     socket =
