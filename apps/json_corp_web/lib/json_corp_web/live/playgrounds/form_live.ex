@@ -10,21 +10,38 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
     @primary_key false
     embedded_schema do
-      field :name, :string
-      field :time, :time
+      field(:name, :string)
+      field(:time, :time)
+
+      embeds_many :steps, Step, primary_key: false, on_replace: :delete do
+        field(:description, :string)
+      end
     end
 
     @required [:name, :time]
-    def changeset(%__MODULE__{} = struct \\ %__MODULE__{}, attrs) do
+    def changeset(%__MODULE__{} = struct, attrs) do
       struct
       |> cast(attrs, @required)
       |> validate_required(@required)
+      |> cast_embed(:steps,
+        with: &step_changeset/2,
+        sort_param: :step_order,
+        drop_param: :step_delete,
+        required: true
+      )
+    end
+
+    @step_required [:description]
+    defp step_changeset(%__MODULE__.Step{} = struct, attrs) do
+      struct
+      |> cast(attrs, @step_required)
+      |> validate_required(@step_required)
     end
   end
 
   @impl true
   def mount(_params, _session, socket) do
-    form = Routine.to_form(%{}, validate: false)
+    form = Routine.to_form(%{steps: [%{}]}, validate: false)
 
     socket =
       socket
@@ -56,6 +73,21 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
       <.simple_form for={@form} phx-change="validate" phx-submit="submit">
         <.input type="text" field={@form[:name]} label="Name" />
         <.input type="hidden" field={@form[:time]} />
+        <p>Steps</p>
+        <.inputs_for :let={step} field={@form[:steps]}>
+          <input type="hidden" name="routine[step_order][]" value={step.index} />
+          <div class="flex items-center">
+            <.input type="text" field={step[:description]} placeholder="description" />
+            <label class="block !mt-2 ml-2 cursor-pointer">
+              <input type="checkbox" name="routine[step_delete][]" class="hidden" value={step.index} />
+              <.icon name="hero-x-mark" />
+            </label>
+          </div>
+        </.inputs_for>
+        <label class="block !mt-2 cursor-pointer">
+          <input type="checkbox" name="routine[step_order][]" class="hidden" />
+          <.icon name="hero-plus-circle" />add more
+        </label>
         <:actions>
           <.button type="submit" disabled={!@form.source.valid?}>Submit</.button>
         </:actions>
@@ -65,6 +97,9 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
         <div :for={routine <- @routines}>
           <p><%= routine.name %></p>
           <p><%= routine.time %></p>
+          <div :for={step <- routine.steps}>
+            <p><%= step.description %></p>
+          </div>
         </div>
       </div>
     </div>
