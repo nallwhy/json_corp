@@ -357,6 +357,55 @@ defmodule JsonCorpWeb.CoreComponents do
     """
   end
 
+  attr :name, :string, required: true
+  attr :label, :string, default: nil
+
+  def field_adder(assigns) do
+    ~H"""
+    <label class="block cursor-pointer">
+      <input type="checkbox" name={@name} class="hidden" />
+      <.icon name="hero-plus-circle" /><%= @label %>
+    </label>
+    """
+  end
+
+  attr :for, :any, required: true
+  attr :name, :string, required: true
+
+  def field_adder_hidden(assigns) do
+    ~H"""
+    <input type="hidden" name={@name} value={@for.index} />
+    """
+  end
+
+  # https://elixirforum.com/t/keynote-the-road-to-liveview-1-0-by-chris-mccord-elixirconf-eu-2023/55580
+
+  attr :for, :any, required: true
+  attr :name, :string, required: true
+  attr :label, :string, default: nil
+
+  def field_remover(assigns) do
+    assigns =
+      assigns
+      |> assign_new(:id, fn %{for: for} -> "#{for.id}-delete" end)
+
+    ~H"""
+    <input
+      id={@id}
+      type="hidden"
+      name={@name}
+      data-delete={
+        JS.set_attribute({"value", @for.index})
+        |> JS.dispatch("input")
+        |> JS.remove_attribute("value")
+      }
+    />
+    <button type="button" phx-click={JS.exec("data-delete", to: "##{@id}")}>
+      <.icon name="hero-x-mark" /><%= @label %>
+    </button>
+    """
+  end
+
   @doc """
   Renders a label.
   """

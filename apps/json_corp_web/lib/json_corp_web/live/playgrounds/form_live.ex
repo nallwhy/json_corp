@@ -40,19 +40,13 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
         <.input type="hidden" field={@form[:time]} />
         <p>Steps</p>
         <.inputs_for :let={step} field={@form[:steps]}>
-          <input type="hidden" name="routine[step_order][]" value={step.index} />
+          <.field_adder_hidden for={step} name="routine[step_order][]" />
           <div class="flex items-center">
             <.input type="text" field={step[:description]} placeholder="description" />
-            <label class="block !mt-2 ml-2 cursor-pointer">
-              <input type="checkbox" name="routine[step_delete][]" class="hidden" value={step.index} />
-              <.icon name="hero-x-mark" />
-            </label>
+            <.field_remover for={step} name="routine[step_delete][]" />
           </div>
         </.inputs_for>
-        <label class="block !mt-2 cursor-pointer">
-          <input type="checkbox" name="routine[step_order][]" class="hidden" />
-          <.icon name="hero-plus-circle" />add more
-        </label>
+        <.field_adder name="routine[step_order][]" label="add more" />
         <:actions>
           <.button type="submit" disabled={!@form.source.valid?}>Submit</.button>
         </:actions>
