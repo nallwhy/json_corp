@@ -12,20 +12,9 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
     {:ok, socket}
   end
 
-  # handle new event message from parent
-  @impl true
-  def update(%{event_message: {:message_sent, %Message{} = message}}, socket) do
-    socket =
-      socket
-      |> update(:messages, &(&1 ++ [message]))
-      |> push_event("message_sent", %{})
-
-    {:ok, socket}
-  end
-
   # init
   @impl true
-  def update(assigns, socket) do
+  def update(%{id: _} = assigns, socket) do
     old_channel_name = socket.assigns[:channel_name]
     new_channel_name = assigns.channel_name
 
@@ -45,14 +34,25 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
     {:ok, socket}
   end
 
+  # handle new event message from parent
+  @impl true
+  def update(%{event_message: {:message_sent, %Message{} = message}}, socket) do
+    socket =
+      socket
+      |> stream_insert(:messages, message)
+      |> push_event("message_sent", %{})
+
+    {:ok, socket}
+  end
+
   @impl true
   def render(assigns) do
     ~H"""
     <div class="flex-1 flex flex-col">
       <.h2># <%= @channel_name %></.h2>
-      <div id="messages" class="flex-1 overflow-y-auto" phx-hook="ChatMessages">
-        <p>Your ID: <%= @session_id %></p>
-        <div :for={message <- @messages} class="mt-4">
+      <p>Your ID: <%= @session_id %></p>
+      <div id="messages" class="flex-1 overflow-y-auto" phx-update="stream" phx-hook="ChatMessages">
+        <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>
           <p><%= message.created_at %></p>
           <p><%= message.body %></p>
@@ -103,8 +103,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
 
     # TODO: after https://elixirforum.com/t/phoenix-liveview-stream-api-for-inserting-many/54202/4
     socket
-    |> assign(:messages, messages)
-
-    # |> stream(:messages, messages)
+    |> stream(:messages, messages, reset: true)
+    |> push_event("message_sent", %{})
   end
 end
