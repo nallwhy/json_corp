@@ -21,7 +21,7 @@ defmodule JsonCorpWeb.Components do
 
   def header(assigns) do
     ~H"""
-    <header class="navbar px-8 py-6 place-content-between">
+    <header class="navbar max-w-6xl mx-auto px-8 py-6 place-content-between">
       <div class="flex-none w-32">
         <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
@@ -57,7 +57,7 @@ defmodule JsonCorpWeb.Components do
 
   def footer(assigns) do
     ~H"""
-    <footer class="footer p-8">
+    <footer class="footer max-w-6xl mx-auto p-8">
       <div>
         <span class="footer-title">Social</span>
         <div class="grid grid-flow-col gap-4">

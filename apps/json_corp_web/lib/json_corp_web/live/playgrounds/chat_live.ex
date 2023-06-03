@@ -27,7 +27,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
     ~H"""
     <.h1>Chat</.h1>
     <.link href={@code_url} class="underline" target="_blank">Open Code</.link>
-    <div class="flex h-[32rem] gap-x-4">
+    <div class="flex h-[32rem] mt-4 gap-x-4">
       <.live_component module={JsonCorpWeb.Playgrounds.ChatLive.Channels} id="channels" />
       <.live_component
         module={JsonCorpWeb.Playgrounds.ChatLive.Channel}
