@@ -33,7 +33,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
         module={JsonCorpWeb.Playgrounds.ChatLive.Channel}
         id="channel"
         channel_name={@channel_name}
-        session_id={@session_id}
+        user={%{id: @session_id, name: @session_id}}
       />
     </div>
     """

@@ -7,6 +7,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   def mount(socket) do
     socket =
       socket
+      |> assign(:user, nil)
       |> assign(:message, "")
 
     {:ok, socket}
@@ -50,7 +51,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
     ~H"""
     <div class="flex-1 flex flex-col">
       <.h2># <%= @channel_name %></.h2>
-      <p>Your ID: <%= @session_id %></p>
+      <p>Your ID: <%= @user.id %></p>
       <div id="messages" class="flex-1 overflow-y-auto" phx-update="stream" phx-hook="ChatMessages">
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>
@@ -87,7 +88,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   def handle_event("send_message", %{"message" => message}, socket) do
     :ok =
       Chat.send_message(socket.assigns.channel_name, %{
-        user_id: socket.assigns.session_id,
+        user_id: socket.assigns.user.id,
         body: message
       })
 
