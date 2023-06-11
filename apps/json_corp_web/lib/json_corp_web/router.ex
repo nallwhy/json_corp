@@ -7,7 +7,7 @@ defmodule JsonCorpWeb.Router do
     plug :fetch_live_flash
     plug :put_root_layout, {JsonCorpWeb.Layouts, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self' data:"}
+    # plug :put_secure_browser_headers, %{"content-security-policy" => "default-src 'self' data:"}
     plug JsonCorpWeb.SessionPlug
   end
 

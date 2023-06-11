@@ -38,6 +38,10 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
       <.simple_form for={@form} phx-change="validate" phx-submit="submit">
         <.input type="text" field={@form[:name]} label="Name" />
         <.input type="hidden" field={@form[:time]} />
+        <.input type="textarea" field={@form[:description]} label="Description" />
+        <div id={"#{@form[:description].id}-editor"} phx-update="ignore">
+          <trix-editor input={@form[:description].id}></trix-editor>
+        </div>
         <p>Steps</p>
         <.inputs_for :let={step} field={@form[:steps]}>
           <.field_adder_hidden for={step} name="routine[step_order][]" />

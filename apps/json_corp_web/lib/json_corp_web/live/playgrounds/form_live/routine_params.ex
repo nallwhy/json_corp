@@ -6,6 +6,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive.RoutineParams do
   @primary_key false
   embedded_schema do
     field :name, :string
+    field :description, :string
     field :time, :time
 
     embeds_many :steps, Step, primary_key: false, on_replace: :delete do
@@ -13,7 +14,7 @@ defmodule JsonCorpWeb.Playgrounds.FormLive.RoutineParams do
     end
   end
 
-  @required [:name, :time]
+  @required [:name, :description, :time]
   def changeset(%__MODULE__{} = struct, attrs) do
     struct
     |> cast(attrs, @required)
