@@ -102,7 +102,6 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   defp assign_messages(socket, channel_name) do
     {:ok, messages} = Chat.list_messages(channel_name)
 
-    # TODO: after https://elixirforum.com/t/phoenix-liveview-stream-api-for-inserting-many/54202/4
     socket
     |> stream(:messages, messages, reset: true)
     |> push_event("message_sent", %{})
