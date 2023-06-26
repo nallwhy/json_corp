@@ -56,7 +56,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>
           <p><%= message.created_at %></p>
-          <p><%= message.body %></p>
+          <p class="whitespace-pre-line"><%= message.body %></p>
         </div>
       </div>
       <.simple_form
@@ -66,7 +66,14 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
         phx-target={@myself}
         phx-debounce
       >
-        <.input type="text" name="message" label="New Message" value={@message} />
+        <.input
+          id="message_input"
+          type="textarea"
+          name="message"
+          label="New Message"
+          phx-hook="CtrlEnterSubmit"
+          value={@message}
+        />
         <:actions>
           <.button type="submit" disabled={@message == ""}>Send Message</.button>
         </:actions>
