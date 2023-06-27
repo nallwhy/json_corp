@@ -7,9 +7,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> reset_assigns()
-      |> assign(:posts, Blog.list_posts())
       |> assign(:categories, Blog.list_categories())
+      |> reset_assigns()
+      |> assign_posts()
       |> assign_page_meta(%{title: "Blog"})
 
     {:ok, socket}
@@ -21,6 +21,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> reset_assigns()
       |> assign(:category, category)
+      |> assign_posts()
 
     {:noreply, socket}
   end
@@ -31,6 +32,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> reset_assigns()
       |> assign(:tag, tag)
+      |> assign_posts()
 
     {:noreply, socket}
   end
@@ -78,7 +80,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     </div>
 
     <div>
-      <div :for={post <- filtered_posts(assigns)}>
+      <div :for={post <- @posts}>
         <.link navigate={~p"/blog/#{post}"}>
           <article class="py-4 border-b-2 cursor-pointer">
             <h2 class="text-xl"><%= post.title %></h2>
@@ -98,15 +100,24 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     """
   end
 
-  defp filtered_posts(%{posts: posts, category: category}) when not is_nil(category) do
+  defp assign_posts(socket) do
+    filtered_posts =
+      Blog.list_posts()
+      |> filter_posts(socket.assigns |> Map.take([:category, :tag]))
+
+    socket
+    |> assign(:posts, filtered_posts)
+  end
+
+  defp filter_posts(posts, %{category: category}) when not is_nil(category) do
     posts |> Enum.filter(&Post.is_category(&1, category))
   end
 
-  defp filtered_posts(%{posts: posts, tag: tag}) when not is_nil(tag) do
+  defp filter_posts(posts, %{tag: tag}) when not is_nil(tag) do
     posts |> Enum.filter(&Post.has_tag(&1, tag))
   end
 
-  defp filtered_posts(%{posts: posts}) do
+  defp filter_posts(posts, _) do
     posts
   end
 
