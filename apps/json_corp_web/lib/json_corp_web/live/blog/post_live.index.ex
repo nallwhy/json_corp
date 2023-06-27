@@ -9,6 +9,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> assign(:categories, Blog.list_categories())
       |> reset_assigns()
+      |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
       |> assign_posts()
       |> assign_page_meta(%{title: "Blog"})
 
@@ -80,8 +81,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     </div>
 
     <div>
-      <div :for={post <- @posts}>
-        <.link navigate={~p"/blog/#{post}"}>
+      <div id="posts" phx-update="stream">
+        <.link :for={{dom_id, post} <- @streams.posts} id={dom_id} navigate={~p"/blog/#{post}"}>
           <article class="py-4 border-b-2 cursor-pointer">
             <h2 class="text-xl"><%= post.title %></h2>
             <p :if={post.description} class="mt-2"><%= post.description %></p>
@@ -106,7 +107,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       |> filter_posts(socket.assigns |> Map.take([:category, :tag]))
 
     socket
-    |> assign(:posts, filtered_posts)
+    |> stream(:posts, filtered_posts, reset: true)
   end
 
   defp filter_posts(posts, %{category: category}) when not is_nil(category) do
