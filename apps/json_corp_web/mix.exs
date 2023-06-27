@@ -60,7 +60,8 @@ defmodule JsonCorpWeb.MixProject do
       {:plug_canonical_host, "~> 2.0"},
       {:bandit, "~> 0.7"},
       {:doumi_phoenix_params, "~> 0.3.4"},
-      {:sitemapper, "~> 0.7"}
+      {:sitemapper, "~> 0.7"},
+      {:ex_cldr_plugs, "~> 1.3"}
     ]
   end
 
