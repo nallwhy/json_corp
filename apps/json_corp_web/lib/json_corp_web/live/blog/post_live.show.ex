@@ -87,21 +87,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <div><time>Date created: <%= @post.date_created %></time></div>
         <div>View count: <%= @view_count || "-" %></div>
       </div>
-      <%= if @post.tags do %>
-        <div class="mt-2">
-          <%= for tag <- @post.tags do %>
-            <.link navigate={~p"/blog?tag=#{tag}"}>
-              <span class="mr-2 tag">#<%= tag %></span>
-            </.link>
-          <% end %>
-        </div>
-      <% end %>
+      <div :if={@post.tags} class="mt-2">
+        <.link :for={tag <- @post.tags} navigate={~p"/blog?tag=#{tag}"}>
+          <span class="mr-2 tag">#<%= tag %></span>
+        </.link>
+      </div>
     </div>
     <hr class="prose" />
     <div class="prose pt-4">
-      <%= if @post.cover_url do %>
-        <img src={@post.cover_url} alt={@post.title} class="w-full" />
-      <% end %>
+      <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       <%= @post.body |> MarkdownRenderer.html() |> raw() %>
     </div>
     """

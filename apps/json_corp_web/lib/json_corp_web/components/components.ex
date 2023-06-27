@@ -13,9 +13,7 @@ defmodule JsonCorpWeb.Components do
     />
     <meta property="og:title" content={meta_of(assigns, :title) || "Json Media"} />
     <meta property="og:description" content={meta_of(assigns, :description)} />
-    <%= if image = meta_of(assigns, :image) do %>
-      <meta property="og:image" content={image} />
-    <% end %>
+    <meta :if={image = meta_of(assigns, :image)} property="og:image" content={image} />
     """
   end
 
@@ -27,11 +25,12 @@ defmodule JsonCorpWeb.Components do
       </div>
       <div class="hidden sm:block flex-1 pl-12">
         <ul class="flex">
-          <%= for {menu_name, menu_route} <- list_menus() do %>
-            <li class="px-2 border-y-2 border-transparent hover:border-b-primary">
-              <.link href={menu_route}><%= menu_name %></.link>
-            </li>
-          <% end %>
+          <li
+            :for={{menu_name, menu_route} <- list_menus()}
+            class="px-2 border-y-2 border-transparent hover:border-b-primary"
+          >
+            <.link href={menu_route}><%= menu_name %></.link>
+          </li>
         </ul>
       </div>
       <div class="sm:hidden flex-none">
@@ -43,11 +42,9 @@ defmodule JsonCorpWeb.Components do
             tabindex="0"
             class="menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 border-2"
           >
-            <%= for {menu_name, menu_route} <- list_menus() do %>
-              <li>
-                <.link href={menu_route}><%= menu_name %></.link>
-              </li>
-            <% end %>
+            <li :for={{menu_name, menu_route} <- list_menus()}>
+              <.link href={menu_route}><%= menu_name %></.link>
+            </li>
           </ul>
         </div>
       </div>

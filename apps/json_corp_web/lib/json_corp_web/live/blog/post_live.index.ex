@@ -68,39 +68,32 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       >
         All
       </.link>
-      <%= for category <- @categories do %>
-        <.link
-          patch={~p"/blog?category=#{category}"}
-          class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
-        >
-          <%= category %>
-        </.link>
-      <% end %>
+      <.link
+        :for={category <- @categories}
+        patch={~p"/blog?category=#{category}"}
+        class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
+      >
+        <%= category %>
+      </.link>
     </div>
 
     <div>
-      <%= for %Post{} = post <- filtered_posts(assigns) do %>
+      <div :for={post <- filtered_posts(assigns)}>
         <.link navigate={~p"/blog/#{post}"}>
           <article class="py-4 border-b-2 cursor-pointer">
             <h2 class="text-xl"><%= post.title %></h2>
-            <%= if post.description do %>
-              <p class="mt-2"><%= post.description %></p>
-            <% end %>
+            <p :if={post.description} class="mt-2"><%= post.description %></p>
             <div class="mt-6">
               Date created: <time><%= post.date_created %></time>
             </div>
-            <%= if post.tags do %>
-              <div class="mt-6">
-                <%= for tag <- post.tags do %>
-                  <.link patch={~p"/blog?tag=#{tag}"}>
-                    <span class="mr-2 tag">#<%= tag %></span>
-                  </.link>
-                <% end %>
-              </div>
-            <% end %>
+            <div :if={post.tags} class="mt-6">
+              <.link :for={tag <- post.tags} patch={~p"/blog?tag=#{tag}"}>
+                <span class="mr-2 tag">#<%= tag %></span>
+              </.link>
+            </div>
           </article>
         </.link>
-      <% end %>
+      </div>
     </div>
     """
   end

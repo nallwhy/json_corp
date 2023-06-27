@@ -1,10 +1,9 @@
 <.h1>Projects</.h1>
 <div class="flex flex-wrap gap-6">
-  <%= for project <- @projects do %>
-    <.project_card
-      name={project.name}
-      description={project.description}
-      url={project.url}
-    />
-  <% end %>
+  <.project_card
+    :for={project <- @projects}
+    name={project.name}
+    description={project.description}
+    url={project.url}
+  />
 </div>
