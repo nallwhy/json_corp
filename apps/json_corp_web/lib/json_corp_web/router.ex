@@ -49,7 +49,8 @@ defmodule JsonCorpWeb.Router do
     live_session :blog,
       on_mount: [
         JsonCorpWeb.SessionHook,
-        JsonCorpWeb.ViewLogHook
+        JsonCorpWeb.ViewLogHook,
+        JsonCorpWeb.LocaleHook
       ] do
       live "/", PostLive.Index
       live "/:language", PostLive.Index
