@@ -249,3 +249,14 @@ end
 다음 글에서는 'Elixir 로 B2B SaaS 의 Job Scheduling 을 구현하는 간단한 방법' 에 대해 얘기해보도록 하겠습니다.
 
 감사합니다!
+
+---
+
+References:
+
+- [What Is Multitenancy: Definition, Importance, and Applications](https://www.simplilearn.com/what-is-multitenancy-article#benefits_of_multitenancy_architecture)
+- [Tenancy models for a multitenant solution](https://learn.microsoft.com/en-us/azure/architecture/guide/multitenant/considerations/tenancy-models)
+- [Re-defining multi-tenancy](https://docs.aws.amazon.com/whitepapers/latest/saas-architecture-fundamentals/re-defining-multi-tenancy.html)
+- [B2B SaaS 는 일반적인 B2C 비즈니스와 무엇이 다를까요?](https://maily.so/saascenter/posts/2982fba1)
+- [What's Under the Hood of SaaS Companies](https://shomik.substack.com/p/whats-under-the-hood-of-saas-companies?s=r)
+- [Your Guide To Schema-based, Multi-Tenant Systems and PostgreSQL Implementation](https://hackernoon.com/your-guide-to-schema-based-multi-tenant-systems-and-postgresql-implementation-gm433589)
