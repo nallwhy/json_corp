@@ -1,5 +1,5 @@
 %{
-title: "Elixir 로 B2B SaaS 의 Multi-Tenancy 를 구현하는 간단한 방법",
+title: "B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir",
 description: "Elixir 로 B2B SaaS 를 만드는 여정 - (1)",
 category: "dev",
 cover_url: "/images/blog/20230803_multi_tenancy.png",
@@ -8,12 +8,12 @@ tags: ["개발", "Multi-Tenancy", "B2B", "SaaS", "Ecto", "Elixir"]
 
 ---
 
-이번 시리즈에서는 Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 겪었던 이야기를 적어보려 합니다.
+이번 시리즈에서는 Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 경험한 내용들을 적어보려 합니다.
 
-1. Elixir 로 B2B SaaS 의 Multi-Tenancy 를 구현하는 간단한 방법
-2. Elixir 로 B2B SaaS 의 Job Scheduling 을 구현하는 간단한 방법
-3. Elixir 로 B2B SaaS 의 Feature Flag 를 구현하는 간단한 방법
-4. Elixir 로 B2B SaaS 의 Obfuscation 을 구현하는 간단한 방법
+1. B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir
+2. Job Scheduling 예정
+3. Feature Flag 예정
+4. Obfuscation 예정
 
 ---
 
