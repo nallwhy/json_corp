@@ -40,7 +40,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"random" => _}, _uri, socket) do
-    post = socket.assigns.posts |> Enum.random()
+    post = Blog.list_posts() |> Enum.random()
 
     socket =
       socket
