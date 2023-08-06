@@ -82,20 +82,22 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
     <div>
       <div id="posts" phx-update="stream">
-        <.link :for={{dom_id, post} <- @streams.posts} id={dom_id} navigate={~p"/blog/#{post}"}>
-          <article class="py-4 border-b-2 cursor-pointer">
-            <h2 class="text-xl"><%= post.title %></h2>
-            <p :if={post.description} class="mt-2"><%= post.description %></p>
-            <div class="mt-6">
-              Date created: <time><%= post.date_created %></time>
-            </div>
-            <div :if={post.tags} class="mt-6">
-              <.link :for={tag <- post.tags} patch={~p"/blog?tag=#{tag}"}>
-                <span class="mr-2 tag">#<%= tag %></span>
-              </.link>
-            </div>
-          </article>
-        </.link>
+        <div :for={{dom_id, post} <- @streams.posts} id={dom_id}>
+          <.link navigate={~p"/blog/#{post}"}>
+            <article class="py-4 border-b-2 cursor-pointer">
+              <h2 class="text-xl"><%= post.title %></h2>
+              <p :if={post.description} class="mt-2"><%= post.description %></p>
+              <div class="mt-6">
+                Date created: <time><%= post.date_created %></time>
+              </div>
+              <div :if={post.tags} class="mt-6">
+                <.link :for={tag <- post.tags} patch={~p"/blog?tag=#{tag}"}>
+                  <span class="mr-2 tag">#<%= tag %></span>
+                </.link>
+              </div>
+            </article>
+          </.link>
+        </div>
       </div>
     </div>
     """
