@@ -24,14 +24,18 @@ tags: ["개발", "Elixir", "Nebulex", "Cache"]
 먼저 `nebulex` 를 dependency 에 추가한다. local adapter 나 partiAttribute 를 이용해 cache 를 설정하고 싶다면 `decorator`, Telemetry event([Elixir 에서 Telemetry 로 Ecto 의 Slow Query 로깅하기 참조](./20220827_logging_slow_queries_with_telemetry.md#telemetry)) 로 Nebulex stats 를 보려면 `telemetry` 도 추가해준다.
 
 ```elixir
-def deps do
-  [
-    ...
-    {:nebulex, "~> 2.4"},
-    {:shards, "~> 1.0"},     #=> When using :shards as backend
-    {:decorator, "~> 1.4"},  #=> When using Caching Annotations
-    {:telemetry, "~> 1.1"}   #=> When using the Telemetry events (Nebulex stats)
-  ]
+defmodule MyApp.MixProject do
+  ...
+
+  defp deps do
+    [
+      ...
+      {:nebulex, "~> 2.4"},
+      {:shards, "~> 1.0"},     #=> When using :shards as backend
+      {:decorator, "~> 1.4"},  #=> When using Caching Annotations
+      {:telemetry, "~> 1.1"}   #=> When using the Telemetry events (Nebulex stats)
+    ]
+  end
 end
 ```
 
