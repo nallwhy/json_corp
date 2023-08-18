@@ -7,11 +7,22 @@ defmodule JsonCorp.Blog.Post do
           body: String.t(),
           date_created: Date.t(),
           cover_url: String.t(),
-          tags: [String.t()]
+          tags: [String.t()],
+          aliases: [String.t()]
         }
 
   @derive {Phoenix.Param, key: :slug}
-  @enforce_keys [:title, :description, :category, :slug, :body, :date_created, :cover_url, :tags]
+  @enforce_keys [
+    :title,
+    :description,
+    :category,
+    :slug,
+    :body,
+    :date_created,
+    :cover_url,
+    :tags,
+    :aliases
+  ]
   defstruct @enforce_keys
 
   def is_category(%__MODULE__{category: post_category}, category) do

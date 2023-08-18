@@ -21,13 +21,26 @@ defmodule JsonCorp.Blog do
               match: &Cache.default_matcher/1,
               opts: cache_opts()
             )
-  @spec fetch_post(slug :: String.t()) :: {:ok, %Post{} | %SecretPost{}} | :error
+  @spec fetch_post(slug :: String.t()) ::
+          {:ok, %Post{} | %SecretPost{}} | {:redirect, %Post{}} | :error
   def fetch_post(slug, posts_path \\ posts_path()) do
     list_posts(posts_path)
-    |> Enum.find(fn %Post{slug: post_slug} -> post_slug == slug end)
+    |> Enum.find_value(fn
+      %Post{slug: ^slug} = post ->
+        {:ok, post}
+
+      %Post{aliases: aliases} = post ->
+        case slug in aliases do
+          true -> {:redirect, post}
+          false -> nil
+        end
+
+      _ ->
+        nil
+    end)
     |> case do
-      %Post{} = post -> {:ok, post}
       nil -> fetch_secret_post(slug)
+      result -> result
     end
   end
 
@@ -76,7 +89,8 @@ defmodule JsonCorp.Blog do
       body: body,
       date_created: date_created,
       cover_url: meta_map[:cover_url],
-      tags: meta_map[:tags]
+      tags: meta_map[:tags],
+      aliases: meta_map[:aliases] || []
     }
   end
 

@@ -9,8 +9,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def mount(%{"slug" => slug}, _session, socket) do
     socket =
       socket
-      |> load_post(slug)
       |> assign(:view_count, nil)
+      |> load_post(slug)
 
     {:ok, socket}
   end
@@ -125,6 +125,10 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
             keywords: tags |> Enum.join(", ")
           }
         end)
+
+      {:redirect, post} ->
+        socket
+        |> push_navigate(to: ~p"/blog/#{post}")
 
       _ ->
         socket

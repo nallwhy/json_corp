@@ -32,6 +32,13 @@ defmodule JsonCorp.BlogTest do
       assert fetched_post.date_created == ~D[2022-06-26]
       assert fetched_post.cover_url == "https://json.corp/images/blog/example.jpg"
       assert fetched_post.tags == ["tag0", "tag1"]
+      assert fetched_post.aliases == ["post000"]
+    end
+
+    test "with valid alias" do
+      assert {:redirect, fetched_post} = Blog.fetch_post("post000", @fixture_path)
+
+      assert fetched_post.title == "Test Title 0"
     end
 
     test "with valid secret slug" do
