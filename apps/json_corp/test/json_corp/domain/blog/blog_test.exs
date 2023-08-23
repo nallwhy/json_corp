@@ -4,8 +4,8 @@ defmodule JsonCorp.BlogTest do
 
   @fixture_path JsonCorp.Fixture.path("./blog")
 
-  test "list_posts/1" do
-    assert fetched_posts = Blog.list_posts(@fixture_path)
+  test "list_posts/2" do
+    assert fetched_posts = Blog.list_posts("ko", @fixture_path)
     assert fetched_posts |> Enum.count() == 2
 
     [fetched_post | _] = fetched_posts
@@ -18,6 +18,9 @@ defmodule JsonCorp.BlogTest do
     assert fetched_post.date_created == ~D[2022-07-24]
     assert fetched_post.cover_url == nil
     assert fetched_post.tags == nil
+
+    assert fetched_posts = Blog.list_posts("en", @fixture_path)
+    assert fetched_posts |> Enum.count() == 1
   end
 
   describe "fetch_post/2" do

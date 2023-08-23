@@ -4,14 +4,25 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   alias JsonCorp.Blog.Post
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(%{"language" => language}, _session, socket) when language in ["ko", "en"] do
     socket =
       socket
+      |> assign(:language, language)
       |> assign(:categories, Blog.list_categories())
       |> reset_assigns()
       |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
       |> assign_posts()
       |> assign_page_meta(%{title: "Blog"})
+
+    {:ok, socket}
+  end
+
+  @impl true
+  @deprecated "redirect to PostLive.Show"
+  def mount(%{"language" => slug}, _session, socket) do
+    socket =
+      socket
+      |> push_navigate(to: ~p"/blog/ko/#{slug}", replace: true)
 
     {:ok, socket}
   end
@@ -40,11 +51,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"random" => _}, _uri, socket) do
-    post = Blog.list_posts() |> Enum.random()
+    post = Blog.list_posts(socket.assigns.language) |> Enum.random()
 
     socket =
       socket
-      |> push_navigate(to: ~p"/blog/#{post}")
+      |> push_navigate(to: ~p"/blog/#{post.language}/#{post.slug}")
 
     {:noreply, socket}
   end
@@ -61,19 +72,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     ~H"""
     <div class="flex justify-between items-baseline">
       <.h1>Posts</.h1>
-      <.link navigate={~p"/blog?random"}>?</.link>
+      <.link navigate={~p"/blog/#{@language}?random"}>?</.link>
     </div>
 
     <div class="mb-4 flex">
       <.link
-        patch={~p"/blog"}
+        patch={~p"/blog/#{@language}"}
         class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}
       >
         All
       </.link>
       <.link
         :for={category <- @categories}
-        patch={~p"/blog?category=#{category}"}
+        patch={~p"/blog/#{@language}?category=#{category}"}
         class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
       >
         <%= category %>
@@ -83,7 +94,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     <div>
       <div id="posts" phx-update="stream">
         <div :for={{dom_id, post} <- @streams.posts} id={dom_id}>
-          <.link navigate={~p"/blog/#{post}"}>
+          <.link navigate={~p"/blog/#{post.language}/#{post}"}>
             <article class="py-4 border-b-2 cursor-pointer">
               <h2 class="text-xl"><%= post.title %></h2>
               <p :if={post.description} class="mt-2"><%= post.description %></p>
@@ -91,7 +102,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
                 Date created: <time><%= post.date_created %></time>
               </div>
               <div :if={post.tags} class="mt-6">
-                <.link :for={tag <- post.tags} patch={~p"/blog?tag=#{tag}"}>
+                <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
                   <span class="mr-2 tag">#<%= tag %></span>
                 </.link>
               </div>
@@ -105,7 +116,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   defp assign_posts(socket) do
     filtered_posts =
-      Blog.list_posts()
+      Blog.list_posts(socket.assigns.language)
       |> filter_posts(socket.assigns |> Map.take([:category, :tag]))
 
     socket

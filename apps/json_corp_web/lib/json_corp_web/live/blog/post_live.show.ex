@@ -6,11 +6,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   alias JsonCorp.Stats
 
   @impl true
-  def mount(%{"slug" => slug}, _session, socket) do
+  def mount(%{"language" => language, "slug" => slug}, _session, socket) do
     socket =
       socket
       |> assign(:view_count, nil)
-      |> load_post(slug)
+      |> load_post(language, slug)
 
     {:ok, socket}
   end
@@ -78,7 +78,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def render(assigns) do
     ~H"""
     <div class="pb-4">
-      <.link navigate={~p"/blog"} class="block mb-6">
+      <.link navigate={~p"/blog/#{@post.language}"} class="block mb-6">
         <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
       </.link>
       <div class="prose">
@@ -88,7 +88,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <div>View count: <%= @view_count || "-" %></div>
       </div>
       <div :if={@post.tags} class="mt-2">
-        <.link :for={tag <- @post.tags} navigate={~p"/blog?tag=#{tag}"}>
+        <.link :for={tag <- @post.tags} navigate={~p"/blog/#{@post.language}?tag=#{tag}"}>
           <span class="mr-2 tag">#<%= tag %></span>
         </.link>
       </div>
@@ -101,8 +101,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     """
   end
 
-  defp load_post(socket, slug) do
-    case Blog.fetch_post(slug) do
+  defp load_post(socket, language, slug) do
+    case Blog.fetch_post(language, slug) do
       {:ok, post} ->
         socket
         |> assign(:post, post)
@@ -131,8 +131,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         |> push_navigate(to: ~p"/blog/#{post}")
 
       _ ->
+        # TODO: follow user language
         socket
-        |> push_navigate(to: ~p"/blog")
+        |> push_navigate(to: ~p"/blog/ko")
     end
   end
 

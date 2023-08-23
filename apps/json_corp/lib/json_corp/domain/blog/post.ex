@@ -2,6 +2,7 @@ defmodule JsonCorp.Blog.Post do
   @type t :: %__MODULE__{
           title: String.t(),
           description: String.t(),
+          language: String.t(),
           category: String.t(),
           slug: String.t(),
           body: String.t(),
@@ -15,6 +16,7 @@ defmodule JsonCorp.Blog.Post do
   @enforce_keys [
     :title,
     :description,
+    :language,
     :category,
     :slug,
     :body,
