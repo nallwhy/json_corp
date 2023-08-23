@@ -17,7 +17,7 @@ defmodule JsonCorpWeb do
   and import those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon apple-touch-icon robots.txt)
+  def static_paths, do: ~w(assets fonts images favicon apple-touch-icon robots.txt sitemap)
 
   def router do
     quote do
