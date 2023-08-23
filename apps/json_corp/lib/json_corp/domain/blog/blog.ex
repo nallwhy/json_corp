@@ -5,16 +5,21 @@ defmodule JsonCorp.Blog do
 
   @decorate cacheable(
               cache: Cache.Local,
-              key: {Blog, :list_posts, [language, posts_path]},
+              key: {Blog, :list_posts_by_language, [language, posts_path]},
               opts: cache_opts()
             )
-  @spec list_posts(language :: String.t()) :: [Post.t()]
-  def list_posts(language, posts_path \\ posts_path()) do
+  @spec list_posts_by_language(language :: String.t()) :: [Post.t()]
+  def list_posts_by_language(language, posts_path \\ posts_path()) do
+    list_posts(posts_path)
+    |> Enum.group_by(& &1.language)
+    |> Map.get(language, [])
+  end
+
+  @spec list_posts() :: [Post.t()]
+  def list_posts(posts_path \\ posts_path()) do
     list_post_paths(posts_path)
     |> Enum.map(&read_post/1)
     |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
-    |> Enum.group_by(& &1.language)
-    |> Map.get(language, [])
   end
 
   @decorate cacheable(
@@ -26,7 +31,7 @@ defmodule JsonCorp.Blog do
   @spec fetch_post(language :: String.t(), slug :: String.t()) ::
           {:ok, %Post{} | %SecretPost{}} | {:redirect, %Post{}} | :error
   def fetch_post(language, slug, posts_path \\ posts_path()) do
-    list_posts(language, posts_path)
+    list_posts_by_language(language, posts_path)
     |> Enum.find_value(fn
       %Post{slug: ^slug} = post ->
         {:ok, post}

@@ -49,7 +49,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"random" => _}, _uri, socket) do
-    post = Blog.list_posts(socket.assigns.language) |> Enum.random()
+    post = Blog.list_posts_by_language(socket.assigns.language) |> Enum.random()
 
     socket =
       socket
@@ -117,7 +117,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   defp assign_posts(socket) do
     filtered_posts =
-      Blog.list_posts(socket.assigns.language)
+      Blog.list_posts_by_language(socket.assigns.language)
       |> filter_posts(socket.assigns |> Map.take([:category, :tag]))
 
     socket
