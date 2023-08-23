@@ -78,7 +78,7 @@ defmodule JsonCorpWeb.MixProject do
         "esbuild test_api --minify",
         "phx.digest"
       ],
-      "release.setup": ["assets.deploy"]
+      "release.setup": ["assets.deploy", "gen.sitemap"]
     ]
   end
 end
