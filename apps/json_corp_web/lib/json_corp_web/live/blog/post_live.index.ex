@@ -26,6 +26,16 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   end
 
   @impl true
+  @deprecated "redirect to /blog/ko"
+  def mount(_params, _session, socket) do
+    socket =
+      socket
+      |> push_navigate(to: ~p"/blog/ko", replace: true)
+
+    {:ok, socket}
+  end
+
+  @impl true
   def handle_params(%{"category" => category}, _uri, socket) do
     socket =
       socket

@@ -43,6 +43,7 @@ defmodule JsonCorpWeb.Router do
         JsonCorpWeb.SessionHook,
         JsonCorpWeb.ViewLogHook
       ] do
+      live "/", PostLive.Index
       live "/:language", PostLive.Index
       live "/:language/:slug", PostLive.Show
     end
