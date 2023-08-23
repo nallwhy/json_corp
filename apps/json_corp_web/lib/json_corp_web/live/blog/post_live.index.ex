@@ -9,9 +9,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       socket
       |> assign(:language, language)
       |> assign(:categories, Blog.list_categories())
-      |> reset_assigns()
       |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
-      |> assign_posts()
       |> assign_page_meta(%{title: "Blog"})
 
     {:ok, socket}
@@ -62,7 +60,10 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(_params, _uri, socket) do
-    socket = socket |> reset_assigns()
+    socket =
+      socket
+      |> reset_assigns()
+      |> assign_posts()
 
     {:noreply, socket}
   end
