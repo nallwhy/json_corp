@@ -12,7 +12,8 @@ defmodule Mix.Tasks.Gen.Sitemap do
       store_config: [
         path: "#{:code.priv_dir(:json_corp_web)}/static"
       ],
-      sitemap_url: "#{url}/sitemap.xml"
+      sitemap_url: url,
+      gzip: false
     ]
 
     sitemaps =
