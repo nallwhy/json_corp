@@ -24,7 +24,27 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         normalized_uri =
           uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
 
-        view_count = load_view_count(normalized_uri)
+        view_count =
+          cond do
+            Regex.match?(~r{/blog/ko/}, normalized_uri) ->
+              [
+                load_view_count(normalized_uri),
+                load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog")),
+                load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog/en"))
+              ]
+              |> Enum.sum()
+
+            Regex.match?(~r{/blog/en/}, normalized_uri) ->
+              [
+                load_view_count(normalized_uri),
+                load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog")),
+                load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog/ko"))
+              ]
+              |> Enum.sum()
+
+            true ->
+              load_view_count(normalized_uri)
+          end
 
         send(pid, {:view_count, view_count})
       end)
