@@ -61,6 +61,9 @@ defmodule JsonCorpWeb.Components do
           <a href="https://github.com/nallwhy" target="_blank">
             <Icon.github class="fill-gray-400 hover:fill-black" width="24" height="24" />
           </a>
+          <a href="https://twitter.com/json_do" target="_blank">
+            <Icon.twitter class="fill-gray-400 hover:fill-black" width="24" height="24" />
+          </a>
         </div>
       </div>
     </footer>
