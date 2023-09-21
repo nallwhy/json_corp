@@ -59,9 +59,8 @@ defmodule JsonCorp.ChatTest do
       assert :ok = Chat.send_message("general", @message_params)
     end
 
-    test "returns :error with invalid params" do
-      assert {:error, :invalid_channel} =
-               Chat.send_message("not_created_channel", @message_params)
+    test "returns :ok and ignore with invalid channel" do
+      assert :ok = Chat.send_message("not_created_channel", @message_params)
     end
   end
 
