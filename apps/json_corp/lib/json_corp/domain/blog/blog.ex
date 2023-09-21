@@ -3,6 +3,13 @@ defmodule JsonCorp.Blog do
   alias JsonCorp.Blog.{Post, SecretPost, Comment}
   alias JsonCorp.Repo
 
+  defmacro __using__([]) do
+    quote do
+      alias JsonCorp.Blog
+      alias JsonCorp.Blog.{Post, SecretPost, Comment}
+    end
+  end
+
   @decorate cacheable(
               cache: Cache.Local,
               key: {Blog, :list_posts_by_language, [language, posts_path]},

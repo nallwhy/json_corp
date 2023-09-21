@@ -1,7 +1,6 @@
 defmodule JsonCorpWeb.Blog.PostLive.Show do
   use JsonCorpWeb, :live_view
-  alias JsonCorp.Blog
-  alias JsonCorp.Blog.{Post, SecretPost}
+  use JsonCorp.Blog
   alias JsonCorp.Blog.MarkdownRenderer
   alias JsonCorp.Stats
 
