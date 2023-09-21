@@ -3,12 +3,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   use JsonCorp.Blog
   alias JsonCorp.Blog.MarkdownRenderer
   alias JsonCorp.Stats
+  alias Doumi.Phoenix.Params
 
   @impl true
   def mount(%{"language" => language, "slug" => slug}, _session, socket) do
     socket =
       socket
       |> assign(:view_count, nil)
+      |> assign(:slug, slug)
+      |> init_comment_form()
       |> load_post(language, slug)
 
     {:ok, socket}
@@ -69,6 +72,28 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   end
 
   @impl true
+  def handle_event("validate_comment", %{"comment" => inputs}, socket) do
+    socket =
+      socket
+      |> validate_comment_form(inputs)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("save_comment", _params, socket) do
+    params = socket.assigns.comment_form |> Params.to_map()
+
+    {:ok, _} = Blog.create_comment(params)
+
+    socket =
+      socket
+      |> init_comment_form()
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_info({:view_count, view_count}, socket) do
     socket =
       socket
@@ -117,6 +142,22 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       <%= @post.body |> MarkdownRenderer.html() |> raw() %>
     </div>
+    <div class="max-w-2xl mt-12">
+      <.h2>Comments</.h2>
+      <.simple_form for={@comment_form} phx-change="validate_comment" phx-submit="save_comment">
+        <div class="flex space-x-8">
+          <.input class="flex-1" type="text" field={@comment_form[:name]} label="Name" />
+          <.input class="flex-1" type="email" field={@comment_form[:email]} label="Email" />
+        </div>
+        <.input type="textarea" field={@comment_form[:body]} />
+
+        <:actions>
+          <.button disabled={!@comment_form.source.valid?} phx-disable-with="Saving...">
+            Save
+          </.button>
+        </:actions>
+      </.simple_form>
+    </div>
     """
   end
 
@@ -158,5 +199,30 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   def load_view_count(uri) do
     Stats.get_view_count_by_uri(uri)
+  end
+
+  defp init_comment_form(socket) do
+    socket
+    |> assign(
+      :comment_form,
+      Params.to_form(
+        %Comment{},
+        %{post_slug: socket.assigns.slug, session_id: socket.assigns.session_id},
+        with: &Comment.Command.changeset_for_create/2,
+        validate: false
+      )
+    )
+  end
+
+  defp validate_comment_form(socket, inputs) do
+    params =
+      socket.assigns.comment_form
+      |> Params.to_params(inputs)
+
+    comment_form =
+      Params.to_form(%Comment{}, params, with: &Comment.Command.changeset_for_create/2)
+
+    socket
+    |> assign(:comment_form, comment_form)
   end
 end

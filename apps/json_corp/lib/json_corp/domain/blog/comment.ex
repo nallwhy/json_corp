@@ -15,10 +15,12 @@ defmodule JsonCorp.Blog.Comment do
     alias JsonCorp.Blog.Comment
 
     @required_for_create [:post_slug, :session_id, :name, :email, :body]
-    defp changeset_for_create(%Comment{} = struct, attrs) do
+    def changeset_for_create(%Comment{} = struct, attrs) do
       struct
       |> cast(attrs, @required_for_create)
       |> validate_required(@required_for_create)
+      |> validate_length(:name, max: 255)
+      |> validate_length(:email, max: 255)
       |> validate_length(:body, max: 1000)
     end
 
