@@ -10,9 +10,10 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     socket =
       socket
       |> assign(:view_count, nil)
+      |> assign(:language, language)
       |> assign(:slug, slug)
       |> init_comment_form()
-      |> load_post(language, slug)
+      |> load_post()
 
     {:ok, socket}
   end
@@ -161,8 +162,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     """
   end
 
-  defp load_post(socket, language, slug) do
-    case Blog.fetch_post(language, slug) do
+  defp load_post(socket) do
+    case Blog.fetch_post(socket.assigns.language, socket.assigns.slug) do
       {:ok, post} ->
         socket
         |> assign(:post, post)
