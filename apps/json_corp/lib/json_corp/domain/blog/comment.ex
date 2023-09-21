@@ -9,4 +9,22 @@ defmodule JsonCorp.Blog.Comment do
     field :body, :string
     field :confirmed_at, :utc_datetime_usec
   end
+
+  defmodule Command do
+    import Ecto.Changeset
+    alias JsonCorp.Blog.Comment
+
+    @required_for_create [:post_slug, :session_id, :name, :email, :body]
+    defp changeset_for_create(%Comment{} = struct, attrs) do
+      struct
+      |> cast(attrs, @required_for_create)
+      |> validate_required(@required_for_create)
+      |> validate_length(:body, max: 1000)
+    end
+
+    def create(attrs) do
+      %Comment{}
+      |> changeset_for_create(attrs)
+    end
+  end
 end

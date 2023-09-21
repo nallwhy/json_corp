@@ -65,4 +65,21 @@ defmodule JsonCorp.BlogTest do
       assert :error = Blog.fetch_post("ko", "post", @fixture_path)
     end
   end
+
+  describe "create_comment/1" do
+    test "with valid params" do
+      params = %{
+        post_slug: "slug",
+        session_id: build(:uuid),
+        name: "name",
+        email: "example@email.com",
+        body: "body"
+      }
+
+      assert {:ok, comment} = Blog.create_comment(params)
+
+      assert same_fields?(params, comment, [:post_slug, :session_id, :name, :email, :body])
+      assert comment.confirmed_at == nil
+    end
+  end
 end

@@ -1,6 +1,6 @@
 defmodule JsonCorp.Blog do
   use JsonCorp.Core.Cache
-  alias JsonCorp.Blog.{Post, SecretPost}
+  alias JsonCorp.Blog.{Post, SecretPost, Comment}
   alias JsonCorp.Repo
 
   @decorate cacheable(
@@ -49,6 +49,11 @@ defmodule JsonCorp.Blog do
       nil -> fetch_secret_post(slug)
       result -> result
     end
+  end
+
+  def create_comment(params) do
+    Comment.Command.create(params)
+    |> Repo.insert()
   end
 
   defp fetch_secret_post(slug) do

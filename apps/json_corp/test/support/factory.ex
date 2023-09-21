@@ -29,6 +29,10 @@ defmodule JsonCorp.Factory do
     |> struct!(attrs)
   end
 
+  def build(:uuid, _) do
+    UUID.uuid4()
+  end
+
   def insert(factory_name, attrs \\ []) do
     build(factory_name, attrs)
     |> Repo.insert!()
