@@ -11,5 +11,7 @@ defmodule JsonCorp.Repo.Migrations.CreateComments do
       add :confirmed_at, :timestamptz, null: true
       timestamps()
     end
+
+    create index(:comments, [:post_slug, :inserted_at])
   end
 end
