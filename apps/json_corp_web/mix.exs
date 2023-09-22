@@ -43,7 +43,7 @@ defmodule JsonCorpWeb.MixProject do
       {:phoenix_live_view, "~> 0.19", override: true},
       {:phoenix_view, "~> 2.0"},
       {:floki, ">= 0.30.0"},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
+      {:phoenix_live_dashboard, "~> 0.8.1", override: true},
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
