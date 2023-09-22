@@ -30,4 +30,15 @@ defmodule JsonCorp.Blog.Comment do
       |> changeset_for_create(attrs)
     end
   end
+
+  defmodule Query do
+    import Ecto.Query
+    alias JsonCorp.Blog.Comment
+
+    def list_by_post_slug(post_slug) do
+      Comment
+      |> where([c], c.post_slug == ^post_slug)
+      |> order_by([c], asc: c.inserted_at)
+    end
+  end
 end

@@ -63,6 +63,19 @@ defmodule JsonCorp.Blog do
     |> Repo.insert()
   end
 
+  def list_comments(%{post_slug: post_slug, session_id: session_id}) do
+    Comment.Query.list_by_post_slug(post_slug)
+    |> Repo.all()
+    |> Enum.reject(fn
+      %Comment{confirmed_at: nil, session_id: comment_session_id} ->
+        comment_session_id != session_id
+
+      _ ->
+        false
+    end)
+    |> then(&{:ok, &1})
+  end
+
   defp fetch_secret_post(slug) do
     SecretPost.fetch(slug)
     |> Repo.one()

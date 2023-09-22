@@ -82,4 +82,75 @@ defmodule JsonCorp.BlogTest do
       assert comment.confirmed_at == nil
     end
   end
+
+  describe "list_comments/1" do
+    setup do
+      session_id = build(:uuid)
+      post_slug = "slug"
+      now = DateTime.utc_now()
+
+      pending_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          session_id: session_id,
+          status: :pending,
+          inserted_at: now |> Timex.shift(days: -4)
+        )
+
+      confirmed_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          session_id: session_id,
+          status: :confirmed,
+          inserted_at: now |> Timex.shift(days: -3)
+        )
+
+      other_sessions_pending_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          status: :pending,
+          inserted_at: now |> Timex.shift(days: -2)
+        )
+
+      other_sessions_confirmed_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          status: :confirmed,
+          inserted_at: now |> Timex.shift(days: -1)
+        )
+
+      other_posts_comment = insert(:comment, inserted_at: now |> Timex.shift(days: -0))
+
+      %{
+        post_slug: post_slug,
+        session_id: session_id,
+        comments: [
+          pending_comment,
+          confirmed_comment,
+          other_sessions_pending_comment,
+          other_sessions_confirmed_comment,
+          other_posts_comment
+        ]
+      }
+    end
+
+    test "with valid params", %{
+      post_slug: post_slug,
+      session_id: session_id,
+      comments: [
+        pending_comment,
+        confirmed_comment,
+        _other_sessions_pending_comment,
+        other_sessions_confirmed_comment,
+        _other_posts_comment
+      ]
+    } do
+      assert {:ok, [fetched_comment0, fetched_comment1, fetched_comment2]} =
+               Blog.list_comments(%{post_slug: post_slug, session_id: session_id})
+
+      assert same_records?(fetched_comment0, pending_comment)
+      assert same_records?(fetched_comment1, confirmed_comment)
+      assert same_records?(fetched_comment2, other_sessions_confirmed_comment)
+    end
+  end
 end
