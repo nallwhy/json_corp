@@ -13,6 +13,8 @@ import Config
 config :json_corp,
   ecto_repos: [JsonCorp.Repo]
 
+config :json_corp, JsonCorp.Repo, migration_timestamps: [type: :timestamptz]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

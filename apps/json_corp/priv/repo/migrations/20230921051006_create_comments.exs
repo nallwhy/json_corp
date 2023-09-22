@@ -9,6 +9,7 @@ defmodule JsonCorp.Repo.Migrations.CreateComments do
       add :email, :string, null: false
       add :body, :string, size: 1000, null: false
       add :confirmed_at, :timestamptz, null: true
+      timestamps()
     end
   end
 end
