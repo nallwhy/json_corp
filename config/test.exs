@@ -22,7 +22,7 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
 
 # In test we don't send emails.
 config :json_corp, JsonCorp.Mailer, adapter: Swoosh.Adapters.Test
