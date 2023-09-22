@@ -1,5 +1,8 @@
 import Config
 
+config :json_corp, JsonCorp.Repo,
+  pool_size: 2
+
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
 # when generating URLs.
