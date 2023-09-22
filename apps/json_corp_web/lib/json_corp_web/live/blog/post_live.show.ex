@@ -14,6 +14,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       |> assign(:slug, slug)
       |> init_comment_form()
       |> load_post()
+      |> load_comments()
 
     {:ok, socket}
   end
@@ -148,7 +149,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <.simple_form for={@comment_form} phx-change="validate_comment" phx-submit="save_comment">
         <div class="flex space-x-8">
           <.input class="flex-1" type="text" field={@comment_form[:name]} label="Name" />
-          <.input class="flex-1" type="email" field={@comment_form[:email]} label="Email" />
+          <.input class="flex-1" type="email" field={@comment_form[:email]} label="Email" placeholder="It will not be displayed to other users."/>
         </div>
         <.input type="textarea" field={@comment_form[:body]} />
 
@@ -158,6 +159,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           </.button>
         </:actions>
       </.simple_form>
+      <div id="comments" phx-update="stream" class="mt-4 divide-y-2">
+        <div :for={{comment_id, %Comment{} = comment} <- @streams.comments} id={comment_id} class="py-4 space-y-2">
+          <p><%= comment.name %></p>
+          <p><%= comment.inserted_at %></p>
+          <p><%= comment.body %></p>
+        </div>
+      </div>
     </div>
     """
   end
@@ -196,6 +204,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         socket
         |> push_navigate(to: ~p"/blog/ko")
     end
+  end
+
+  defp load_comments(socket) do
+    {:ok, comments} = Blog.list_comments(%{post_slug: socket.assigns.slug, session_id: socket.assigns.session_id})
+
+    socket
+    |> stream(:comments, comments)
   end
 
   def load_view_count(uri) do
