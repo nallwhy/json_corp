@@ -86,11 +86,12 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def handle_event("save_comment", _params, socket) do
     params = socket.assigns.comment_form |> Params.to_map()
 
-    {:ok, _} = Blog.create_comment(params)
+    {:ok, comment} = Blog.create_comment(params)
 
     socket =
       socket
       |> init_comment_form()
+      |> stream_insert(:comments, comment)
 
     {:noreply, socket}
   end
