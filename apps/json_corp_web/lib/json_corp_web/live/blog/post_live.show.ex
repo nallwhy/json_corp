@@ -1,16 +1,20 @@
 defmodule JsonCorpWeb.Blog.PostLive.Show do
   use JsonCorpWeb, :live_view
-  alias JsonCorp.Blog
-  alias JsonCorp.Blog.{Post, SecretPost}
+  use JsonCorp.Blog
   alias JsonCorp.Blog.MarkdownRenderer
   alias JsonCorp.Stats
+  alias Doumi.Phoenix.Params
 
   @impl true
   def mount(%{"language" => language, "slug" => slug}, _session, socket) do
     socket =
       socket
       |> assign(:view_count, nil)
-      |> load_post(language, slug)
+      |> assign(:language, language)
+      |> assign(:slug, slug)
+      |> init_comment_form()
+      |> load_post()
+      |> load_comments()
 
     {:ok, socket}
   end
@@ -70,6 +74,29 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   end
 
   @impl true
+  def handle_event("validate_comment", %{"comment" => inputs}, socket) do
+    socket =
+      socket
+      |> validate_comment_form(inputs)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("save_comment", _params, socket) do
+    params = socket.assigns.comment_form |> Params.to_map()
+
+    {:ok, comment} = Blog.create_comment(params)
+
+    socket =
+      socket
+      |> init_comment_form()
+      |> stream_insert(:comments, comment)
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_info({:view_count, view_count}, socket) do
     socket =
       socket
@@ -118,11 +145,34 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       <%= @post.body |> MarkdownRenderer.html() |> raw() %>
     </div>
+    <div class="max-w-2xl mt-12">
+      <.h2>Comments</.h2>
+      <.simple_form for={@comment_form} phx-change="validate_comment" phx-submit="save_comment">
+        <div class="flex space-x-8">
+          <.input class="flex-1" type="text" field={@comment_form[:name]} label="Name" />
+          <.input class="flex-1" type="email" field={@comment_form[:email]} label="Email" placeholder="It will not be displayed to other users."/>
+        </div>
+        <.input type="textarea" field={@comment_form[:body]} />
+
+        <:actions>
+          <.button disabled={!@comment_form.source.valid?} phx-disable-with="Saving...">
+            Save
+          </.button>
+        </:actions>
+      </.simple_form>
+      <div id="comments" phx-update="stream" class="mt-4 divide-y-2">
+        <div :for={{comment_id, %Comment{} = comment} <- @streams.comments} id={comment_id} class="py-4 space-y-2">
+          <p><%= comment.name %></p>
+          <p><%= comment.inserted_at %></p>
+          <p><%= comment.body %></p>
+        </div>
+      </div>
+    </div>
     """
   end
 
-  defp load_post(socket, language, slug) do
-    case Blog.fetch_post(language, slug) do
+  defp load_post(socket) do
+    case Blog.fetch_post(socket.assigns.language, socket.assigns.slug) do
       {:ok, post} ->
         socket
         |> assign(:post, post)
@@ -157,7 +207,39 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     end
   end
 
+  defp load_comments(socket) do
+    {:ok, comments} = Blog.list_comments(%{post_slug: socket.assigns.slug, session_id: socket.assigns.session_id})
+
+    socket
+    |> stream(:comments, comments)
+  end
+
   def load_view_count(uri) do
     Stats.get_view_count_by_uri(uri)
+  end
+
+  defp init_comment_form(socket) do
+    socket
+    |> assign(
+      :comment_form,
+      Params.to_form(
+        %Comment{},
+        %{post_slug: socket.assigns.slug, session_id: socket.assigns.session_id},
+        with: &Comment.Command.changeset_for_create/2,
+        validate: false
+      )
+    )
+  end
+
+  defp validate_comment_form(socket, inputs) do
+    params =
+      socket.assigns.comment_form
+      |> Params.to_params(inputs)
+
+    comment_form =
+      Params.to_form(%Comment{}, params, with: &Comment.Command.changeset_for_create/2)
+
+    socket
+    |> assign(:comment_form, comment_form)
   end
 end

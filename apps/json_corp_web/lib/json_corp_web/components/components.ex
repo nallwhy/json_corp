@@ -86,6 +86,12 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  def hr(assigns) do
+    ~H"""
+    <hr class="max-w-6xl mx-auto mt-4 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+    """
+  end
+
   defp meta_of(assigns, type) when type in [:title, :description, :keywords] do
     assigns |> get_in([:page_meta, type])
   end

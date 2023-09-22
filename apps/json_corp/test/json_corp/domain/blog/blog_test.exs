@@ -65,4 +65,92 @@ defmodule JsonCorp.BlogTest do
       assert :error = Blog.fetch_post("ko", "post", @fixture_path)
     end
   end
+
+  describe "create_comment/1" do
+    test "with valid params" do
+      params = %{
+        post_slug: "slug",
+        session_id: build(:uuid),
+        name: "name",
+        email: "example@email.com",
+        body: "body"
+      }
+
+      assert {:ok, comment} = Blog.create_comment(params)
+
+      assert same_fields?(params, comment, [:post_slug, :session_id, :name, :email, :body])
+      assert comment.confirmed_at == nil
+    end
+  end
+
+  describe "list_comments/1" do
+    setup do
+      session_id = build(:uuid)
+      post_slug = "slug"
+      now = DateTime.utc_now()
+
+      pending_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          session_id: session_id,
+          status: :pending,
+          inserted_at: now |> Timex.shift(days: -4)
+        )
+
+      confirmed_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          session_id: session_id,
+          status: :confirmed,
+          inserted_at: now |> Timex.shift(days: -3)
+        )
+
+      other_sessions_pending_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          status: :pending,
+          inserted_at: now |> Timex.shift(days: -2)
+        )
+
+      other_sessions_confirmed_comment =
+        insert(:comment,
+          post_slug: post_slug,
+          status: :confirmed,
+          inserted_at: now |> Timex.shift(days: -1)
+        )
+
+      other_posts_comment = insert(:comment, inserted_at: now |> Timex.shift(days: -0))
+
+      %{
+        post_slug: post_slug,
+        session_id: session_id,
+        comments: [
+          pending_comment,
+          confirmed_comment,
+          other_sessions_pending_comment,
+          other_sessions_confirmed_comment,
+          other_posts_comment
+        ]
+      }
+    end
+
+    test "with valid params", %{
+      post_slug: post_slug,
+      session_id: session_id,
+      comments: [
+        pending_comment,
+        confirmed_comment,
+        _other_sessions_pending_comment,
+        other_sessions_confirmed_comment,
+        _other_posts_comment
+      ]
+    } do
+      assert {:ok, [fetched_comment0, fetched_comment1, fetched_comment2]} =
+               Blog.list_comments(%{post_slug: post_slug, session_id: session_id})
+
+      assert same_records?(fetched_comment0, pending_comment)
+      assert same_records?(fetched_comment1, confirmed_comment)
+      assert same_records?(fetched_comment2, other_sessions_confirmed_comment)
+    end
+  end
 end
