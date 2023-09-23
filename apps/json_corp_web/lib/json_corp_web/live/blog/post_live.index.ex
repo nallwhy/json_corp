@@ -96,7 +96,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       <.link
         :for={category <- @categories}
         patch={~p"/blog/#{@language}?category=#{category}"}
-        class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
+        class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == to_string(category), do: "font-bold"}"}
       >
         <%= category %>
       </.link>
