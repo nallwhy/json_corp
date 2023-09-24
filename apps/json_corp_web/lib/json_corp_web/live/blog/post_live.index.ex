@@ -1,36 +1,35 @@
 defmodule JsonCorpWeb.Blog.PostLive.Index do
   use JsonCorpWeb, :live_view
-  alias JsonCorp.Blog
-  alias JsonCorp.Blog.Post
+  use JsonCorp.Blog
+  alias JsonCorp.Core.Cldr
 
   @impl true
-  def mount(%{"language" => language}, _session, socket) when language in ["ko", "en"] do
+  def mount(%{"language" => language}, _session, socket) do
     socket =
-      socket
-      |> assign(:language, language)
-      |> assign(:categories, Blog.list_categories())
-      |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
-      |> assign_page_meta(%{title: "Blog"})
+      case language in Cldr.known_languages() do
+        true ->
+          socket
+          |> assign(:language, language)
+          |> assign(:categories, Blog.list_categories())
+          |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
+          |> assign_page_meta(%{title: "Blog"})
+
+        false ->
+          # redirect to PostLive.Show
+          slug = language
+
+          socket
+          |> push_navigate(to: ~p"/blog/ko/#{slug}", replace: true)
+      end
 
     {:ok, socket}
   end
 
   @impl true
-  @deprecated "redirect to PostLive.Show"
-  def mount(%{"language" => slug}, _session, socket) do
-    socket =
-      socket
-      |> push_navigate(to: ~p"/blog/ko/#{slug}", replace: true)
-
-    {:ok, socket}
-  end
-
-  @impl true
-  @deprecated "redirect to /blog/ko"
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> push_navigate(to: ~p"/blog/ko", replace: true)
+      |> push_navigate(to: ~p"/blog/#{socket.assigns.language}", replace: true)
 
     {:ok, socket}
   end
