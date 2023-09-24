@@ -4,6 +4,14 @@ defmodule JsonCorpWeb.Router do
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+
+    plug Cldr.Plug.PutLocale,
+      apps: [:cldr],
+      from: [:accept_language],
+      cldr: JsonCorp.Core.Cldr
+
+    plug Cldr.Plug.PutSession, as: :language_tag
+
     plug :fetch_live_flash
     plug :put_root_layout, {JsonCorpWeb.Layouts, :root}
     plug :protect_from_forgery
@@ -41,7 +49,8 @@ defmodule JsonCorpWeb.Router do
     live_session :blog,
       on_mount: [
         JsonCorpWeb.SessionHook,
-        JsonCorpWeb.ViewLogHook
+        JsonCorpWeb.ViewLogHook,
+        JsonCorpWeb.LocaleHook
       ] do
       live "/", PostLive.Index
       live "/:language", PostLive.Index

@@ -108,8 +108,7 @@ defmodule JsonCorpWeb.Components do
 
   defp list_menus() do
     [
-      # TODO: follow user language
-      {"Blog", ~p"/blog/ko"},
+      {"Blog", ~p"/blog"},
       {"Consulting", ~p"/consulting"},
       {"Playgrounds", ~p"/playgrounds"},
       {"Projects", ~p"/projects"}

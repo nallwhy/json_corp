@@ -201,9 +201,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         |> push_navigate(to: ~p"/blog/#{post}")
 
       _ ->
-        # TODO: follow user language
         socket
-        |> push_navigate(to: ~p"/blog/ko")
+        |> push_navigate(to: ~p"/blog/#{socket.assigns.language}")
     end
   end
 
