@@ -2,7 +2,7 @@ defmodule JsonCorp.Core.Cldr do
   use Cldr,
     locales: [:en, :ko],
     default_locale: :en,
-    providers: []
+    providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime]
 
   def ensure_supported_language(language) do
     case language in known_languages() do

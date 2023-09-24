@@ -173,7 +173,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           class="py-4 space-y-2"
         >
           <p><%= comment.name %></p>
-          <p><%= comment.inserted_at %></p>
+          <p><%= comment.inserted_at |> ago() %></p>
           <p><%= comment.body %></p>
         </div>
       </div>

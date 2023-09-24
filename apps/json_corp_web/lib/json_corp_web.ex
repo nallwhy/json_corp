@@ -119,6 +119,7 @@ defmodule JsonCorpWeb do
       import JsonCorpWeb.CoreComponents
       import JsonCorpWeb.Components
       import JsonCorpWeb.Gettext
+      import JsonCorpWeb.LiveHelpers
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
