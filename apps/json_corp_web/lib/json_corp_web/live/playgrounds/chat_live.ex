@@ -6,7 +6,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   @code_url "https://github.com/nallwhy/json_corp/blob/main/apps/json_corp_web/lib/json_corp_web/live/playgrounds/chat_live.ex"
   @default_channel_name "general"
 
-  @presence_topic "chat"
+  @presence_topic "chat_presence"
 
   @impl true
   def mount(_params, _session, socket) do
