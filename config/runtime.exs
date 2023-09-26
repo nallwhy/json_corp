@@ -19,7 +19,7 @@ if config_env() == :prod do
   config :json_corp, JsonCorp.Repo,
     # ssl: true,
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5"),
     socket_options: maybe_ipv6
 
   config :json_corp, :slack, webhook_url: System.get_env("SLACK_WEBHOOK_URL")
