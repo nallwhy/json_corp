@@ -57,6 +57,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
       <.live_component
         module={JsonCorpWeb.Playgrounds.ChatLive.Users}
         id="users"
+        user={@user}
         presences={@presences}
       />
     </div>
