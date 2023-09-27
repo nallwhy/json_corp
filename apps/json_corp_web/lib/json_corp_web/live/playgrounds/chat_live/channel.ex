@@ -49,9 +49,8 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="flex-1 flex flex-col max-h-[32rem] px-4 py-2 rounded-md bg-slate-50">
+    <div class="flex-1 flex flex-col max-h-[36rem] px-4 py-4 rounded-md bg-slate-50">
       <.h2># <%= @channel_name %></.h2>
-      <p>Your ID: <%= @user.id %></p>
       <div id="messages" class="flex-1 overflow-y-auto" phx-update="stream" phx-hook="ChatMessages">
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
           <p>User id: <%= message.user_id %></p>

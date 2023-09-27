@@ -37,7 +37,8 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channels do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="basis-56 flex flex-col max-h-[32rem] px-4 py-2 rounded-md bg-slate-50">
+    <div class="basis-56 flex flex-col max-h-[36rem] px-4 py-4 rounded-md bg-slate-50">
+      <.h2>Channel list</.h2>
       <div class="flex-1 overflow-y-auto mt-2">
         <div :for={channel_name <- @channels} class="py-2 px-2 rounded-md hover:bg-slate-200">
           <.link phx-click={JS.push("select_channel", value: %{channel_name: channel_name})}>
