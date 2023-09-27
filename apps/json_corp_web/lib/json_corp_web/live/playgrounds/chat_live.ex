@@ -146,6 +146,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
           end)
         end)
       end)
+      |> Map.reject(fn {_key, %{metas: metas}} -> Enum.empty?(metas) end)
 
     socket
     |> assign(:presences, presences)

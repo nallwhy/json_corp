@@ -6,12 +6,19 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
     {:ok, socket}
   end
 
-  # init
   @impl true
-  def update(%{id: _} = assigns, socket) do
+  def update(%{user: user, presences: presences}, socket) do
+    presences |> IO.inspect()
+
+    {me, others} =
+      presences
+      |> Map.new(fn {user_id, presence} -> {user_id, convert_presence_to_user(presence)} end)
+      |> Map.pop(user.id)
+
     socket =
       socket
-      |> assign(assigns)
+      |> assign(:me, me)
+      |> assign(:others, others)
 
     {:ok, socket}
   end
@@ -21,10 +28,21 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
     ~H"""
     <div class="px-4 py-2 rounded-md bg-slate-50">
       Users
-      <li :for={{user_id, %{metas: [%{name: name} | _]}} <- @presences}>
-        <%= name %><span :if={user_id == @user.id} class="ml-1">(Me)</span>
+      <li :if={@me}>
+        <%= @me.name %> <span class="ml-1">(Me)</span>
+      </li>
+      <li :for={{_other_id, other} <- @others}>
+        <%= other.name %>
       </li>
     </div>
     """
+  end
+
+  defp convert_presence_to_user(nil) do
+    nil
+  end
+
+  defp convert_presence_to_user(%{metas: [last_meta | _]}) do
+    %{name: last_meta.name}
   end
 end
