@@ -8,8 +8,6 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
 
   @impl true
   def update(%{user: user, presences: presences}, socket) do
-    presences |> IO.inspect()
-
     {me, others} =
       presences
       |> Map.new(fn {user_id, presence} -> {user_id, convert_presence_to_user(presence)} end)
