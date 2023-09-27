@@ -191,13 +191,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           %{post: %Post{}} -> false
         end)
         |> assign_new(:page_meta, fn %{
-                                   post: %Post{
-                                     title: title,
-                                     description: description,
-                                     cover_url: cover_url,
-                                     tags: tags
-                                   }
-                                 } ->
+                                       post: %Post{
+                                         title: title,
+                                         description: description,
+                                         cover_url: cover_url,
+                                         tags: tags
+                                       }
+                                     } ->
           %{
             title: title,
             description: description,

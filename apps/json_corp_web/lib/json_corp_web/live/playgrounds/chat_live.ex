@@ -14,7 +14,10 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
 
     if connected?(socket) do
       {:ok, _} =
-        Presence.track(self(), @presence_topic, user.id, %{name: user.name})
+        Presence.track(self(), @presence_topic, user.id, %{
+          name: user.name,
+          channel: @default_channel_name
+        })
 
       Phoenix.PubSub.subscribe(PubSub, @presence_topic)
     end
@@ -70,7 +73,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
   def handle_event("select_channel", %{"channel_name" => channel_name}, socket) do
     socket =
       socket
-      |> assign(:channel_name, channel_name)
+      |> change_channel(channel_name)
 
     {:noreply, socket}
   end
@@ -84,7 +87,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
 
     socket =
       socket
-      |> assign(:channel_name, channel_name)
+      |> change_channel(channel_name)
 
     {:noreply, socket}
   end
@@ -152,5 +155,14 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
 
     socket
     |> assign(:presences, presences)
+  end
+
+  defp change_channel(socket, channel_name) do
+    Presence.update(self(), @presence_topic, socket.assigns.user.id, fn meta ->
+      meta |> Map.put(:channel, channel_name)
+    end)
+
+    socket
+    |> assign(:channel_name, channel_name)
   end
 end

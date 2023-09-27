@@ -27,10 +27,10 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
     <div class="px-4 py-2 rounded-md bg-slate-50">
       Users
       <li :if={@me}>
-        <%= @me.name %> <span class="ml-1">(Me)</span>
+        <%= @me.name %> <span class="ml-1">(Me)</span> (<%= @me.channels |> Enum.join(", ") %>)
       </li>
       <li :for={{_other_id, other} <- @others}>
-        <%= other.name %>
+        <%= other.name %> (<%= other.channels |> Enum.join(", ") %>)
       </li>
     </div>
     """
@@ -40,7 +40,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
     nil
   end
 
-  defp convert_presence_to_user(%{metas: [last_meta | _]}) do
-    %{name: last_meta.name}
+  defp convert_presence_to_user(%{metas: [last_meta | _] = metas}) do
+    %{name: last_meta.name, channels: metas |> Enum.map(& &1.channel) |> Enum.uniq()}
   end
 end
