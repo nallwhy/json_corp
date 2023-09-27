@@ -26,6 +26,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive do
       |> assign(:code_url, @code_url)
       |> assign(:user, user)
       |> assign(:presences, presences)
+      |> assign(:page_meta, %{title: "Chat in Elixir"})
 
     {:ok, socket}
   end

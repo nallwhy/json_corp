@@ -190,19 +190,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           %{post: %SecretPost{}} -> true
           %{post: %Post{}} -> false
         end)
-        |> assign_page_meta(fn %{
-                                 post: %{
-                                   title: title,
-                                   description: description,
-                                   cover_url: cover_url,
-                                   tags: tags
-                                 }
-                               } ->
+        |> assign_new(:page_meta, fn %{
+                                   post: %Post{
+                                     title: title,
+                                     description: description,
+                                     cover_url: cover_url,
+                                     tags: tags
+                                   }
+                                 } ->
           %{
             title: title,
             description: description,
             image: cover_url,
-            keywords: tags |> Enum.join(", ")
+            keyword: tags
           }
         end)
 

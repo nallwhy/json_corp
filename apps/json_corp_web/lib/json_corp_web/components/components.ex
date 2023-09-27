@@ -2,18 +2,29 @@ defmodule JsonCorpWeb.Components do
   use JsonCorpWeb, :component
   alias JsonCorpWeb.Components.Icon
 
-  def meta(assigns) do
+  attr :page_meta, :map, required: true
+  attr :title_suffix, :string
+  attr :default, :map, required: true
+
+  def head_meta_tags(assigns) do
+    page_meta =
+      [:title, :description, :keyword, :image]
+      |> Map.new(fn key -> {key, assigns |> get_in([:page_meta, key]) || assigns.default[key]} end)
+
+    assigns =
+      assigns
+      |> assign(:page_meta, page_meta)
+
     ~H"""
-    <meta name="description" content={meta_of(assigns, :description) || "Json's Playground"} />
-    <meta
-      name="keywords"
-      content={
-        meta_of(assigns, :keywords) || "Software Development, Software Engineer, Consulting, Elixir"
-      }
-    />
-    <meta property="og:title" content={meta_of(assigns, :title) || "Json Media"} />
-    <meta property="og:description" content={meta_of(assigns, :description)} />
-    <meta :if={image = meta_of(assigns, :image)} property="og:image" content={image} />
+    <.live_title suffix={@title_suffix}><%= @page_meta.title %></.live_title>
+    <meta name="title" content={@page_meta.title} />
+    <meta property="og:title" content={@page_meta.title} />
+    <meta name="description" content={@page_meta.description} />
+    <meta property="og:description" content={@page_meta.description} />
+    <meta name="keyword" content={@page_meta.keyword |> Enum.join(",")} />
+    <meta property="og:image" content={normalize_image(@page_meta.image)} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
     """
   end
 
@@ -92,16 +103,10 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
-  defp meta_of(assigns, type) when type in [:title, :description, :keywords] do
-    assigns |> get_in([:page_meta, type])
-  end
-
-  defp meta_of(assigns, :image) do
-    image = assigns |> get_in([:page_meta, :image])
-
+  defp normalize_image(image) do
     cond do
       image == nil -> nil
-      String.starts_with?(image, "https://") -> image
+      String.starts_with?(image, "http") -> image
       true -> JsonCorpWeb.Endpoint.url() <> image
     end
   end

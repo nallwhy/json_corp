@@ -12,7 +12,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
           |> assign(:language, language)
           |> assign(:categories, Blog.list_categories())
           |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
-          |> assign_page_meta(%{title: "Blog"})
+          |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
 
         false ->
           # redirect to PostLive.Show
