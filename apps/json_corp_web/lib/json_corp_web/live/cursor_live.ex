@@ -1,6 +1,8 @@
 defmodule JsonCorpWeb.CursorLive do
   use JsonCorpWeb, :live_view
 
+  on_mount(JsonCorpWeb.SessionHook)
+
   @impl true
   def mount(_params, _session, socket) do
     socket =
@@ -21,6 +23,7 @@ defmodule JsonCorpWeb.CursorLive do
           class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden"
         >
           <Icon.cursor />
+          <span style={"background-color: deeppink;"} class="mt-0 ml-2 px-2 py-1 text-sm rounded-md text-white"><%= @session_id %></span>
         </li>
       </ul>
     </div>
