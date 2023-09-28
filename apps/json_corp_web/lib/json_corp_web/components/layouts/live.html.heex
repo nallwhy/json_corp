@@ -1,0 +1,7 @@
+<main>
+  <div class="max-w-6xl mx-auto px-8 py-4">
+    <%= live_render(@socket, JsonCorpWeb.CursorLive, id: "cursor", sticky: true) %>
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </div>
+</main>

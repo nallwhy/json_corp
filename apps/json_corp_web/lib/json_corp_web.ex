@@ -64,7 +64,7 @@ defmodule JsonCorpWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView, layout: {JsonCorpWeb.Layouts, :app}
+      use Phoenix.LiveView, layout: {JsonCorpWeb.Layouts, :live}
 
       import Phoenix.Component
 
