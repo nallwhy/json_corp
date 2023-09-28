@@ -9,7 +9,6 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def mount(%{"language" => language, "slug" => slug}, _session, socket) do
     socket =
       socket
-      |> assign(:view_count, nil)
       |> assign(:language, language)
       |> assign(:slug, slug)
       |> init_comment_form()
@@ -21,10 +20,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
 
   @impl true
   def handle_params(_params, uri, socket) do
-    if connected?(socket) do
-      pid = self()
-
-      Task.start(fn ->
+    socket =
+      socket
+      |> assign_async(:view_count, fn ->
         normalized_uri =
           uri |> URI.parse() |> Map.merge(%{fragment: nil, query: nil}) |> URI.to_string()
 
@@ -50,9 +48,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
               load_view_count(normalized_uri)
           end
 
-        send(pid, {:view_count, view_count})
+        {:ok, %{view_count: view_count}}
       end)
-    end
 
     {:noreply, socket}
   end
@@ -132,7 +129,13 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <h1><%= @post.title %></h1>
         <p><%= @post.description %></p>
         <div><time>Date created: <%= @post.date_created %></time></div>
-        <div>View count: <%= @view_count || "-" %></div>
+        <div>
+          View count:
+          <.async_result :let={view_count} assign={@view_count}>
+            <:loading>-</:loading>
+            <%= view_count %>
+          </.async_result>
+        </div>
       </div>
       <div :if={@post.tags} class="mt-2">
         <.link :for={tag <- @post.tags} navigate={~p"/blog/#{@post.language}?tag=#{tag}"}>
