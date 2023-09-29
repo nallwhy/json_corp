@@ -50,7 +50,8 @@ defmodule JsonCorpWeb.Router do
       on_mount: [
         JsonCorpWeb.SessionHook,
         JsonCorpWeb.ViewLogHook,
-        JsonCorpWeb.LocaleHook
+        JsonCorpWeb.LocaleHook,
+        JsonCorpWeb.CursorHook
       ] do
       live "/", PostLive.Index
       live "/:language", PostLive.Index
@@ -61,7 +62,7 @@ defmodule JsonCorpWeb.Router do
   scope "/playgrounds", JsonCorpWeb.Playgrounds, as: :playgrounds do
     pipe_through :browser
 
-    live_session :playground, on_mount: [JsonCorpWeb.SessionHook] do
+    live_session :playground, on_mount: [JsonCorpWeb.SessionHook, JsonCorpWeb.CursorHook] do
       live "/", PlaygroundLive
       live "/form", FormLive
       live "/chat", ChatLive
