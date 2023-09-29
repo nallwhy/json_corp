@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.CursorLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    user = %{id: socket.assigns.session_id, name: socket.assigns.session_id}
+    user = %{id: socket.assigns.session_id, name: socket.assigns.session_id |> String.slice(0..7)}
 
     if connected?(socket) do
       {:ok, _} = Registry.register(Registry.WSConnRegistry, socket.assigns.ws_conn_id, nil)
@@ -32,7 +32,7 @@ defmodule JsonCorpWeb.CursorLive do
         <li
           :if={user.position != nil}
           style={"color: #{color}; left: #{user.position.x + user.position.base_x}px; top: #{user.position.y + user.position.base_y}px"}
-          class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden"
+          class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden z-50 opacity-70"
         >
           <Icon.cursor />
           <span
