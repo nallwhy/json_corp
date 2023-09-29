@@ -1,0 +1,5 @@
+<svg version="1.1" width="25px" height="25px" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 25 25">
+  <polygon fill="black" points="0,25 0,0 20,15 8,15 0,25" />
+  <polygon fill="currentColor" points="2,21 2,3 17,14 6,13 2,21" />
+</svg>

@@ -14,7 +14,8 @@ defmodule JsonCorpWeb.Application do
       JsonCorpWeb.Endpoint,
       # Start a worker by calling: JsonCorpWeb.Worker.start_link(arg)
       # {JsonCorpWeb.Worker, arg},
-      JsonCorpWeb.Presence
+      JsonCorpWeb.Presence,
+      {Registry, [keys: :unique, name: Registry.WSConnRegistry]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
