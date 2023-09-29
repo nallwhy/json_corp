@@ -27,15 +27,16 @@ defmodule JsonCorpWeb.CursorLive do
   def render(assigns) do
     ~H"""
     <div id="cursor-container" phx-hook="Cursor">
-      <ul :for={{_ws_conn_id, user} <- @users} class="list-none">
+      <ul :for={{ws_conn_id, user} <- @users} class="list-none">
+        <% color = generate_hsl(ws_conn_id) %>
         <li
           :if={user.position != nil}
-          style={"color: deeppink; left: #{user.position.x + user.position.base_x}px; top: #{user.position.y + user.position.base_y}px"}
+          style={"color: #{color}; left: #{user.position.x + user.position.base_x}px; top: #{user.position.y + user.position.base_y}px"}
           class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden"
         >
           <Icon.cursor />
           <span
-            style="background-color: deeppink;"
+            style={"background-color: #{color};"}
             class="mt-0 ml-2 px-2 py-1 text-sm rounded-md text-white"
           >
             <%= user.name %>
@@ -133,5 +134,10 @@ defmodule JsonCorpWeb.CursorLive do
 
   defp convert_presence_to_user(%{metas: [last_meta | _]}) do
     %{name: last_meta.name, position: last_meta.position}
+  end
+
+  def generate_hsl(str) do
+    hue = to_charlist(str) |> Enum.sum() |> rem(360)
+    "hsl(#{hue}, 70%, 40%)"
   end
 end
