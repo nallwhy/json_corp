@@ -13,11 +13,12 @@ defmodule JsonCorp.BlogTest do
     assert fetched_post.title == "Test Title 1"
     assert fetched_post.description == "description 1"
     assert fetched_post.category == "talk"
-    assert fetched_post.slug == "post0"
+    assert fetched_post.slug == "post-0"
     assert fetched_post.body =~ "# Test Body"
     assert fetched_post.date_created == ~D[2022-07-24]
     assert fetched_post.cover_url == nil
     assert fetched_post.tags == nil
+    assert fetched_post.aliases == ["post_0"]
 
     assert fetched_posts = Blog.list_posts_by_language("en", @fixture_path)
     assert fetched_posts |> Enum.count() == 1
@@ -25,21 +26,21 @@ defmodule JsonCorp.BlogTest do
 
   describe "fetch_post/2" do
     test "with valid slug" do
-      assert {:ok, fetched_post} = Blog.fetch_post("ko", "post00", @fixture_path)
+      assert {:ok, fetched_post} = Blog.fetch_post("ko", "post-00", @fixture_path)
 
       assert fetched_post.title == "Test Title 0"
       assert fetched_post.description == "description 0"
       assert fetched_post.category == "dev"
-      assert fetched_post.slug == "post00"
+      assert fetched_post.slug == "post-00"
       assert fetched_post.body =~ "# Test Body"
       assert fetched_post.date_created == ~D[2022-06-26]
       assert fetched_post.cover_url == "https://json.corp/images/blog/example.jpg"
       assert fetched_post.tags == ["tag0", "tag1"]
-      assert fetched_post.aliases == ["post000"]
+      assert fetched_post.aliases == ["post_00", "post-000"]
     end
 
     test "with valid alias" do
-      assert {:redirect, fetched_post} = Blog.fetch_post("ko", "post000", @fixture_path)
+      assert {:redirect, fetched_post} = Blog.fetch_post("ko", "post-000", @fixture_path)
 
       assert fetched_post.title == "Test Title 0"
     end

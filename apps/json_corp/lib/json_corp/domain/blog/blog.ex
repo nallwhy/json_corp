@@ -103,7 +103,11 @@ defmodule JsonCorp.Blog do
     |> parse_post(post_meta)
   end
 
-  defp parse_post(raw_post, %{language: language, slug: slug, date_created: date_created}) do
+  defp parse_post(raw_post, %{
+         language: language,
+         slug_with_underscore: slug_with_underscore,
+         date_created: date_created
+       }) do
     [meta_str, body] =
       raw_post
       |> String.split("---", parts: 2, trim: true)
@@ -113,22 +117,24 @@ defmodule JsonCorp.Blog do
     title = meta_map |> Map.fetch!(:title)
     category = meta_map |> Map.fetch!(:category)
 
+    default_slug = slug_with_underscore |> String.replace("_", "-")
+
     %Post{
       title: title,
       description: meta_map[:description],
       language: language,
       category: category,
-      slug: slug,
+      slug: meta_map[:slug] || default_slug,
       body: body,
       date_created: date_created,
       cover_url: meta_map[:cover_url],
       tags: meta_map[:tags],
-      aliases: meta_map[:aliases] || []
+      aliases: [slug_with_underscore | meta_map[:aliases] || []] |> Enum.uniq()
     }
   end
 
   defp extract_post_meta(post_path) do
-    %{"language" => language, "date_created" => date_created_str, "slug" => slug} =
+    %{"language" => language, "date_created" => date_created_str, "slug" => slug_with_underscore} =
       Regex.named_captures(
         ~r/\/(?<language>[^\/]+)\/[^\/]+\/(?<date_created>\d{8})_(?<slug>.+)\.(md|livemd)$/,
         post_path
@@ -136,7 +142,7 @@ defmodule JsonCorp.Blog do
 
     date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
 
-    %{language: language, slug: slug, date_created: date_created}
+    %{language: language, slug_with_underscore: slug_with_underscore, date_created: date_created}
   end
 
   defp posts_path() do
