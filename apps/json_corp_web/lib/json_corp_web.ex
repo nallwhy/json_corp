@@ -17,7 +17,8 @@ defmodule JsonCorpWeb do
   and import those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon apple-touch-icon robots.txt sitemap feed)
+  def static_paths,
+    do: ~w(assets fonts images favicon apple-touch-icon robots.txt sitemap feed naver)
 
   def router do
     quote do
