@@ -146,7 +146,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     <hr class="prose" />
     <div class="prose pt-4">
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
-      <%= @post.body |> MarkdownRenderer.html() |> raw() %>
+      <%= @post.body |> MarkdownRenderer.highlighted_html() |> raw() %>
     </div>
     <div class="max-w-2xl mt-12">
       <.h2>Comments</.h2>

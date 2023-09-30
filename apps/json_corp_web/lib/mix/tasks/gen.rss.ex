@@ -2,11 +2,12 @@ defmodule Mix.Tasks.Gen.Rss do
   use Mix.Task
   use JsonCorp.Blog
   import XmlBuilder
+  alias JsonCorp.Blog.MarkdownRenderer
 
   @impl Mix.Task
   def run(_args) do
     host = "https://json.media"
-    email = "nallwhy@gmail.com"
+    email = "nallwhy@gmail.com (Jinkyou Son)"
 
     [last_post | _] =
       recent_posts =
@@ -16,7 +17,7 @@ defmodule Mix.Tasks.Gen.Rss do
     last_modified = last_post.date_created |> date_to_datetime() |> Timex.format!("{RFC822}")
 
     rss =
-      element(:rss, %{version: "2.0", "xmlns:atom": "http://www.w3.org/2005/Atom"}, [
+      element(:rss, %{version: "2.0"}, [
         element(:channel, [
           element(:title, "Json Media"),
           element(:description, "Json's Playground"),
@@ -26,7 +27,7 @@ defmodule Mix.Tasks.Gen.Rss do
           element(:image, [
             element(:title, "Json Media"),
             element(:url, host <> "/images/json-logo.png"),
-            element(:link, host <> "/blog")
+            element(:link, host)
           ]),
           element(:managingEditor, email),
           element(:webMaster, email),
@@ -43,13 +44,14 @@ defmodule Mix.Tasks.Gen.Rss do
 
   defp post_to_rss_item(%Post{} = post, host) do
     url = "#{host}/blog/#{post.language}/#{post.slug}"
+    description = post.description <> "\n" <> MarkdownRenderer.plain_text(post.body)
 
     element(:item, [
       element(:title, post.title),
-      element(:description, post.description),
+      element(:description, description),
       element(:link, url),
       element(:pubDate, post.date_created |> date_to_datetime() |> Timex.format!("{RFC822}")),
-      element(:guid, %{isPermalLink: "true"}, url),
+      element(:guid, url),
       element(:category, post.category)
     ])
   end
