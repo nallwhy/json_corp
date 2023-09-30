@@ -1,7 +1,6 @@
 defmodule Mix.Tasks.Gen.Sitemap do
   use Mix.Task
-  alias JsonCorp.Blog
-  alias JsonCorp.Blog.Post
+  use JsonCorp.Blog
 
   @impl Mix.Task
   def run(_args) do

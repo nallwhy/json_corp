@@ -55,7 +55,8 @@ defmodule JsonCorp.MixProject do
       {:ex2ms, "~> 1.0"},
       {:sobelow, "~> 0.12", only: [:dev, :test], runtime: false},
       {:ex_cldr, "~> 2.37"},
-      {:ex_cldr_dates_times, "~> 2.14"}
+      {:ex_cldr_dates_times, "~> 2.14"},
+      {:xml_builder, "~> 2.1"}
     ]
   end
 
