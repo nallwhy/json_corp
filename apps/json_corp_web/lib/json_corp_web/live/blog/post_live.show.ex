@@ -32,7 +32,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
               [
                 load_view_count(normalized_uri),
                 load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog")),
-                load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog/en"))
+                load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog/en")),
+                load_view_count(String.replace(normalized_uri, "-", "_"))
               ]
               |> Enum.sum()
 
@@ -40,7 +41,8 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
               [
                 load_view_count(normalized_uri),
                 load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog")),
-                load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog/ko"))
+                load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog/ko")),
+                load_view_count(String.replace(normalized_uri, "-", "_"))
               ]
               |> Enum.sum()
 
