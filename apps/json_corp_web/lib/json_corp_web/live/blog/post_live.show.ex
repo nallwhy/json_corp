@@ -29,20 +29,26 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         view_count =
           cond do
             Regex.match?(~r{/blog/ko/}, normalized_uri) ->
+              old_uri = Regex.replace(~r{/blog/ko}, normalized_uri, "/blog")
+
               [
                 load_view_count(normalized_uri),
-                load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog")),
+                load_view_count(old_uri),
                 load_view_count(Regex.replace(~r{/blog/ko}, normalized_uri, "/blog/en")),
-                load_view_count(String.replace(normalized_uri, "-", "_"))
+                load_view_count(String.replace(normalized_uri, "-", "_")),
+                load_view_count(String.replace(old_uri, "-", "_"))
               ]
               |> Enum.sum()
 
             Regex.match?(~r{/blog/en/}, normalized_uri) ->
+              old_uri = Regex.replace(~r{/blog/en}, normalized_uri, "/blog")
+
               [
                 load_view_count(normalized_uri),
-                load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog")),
+                load_view_count(old_uri),
                 load_view_count(Regex.replace(~r{/blog/en}, normalized_uri, "/blog/ko")),
-                load_view_count(String.replace(normalized_uri, "-", "_"))
+                load_view_count(String.replace(normalized_uri, "-", "_")),
+                load_view_count(String.replace(old_uri, "-", "_"))
               ]
               |> Enum.sum()
 
