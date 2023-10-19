@@ -58,7 +58,7 @@ defmodule JsonCorpWeb.MixProject do
       {:ecto_psql_extras, "~> 0.6"},
       {:heroicons, "~> 0.5.0"},
       {:plug_canonical_host, "~> 2.0"},
-      {:bandit, "~> 0.7"},
+      {:bandit, "~> 1.0"},
       {:doumi_phoenix_params, "~> 0.3.4"},
       {:sitemapper, "~> 0.7"},
       {:ex_cldr_plugs, "~> 1.3"}
