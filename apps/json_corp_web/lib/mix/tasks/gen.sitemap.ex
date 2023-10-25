@@ -4,8 +4,7 @@ defmodule Mix.Tasks.Gen.Sitemap do
 
   @impl Mix.Task
   def run(_args) do
-    Mix.Task.run("app.start")
-    url = JsonCorpWeb.Endpoint.url()
+    url = "https://json.media"
 
     config = [
       store: Sitemapper.FileStore,

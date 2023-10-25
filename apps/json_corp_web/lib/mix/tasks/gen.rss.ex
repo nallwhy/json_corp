@@ -6,8 +6,7 @@ defmodule Mix.Tasks.Gen.Rss do
 
   @impl Mix.Task
   def run(_args) do
-    Mix.Task.run("app.start")
-    host = JsonCorpWeb.Endpoint.url()
+    host = "https://json.media"
     email = "nallwhy@gmail.com (Jinkyou Son)"
 
     [last_post | _] =
