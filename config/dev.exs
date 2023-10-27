@@ -76,3 +76,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :phoenix, :stacktrace_depth, 20
 
 config :phoenix_live_view, debug_heex_annotations: true
+
+config :json_corp, :meilisearch,
+  host: "http://localhost:47700",
+  api_key: "meilisearch"
