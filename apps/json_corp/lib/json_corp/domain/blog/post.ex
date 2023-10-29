@@ -13,6 +13,7 @@ defmodule JsonCorp.Blog.Post do
           aliases: [String.t()]
         }
 
+  @derive Jason.Encoder
   @derive {Phoenix.Param, key: :slug}
   @enforce_keys [
     :id,
@@ -63,7 +64,7 @@ defmodule JsonCorp.Blog.Post do
     slug = meta_map[:slug] || default_slug
 
     %__MODULE__{
-      id: "#{language}_#{slug}",
+      id: "#{language}_#{slug}" |> normalize_id(),
       title: title,
       description: meta_map[:description],
       language: language,
@@ -87,5 +88,9 @@ defmodule JsonCorp.Blog.Post do
     date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
 
     %{language: language, slug_with_underscore: slug_with_underscore, date_created: date_created}
+  end
+
+  defp normalize_id(id) do
+    id |> String.replace(~r/[^0-9a-zA-Z\-\_]/, "")
   end
 end
