@@ -118,13 +118,15 @@ defmodule JsonCorp.Blog do
     category = meta_map |> Map.fetch!(:category)
 
     default_slug = slug_with_underscore |> String.replace("_", "-")
+    slug = meta_map[:slug] || default_slug
 
     %Post{
+      id: "#{language}_#{slug}",
       title: title,
       description: meta_map[:description],
       language: language,
       category: category,
-      slug: meta_map[:slug] || default_slug,
+      slug: slug,
       body: body,
       date_created: date_created,
       cover_url: meta_map[:cover_url],

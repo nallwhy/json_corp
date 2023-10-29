@@ -1,5 +1,6 @@
 defmodule JsonCorp.Blog.Post do
   @type t :: %__MODULE__{
+          id: String.t(),
           title: String.t(),
           description: String.t(),
           language: String.t(),
@@ -14,6 +15,7 @@ defmodule JsonCorp.Blog.Post do
 
   @derive {Phoenix.Param, key: :slug}
   @enforce_keys [
+    :id,
     :title,
     :description,
     :language,
