@@ -1,5 +1,6 @@
 defmodule JsonCorp.External.MeilisearchAPI do
   use JsonCorp.External
+  # alias JsonCorp.Core.NDJSON
 
   def health(%{host: host, api_key: api_key}) do
     request(:get, "/health", base_url: host, auth: api_key)
@@ -10,28 +11,30 @@ defmodule JsonCorp.External.MeilisearchAPI do
     body = %{"uid" => index_uid, "primaryKey" => params[:primary_key]}
 
     request(:post, "/indexes", json: body, base_url: host, auth: api_key)
-    |> Ok.map(fn %{
-                   body: %{
-                     "indexUid" => index_uid,
-                     "taskUid" => task_uid,
-                     "status" => status_str,
-                     "type" => type
-                   }
-                 } ->
-      %{
-        index_uid: index_uid,
-        task_uid: task_uid,
-        status: parse_task_status(status_str),
-        type: type
-      }
-    end)
+    |> Ok.map(fn %{body: body} -> parse_index_task(body) end)
+  end
+
+  def delete_index(%{index_uid: index_uid}, %{host: host, api_key: api_key}) do
+    request(:delete, "/indexes/#{index_uid}", base_url: host, auth: api_key)
+    |> Ok.map(fn %{body: body} -> parse_index_task(body) end)
   end
 
   def get_task(%{task_uid: task_uid}, %{host: host, api_key: api_key}) do
     request(:get, "/tasks/#{task_uid}", base_url: host, auth: api_key)
-    |> Ok.map(fn %{body: %{"uid" => task_uid, "type" => type, "status" => status_str}} ->
-      %{task_uid: task_uid, type: type, status: parse_task_status(status_str)}
-    end)
+    |> Ok.map(fn %{body: body} -> parse_task(body) end)
+  end
+
+  defp parse_index_task(%{"indexUid" => index_uid} = body) do
+    %{index_uid: index_uid}
+    |> Map.merge(parse_task(body))
+  end
+
+  defp parse_task(%{"uid" => task_uid, "type" => type, "status" => status_str}) do
+    %{task_uid: task_uid, type: type, status: parse_task_status(status_str)}
+  end
+
+  defp parse_task(%{"taskUid" => task_uid, "type" => type, "status" => status_str}) do
+    %{task_uid: task_uid, type: type, status: parse_task_status(status_str)}
   end
 
   defp parse_task_status(status_str) do

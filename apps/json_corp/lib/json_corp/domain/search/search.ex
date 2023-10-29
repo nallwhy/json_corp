@@ -14,10 +14,17 @@ defmodule JsonCorp.Search do
     pull_task(task_uid)
   end
 
+  def delete_index(index_uid) do
+    {:ok, %{task_uid: task_uid}} =
+      MeilisearchAPI.delete_index(%{index_uid: index_uid}, meilisearch_opts())
+
+    pull_task(task_uid)
+  end
+
   defp pull_task(task_uid) do
     pull_fun = fn -> MeilisearchAPI.get_task(%{task_uid: task_uid}, meilisearch_opts()) end
-    condition_fun = fn {:ok, task} -> task.status in [:processed, :failed, :canceled] end
-    wait_fun = fn retry_count -> Process.sleep(retry_count * :timer.seconds(2)) end
+    condition_fun = fn {:ok, task} -> task.status in [:succeeded, :failed, :canceled] end
+    wait_fun = fn retry_count -> Process.sleep(retry_count * :timer.seconds(1)) end
 
     Puller.pull(pull_fun, condition_fun, wait_fun)
     |> tap(fn {:ok, %{task_uid: task_uid, type: type, status: status}} ->
