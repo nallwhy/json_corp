@@ -21,6 +21,16 @@ defmodule JsonCorp.Search do
     pull_task(task_uid)
   end
 
+  def upsert_documents(index_uid, documents) do
+    {:ok, %{task_uid: task_uid}} =
+      MeilisearchAPI.add_or_replace_documents(
+        %{index_uid: index_uid, documents: documents},
+        meilisearch_opts()
+      )
+
+    pull_task(task_uid)
+  end
+
   defp pull_task(task_uid) do
     pull_fun = fn -> MeilisearchAPI.get_task(%{task_uid: task_uid}, meilisearch_opts()) end
     condition_fun = fn {:ok, task} -> task.status in [:succeeded, :failed, :canceled] end

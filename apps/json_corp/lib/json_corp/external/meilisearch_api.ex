@@ -1,6 +1,6 @@
 defmodule JsonCorp.External.MeilisearchAPI do
   use JsonCorp.External
-  # alias JsonCorp.Core.NDJSON
+  alias JsonCorp.Core.NDJSON
 
   def health(%{host: host, api_key: api_key}) do
     request(:get, "/health", base_url: host, auth: api_key)
@@ -22,6 +22,19 @@ defmodule JsonCorp.External.MeilisearchAPI do
   def get_task(%{task_uid: task_uid}, %{host: host, api_key: api_key}) do
     request(:get, "/tasks/#{task_uid}", base_url: host, auth: api_key)
     |> Ok.map(fn %{body: body} -> parse_task(body) end)
+  end
+
+  def add_or_replace_documents(%{index_uid: index_uid, documents: documents}, %{
+        host: host,
+        api_key: api_key
+      }) do
+    request(:post, "/indexes/#{index_uid}/documents",
+      headers: [{"Content-type", "application/x-ndjson"}],
+      body: documents |> NDJSON.encode(),
+      base_url: host,
+      auth: api_key
+    )
+    |> Ok.map(fn %{body: body} -> parse_index_task(body) end)
   end
 
   defp parse_index_task(%{"indexUid" => index_uid} = body) do

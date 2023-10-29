@@ -36,13 +36,14 @@ defmodule JsonCorp.External do
   alias JsonCorp.Core.ModuleHelper
 
   defmacro request(method, path, opts \\ []) do
+    {headers_param, opts} = opts |> Keyword.pop(:headers, [])
     {auth_param, opts} = opts |> Keyword.pop(:auth, nil)
     {base_url_param, opts} = opts |> Keyword.pop(:base_url, nil)
     %{module: module, function: {fun_name, fun_arity}} = __CALLER__
     caller = [module, fun_name, fun_arity]
 
     quote do
-      Req.new(headers: default_headers())
+      Req.new(headers: unquote(headers_param) ++ default_headers())
       |> Req.update(
         method: unquote(method),
         base_url: unquote(base_url_param) || base_url(),
