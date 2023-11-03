@@ -37,6 +37,32 @@ defmodule JsonCorp.External.MeilisearchAPI do
     |> Ok.map(fn %{body: body} -> parse_index_task(body) end)
   end
 
+  def search(%{index_uid: index_uid} = params, pagination, %{host: host, api_key: api_key}) do
+    body = %{
+      "q" => params[:q],
+      "offset" => pagination[:offset],
+      "limit" => pagination[:limit]
+    }
+
+    request(:post, "/indexes/#{index_uid}/search", json: body, base_url: host, auth: api_key)
+    |> Ok.map(fn %{
+                   body: %{
+                     "hits" => hits,
+                     "offset" => offset,
+                     "limit" => limit,
+                     "estimatedTotalHits" => total
+                   }
+                 } ->
+      pagination =
+        case offset + Enum.count(hits) < total do
+          true -> %{offset: offset + limit, limit: limit, total: total}
+          false -> nil
+        end
+
+      %{hits: hits, pagination: pagination}
+    end)
+  end
+
   defp parse_index_task(%{"indexUid" => index_uid} = body) do
     %{index_uid: index_uid}
     |> Map.merge(parse_task(body))

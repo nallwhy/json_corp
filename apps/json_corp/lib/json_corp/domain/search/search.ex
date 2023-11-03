@@ -31,6 +31,10 @@ defmodule JsonCorp.Search do
     pull_task(task_uid)
   end
 
+  def search(index_uid, query, pagination \\ %{offset: 0, limit: 20}) do
+    MeilisearchAPI.search(%{index_uid: index_uid, q: query}, pagination, meilisearch_opts())
+  end
+
   defp pull_task(task_uid) do
     pull_fun = fn -> MeilisearchAPI.get_task(%{task_uid: task_uid}, meilisearch_opts()) end
     condition_fun = fn {:ok, task} -> task.status in [:succeeded, :failed, :canceled] end
