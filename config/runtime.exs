@@ -66,6 +66,22 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Hackney
   #
   # See https://hexdocs.pm/swoosh/Swoosh.html#module-installation for details.
+
+  meilisearch_host =
+    System.get_env("MEILISEARCH_HOST") ||
+      raise """
+      environment variable MEILISEARCH_HOST is missing.
+      """
+
+  meilisearch_api_key =
+    System.get_env("MEILISEARCH_API_KEY") ||
+      raise """
+      environment variable MEILISEARCH_API_KEY is missing.
+      """
+
+  config :json_corp, :meilisearch,
+    host: meilisearch_host,
+    api_key: meilisearch_api_key
 end
 
 # test_api
