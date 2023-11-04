@@ -15,7 +15,7 @@ defmodule JsonCorp.Application do
         # Start the PubSub system
         {Phoenix.PubSub, name: JsonCorp.PubSub},
         JsonCorp.Chat.ChatServer
-      ] ++ not_test_children()
+      ] ++ not_test_children() ++ prod_children()
 
     Supervisor.start_link(children, strategy: :one_for_one, name: JsonCorp.Supervisor)
   end
@@ -24,5 +24,11 @@ defmodule JsonCorp.Application do
     defp not_test_children, do: [JsonCorp.Worker.BlogSearchIndexer]
   else
     defp not_test_children, do: []
+  end
+
+  if Mix.env() == :prod do
+    defp prod_children, do: [JsonCorp.Worker.Yamazaki]
+  else
+    defp prod_children, do: []
   end
 end
