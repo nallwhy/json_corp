@@ -26,7 +26,7 @@ defmodule JsonCorp.Umbrella.MixProject do
   # and cannot be accessed from applications inside the apps/ folder.
   defp deps do
     [
-      {:phoenix_live_view, "~> 0.19", override: true}
+      {:phoenix_live_view, ">= 0.0.0", override: true}
     ]
   end
 
