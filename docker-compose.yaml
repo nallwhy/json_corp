@@ -5,5 +5,16 @@ services:
     image: postgres:14.2
     environment:
       POSTGRES_PASSWORD: postgres
+    volumes:
+      - .docker/postgres:/var/lib/postgresql/data
     ports:
       - '48945:5432'
+  meilisearch:
+    image: getmeili/meilisearch:v1.4
+    environment:
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: meilisearch
+    volumes:
+      - .docker/meilisearch:/meili_data
+    ports:
+      - 47700:7700
