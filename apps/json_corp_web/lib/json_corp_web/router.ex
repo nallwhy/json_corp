@@ -34,9 +34,9 @@ defmodule JsonCorpWeb.Router do
   scope "/", JsonCorpWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
-    get "/consulting", PageController, :consulting
-    get "/projects", PageController, :project
+    live "/", HomeLive
+    live "/consulting", ConsultingLive
+    live "/projects", ProjectLive
 
     if Mix.env() == :dev do
       live "/test", TestLive
