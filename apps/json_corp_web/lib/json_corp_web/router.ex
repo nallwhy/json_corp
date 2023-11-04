@@ -34,38 +34,32 @@ defmodule JsonCorpWeb.Router do
   scope "/", JsonCorpWeb do
     pipe_through :browser
 
-    live "/", HomeLive
-    live "/consulting", ConsultingLive
-    live "/projects", ProjectLive
-
-    if Mix.env() == :dev do
-      live "/test", TestLive
-    end
-  end
-
-  scope "/blog", JsonCorpWeb.Blog, as: :blog do
-    pipe_through :browser
-
-    live_session :blog,
+    live_session :live,
       on_mount: [
         JsonCorpWeb.SessionHook,
         JsonCorpWeb.ViewLogHook,
         JsonCorpWeb.LocaleHook,
         JsonCorpWeb.CursorHook
       ] do
-      live "/", PostLive.Index
-      live "/:language", PostLive.Index
-      live "/:language/:slug", PostLive.Show
+      live "/", HomeLive
+      live "/consulting", ConsultingLive
+      live "/projects", ProjectLive
+
+      scope "/blog", Blog do
+        live "/", PostLive.Index
+        live "/:language", PostLive.Index
+        live "/:language/:slug", PostLive.Show
+      end
+
+      scope "/playgrounds", Playgrounds do
+        live "/", PlaygroundLive
+        live "/form", FormLive
+        live "/chat", ChatLive
+      end
     end
-  end
 
-  scope "/playgrounds", JsonCorpWeb.Playgrounds, as: :playgrounds do
-    pipe_through :browser
-
-    live_session :playground, on_mount: [JsonCorpWeb.SessionHook, JsonCorpWeb.CursorHook] do
-      live "/", PlaygroundLive
-      live "/form", FormLive
-      live "/chat", ChatLive
+    if Mix.env() == :dev do
+      live "/test", TestLive
     end
   end
 
