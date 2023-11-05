@@ -29,6 +29,6 @@ iex> Doumi.URI.Query.encode(query)
 
 ### 자매품
 
-- [Doumi.Phoenix.SVG](https://json.media/blog/doumi_phoenix_svg_is_published): Phoenix 에서 SVG 를 가장 깔끔하게 사용하는 방법
+- [Doumi.Phoenix.SVG](./doumi_phoenix_svg_is_published): Phoenix 에서 SVG 를 가장 깔끔하게 사용하는 방법
 
 [Doumi.URI.Query]: https://github.com/nallwhy/doumi_uri_query

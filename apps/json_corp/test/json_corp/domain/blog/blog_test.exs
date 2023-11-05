@@ -34,7 +34,7 @@ defmodule JsonCorp.BlogTest do
       assert fetched_post.slug == "post-00"
       assert fetched_post.body =~ "# Test Body"
       assert fetched_post.date_created == ~D[2022-06-26]
-      assert fetched_post.cover_url == "https://json.corp/images/blog/example.jpg"
+      assert fetched_post.cover_url == "/images/blog/example.jpg"
       assert fetched_post.tags == ["tag0", "tag1"]
       assert fetched_post.aliases == ["post_00", "post-000"]
     end

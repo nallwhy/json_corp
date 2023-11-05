@@ -79,6 +79,6 @@ end
 
 ### 자매품
 
-- [Doumi.URI.Query](https://json.media/blog/doumi_uri_query_is_published): Nested map, list 를 URI query string 으로 encoding 하는 방법
+- [Doumi.URI.Query](./doumi_uri_query_is_published): Nested map, list 를 URI query string 으로 encoding 하는 방법
 
 [Doumi.Phoenix.SVG]: https://github.com/nallwhy/doumi_phoenix_svg

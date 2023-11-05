@@ -16,7 +16,7 @@ tags: ["개발", "React", "Next.js", "tRPC", "Prisma", "T3 Stack", "TypeScript",
 ### 기존 스택
 
 기존 프로젝트는 `React`(Front-end) + `Express`(Back-end) 조합으로 진행하고 있었고, 얼마 전 `Next.js` 에 대해서 공유를 해놓아서 어느 정도 이해도가 있는 상태였다.\
-(`Next.js` 에 대해 정리한 글은 [Next.js 제대로 알기](/blog/proper_understading_of_nextjs) 에서 확인할 수 있다)
+(`Next.js` 에 대해 정리한 글은 [Next.js 제대로 알기](./proper_understading_of_nextjs) 에서 확인할 수 있다)
 
 ### 요구사항
 

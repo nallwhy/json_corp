@@ -19,7 +19,7 @@ tags: ["컨설팅", "산업 디자인", "카림 라시드", "제약"]
 그래서 산업 디자인 보는 것을 좋아한다. 산업 디자인은 단지 보기 좋은 물건을 만드는 것이 아니라, 사용하기에도 편하고, 무엇보다도 대량 생산이 가능한 결과물을 만들어 낸다.
 
 <figure>
-  <img src="https://json.media/images/blog/20220818_garbo.jpg" alt="Garbo">
+  <img src="/images/blog/20220818_garbo.jpg" alt="Garbo">
   <figcaption>카림 라시드의 Garbo 는 대표적인 산업 디자인의 결과물이다.</figcaption>
 </figure>
 

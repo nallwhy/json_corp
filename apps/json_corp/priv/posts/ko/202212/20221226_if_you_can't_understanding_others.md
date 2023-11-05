@@ -2,13 +2,14 @@
 title: "타인이 이해가 되지 않는다면",
 description: "무엇인가에 대해 많이 알면 알수록 그것을 증오하기 어렵다는 것은 잘 알려진 사실이다.",
 category: "talk",
-cover_url: "https://json.media/images/blog/20221226_if_you_can't_understanding_others.png",
+cover_url: "/images/blog/20221226_if_you_can't_understanding_others.png",
 tags: ["인간", "이해"]
 }
 
 ---
 
 > 무엇인가에 대해 많이 알면 알수록 그것을 증오하기 어렵다는 것은 잘 알려진 사실이다.
+>
 > - <눈물을 마시는 새> 중
 
 세상이 이해하지 못하겠는 사람들 천지다.

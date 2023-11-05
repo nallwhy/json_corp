@@ -34,7 +34,7 @@ tags: ["추정", "일정"]
 빡빡한 추정은 어떤 결과를 가져올까?
 
 <figure>
-  <img src="https://json.media/images/blog/20220824_result_of_optimistic_estimation.png" alt="The result of optimistic estimation">
+  <img src="/images/blog/20220824_result_of_optimistic_estimation.png" alt="The result of optimistic estimation">
   <figcaption>빡빡한 추정의 결과</figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ tags: ["추정", "일정"]
 여기서 전제는 추정을 여유롭게 했다고 해서 더 여유롭게 일하지는 않는 다는 것이다. 추정이 빡빡하든 여유롭든 하루에 주어진 근무 시간 안에서는 동일한 일을 처리한다.
 
 <figure>
-  <img src="https://json.media/images/blog/20220824_result_of_pessimistic_estimation.png" alt="The result of pessimistic estimation">
+  <img src="/images/blog/20220824_result_of_pessimistic_estimation.png" alt="The result of pessimistic estimation">
   <figcaption>여유로운 추정의 결과</figcaption>
 </figure>
 

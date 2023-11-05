@@ -2,13 +2,13 @@
 title: "Elixir 는 어떻게 10년도 안되어 성숙한 언어가 되었나",
 description: "Elixir v2.0 계획이 없는 이유",
 category: "dev",
-cover_url: "https://json.media/images/blog/20220928_cover.png",
+cover_url: "/images/blog/20220928_cover.png",
 tags: ["개발", "Elixir"]
 }
 
 ---
 
-[지난 글](https://json.media/blog/elixir_1_14_dbg)에서 Elixir 는 v1.9 에서 마지막으로 예정되어있던 기능을 완성했다고 언급했었다.
+[지난 글](./elixir_1_14_dbg)에서 Elixir 는 v1.9 에서 마지막으로 예정되어있던 기능을 완성했다고 언급했었다.
 
 > "Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
 >

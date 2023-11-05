@@ -2,13 +2,13 @@
 title: "나에 대한 타인의 기대를 과하게 높이는 방법",
 description: "저 사람이 잘 안해서 그렇지 했다 하면 ...",
 category: "talk",
-cover_url: "https://json.media/images/blog/20221003_cover.jpg",
+cover_url: "/images/blog/20221003_cover.jpg",
 tags: ["인간", "기대"]
 }
 
 ---
 
-[지난 글](https://json.media/blog/how_to_control_other%27s_expectation_of_you) 에서 타인의 기대를 과하지 않게 조절하는 방법에 대해서 얘기했다.
+[지난 글](./how_to_control_other%27s_expectation_of_you) 에서 타인의 기대를 과하지 않게 조절하는 방법에 대해서 얘기했다.
 
 하지만 때로는 타인의 기대를 과하게 높이고 싶을 때도 있을 것이다. 예를 들면 '게으른 천재' 같은 타이틀을 얻고 싶다든지.
 

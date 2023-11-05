@@ -8,7 +8,7 @@ tags: ["인간", "사회", "포기", "파괴", "피로사회", "포기사회", "
 
 ---
 
-지난 글 [포기하지 않기 위해서는 핑계가 필요해](./blog/ko/excuse-to-avoid-giving-up) 에서 한국이 이미 '피로사회'에서 '포기사회'가 되었다고 얘기했다.
+지난 글 [포기하지 않기 위해서는 핑계가 필요해](./excuse-to-avoid-giving-up) 에서 한국이 이미 '피로사회'에서 '포기사회'가 되었다고 얘기했다.
 
 <figure>
   <img src="/images/blog/20231025_comfortable_to_give_up.webp" alt="포기하면 편해">

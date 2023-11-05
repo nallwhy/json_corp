@@ -2,13 +2,13 @@
 title: "나에 대한 타인의 기대를 조절하는 방법",
 description: "일관적으로 행동하기",
 category: "talk",
-cover_url: "https://json.media/images/blog/20220927_cover.jpg",
+cover_url: "/images/blog/20220927_cover.jpg",
 tags: ["인간", "기대"]
 }
 
 ---
 
-[지난 글](https://json.media/blog/20220917_it_is_the_expectancy_stupid)에서 '인간의 모든 문제는 기대와 그에 미치지 못하는 현실에서 온다'고 했다.
+[지난 글](./it_is_the_expectancy_stupid)에서 '인간의 모든 문제는 기대와 그에 미치지 못하는 현실에서 온다'고 했다.
 
 이는 타인과의 관계에서도 마찬가지인데, 따라서 타인이 나에게 현실보다 과하게 높은 기대를 하지 않도록 기대를 적절하게 조절할 수 있다면 여러 문제를 피할 수 있다.
 

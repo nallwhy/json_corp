@@ -2,7 +2,7 @@
 title: "How Elixir became a mature language in less than 10 years",
 description: "Elixir has no plans for v2.0",
 category: "dev",
-cover_url: "https://json.media/images/blog/20220928_cover.png",
+cover_url: "/images/blog/20220928_cover.png",
 tags: ["dev", "Elixir"]
 }
 
