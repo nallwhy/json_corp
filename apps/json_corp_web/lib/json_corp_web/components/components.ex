@@ -32,7 +32,7 @@ defmodule JsonCorpWeb.Components do
     ~H"""
     <header class="navbar max-w-6xl mx-auto px-8 py-6 place-content-between">
       <div class="flex-none w-32">
-        <.link href={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
+        <.link navigate={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
       <div class="hidden sm:block flex-1 pl-12">
         <ul class="flex">
@@ -40,7 +40,7 @@ defmodule JsonCorpWeb.Components do
             :for={{menu_name, menu_route} <- list_menus()}
             class="px-2 border-y-2 border-transparent hover:border-b-primary"
           >
-            <.link href={menu_route}><%= menu_name %></.link>
+            <.link navigate={menu_route}><%= menu_name %></.link>
           </li>
         </ul>
       </div>
@@ -54,7 +54,7 @@ defmodule JsonCorpWeb.Components do
             class="menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 border-2"
           >
             <li :for={{menu_name, menu_route} <- list_menus()}>
-              <.link href={menu_route}><%= menu_name %></.link>
+              <.link navigate={menu_route}><%= menu_name %></.link>
             </li>
           </ul>
         </div>
