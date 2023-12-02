@@ -27,9 +27,21 @@ defmodule JsonCorp.Blog.Comment do
       |> validate_length(:body, max: 1000)
     end
 
+    @required_for_delete [:deleted_at]
+    def changeset_for_delete(%Comment{} = struct, attrs) do
+      struct
+      |> cast(attrs, [:deleted_at])
+      |> validate_required([:deleted_at])
+    end
+
     def create(attrs) do
       %Comment{}
       |> changeset_for_create(attrs)
+    end
+
+    def delete(%Comment{} = comment) do
+      comment
+      |> changeset_for_delete(%{deleted_at: DateTime.utc_now()})
     end
   end
 

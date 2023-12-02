@@ -91,6 +91,17 @@ defmodule JsonCorp.Blog do
     end
   end
 
+  def delete_comment(comment_id, email) do
+    with {:ok, comment} <- fetch_comment(comment_id),
+         {:deletable, true} <- {:deletable, comment.email == email},
+         {:ok, deleted_comment} <- comment |> Comment.Command.delete() |> Repo.update() do
+      {:ok, deleted_comment}
+    else
+      {:deletable, false} -> {:error, :unauthorized}
+      error -> error
+    end
+  end
+
   defp fetch_secret_post(slug) do
     SecretPost.fetch(slug)
     |> Repo.one()
