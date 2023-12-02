@@ -82,6 +82,15 @@ defmodule JsonCorp.Blog do
     |> then(&{:ok, &1})
   end
 
+  def fetch_comment(comment_id) do
+    Comment.Query.get(comment_id)
+    |> Repo.one()
+    |> case do
+      %Comment{} = comment -> {:ok, comment}
+      nil -> {:error, :not_found}
+    end
+  end
+
   defp fetch_secret_post(slug) do
     SecretPost.fetch(slug)
     |> Repo.one()

@@ -43,5 +43,10 @@ defmodule JsonCorp.Blog.Comment do
       |> where([c], is_nil(c.deleted_at))
       |> order_by([c], asc: c.inserted_at)
     end
+
+    def get(id) do
+      Comment
+      |> where([c], c.id == ^id)
+    end
   end
 end
