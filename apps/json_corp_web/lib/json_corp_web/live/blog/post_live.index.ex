@@ -104,7 +104,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     <div>
       <div id="posts" class="divide-y" phx-update="stream">
         <div :for={{dom_id, post} <- @streams.posts} id={dom_id}>
-          <.link navigate={~p"/blog/#{post.language}/#{post}"}>
+          <.link navigate={~p"/blog/#{post.language}/#{post.slug}"}>
             <article class="py-4 cursor-pointer">
               <h2 class="text-xl"><%= post.title %></h2>
               <p :if={post.description} class="mt-2"><%= post.description %></p>

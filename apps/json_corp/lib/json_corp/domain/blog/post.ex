@@ -14,7 +14,6 @@ defmodule JsonCorp.Blog.Post do
         }
 
   @derive Jason.Encoder
-  @derive {Phoenix.Param, key: :slug}
   @enforce_keys [
     :id,
     :title,
