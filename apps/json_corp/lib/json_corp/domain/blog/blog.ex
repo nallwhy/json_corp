@@ -67,6 +67,12 @@ defmodule JsonCorp.Blog do
     Comment.Query.list_by_post_slug(post_slug)
     |> Repo.all()
     |> Enum.reject(fn
+      %Comment{session_id: "c5702334-2df5-43a7-b632-1a0ae42d4980"} ->
+        false
+
+      %Comment{session_id: "646fc439-c937-4f0c-a948-1d484a259c6e"} ->
+        false
+
       %Comment{confirmed_at: nil, session_id: comment_session_id} ->
         comment_session_id != session_id
 
