@@ -40,6 +40,7 @@ defmodule JsonCorp.Blog.Comment do
     def list_by_post_slug(post_slug) do
       Comment
       |> where([c], c.post_slug == ^post_slug)
+      |> where([c], is_nil(c.deleted_at))
       |> order_by([c], asc: c.inserted_at)
     end
   end
