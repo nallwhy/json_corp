@@ -14,6 +14,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       |> init_comment_form()
       |> load_post()
       |> load_comments()
+      |> assign(:comment_id, nil)
 
     {:ok, socket}
   end
@@ -102,6 +103,34 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   end
 
   @impl true
+  def handle_event("set_comment_id", %{"comment_id" => comment_id}, socket) do
+    socket =
+      socket
+      |> assign(:comment_id, comment_id)
+
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("delete_comment", %{"comment_id" => comment_id_str, "email" => email}, socket) do
+    comment_id = comment_id_str |> String.to_integer()
+
+    socket =
+      case Blog.delete_comment(comment_id, email) do
+        {:ok, comment} ->
+          socket
+          |> stream_delete(:comments, comment)
+          |> put_flash(:info, "Comment deleted")
+
+        {:error, _} ->
+          socket
+          |> put_flash(:error, "Failed to delete comment")
+      end
+
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_info({:view_count, view_count}, socket) do
     socket =
       socket
@@ -179,16 +208,38 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       </.simple_form>
       <div id="comments" phx-update="stream" class="mt-4 divide-y-2">
         <div
-          :for={{comment_id, %Comment{} = comment} <- @streams.comments}
-          id={comment_id}
+          :for={{comment_dom_id, %Comment{} = comment} <- @streams.comments}
+          id={comment_dom_id}
           class="py-4 space-y-2"
         >
           <p><%= comment.name %></p>
           <p><%= comment.inserted_at |> ago() %></p>
           <p><%= comment.body %></p>
+          <.button phx-click={
+            JS.push("set_comment_id", value: %{comment_id: comment.id})
+            |> show_modal("comment-delete-modal")
+          }>
+            Delete
+          </.button>
         </div>
       </div>
     </div>
+    <.modal id="comment-delete-modal">
+      <.simple_form
+        :let={f}
+        for={%{}}
+        phx-submit={JS.push("delete_comment") |> hide_modal("comment-delete-modal")}
+      >
+        <p class="font-bold">
+          Please enter the email you used to post in order to delete your comment.
+        </p>
+        <.input type="hidden" field={f[:comment_id]} value={@comment_id} />
+        <.input type="text" field={f[:email]} label="email" autocomplete="off" />
+        <:actions>
+          <.button>Confirm</.button>
+        </:actions>
+      </.simple_form>
+    </.modal>
     """
   end
 
