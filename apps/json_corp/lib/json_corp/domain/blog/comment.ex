@@ -8,6 +8,8 @@ defmodule JsonCorp.Blog.Comment do
     field :email, :string
     field :body, :string
     field :confirmed_at, :utc_datetime_usec
+    field :deleted_at, :utc_datetime_usec
+
     timestamps()
   end
 
