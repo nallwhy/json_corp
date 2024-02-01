@@ -36,7 +36,7 @@ There are two main reasons why Elixir has become a mature language so quickly.
 
 Elixir is based on Erlang, which was created in 1986.
 
-Because Erlang is a battle-tested langauge[2](https://www.erlang.org/about) that has been proven over decades at Ericsson, boasting features such as concurrent, distributed, and fault-tolerant, Elixir was able to bypass much of the trial and error and rapidly achieve maturity.
+Because Erlang is a battle-tested language[2](https://www.erlang.org/about) that has been proven over decades at Ericsson, boasting features such as concurrent, distributed, and fault-tolerant, Elixir was able to bypass much of the trial and error and rapidly achieve maturity.
 
 For example, "String handling in Elixir is the result of a long evolutionary process in the underlying Erlang environment."[3]
 
