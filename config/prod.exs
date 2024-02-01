@@ -59,3 +59,12 @@ config :logflare_logger_backend,
   max_batch_size: 50
 
 config :json_corp_web, canonical_host: "json.media"
+
+config :sentry,
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]

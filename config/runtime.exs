@@ -98,6 +98,9 @@ if config_env() == :prod do
   config :logflare_logger_backend,
     api_key: logflare_api_key,
     source_id: logflare_source_id
+
+  config :sentry,
+    dsn: System.get_env("SENTRY_DSN")
 end
 
 # test_api
