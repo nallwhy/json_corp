@@ -1,7 +1,8 @@
 %{
 title: "나는 왜 컨설팅이 재밌는가",
 category: :consulting,
-tags: ["컨설팅", "산업 디자인", "카림 라시드", "제약"]
+tags: ["컨설팅", "산업 디자인", "카림 라시드", "제약"],
+status: :deleted
 }
 
 ---

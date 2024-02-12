@@ -10,7 +10,8 @@ defmodule JsonCorp.Blog.Post do
           date_created: Date.t(),
           cover_url: String.t(),
           tags: [String.t()],
-          aliases: [String.t()]
+          aliases: [String.t()],
+          status: [:published | :deleted]
         }
 
   @derive Jason.Encoder
@@ -25,7 +26,8 @@ defmodule JsonCorp.Blog.Post do
     :date_created,
     :cover_url,
     :tags,
-    :aliases
+    :aliases,
+    :status
   ]
   defstruct @enforce_keys
 
@@ -73,7 +75,8 @@ defmodule JsonCorp.Blog.Post do
       date_created: date_created,
       cover_url: meta_map[:cover_url],
       tags: meta_map[:tags],
-      aliases: [slug_with_underscore | meta_map[:aliases] || []] |> Enum.uniq()
+      aliases: [slug_with_underscore | meta_map[:aliases] || []] |> Enum.uniq(),
+      status: meta_map[:status] || :published
     }
   end
 

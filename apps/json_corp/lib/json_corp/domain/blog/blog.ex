@@ -27,6 +27,7 @@ defmodule JsonCorp.Blog do
     list_post_paths(posts_path)
     |> Enum.map(&Post.read/1)
     |> Enum.filter(&(&1.category in list_categories()))
+    |> Enum.filter(&(&1.status == :published))
     |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
@@ -67,6 +68,13 @@ defmodule JsonCorp.Blog do
   def list_comments(%{post_slug: post_slug, session_id: session_id}) do
     Comment.Query.list_by_post_slug(post_slug)
     |> Repo.all()
+    |> Enum.reject(fn
+      %Comment{confirmed_at: nil, session_id: comment_session_id} ->
+        comment_session_id != session_id
+
+      _ ->
+        false
+    end)
     |> then(&{:ok, &1})
   end
 
