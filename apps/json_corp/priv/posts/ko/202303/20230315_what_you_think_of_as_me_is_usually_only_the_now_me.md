@@ -2,7 +2,7 @@
 title: "나는 내가 올빼미형 인간인줄 알았지",
 description: "나라고 생각하는 것은 대체로 '지금'의 나일 뿐이다",
 cover_url: "/images/blog/20230315_cover.jpg?v=1",
-category: "talk",
+category: :talk,
 tags: ["인간", "나", "자유"]
 }
 

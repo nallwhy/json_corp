@@ -1,7 +1,7 @@
 %{
 title: "Next.js 제대로 알기",
 description: "Next.js != Server Side Rendering Framework",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230202_cover.png",
 tags: ["개발", "React", "Next.js"]
 }

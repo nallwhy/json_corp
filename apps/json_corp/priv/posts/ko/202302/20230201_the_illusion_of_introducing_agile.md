@@ -1,7 +1,7 @@
 %{
 title: "애자일을 도입한다는 허상에 관하여",
 description: "도입이 아니라 추구하기",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230201_success_or_failure.png",
 tags: ["개발", "애자일", "정도", "추구"]
 }
@@ -58,6 +58,7 @@ tags: ["개발", "애자일", "정도", "추구"]
 > 계약 협상보다 고객과의 협력을\
 > 계획을 따르기보다 변화에 대응하기를\
 > 가치 있게 여긴다.
+>
 > - [애자일 소프트웨어 개발 선언](https://agilemanifesto.org/iso/ko/manifesto.html)
 
 애자일은 성공/실패의 문제가 아니라 **정도**의 문제이다.\

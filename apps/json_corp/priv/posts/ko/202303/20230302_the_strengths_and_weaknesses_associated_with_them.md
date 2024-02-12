@@ -2,7 +2,7 @@
 title: "장점과 그에 맞닿은 단점",
 description: "인간이 스스로 완전할 수 없는 이유",
 cover_url: "/images/blog/20230302_cover.jpg",
-category: "talk",
+category: :talk,
 tags: ["인간", "장점", "단점"]
 }
 

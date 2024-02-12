@@ -1,7 +1,7 @@
 %{
 title: "포기하지 않기 위해서는 핑계가 필요해",
 description: "핑곗거리가 부족한 포기사회의 사람들을 위하여",
-category: "talk",
+category: :talk,
 cover_url: "/images/blog/20230923_cover.jpg",
 tags: ["인간", "사회", "핑계", "포기", "피로사회"]
 }

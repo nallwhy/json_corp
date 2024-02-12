@@ -1,7 +1,7 @@
 %{
 title: "Doumi.Phoenix.SVG is published",
 description: "Phoenix 에서 SVG 를 가장 깔끔하게 사용하는 방법",
-category: "dev",
+category: :dev,
 tags: ["개발", "Elixir", "Phoenix", "SVG", "Open Source", "Library"]
 }
 

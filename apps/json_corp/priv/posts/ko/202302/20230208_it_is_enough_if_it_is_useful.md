@@ -2,7 +2,7 @@
 title: "유용하면 충분하다",
 description: "꼭 실제일 필요는 없다",
 cover_url: "/images/blog/20230208_cover.webp",
-category: "talk",
+category: :talk,
 tags: ["인간"]
 }
 

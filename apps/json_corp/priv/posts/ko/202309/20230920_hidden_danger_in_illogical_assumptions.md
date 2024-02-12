@@ -1,7 +1,7 @@
 %{
 title: "당연한 것처럼 말하는 잘못된 가정 속에 역린이 있다",
 description: "건드리고 싶지만 건드리지 않는 편이 나은",
-category: "talk",
+category: :talk,
 cover_url: "/images/blog/20230920_cover.jpg",
 tags: ["인간", "당연", "역린"]
 }

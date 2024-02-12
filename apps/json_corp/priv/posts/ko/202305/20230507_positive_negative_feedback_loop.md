@@ -1,7 +1,7 @@
 %{
 title: "양성/음성 피드백 고리의 물리적 이해",
 description: "세상을 해석하는 도구 중 하나",
-category: "talk",
+category: :talk,
 cover_url: "/images/blog/20230507_cover.png",
 tags: ["세상", "역학", "피드백"]
 }

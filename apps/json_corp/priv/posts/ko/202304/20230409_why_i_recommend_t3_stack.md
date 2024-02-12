@@ -1,7 +1,7 @@
 %{
 title: "스타트업에 T3 Stack 을 추천한 이유",
 description: "Full-stack TypeScript 개발을 위한 최고의 방법",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230409_cover.png",
 tags: ["개발", "React", "Next.js", "tRPC", "Prisma", "T3 Stack", "TypeScript", "Full-stack"]
 }

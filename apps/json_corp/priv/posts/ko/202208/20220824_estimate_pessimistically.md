@@ -1,7 +1,7 @@
 %{
 title: "비관적으로 추정하기",
 description: "여유롭게 추정하는 편이 빡빡하게 추정하는 것보다 더 나을지도",
-category: "dev",
+category: :dev,
 tags: ["추정", "일정"]
 }
 

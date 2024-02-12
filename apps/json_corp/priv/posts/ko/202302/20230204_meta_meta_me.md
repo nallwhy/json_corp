@@ -1,7 +1,7 @@
 %{
 title: "메타메타 나",
 description: "'메타 나'가 게임을 하고 있다는 것을 깨달은 '나'",
-category: "talk",
+category: :talk,
 cover_url: "/images/blog/20230204_cover.png",
 tags: ["인간", "메타"]
 }

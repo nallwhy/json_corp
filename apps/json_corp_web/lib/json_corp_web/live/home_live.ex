@@ -27,8 +27,8 @@ defmodule JsonCorpWeb.HomeLive do
     <br />
     <p>
       This site is made with
-      <.link href="https://github.com/phoenixframework/phoenix" class="link">Phoenix</.link> &
-      <.link href="https://github.com/phoenixframework/phoenix_live_view" class="link">Phoenix LiveView</.link>.
+      <.link href="https://github.com/phoenixframework/phoenix" class="link">Phoenix</.link>
+      & <.link href="https://github.com/phoenixframework/phoenix_live_view" class="link">Phoenix LiveView</.link>.
     </p>
     <.link href="https://github.com/nallwhy/json_corp" class="link">GitHub Repository</.link>
     """

@@ -2,7 +2,7 @@
 title: "OpenAI Davinci 모델 Fine-tuning 하기 - (1)",
 description: "지인의 말투를 학습한 챗봇 만들기",
 cover_url: "/images/blog/20230301_cover.png",
-category: "dev",
+category: :dev,
 tags: ["개발", "AI", "OpenAI", "Fine-tuning", "Davinch", "챗봇", "ChatGPT"]
 }
 

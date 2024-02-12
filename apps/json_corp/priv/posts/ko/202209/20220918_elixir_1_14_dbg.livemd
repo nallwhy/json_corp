@@ -1,7 +1,7 @@
 %{
 title: "Elixir v1.14 is released - dbg",
 description: "디버깅을 하는 가장 우아한 방법",
-category: "dev",
+category: :dev,
 cover_url: "https://opengraph.githubassets.com/d7811f58d3c80b5881c265bd02999a35433efeb8e348ac3db92bb3f573709723/elixir-lang/elixir/commit/c5151e6890b5ac8df13276459696f0f47a8e634b",
 tags: ["개발", "Elixir", "Debugging"]
 }

@@ -1,7 +1,7 @@
 %{
 title: "B2B SaaS 의 보안을 높여주는 데이터 암호화 in Elixir",
 description: "Elixir 로 B2B SaaS 를 만드는 여정 - (2)",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230817_cover.jpg",
 tags: ["개발", "암호화", "Encryption", "B2B", "SaaS", "Cloak", "Elixir"]
 }

@@ -1,7 +1,7 @@
 %{
 title: "Hashids 로 난독화하여 ID 노출하지 않기",
 description: "아직도 URL 에 '/users/13' 같이 사용자 ID 가 노출되고 있다면",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230423_cover.png",
 tags: ["개발", "Hashids", "난독화"]
 }

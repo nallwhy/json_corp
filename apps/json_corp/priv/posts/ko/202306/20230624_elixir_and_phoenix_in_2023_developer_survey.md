@@ -1,7 +1,7 @@
 %{
 title: "Phoenix 가 가장 사랑받는 Web framework 로 선정되었습니다",
 description: "Stack Overflow Developer Survey 2023 속의 Elixir, Phoenix",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230624_cover.png",
 tags: ["개발", "Elixir", "Phoenix", "Stack Overflow"]
 }

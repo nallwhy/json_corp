@@ -1,7 +1,7 @@
 %{
 title: "B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir",
 description: "Elixir 로 B2B SaaS 를 만드는 여정 - (1)",
-category: "dev",
+category: :dev,
 cover_url: "/images/blog/20230803_multi_tenancy.png",
 tags: ["개발", "Multi-Tenancy", "B2B", "SaaS", "Ecto", "Elixir"],
 aliases: ["multi_tenency_in_elixir"]

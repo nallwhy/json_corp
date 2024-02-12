@@ -1,7 +1,7 @@
 %{
 title: "다수를 이용해 설득하기",
 description: "너만 빼고 다 하는데~",
-category: "talk"
+category: :talk
 }
 
 ---

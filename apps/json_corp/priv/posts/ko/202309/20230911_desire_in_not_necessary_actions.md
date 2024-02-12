@@ -1,7 +1,7 @@
 %{
 title: "하지 않아도 되는데 굳이 하는 행동에 욕망이 있다",
 description: "부러우니까 자랑을 하고 자랑을 하니까 부러워지고",
-category: "talk",
+category: :talk,
 cover_url: "/images/blog/20230911_cover.jpg",
 tags: ["인간", "욕망", "행동"]
 }
