@@ -44,13 +44,13 @@ defmodule JsonCorp.External do
 
     quote do
       Req.new(headers: unquote(headers_param) ++ default_headers())
-      |> Req.update(
+      |> Req.merge(
         method: unquote(method),
         base_url: unquote(base_url_param) || base_url(),
         url: unquote(path)
       )
-      |> Req.update(auth: auth(unquote(auth_param)))
-      |> Req.update(unquote(opts))
+      |> Req.merge(auth: auth(unquote(auth_param)))
+      |> Req.merge(unquote(opts))
       |> tap(
         &Logger.debug(
           "#{unquote(__MODULE__).inspect_caller(unquote(caller))} request: #{inspect(&1)}"

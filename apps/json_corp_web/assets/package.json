@@ -1,7 +1,5 @@
 {
-  "scripts": {
-    "postinstall": "cd ../../../deps/test_api/assets && npm i"
-  },
+  "scripts": {},
   "dependencies": {
     "daisyui": "^2.20.0"
   }

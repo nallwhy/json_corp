@@ -30,8 +30,8 @@ defmodule JsonCorp.Blog.Comment do
     @required_for_delete [:deleted_at]
     def changeset_for_delete(%Comment{} = struct, attrs) do
       struct
-      |> cast(attrs, [:deleted_at])
-      |> validate_required([:deleted_at])
+      |> cast(attrs, @required_for_delete)
+      |> validate_required(@required_for_delete)
     end
 
     def create(attrs) do
