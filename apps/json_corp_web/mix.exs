@@ -56,12 +56,18 @@ defmodule JsonCorpWeb.MixProject do
       {:doumi_phoenix_svg, "~> 0.1"},
       {:uuid, "~> 1.1"},
       {:ecto_psql_extras, "~> 0.6"},
-      {:heroicons, "~> 0.5.0"},
       {:plug_canonical_host, "~> 2.0"},
       {:bandit, "~> 1.0"},
       {:doumi_phoenix_params, "~> 0.3.4"},
       {:sitemapper, "~> 0.7"},
-      {:ex_cldr_plugs, "~> 1.3"}
+      {:ex_cldr_plugs, "~> 1.3"},
+      {:heroicons,
+       github: "tailwindlabs/heroicons",
+       tag: "v2.2.0",
+       sparse: "optimized",
+       app: false,
+       compile: false,
+       depth: 1}
     ]
   end
 
