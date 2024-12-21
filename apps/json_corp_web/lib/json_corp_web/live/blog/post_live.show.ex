@@ -148,7 +148,12 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def render(%{locked: true} = assigns) do
     ~H"""
     <.form :let={f} for={:door} phx-submit="unlock_post">
-      <%= password_input(f, :password, class: "input input-bordered", placeholder: "password") %>
+      <.input
+        type="password"
+        field={f[:password]}
+        class="input input-bordered"
+        placeholder="password"
+      />
 
       <button class="btn">Open</button>
     </.form>
