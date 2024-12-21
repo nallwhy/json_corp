@@ -21,7 +21,8 @@ defmodule JsonCorp.Application do
   end
 
   if Mix.env() != :test do
-    defp not_test_children, do: [JsonCorp.Worker.BlogSearchIndexer]
+    # defp not_test_children, do: [JsonCorp.Worker.BlogSearchIndexer]
+    defp not_test_children, do: []
   else
     defp not_test_children, do: []
   end
