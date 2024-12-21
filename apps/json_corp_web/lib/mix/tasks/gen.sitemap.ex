@@ -36,7 +36,6 @@ defmodule Mix.Tasks.Gen.Sitemap do
     (sitemaps ++ post_sitemaps)
     |> Sitemapper.generate(config)
     |> Sitemapper.persist(config)
-    |> Sitemapper.ping(config)
     |> Stream.run()
 
     :ok
