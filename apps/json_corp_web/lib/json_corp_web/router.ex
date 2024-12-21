@@ -27,9 +27,9 @@ defmodule JsonCorpWeb.Router do
     plug :admin_basic_auth
   end
 
-  pipeline :test_api do
-    plug :change_endpoint, TestApiWeb.Endpoint
-  end
+  # pipeline :test_api do
+  #   plug :change_endpoint, TestApiWeb.Endpoint
+  # end
 
   scope "/", JsonCorpWeb do
     pipe_through :browser
@@ -63,11 +63,11 @@ defmodule JsonCorpWeb.Router do
     end
   end
 
-  scope "/test_api" do
-    pipe_through [:test_api]
+  # scope "/test_api" do
+  #   pipe_through [:test_api]
 
-    forward "/", TestApiWeb.Router
-  end
+  #   forward "/", TestApiWeb.Router
+  # end
 
   # Other scopes may use custom stacks.
   # scope "/api", JsonCorpWeb do
@@ -110,7 +110,7 @@ defmodule JsonCorpWeb.Router do
     Plug.BasicAuth.basic_auth(conn, username: username, password: password)
   end
 
-  defp change_endpoint(conn, endpoint) do
-    conn |> put_private(:phoenix_endpoint, endpoint)
-  end
+  # defp change_endpoint(conn, endpoint) do
+  #   conn |> put_private(:phoenix_endpoint, endpoint)
+  # end
 end

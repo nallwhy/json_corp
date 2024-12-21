@@ -19,12 +19,12 @@ defmodule JsonCorpWeb.PageController do
         name: "밥면빵",
         description: "Food concierge service",
         url: "https://rinobr.github.io"
-      },
-      %{
-        name: "Test API",
-        description: "Simple API that is (maybe) useful for testing",
-        url: "https://json.media/test_api"
       }
+      # %{
+      #   name: "Test API",
+      #   description: "Simple API that is (maybe) useful for testing",
+      #   url: "https://json.media/test_api"
+      # }
     ]
   end
 end

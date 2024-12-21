@@ -82,4 +82,4 @@ config :ex_cldr,
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
 
-import_config "./test_api/config.exs"
+# import_config "./test_api/config.exs"

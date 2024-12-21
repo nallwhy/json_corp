@@ -26,11 +26,11 @@ defmodule JsonCorpWeb.Endpoint do
     gzip: true,
     only_matching: JsonCorpWeb.static_paths()
 
-  plug Plug.Static,
-    at: "/test_api",
-    from: {:json_corp_web, "priv/static/test_api"},
-    gzip: true,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+  # plug Plug.Static,
+  #   at: "/test_api",
+  #   from: {:json_corp_web, "priv/static/test_api"},
+  #   gzip: true,
+  #   only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
