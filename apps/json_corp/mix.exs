@@ -58,7 +58,7 @@ defmodule JsonCorp.MixProject do
       {:ex_cldr_dates_times, "~> 2.14"},
       {:xml_builder, "~> 2.1"},
       {:logflare_logger_backend, "~> 0.11.4"},
-      {:sentry, "~> 8.0"}
+      {:sentry, "~> 10.0"}
     ]
   end
 
