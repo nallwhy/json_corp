@@ -20,5 +20,5 @@ defmodule JsonCorpWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :json_corp_web
+  use Gettext.Backend, otp_app: :json_corp_web
 end

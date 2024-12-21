@@ -33,7 +33,7 @@ defmodule JsonCorpWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import JsonCorpWeb.Gettext
+      use Gettext, backend: JsonCorpWeb.Gettext
     end
   end
 
@@ -44,8 +44,8 @@ defmodule JsonCorpWeb do
         formats: [:html, :json],
         layouts: [html: JsonCorpWeb.Layouts]
 
+      use Gettext, backend: JsonCorpWeb.Gettext
       import Plug.Conn
-      import JsonCorpWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -98,6 +98,8 @@ defmodule JsonCorpWeb do
 
   defp html_helpers do
     quote do
+      use Gettext, backend: JsonCorpWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
       import Phoenix.HTML.Form
@@ -106,7 +108,6 @@ defmodule JsonCorpWeb do
       # Core UI components and translation
       import JsonCorpWeb.CoreComponents
       import JsonCorpWeb.Components
-      import JsonCorpWeb.Gettext
       import JsonCorpWeb.LiveHelpers
 
       # Shortcut for generating JS commands
@@ -148,6 +149,7 @@ defmodule JsonCorpWeb do
     quote do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+      use Gettext, backend: JsonCorpWeb.Gettext
 
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.Component
@@ -156,7 +158,6 @@ defmodule JsonCorpWeb do
       import Phoenix.View
 
       import JsonCorpWeb.ErrorHelpers
-      import JsonCorpWeb.Gettext
 
       unquote(verified_routes())
     end
