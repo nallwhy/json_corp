@@ -8,7 +8,7 @@ defmodule JsonCorpWeb.CursorLive do
   @presence_topic_prefix "cursor:"
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, %{"uri" => uri}, socket) do
     user = %{id: socket.assigns.session_id, name: socket.assigns.session_id |> String.slice(0..7)}
 
     if connected?(socket) do
@@ -19,6 +19,7 @@ defmodule JsonCorpWeb.CursorLive do
       socket
       |> assign(:user, user)
       |> assign(:users, [])
+      |> apply_uri_changed(uri)
 
     {:ok, socket, layout: false}
   end
@@ -53,14 +54,16 @@ defmodule JsonCorpWeb.CursorLive do
         %{"x" => x, "y" => y, "base_x" => base_x, "base_y" => base_y},
         socket
       ) do
-    Presence.update(
-      self(),
-      @presence_topic_prefix <> socket.assigns.path,
-      socket.assigns.ws_conn_id,
-      fn meta ->
-        meta |> Map.put(:position, %{x: x, y: y, base_x: base_x, base_y: base_y})
-      end
-    )
+    if socket.assigns[:path] do
+      Presence.update(
+        self(),
+        @presence_topic_prefix <> socket.assigns.path,
+        socket.assigns.ws_conn_id,
+        fn meta ->
+          meta |> Map.put(:position, %{x: x, y: y, base_x: base_x, base_y: base_y})
+        end
+      )
+    end
 
     {:noreply, socket}
   end
@@ -87,6 +90,14 @@ defmodule JsonCorpWeb.CursorLive do
 
   @impl true
   def handle_info({:uri_changed, uri}, socket) do
+    socket =
+      socket
+      |> apply_uri_changed(uri)
+
+    {:noreply, socket}
+  end
+
+  defp apply_uri_changed(socket, uri) do
     user = socket.assigns.user
     %{path: path} = URI.parse(uri)
     presence_topic = @presence_topic_prefix <> path
@@ -113,13 +124,10 @@ defmodule JsonCorpWeb.CursorLive do
     presences = Presence.list(presence_topic)
     users = presences |> convert_presences_to_users(socket.assigns.ws_conn_id)
 
-    socket =
-      socket
-      |> assign(:path, path)
-      |> assign(:presences, presences)
-      |> assign(:users, users)
-
-    {:noreply, socket}
+    socket
+    |> assign(:path, path)
+    |> assign(:presences, presences)
+    |> assign(:users, users)
   end
 
   defp convert_presences_to_users(presences, my_user_id) do
