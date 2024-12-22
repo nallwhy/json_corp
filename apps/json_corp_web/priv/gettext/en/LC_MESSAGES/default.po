@@ -62,3 +62,23 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Social"
 msgstr ""
+
+#: lib/json_corp_web/components/components.ex:127
+#, elixir-autogen, elixir-format
+msgid "Blog"
+msgstr ""
+
+#: lib/json_corp_web/components/components.ex:128
+#, elixir-autogen, elixir-format
+msgid "Consulting"
+msgstr ""
+
+#: lib/json_corp_web/components/components.ex:129
+#, elixir-autogen, elixir-format
+msgid "Playgrounds"
+msgstr ""
+
+#: lib/json_corp_web/components/components.ex:130
+#, elixir-autogen, elixir-format
+msgid "Projects"
+msgstr ""
