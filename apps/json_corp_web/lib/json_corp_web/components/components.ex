@@ -34,17 +34,25 @@ defmodule JsonCorpWeb.Components do
       <div class="flex-none w-32">
         <.link navigate={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
-      <div class="hidden sm:block flex-1 pl-12">
-        <ul class="flex">
-          <li
-            :for={{menu_name, menu_route} <- list_menus()}
-            class="px-2 border-y-2 border-transparent hover:border-b-primary"
-          >
-            <.link navigate={menu_route}><%= menu_name %></.link>
-          </li>
-        </ul>
+      <div class="hidden sm:flex flex-row justify-between flex-1 pl-12">
+        <div>
+          <ul class="flex">
+            <li
+              :for={{menu_name, menu_route} <- list_menus()}
+              class="px-2 border-y-2 border-transparent hover:border-b-primary"
+            >
+              <.link navigate={menu_route}><%= menu_name %></.link>
+            </li>
+          </ul>
+        </div>
+        <div>
+          {@locale.language |> Cldr.LocaleDisplay.display_name!()}
+        </div>
       </div>
       <div class="sm:hidden flex-none">
+        <div>
+          {@locale.language |> Cldr.LocaleDisplay.display_name!()}
+        </div>
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost">
             <Icon.bar_3 class="hover:fill-black" width="24" height="24" />
