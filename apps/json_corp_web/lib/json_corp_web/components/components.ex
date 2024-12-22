@@ -137,21 +137,31 @@ defmodule JsonCorpWeb.Components do
 
   defp language_dropdown(assigns) do
     ~H"""
-    <.dropdown
-      label={@current_locale.language |> Cldr.LocaleDisplay.display_name!()}
-      placement="bottom-end"
-    >
-      <.link :for={{flag, language} <- languages()} href={"?locale=#{language}"}>
+    <.dropdown label={language_label(@current_locale.language)} placement="bottom-end">
+      <.link :for={{language, _} <- languages()} href={"?locale=#{language}"}>
         <.dropdown_button>
-          {flag} {language |> Cldr.LocaleDisplay.display_name!()}
+          {language_label(language)}
         </.dropdown_button>
       </.link>
     </.dropdown>
     """
   end
 
+  defp language_label(language) do
+    flag =
+      languages()
+      |> Enum.find_value(fn
+        {^language, flag} -> flag
+        _ -> nil
+      end)
+
+    name = language |> Cldr.LocaleDisplay.display_name!()
+
+    "#{flag} #{name}"
+  end
+
   defp languages() do
-    [{"🇰🇷", "ko"}, {"🇺🇸", "en"}]
+    [{"ko", "🇰🇷"}, {"en", "🇺🇸"}]
   end
 
   # Fluxon components
