@@ -25,3 +25,5 @@ erl_crash.dump
 .elixir-tools
 
 .docker
+
+.envrc.private
