@@ -27,9 +27,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    language = socket.assigns.locale.language
+
     socket =
       socket
-      |> push_navigate(to: ~p"/blog/#{socket.assigns.language}", replace: true)
+      |> push_navigate(to: ~p"/blog/#{language}", replace: true)
 
     {:ok, socket}
   end

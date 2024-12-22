@@ -7,10 +7,10 @@ defmodule JsonCorpWeb.Router do
 
     plug Cldr.Plug.PutLocale,
       apps: [:cldr],
-      from: [:accept_language],
+      from: [:query, :session, :accept_language],
       cldr: JsonCorp.Core.Cldr
 
-    plug Cldr.Plug.PutSession, as: :language_tag
+    plug Cldr.Plug.PutSession, as: :string
 
     plug :fetch_live_flash
     plug :put_root_layout, {JsonCorpWeb.Layouts, :root}
