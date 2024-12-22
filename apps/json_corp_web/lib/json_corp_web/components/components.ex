@@ -28,6 +28,8 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  attr :locale, :map, required: true
+
   def header(assigns) do
     ~H"""
     <header class="navbar max-w-6xl mx-auto px-8 py-6 place-content-between">
@@ -46,7 +48,7 @@ defmodule JsonCorpWeb.Components do
           </ul>
         </div>
         <div>
-          {@locale.language |> Cldr.LocaleDisplay.display_name!()}
+          <.language_dropdown current_locale={@locale} />
         </div>
       </div>
       <div class="sm:hidden flex-none">
@@ -127,4 +129,32 @@ defmodule JsonCorpWeb.Components do
       {"Projects", ~p"/projects"}
     ]
   end
+
+  attr :current_locale, :map, required: true
+
+  defp language_dropdown(assigns) do
+    ~H"""
+    <.dropdown
+      label={@current_locale.language |> Cldr.LocaleDisplay.display_name!()}
+      placement="bottom-end"
+    >
+      <.link :for={{flag, language} <- languages()} href={"?locale=#{language}"}>
+        <.dropdown_button>
+          {flag} {language |> Cldr.LocaleDisplay.display_name!()}
+        </.dropdown_button>
+      </.link>
+    </.dropdown>
+    """
+  end
+
+  defp languages() do
+    [{"🇰🇷", "ko"}, {"🇺🇸", "en"}]
+  end
+
+  # Fluxon components
+
+  use Fluxon, avoid_conflicts: true
+
+  defdelegate dropdown(assigns), to: Fluxon.Components.Dropdown
+  defdelegate dropdown_button(assigns), to: Fluxon.Components.Dropdown
 end
