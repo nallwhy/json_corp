@@ -67,7 +67,8 @@ defmodule JsonCorpWeb.MixProject do
        sparse: "optimized",
        app: false,
        compile: false,
-       depth: 1}
+       depth: 1},
+      {:fluxon, "~> 1.0.10", repo: :fluxon}
     ]
   end
 

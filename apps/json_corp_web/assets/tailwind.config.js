@@ -7,6 +7,7 @@ const path = require("path")
 
 module.exports = {
   content: [
+    '../../../deps/fluxon/**/*.*ex',
     './js/**/*.js',
     '../lib/*_web.ex',
     '../lib/*_web/**/*.*ex'

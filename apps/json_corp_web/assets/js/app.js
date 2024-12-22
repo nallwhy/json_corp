@@ -25,9 +25,18 @@ import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 import Hooks from "./hooks"
+import { Hooks as FluxonHooks, DOM as FluxonDOM } from "fluxon"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken, ws_conn_id: window.crypto.randomUUID() }, hooks: Hooks })
+let liveSocket = new LiveSocket("/live", Socket, {
+    params: { _csrf_token: csrfToken, ws_conn_id: window.crypto.randomUUID() },
+    hooks: { ...Hooks, ...FluxonHooks },
+    dom: {
+        onBeforeElUpdated(from, to) {
+            FluxonDOM.onBeforeElUpdated(from, to)
+        }
+    }
+})
 
 // Show progress bar on live navigation and form submits
 topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" })
