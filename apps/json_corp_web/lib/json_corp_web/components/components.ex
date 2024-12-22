@@ -10,14 +10,16 @@ defmodule JsonCorpWeb.Components do
   def head_meta_tags(assigns) do
     page_meta =
       [:title, :description, :keyword, :image]
-      |> Map.new(fn key -> {key, assigns |> get_in([:page_meta, key]) || assigns.default[key]} end)
+      |> Map.new(fn key ->
+        {key, assigns |> get_in([:page_meta, key]) || assigns.default[key]}
+      end)
 
     assigns =
       assigns
       |> assign(:page_meta, page_meta)
 
     ~H"""
-    <.live_title suffix={@title_suffix}><%= @page_meta.title %></.live_title>
+    <.live_title suffix={@title_suffix}>{@page_meta.title}</.live_title>
     <meta name="title" content={@page_meta.title} />
     <meta property="og:title" content={@page_meta.title} />
     <meta name="description" content={@page_meta.description} />
@@ -44,7 +46,7 @@ defmodule JsonCorpWeb.Components do
               :for={{menu_name, menu_route} <- list_menus()}
               class="px-2 border-y-2 border-transparent hover:border-b-primary"
             >
-              <.link navigate={menu_route}><%= menu_name %></.link>
+              <.link navigate={menu_route}>{menu_name}</.link>
             </li>
           </ul>
         </div>
@@ -65,7 +67,7 @@ defmodule JsonCorpWeb.Components do
             class="menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 border-2"
           >
             <li :for={{menu_name, menu_route} <- list_menus()}>
-              <.link navigate={menu_route}><%= menu_name %></.link>
+              <.link navigate={menu_route}>{menu_name}</.link>
             </li>
           </ul>
         </div>
@@ -96,7 +98,7 @@ defmodule JsonCorpWeb.Components do
 
   def h1(assigns) do
     ~H"""
-    <h1 class="text-2xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    <h1 class="text-2xl mb-4 font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 
@@ -104,7 +106,7 @@ defmodule JsonCorpWeb.Components do
 
   def h2(assigns) do
     ~H"""
-    <h1 class="text-xl mb-4 font-bold"><%= render_slot(@inner_block) %></h1>
+    <h1 class="text-xl mb-4 font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 

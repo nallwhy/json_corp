@@ -27,10 +27,10 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
     <div class="px-4 py-2 rounded-md bg-slate-50">
       Users
       <li :if={@me}>
-        <%= @me.name %> <span class="ml-1">(Me)</span> (<%= @me.channels |> Enum.join(", ") %>)
+        {@me.name} <span class="ml-1">(Me)</span> ({@me.channels |> Enum.join(", ")})
       </li>
       <li :for={{_other_id, other} <- @others}>
-        <%= other.name %> (<%= other.channels |> Enum.join(", ") %>)
+        {other.name} ({other.channels |> Enum.join(", ")})
       </li>
     </div>
     """

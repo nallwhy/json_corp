@@ -58,10 +58,10 @@ defmodule JsonCorpWeb.Playgrounds.FormLive do
 
       <div>
         <div :for={routine <- @routines}>
-          <p><%= routine.name %></p>
-          <p><%= routine.time %></p>
+          <p>{routine.name}</p>
+          <p>{routine.time}</p>
           <div :for={step <- routine.steps}>
-            <p><%= step.description %></p>
+            <p>{step.description}</p>
           </div>
         </div>
       </div>

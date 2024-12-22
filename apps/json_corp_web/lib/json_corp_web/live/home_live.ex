@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.HomeLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <.h1><%= gettext("Welcome to %{name}!", name: "Json Media") %></.h1>
+    <.h1>{gettext("Welcome to %{name}!", name: "Json Media")}</.h1>
     <p>I'm a purely arrogant person.</p>
     <p>I love to observe, interpret, explain, and change the world.</p>
     <br />

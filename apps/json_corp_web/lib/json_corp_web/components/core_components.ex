@@ -394,7 +394,7 @@ defmodule JsonCorpWeb.CoreComponents do
     ~H"""
     <label class="block cursor-pointer">
       <input type="checkbox" name={@name} class="hidden" />
-      <.icon name="hero-plus-circle" /><%= @label %>
+      <.icon name="hero-plus-circle" />{@label}
     </label>
     """
   end
@@ -431,7 +431,7 @@ defmodule JsonCorpWeb.CoreComponents do
       }
     />
     <button type="button" phx-click={JS.exec("data-delete", to: "##{@id}")}>
-      <.icon name="hero-x-mark" /><%= @label %>
+      <.icon name="hero-x-mark" />{@label}
     </button>
     """
   end

@@ -168,27 +168,27 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
       </.link>
       <div class="prose">
-        <h1><%= @post.title %></h1>
-        <p><%= @post.description %></p>
-        <div><time>Date created: <%= @post.date_created %></time></div>
+        <h1>{@post.title}</h1>
+        <p>{@post.description}</p>
+        <div><time>Date created: {@post.date_created}</time></div>
         <div>
           View count:
           <.async_result :let={view_count} assign={@view_count}>
             <:loading>-</:loading>
-            <%= view_count %>
+            {view_count}
           </.async_result>
         </div>
       </div>
       <div :if={@post.tags} class="mt-2">
         <.link :for={tag <- @post.tags} navigate={~p"/blog/#{@post.language}?tag=#{tag}"}>
-          <span class="mr-2 tag">#<%= tag %></span>
+          <span class="mr-2 tag">#{tag}</span>
         </.link>
       </div>
     </div>
     <hr class="prose" />
     <div class="prose pt-4">
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
-      <%= @post.body |> MarkdownRenderer.highlighted_html() |> raw() %>
+      {@post.body |> MarkdownRenderer.highlighted_html() |> raw()}
     </div>
     <div class="max-w-2xl mt-12">
       <.h2>Comments</.h2>
@@ -217,9 +217,9 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           id={comment_dom_id}
           class="py-4 space-y-2"
         >
-          <p><%= comment.name %></p>
-          <p><%= comment.inserted_at |> ago() %></p>
-          <p><%= comment.body %></p>
+          <p>{comment.name}</p>
+          <p>{comment.inserted_at |> ago()}</p>
+          <p>{comment.body}</p>
           <.button phx-click={
             JS.push("set_comment_id", value: %{comment_id: comment.id})
             |> show_modal("comment-delete-modal")

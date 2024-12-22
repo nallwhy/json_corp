@@ -11,7 +11,7 @@ defmodule JsonCorpWeb.ConsultingLive do
     ~H"""
     <.h1>Consulting</.h1>
     <div class="prose">
-      <%= consulting_markdown() |> JsonCorp.Blog.MarkdownRenderer.highlighted_html() |> raw() %>
+      {consulting_markdown() |> JsonCorp.Blog.MarkdownRenderer.highlighted_html() |> raw()}
     </div>
     """
   end

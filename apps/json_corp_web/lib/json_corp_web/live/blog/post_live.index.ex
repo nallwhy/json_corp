@@ -101,7 +101,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
         patch={~p"/blog/#{@language}?category=#{category}"}
         class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
       >
-        <%= category %>
+        {category}
       </.link>
     </div>
 
@@ -110,14 +110,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
         <div :for={{dom_id, post} <- @streams.posts} id={dom_id}>
           <.link navigate={~p"/blog/#{post.language}/#{post.slug}"}>
             <article class="py-4 cursor-pointer">
-              <h2 class="text-xl"><%= post.title %></h2>
-              <p :if={post.description} class="mt-2"><%= post.description %></p>
+              <h2 class="text-xl">{post.title}</h2>
+              <p :if={post.description} class="mt-2">{post.description}</p>
               <div class="mt-6">
-                Date created: <time><%= post.date_created %></time>
+                Date created: <time>{post.date_created}</time>
               </div>
               <div :if={post.tags} class="mt-6">
                 <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
-                  <span class="mr-2 tag">#<%= tag %></span>
+                  <span class="mr-2 tag">#{tag}</span>
                 </.link>
               </div>
             </article>

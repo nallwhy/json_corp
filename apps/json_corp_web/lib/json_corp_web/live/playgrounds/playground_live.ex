@@ -26,10 +26,10 @@ defmodule JsonCorpWeb.Playgrounds.PlaygroundLive do
     ~H"""
     <div class="card w-96 mx-4 bg-base-100 shadow-xl">
       <div class="card-body">
-        <h2 class="card-title"><%= @name %></h2>
-        <p><%= @description %></p>
+        <h2 class="card-title">{@name}</h2>
+        <p>{@description}</p>
         <div class="card-actions justify-end mt-4">
-          <.link navigate={@path} class="btn btn-primary">Go to <%= @name %></.link>
+          <.link navigate={@path} class="btn btn-primary">Go to {@name}</.link>
         </div>
       </div>
     </div>

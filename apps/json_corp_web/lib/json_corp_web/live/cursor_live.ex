@@ -40,7 +40,7 @@ defmodule JsonCorpWeb.CursorLive do
             style={"background-color: #{color};"}
             class="mt-0 ml-2 px-2 py-1 text-sm rounded-md text-white"
           >
-            <%= user.name %>
+            {user.name}
           </span>
         </li>
       </ul>

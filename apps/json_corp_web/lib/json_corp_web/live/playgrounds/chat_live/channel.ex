@@ -50,12 +50,12 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Channel do
   def render(assigns) do
     ~H"""
     <div class="flex-1 flex flex-col max-h-[36rem] px-4 py-4 rounded-md bg-slate-50">
-      <.h2># <%= @channel_name %></.h2>
+      <.h2># {@channel_name}</.h2>
       <div id="messages" class="flex-1 overflow-y-auto" phx-update="stream" phx-hook="ChatMessages">
         <div :for={{message_id, message} <- @streams.messages} id={message_id} class="mt-4">
-          <p>User id: <%= message.user_id %></p>
-          <p><%= message.created_at %></p>
-          <p class="whitespace-pre-line"><%= message.body %></p>
+          <p>User id: {message.user_id}</p>
+          <p>{message.created_at}</p>
+          <p class="whitespace-pre-line">{message.body}</p>
         </div>
       </div>
       <.simple_form
