@@ -1,5 +1,6 @@
 defmodule JsonCorpWeb.Components do
   use JsonCorpWeb, :component
+  use Gettext, backend: JsonCorpWeb.Gettext
   alias JsonCorpWeb.Components.Icon
 
   attr :page_meta, :map, required: true
@@ -77,7 +78,7 @@ defmodule JsonCorpWeb.Components do
     ~H"""
     <footer class="footer max-w-6xl mx-auto p-8">
       <div>
-        <span class="footer-title">Social</span>
+        <span class="footer-title">{gettext("Social")}</span>
         <div class="grid grid-flow-col gap-4">
           <a href="https://github.com/nallwhy" target="_blank">
             <Icon.github class="fill-gray-400 hover:fill-black" width="24" height="24" />

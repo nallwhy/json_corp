@@ -4,6 +4,7 @@ defmodule JsonCorpWeb.LocaleHook do
 
   def on_mount(:default, _params, %{"cldr_locale" => locale_str}, socket) do
     {:ok, locale} = Cldr.put_locale(locale_str)
+    Gettext.put_locale(locale.language)
 
     socket =
       socket
