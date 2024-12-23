@@ -32,7 +32,7 @@ defmodule JsonCorpWeb.ProjectLive do
         <h2 class="card-title">{@name}</h2>
         <p>{@description}</p>
         <div class="card-actions justify-end mt-4">
-          <.link href={@url} class="btn btn-primary">Go to Project</.link>
+          <.link href={@url} class="btn btn-primary" target="_blank">Go to Project</.link>
         </div>
       </div>
     </div>
@@ -45,12 +45,12 @@ defmodule JsonCorpWeb.ProjectLive do
         name: "밥면빵",
         description: "Food concierge service",
         url: "https://rinobr.github.io"
+      },
+      %{
+        name: "reflow",
+        description: "Get your Tableau report in Slack",
+        url: "https://reflow.work"
       }
-      # %{
-      #   name: "Test API",
-      #   description: "Simple API that is (maybe) useful for testing",
-      #   url: "https://json.media/test_api"
-      # }
     ]
   end
 end
