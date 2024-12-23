@@ -35,6 +35,13 @@ RUN mix local.hex --force && \
 ENV MIX_ENV="prod"
 ENV APP_NAME=json_corp
 
+# Add hex repo for petal
+RUN --mount=type=secret,id=FLUXON_KEY_FINGERPRINT \
+  --mount=type=secret,id=FLUXON_LICENSE_KEY \
+  mix hex.repo add fluxon https://repo.fluxonui.com \
+  --fetch-public-key "$(cat /run/secrets/FLUXON_KEY_FINGERPRINT)" \
+  --auth-key "$(cat /run/secrets/FLUXON_LICENSE_KEY)"
+
 # install mix dependencies
 COPY mix.exs mix.lock ./
 COPY apps/${APP_NAME}/mix.exs ./apps/${APP_NAME}/mix.exs
