@@ -59,7 +59,9 @@ defmodule JsonCorp.MixProject do
       {:ex_cldr_locale_display, "~> 1.1"},
       {:xml_builder, "~> 2.1"},
       {:logflare_logger_backend, "~> 0.11.4"},
-      {:sentry, "~> 10.0"}
+      {:sentry, "~> 10.0"},
+      # for sentry
+      {:hackney, "~> 1.20"}
     ]
   end
 
