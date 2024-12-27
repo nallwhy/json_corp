@@ -3,6 +3,7 @@ defmodule Mix.Tasks.Gen.Rss do
   use JsonCorp.Blog
   import XmlBuilder
   alias JsonCorp.Blog.MarkdownRenderer
+  alias JsonCorp.Core, as: C
 
   @impl Mix.Task
   def run(_args) do
@@ -14,7 +15,7 @@ defmodule Mix.Tasks.Gen.Rss do
       Blog.list_posts()
       |> Enum.take(10)
 
-    last_modified = last_post.date_created |> date_to_datetime() |> Timex.format!("{RFC822}")
+    last_modified = last_post.date_created |> date_to_datetime() |> C.Calendar.format(:rfc822)
 
     rss =
       element(:rss, %{version: "2.0"}, [
@@ -50,7 +51,7 @@ defmodule Mix.Tasks.Gen.Rss do
       element(:title, post.title),
       element(:description, description),
       element(:link, url),
-      element(:pubDate, post.date_created |> date_to_datetime() |> Timex.format!("{RFC822}")),
+      element(:pubDate, post.date_created |> date_to_datetime() |> C.Calendar.format(:rfc822)),
       element(:guid, url),
       element(:category, post.category)
     ])

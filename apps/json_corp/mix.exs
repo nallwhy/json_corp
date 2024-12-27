@@ -45,7 +45,6 @@ defmodule JsonCorp.MixProject do
       {:earmark, "~> 1.4"},
       {:makeup, "~> 1.1"},
       {:makeup_elixir, "~> 1.0"},
-      {:timex, "~> 3.7"},
       {:nebulex, "~> 2.4"},
       {:decorator, "~> 1.4"},
       {:uuid, "~> 1.1"},
@@ -61,7 +60,8 @@ defmodule JsonCorp.MixProject do
       {:logflare_logger_backend, "~> 0.11.4"},
       {:sentry, "~> 10.0"},
       # for sentry
-      {:hackney, "~> 1.20"}
+      {:hackney, "~> 1.20"},
+      {:datix, "~> 0.3"}
     ]
   end
 

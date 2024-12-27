@@ -97,7 +97,7 @@ defmodule JsonCorp.BlogTest do
           post_slug: post_slug,
           session_id: session_id,
           status: :pending,
-          inserted_at: now |> Timex.shift(days: -4)
+          inserted_at: now |> DateTime.shift(day: -4)
         )
 
       confirmed_comment =
@@ -105,24 +105,24 @@ defmodule JsonCorp.BlogTest do
           post_slug: post_slug,
           session_id: session_id,
           status: :confirmed,
-          inserted_at: now |> Timex.shift(days: -3)
+          inserted_at: now |> DateTime.shift(day: -3)
         )
 
       other_sessions_pending_comment =
         insert(:comment,
           post_slug: post_slug,
           status: :pending,
-          inserted_at: now |> Timex.shift(days: -2)
+          inserted_at: now |> DateTime.shift(day: -2)
         )
 
       other_sessions_confirmed_comment =
         insert(:comment,
           post_slug: post_slug,
           status: :confirmed,
-          inserted_at: now |> Timex.shift(days: -1)
+          inserted_at: now |> DateTime.shift(day: -1)
         )
 
-      other_posts_comment = insert(:comment, inserted_at: now |> Timex.shift(days: -0))
+      other_posts_comment = insert(:comment, inserted_at: now |> DateTime.shift(day: -0))
 
       %{
         post_slug: post_slug,

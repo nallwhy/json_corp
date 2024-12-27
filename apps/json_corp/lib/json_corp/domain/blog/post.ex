@@ -1,4 +1,6 @@
 defmodule JsonCorp.Blog.Post do
+  alias JsonCorp.Core, as: C
+
   @type t :: %__MODULE__{
           id: String.t(),
           title: String.t(),
@@ -87,7 +89,7 @@ defmodule JsonCorp.Blog.Post do
         post_path
       )
 
-    date_created = date_created_str |> Timex.parse!("{YYYY}{0M}{0D}") |> NaiveDateTime.to_date()
+    date_created = date_created_str |> C.Calendar.parse_date!(:iso8601_basic)
 
     %{language: language, slug_with_underscore: slug_with_underscore, date_created: date_created}
   end
