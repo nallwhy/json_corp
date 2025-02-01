@@ -61,7 +61,8 @@ defmodule JsonCorp.MixProject do
       {:sentry, "~> 10.0"},
       # for sentry
       {:hackney, "~> 1.20"},
-      {:datix, "~> 0.3"}
+      {:datix, "~> 0.3"},
+      {:mdex, "~> 0.3.2"}
     ]
   end
 
