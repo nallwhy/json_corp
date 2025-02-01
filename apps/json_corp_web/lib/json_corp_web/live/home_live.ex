@@ -21,10 +21,14 @@ defmodule JsonCorpWeb.HomeLive do
     </p>
     <br />
     <p>
-      This site is made with
-      <.link href="https://github.com/phoenixframework/phoenix_live_view" class="link">Phoenix LiveView</.link>.
+      This site is made with <.link
+        href="https://github.com/phoenixframework/phoenix_live_view"
+        class="link"
+      >Phoenix LiveView</.link>.
     </p>
-    <.link href="https://github.com/nallwhy/json_corp" class="link">GitHub Repository of thie site</.link>
+    <.link href="https://github.com/nallwhy/json_corp" class="link">
+      GitHub Repository of thie site
+    </.link>
     """
   end
 end
