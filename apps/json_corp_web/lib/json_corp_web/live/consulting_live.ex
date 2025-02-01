@@ -22,8 +22,8 @@ defmodule JsonCorpWeb.ConsultingLive do
     #### Elixir
       - Umbrella App
       - Oban
-      - [Telemetry(dispatching events for metrics)](/blog/logging_slow_queries_with_telemetry)
-      - [Nebulex(cache)](/blog/cache_in_elixir_with_nebulex)
+      - [Telemetry(dispatching events for metrics)](/blog/logging-slow-queries-with-telemetry)
+      - [Nebulex(cache)](/blog/cache-in-elixir-with-nebulex)
       - Broadway
       - CLDR
     #### 채용
@@ -32,7 +32,7 @@ defmodule JsonCorpWeb.ConsultingLive do
       - 채용 인터뷰 역량 개선
     #### 문화
       - 애자일
-        - [애자일을 도입한다는 허상에 관하여](/blog/the_illusion_of_introducing_agile)
+        - [애자일을 도입한다는 허상에 관하여](/blog/the-illusion-of-introducing-agile)
       - 개발 조직 미팅
       - 코드 리뷰
       - 사내 세미나
@@ -78,8 +78,8 @@ defmodule JsonCorpWeb.ConsultingLive do
     #### 성과
       - Objective, Output, Outcome
     #### 피드백
-      - [CSS 상호 피드백](/blog/css_feedback)
-        - [CSS 액션 아이템을 정하기 위한 1:1 미팅 가이드](/blog/css_action_item_meeting_guide)
+      - [CSS 상호 피드백](/blog/css-feedback)
+        - [CSS 액션 아이템을 정하기 위한 1:1 미팅 가이드](/blog/css-action-item-meeting-guide)
     #### 회의
       - 회의록 작성
     #### 세미나
