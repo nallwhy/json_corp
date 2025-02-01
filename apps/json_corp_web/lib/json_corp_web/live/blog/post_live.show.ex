@@ -190,7 +190,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       {@post.body |> MarkdownRenderer.html() |> raw()}
     </div>
-    <div class="max-w-2xl mt-12">
+    <div :if={false} class="max-w-2xl mt-12">
       <.h2>Comments</.h2>
       <.simple_form for={@comment_form} phx-change="validate_comment" phx-submit="save_comment">
         <div class="flex space-x-8">
