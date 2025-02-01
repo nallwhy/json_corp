@@ -1,7 +1,7 @@
 %{
 title: "오너십(주인의식)에 대하여",
 description: "주인이 아닌데 왜 주인의식을 가지라 그래??",
-category: :talk,
+category: :essay,
 cover_url: "/images/blog/20231105_cover.webp",
 tags: ["인간", "오너십", "주인의식"]
 }

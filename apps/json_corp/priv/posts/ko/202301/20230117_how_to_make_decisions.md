@@ -1,7 +1,7 @@
 %{
 title: "선택은 어떻게 하는가",
 description: "모든 것을 충족하는 선택지가 없다면",
-category: :talk,
+category: :essay,
 cover_url: "/images/blog/20230117_how_to_make_decisions.png",
 tags: ["인간", "선택"]
 }

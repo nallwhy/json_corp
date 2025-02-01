@@ -1,7 +1,7 @@
 %{
 title: "'포기사회'를 지나 '파괴사회'로 가고 있는 한국",
 description: "희망이 없으면 파괴하지 않을 이유가 있을까?",
-category: :talk,
+category: :essay,
 cover_url: "/images/blog/20231025_cover.jpg",
 tags: ["인간", "사회", "포기", "파괴", "피로사회", "포기사회", "파괴사회"]
 }

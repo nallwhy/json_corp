@@ -2,7 +2,7 @@
 title: "우리의 뇌는 꽤나 기계적일 수도 있겠다",
 description: "같은 인풋에 같은 아웃풋",
 cover_url: "/images/blog/20230217_cover.jpg",
-category: :talk,
+category: :essay,
 tags: ["인간", "뇌", "자유의지"]
 }
 

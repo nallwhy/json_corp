@@ -2,7 +2,7 @@
 title: "건방짐은 어떻게 체제화되는가",
 description: "모 IT 대기업 채용 과정을 진행하며",
 cover_url: "/images/blog/20230324_cover.jpg",
-category: :talk,
+category: :essay,
 tags: ["사회", "건방짐", "시스템"]
 }
 

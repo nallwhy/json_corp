@@ -1,7 +1,7 @@
 %{
 title: "변화는 매력적이어야 한다",
 description: "변화의 성공 확률 높이는 가장 기본적이면서 가장 안지켜지는 방법",
-category: :talk,
+category: :essay,
 cover_url: "/images/blog/20230131_cover.png",
 tags: ["인간", "변화"]
 }

@@ -2,7 +2,7 @@
 title: "살이 빠져도 좋고 쪄도 좋다",
 description: "그렇다고 생각하기 나름이라는 건 아니고",
 cover_url: "/images/blog/20230317_cover.jpg",
-category: :talk,
+category: :essay,
 tags: ["인간", "마음", "자유"]
 }
 
