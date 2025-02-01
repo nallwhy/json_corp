@@ -1,9 +1,10 @@
-.prose code.inline {
+.prose :not(pre) code {
   background-color: rgba(110, 118, 129, 0.4);
   padding: 2px 6px;
   border-radius: 0.4rem;
 }
 
+/* 
 .prose pre {
   background-color: #1e1e1e;
 }
@@ -66,4 +67,4 @@
 
 .makeup .c1 {
   color: #6a9955;
-}
+} */
