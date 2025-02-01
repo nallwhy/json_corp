@@ -31,7 +31,7 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
-  attr :locale, :map, required: true
+  attr :language, :map, required: true
 
   def header(assigns) do
     ~H"""
@@ -51,12 +51,12 @@ defmodule JsonCorpWeb.Components do
           </ul>
         </div>
         <div>
-          <.language_dropdown current_locale={@locale} />
+          <.language_dropdown current_language={@language} />
         </div>
       </div>
       <div class="sm:hidden flex-none">
         <div>
-          {@locale.language |> Cldr.LocaleDisplay.display_name!()}
+          {@language |> Cldr.LocaleDisplay.display_name!()}
         </div>
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost">
@@ -130,11 +130,11 @@ defmodule JsonCorpWeb.Components do
     ]
   end
 
-  attr :current_locale, :map, required: true
+  attr :current_language, :map, required: true
 
   defp language_dropdown(assigns) do
     ~H"""
-    <.dropdown label={language_label(@current_locale.language)} placement="bottom-end">
+    <.dropdown label={language_label(@current_language)} placement="bottom-end">
       <.link :for={{language, _} <- languages()} href={"?locale=#{language}"}>
         <.dropdown_button>
           {language_label(language)}

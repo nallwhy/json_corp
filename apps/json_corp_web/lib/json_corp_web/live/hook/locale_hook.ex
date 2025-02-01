@@ -9,6 +9,7 @@ defmodule JsonCorpWeb.LocaleHook do
     socket =
       socket
       |> assign(:locale, locale)
+      |> assign(:language, locale.language)
 
     {:cont, socket}
   end
