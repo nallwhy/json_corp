@@ -11,7 +11,7 @@ Slow query 는 백엔드에 병목을 만드는 요인 중 하나이다.
 
 Slow query 로 인해 DB 에 리소스가 부족한 문제가 발생했을 때 이를 제대로 처리하지 않고 DB 성능을 늘리는 식으로 해결하려 하는 경우들이 있다. 하지만 정상적인 query 와 slow query 의 차이는 x100 이상은 가뿐히 나기 때문에, DB 성능을 몇 배 올려서 당장 해결이 되었다고 해도 곧 다시 문제가 발생한다.
 
-AWS RDS 를 쓴다면 slow query 를 찾기위해 [Performance Insight](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) 같은 것을 사용해볼 수도 있지만, query 가 긴 경우 query 전체를 보기가 어렵거나 불가능한 경우도 있다.[1]
+AWS RDS 를 쓴다면 slow query 를 찾기위해 [Performance Insight](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html) 같은 것을 사용해볼 수도 있지만, query 가 긴 경우 query 전체를 보기가 어렵거나 불가능한 경우도 있다.[^1]
 
 이 문제를 해결하기 위해, Elixir 에서 [Telemetry](https://github.com/beam-telemetry/telemetry) 를 사용하여 간단하게 slow query 를 로깅하는 방법을 알아보자.
 
@@ -19,9 +19,9 @@ AWS RDS 를 쓴다면 slow query 를 찾기위해 [Performance Insight](https://
 
 어느 순간부터 Elixir 에서 주로 사용되는 대부분의 library(ex. [`Phoenix`](https://github.com/phoenixframework/phoenix), [`Ecto`](https://github.com/elixir-ecto/ecto))에 Telemetry 라는 키워드가 보이기 시작했다.
 
-`Telemetry` 는 dynamic 하게 event 에 handler 를 등록할 수 있게 해주는 library 이다. 주로 metric, instrumentation 을 위해 사용된다.[2]
+`Telemetry` 는 dynamic 하게 event 에 handler 를 등록할 수 있게 해주는 library 이다. 주로 metric, instrumentation 을 위해 사용된다.[^2]
 
-내부적으로는 [`ETS`](https://www.erlang.org/doc/man/ets.html) 에 event 와 handler 를 연결해 등록시켜놓고, event 가 발생하면 해당 event 의 handler 들을 호출해주는 방식으로 동작한다.[3]
+내부적으로는 [`ETS`](https://www.erlang.org/doc/man/ets.html) 에 event 와 handler 를 연결해 등록시켜놓고, event 가 발생하면 해당 event 의 handler 들을 호출해주는 방식으로 동작한다.[^3]
 
 이런 구현 방식 덕분에, library 들이 내부에서 event 를 발생하도록 해놓기만 하면 사용자가 원하는 방식으로 handling 을 할 수 있다.
 
@@ -106,6 +106,6 @@ SELECT u0."id", u0."email" FROM "users" AS u0 []
 
 끝!
 
-[1]: [Accessing more SQL text in the Performance Insights dashboard](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.UsingDashboard.SQLTextSize.html)\
-[2]: [Telemetry Document](https://hexdocs.pm/telemetry/readme.html)\
-[3]: [Phoenix Document - Telmetry - Overview](https://hexdocs.pm/phoenix/telemetry.html#overview)
+[^1]: [Accessing more SQL text in the Performance Insights dashboard]+(https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.UsingDashboard.SQLTextSize.html)
+[^2]: [Telemetry Document]+(https://hexdocs.pm/telemetry/readme.html)
+[^3]: [Phoenix Document - Telmetry - Overview]+(https://hexdocs.pm/phoenix/telemetry.html#overview)

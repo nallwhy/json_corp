@@ -18,7 +18,7 @@ tags: ["개발", "Elixir", "Debugging"]
 
 <!-- livebook:{"break_markdown":true} -->
 
-Elixir v1.14 가 출시되었다! [1](https://elixir-lang.org/blog/2022/09/01/elixir-v1-14-0-released/)
+Elixir v1.14 가 출시되었다![^1]
 
 한동안 그래왔듯 이번 버전에서는 DX(Developer eXperience), 특히 디버깅과 관련된 발전에 집중했다고 한다.
 
@@ -26,7 +26,7 @@ Elixir v1.14 가 출시되었다! [1](https://elixir-lang.org/blog/2022/09/01/el
 
 > "Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
 >
-> \- José Valim [2](https://elixir-lang.org/blog/2019/06/24/elixir-v1-9-0-released/)
+> \- José Valim [^2]
 
 그래서 이후로 6개월 마다 주기적으로 자잘한 개선과 버그 수정이 주가되어 새로운 버전이 출시되고 있다.
 
@@ -163,3 +163,6 @@ IEx 에서는 `dbg` 에 자체적인 backend 로 코드를 단계별로 실행�
 <!-- livebook:{"break_markdown":true} -->
 
 다음에는 이어서 Elixir v1.14 에 추가된 `PartitionSupervisor` 에 대해 다뤄보겠다.
+
+[^1]: [Elixir v1.14 released]+(https://elixir-lang.org/blog/2022/09/01/elixir-v1-14-0-released/)
+[^2]: [Elixir v1.9 released](https://elixir-lang.org/blog/2019/06/24/elixir-v1-9-0-released/)

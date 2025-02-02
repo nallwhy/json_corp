@@ -8,7 +8,7 @@ tags: ["인간", "기대"]
 
 ---
 
-[지난 글](./how_to_control_other%27s_expectation_of_you) 에서 타인의 기대를 과하지 않게 조절하는 방법에 대해서 얘기했다.
+[지난 글](./how-to-control-other%27s-expectation-of-you) 에서 타인의 기대를 과하지 않게 조절하는 방법에 대해서 얘기했다.
 
 하지만 때로는 타인의 기대를 과하게 높이고 싶을 때도 있을 것이다. 예를 들면 '게으른 천재' 같은 타이틀을 얻고 싶다든지.
 
@@ -16,7 +16,7 @@ tags: ["인간", "기대"]
 
 <br>
 
-심리학에 따르면 '간헐적 강화'(intermittent reinforcement)가 '계속적 강화'(continuous reinforcement) 보다 더 강하게 동기를 자극한다. [1](https://www.techtarget.com/whatis/definition/intermittent-reinforcement)
+심리학에 따르면 '간헐적 강화'(intermittent reinforcement)가 '계속적 강화'(continuous reinforcement) 보다 더 강하게 동기를 자극한다.[^1]
 
 간헐적 강화는 대상의 행동에 말그대로 간헐적으로 보상을 주는 것이다.
 
@@ -45,3 +45,5 @@ tags: ["인간", "기대"]
 <br>
 
 사실은 내가 이런 포지션의 사람이었고, 지금도 그럴지도 혹은 다시 그렇게 될지도 모르는 사람이라 반성적으로 적어본 글이다. 세상에는 쉽고 확실하게 망하는 매력적인 방법이 많다.
+
+[^1]: [intermittent reinforcement]+(https://www.techtarget.com/whatis/definition/intermittent-reinforcement)

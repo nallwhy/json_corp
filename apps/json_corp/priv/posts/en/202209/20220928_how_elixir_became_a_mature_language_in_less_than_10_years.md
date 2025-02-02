@@ -12,7 +12,7 @@ José Valim, the creator of the Elixir language, mentioned that they had complet
 
 > "Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
 >
-> \- José Valim [1](https://elixir-lang.org/blog/2019/06/24/elixir-v1-9-0-released/)
+> \- José Valim [^1]
 
 In this post, I'm going to talk about how a language that began development in 2011 could declare, less than a decade later, that there were no more features left to be built.
 
@@ -36,15 +36,15 @@ There are two main reasons why Elixir has become a mature language so quickly.
 
 Elixir is based on Erlang, which was created in 1986.
 
-Because Erlang is a battle-tested language[2](https://www.erlang.org/about) that has been proven over decades at Ericsson, boasting features such as concurrent, distributed, and fault-tolerant, Elixir was able to bypass much of the trial and error and rapidly achieve maturity.
+Because Erlang is a battle-tested language[^2] that has been proven over decades at Ericsson, boasting features such as concurrent, distributed, and fault-tolerant, Elixir was able to bypass much of the trial and error and rapidly achieve maturity.
 
-For example, "String handling in Elixir is the result of a long evolutionary process in the underlying Erlang environment."[3]
+For example, "String handling in Elixir is the result of a long evolutionary process in the underlying Erlang environment."[^3]
 
 It also benefit from the ever-improving Erlang runtime and VM.
 
 ## Elixir has a minimal set of axioms
 
-According to [Keywords](https://github.com/e3b0c442/keywords), **Elixir has only 15 reserved words**[4](https://hexdocs.pm/elixir/1.14.0/syntax-reference.html#reserved-words), the the fewest among the languages surveyed.
+According to [Keywords](https://github.com/e3b0c442/keywords), **Elixir has only 15 reserved words**[^4], the the fewest among the languages surveyed.
 
 With Java 17 having 67 and Python 3 having 38, it's evident that Elixir is comprised of a significantly smaller number of reserved words.
 
@@ -70,16 +70,17 @@ end
 ```
 
 Such a limited set of axioms leads to exceptional extensibility. Thus, unlike in other languages where many things aren't supported natively and have to be foregone, in Elixir, there are many cases where programmers can implement and address what they want directly.\
-This is because, Elixir has focused on Stability and Extensibility.[5](https://youtu.be/oUZC1s1N42Q?t=1497)
-
+This is because, Elixir has focused on Stability and Extensibility.[^5]
 Conversely, this means that Elixir requires far fewer changes at the language level to introduce new features compared to other languages.
 
 ---
 
-Due to these characteristics, Elixir became a mature language in less than a decade, feeling complete with no further essentials to add. Based on this foundation, there are indeed vibrant activities unfolding in enhancing developer experience, ecosystem growth, and expansion into fields like Machine Learning and Data Science.
-
-For instance, it's said that the k-means algorithm ported with Elixir's [`Nx`](https://github.com/elixir-nx/nx/tree/main/nx#readme) demonstrated results more than 4 times faster than Python's sklearn.[6](https://twitter.com/josevalim/status/1565408635961884673)
+Thanks to these characteristics, Elixir has become a mature language with little left to improve in less than a decade. Of course, this refers to the language itself and does not mean that the Elixir ecosystem has stopped evolving. On the contrary, the stability of the language has enabled exciting developments in areas such as Developer Experience (DevEx), Machine Learning, and Data Science, driving innovation at a remarkable pace.
 
 Isn't it intriguing that a language can be anticipated to progress even without its own evolution?
 
-[3]: <Programming Elixir 1.6> p.132
+[^1]: [Elixir v1.9 released]+(https://elixir-lang.org/blog/2019/06/24/elixir-v1-9-0-released/)
+[^2]: +(https://www.erlang.org/about)
+[^3]: <Programming Elixir 1.6> p.132
+[^4]: [Elixir - Syntax reference - Reserved words]+(https://hexdocs.pm/elixir/1.14.0/syntax-reference.html#reserved-words)
+[^5]: [ElixirConf 2019 - Thursday PM Keynote - José Valim]+(https://youtu.be/oUZC1s1N42Q?t=1497)

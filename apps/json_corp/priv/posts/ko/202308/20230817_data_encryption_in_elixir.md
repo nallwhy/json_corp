@@ -10,7 +10,7 @@ tags: ["개발", "암호화", "Encryption", "B2B", "SaaS", "Cloak", "Elixir"]
 
 Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 경험한 내용 시리즈입니다.
 
-1. [B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir](./multi_tenency_in_elixir)
+1. [B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir](./multi-tenency-in-elixir)
 2. **B2B SaaS 의 보안을 높여주는 데이터 암호화 in Elixir**
 3. B2B SaaS 의 보안을 높여주는 Redaction in Elixir
 4. Job Scheduling 예정

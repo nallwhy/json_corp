@@ -12,7 +12,7 @@ aliases: ["multi_tenency_in_elixir"]
 Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 경험한 내용 시리즈입니다.
 
 1. **B2B SaaS 의 보안을 높여주는 Multi-Tenancy in Elixir**
-2. [B2B SaaS 의 보안을 높여주는 암호화 in Elixir](./data_encryption_in_elixir)
+2. [B2B SaaS 의 보안을 높여주는 암호화 in Elixir](./data-encryption-in-elixir)
 3. Job Scheduling 예정
 4. Feature Flag 예정
 5. Obfuscation 예정
