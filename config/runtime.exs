@@ -83,22 +83,6 @@ if config_env() == :prod do
     host: meilisearch_host,
     api_key: meilisearch_api_key
 
-  logflare_api_key =
-    System.get_env("LOGFLARE_API_KEY") ||
-      raise """
-      environment variable LOGFLARE_API_KEY is missing.
-      """
-
-  logflare_source_id =
-    System.get_env("LOGFLARE_SOURCE_ID") ||
-      raise """
-      environment variable LOGFLARE_SOURCE_ID is missing.
-      """
-
-  config :logflare_logger_backend,
-    api_key: logflare_api_key,
-    source_id: logflare_source_id
-
   config :sentry,
     dsn: System.get_env("SENTRY_DSN")
 end

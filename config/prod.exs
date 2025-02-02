@@ -49,14 +49,7 @@ config :json_corp_web, JsonCorpWeb.Endpoint,
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
 # Do not print debug messages in production
-config :logger,
-  level: :info,
-  backends: [LogflareLogger.HttpBackend]
-
-config :logflare_logger_backend,
-  level: :info,
-  flush_interval: 1_000,
-  max_batch_size: 50
+config :logger, level: :info
 
 config :json_corp_web, canonical_host: "json.media"
 
