@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "./code_highlight.css";
+@import "./blog.css";
 
 /* This file is for your main application CSS */
 .icon {
@@ -12,17 +12,4 @@
   color: inherit;
   vertical-align: -0.125em;
   fill: currentColor;
-}
-
-.prose {
-  overflow-wrap: break-word;
-}
-
-.tag {
-  background-color: rgba(110, 118, 129, 0.4);
-  padding: 2px 6px;
-  border-radius: 0.4rem;
-  color: var(--tw-prose-links);
-  font-weight: 600;
-  font-size: 0.875em;
 }

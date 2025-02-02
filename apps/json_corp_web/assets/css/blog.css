@@ -1,7 +1,32 @@
+.prose {
+  overflow-wrap: break-word;
+}
+
+.tag {
+  background-color: rgba(110, 118, 129, 0.4);
+  padding: 2px 6px;
+  border-radius: 0.4rem;
+  color: var(--tw-prose-links);
+  font-weight: 600;
+  font-size: 0.875em;
+}
+
 .prose :not(pre) code {
   background-color: rgba(110, 118, 129, 0.4);
   padding: 2px 6px;
   border-radius: 0.4rem;
+}
+
+.footnotes {
+  @apply border-t-2;
+
+  li {
+    @apply mt-0 mb-0;
+  }
+
+  p {
+    @apply mt-0 mb-0;
+  }
 }
 
 /* 
