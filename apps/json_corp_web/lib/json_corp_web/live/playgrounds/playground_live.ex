@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.Playgrounds.PlaygroundLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <.h1>Playgrounds</.h1>
+    <.h1>{gettext("playgrounds") |> String.capitalize()}</.h1>
     <div class="flex flex-wrap gap-6">
       <.playground_card
         :for={{name, description, path} <- list_playgrounds()}

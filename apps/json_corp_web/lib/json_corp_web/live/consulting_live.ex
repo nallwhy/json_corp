@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.ConsultingLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <.h1>Consulting</.h1>
+    <.h1>{gettext("consulting") |> String.capitalize()}</.h1>
     <div class="prose">
       {consulting_markdown() |> JsonCorp.Blog.MarkdownRenderer.html() |> raw()}
     </div>

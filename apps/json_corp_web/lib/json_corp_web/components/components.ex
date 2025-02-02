@@ -46,7 +46,7 @@ defmodule JsonCorpWeb.Components do
               :for={{menu_name, menu_route} <- list_menus()}
               class="px-2 border-y-2 border-transparent hover:border-b-primary"
             >
-              <.link navigate={menu_route}>{menu_name}</.link>
+              <.link navigate={menu_route}>{menu_name |> String.capitalize()}</.link>
             </li>
           </ul>
         </div>
@@ -123,10 +123,10 @@ defmodule JsonCorpWeb.Components do
 
   defp list_menus() do
     [
-      {gettext("Blog"), ~p"/blog"},
-      {gettext("Consulting"), ~p"/consulting"},
-      {gettext("Playgrounds"), ~p"/playgrounds"},
-      {gettext("Projects"), ~p"/projects"}
+      {gettext("blog"), ~p"/blog"},
+      {gettext("consulting"), ~p"/consulting"},
+      {gettext("playgrounds"), ~p"/playgrounds"},
+      {gettext("projects"), ~p"/projects"}
     ]
   end
 

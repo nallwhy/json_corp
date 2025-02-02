@@ -58,27 +58,34 @@ msgstr ""
 msgid "close"
 msgstr ""
 
-#: lib/json_corp_web/components/components.ex:81
+#: lib/json_corp_web/components/components.ex:83
+#: lib/json_corp_web/components/components.ex:83
 #, elixir-autogen, elixir-format
 msgid "Social"
 msgstr ""
 
+#: lib/json_corp_web/components/components.ex:126
+#: lib/json_corp_web/components/components.ex:126
+#: lib/json_corp_web/live/blog/post_live.index.ex:88
+#: lib/json_corp_web/live/blog/post_live.index.ex:88
+#, elixir-autogen, elixir-format
+msgid "blog"
+msgstr ""
+
+#: lib/json_corp_web/components/components.ex:127
 #: lib/json_corp_web/components/components.ex:127
 #, elixir-autogen, elixir-format
-msgid "Blog"
+msgid "consulting"
 msgstr ""
 
 #: lib/json_corp_web/components/components.ex:128
+#: lib/json_corp_web/components/components.ex:128
 #, elixir-autogen, elixir-format
-msgid "Consulting"
+msgid "playgrounds"
 msgstr ""
 
 #: lib/json_corp_web/components/components.ex:129
+#: lib/json_corp_web/components/components.ex:129
 #, elixir-autogen, elixir-format
-msgid "Playgrounds"
-msgstr ""
-
-#: lib/json_corp_web/components/components.ex:130
-#, elixir-autogen, elixir-format
-msgid "Projects"
+msgid "projects"
 msgstr ""

@@ -13,7 +13,7 @@ defmodule JsonCorpWeb.ProjectLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <.h1>Projects</.h1>
+    <.h1>{gettext("projects") |> String.capitalize()}</.h1>
     <div class="flex flex-wrap gap-6">
       <.project_card
         :for={project <- @projects}

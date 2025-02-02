@@ -85,7 +85,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def render(assigns) do
     ~H"""
     <div class="flex justify-between items-baseline">
-      <.h1>Posts</.h1>
+      <.h1>{gettext("blog") |> String.capitalize()}</.h1>
       <.link navigate={~p"/blog/#{@language}?random"}>?</.link>
     </div>
 
