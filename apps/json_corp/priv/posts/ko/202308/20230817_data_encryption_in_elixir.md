@@ -27,9 +27,11 @@ B2B SaaS 는 대체로 고객의 민감한 정보를 다루기 때문에 **암�
 
 **암호화**는 어떤 정보를 encoding 하여, 나중에 권한을 가지고 있는 주체만 이를 복호화해서 정보를 볼 수 있도록 하는 것을 말합니다.
 
-> In cryptography, encryption is the process of encoding information. This process converts the original representation of the information, known as plaintext, into an alternative form known as ciphertext. Ideally, only authorized parties can decipher a ciphertext back to plaintext and access the original information.
->
-> \- [Wikipedia - Encryption](https://en.wikipedia.org/wiki/Encryption)
+>>>
+In cryptography, encryption is the process of encoding information. This process converts the original representation of the information, known as plaintext, into an alternative form known as ciphertext. Ideally, only authorized parties can decipher a ciphertext back to plaintext and access the original information.
+
+\- [Wikipedia - Encryption](https://en.wikipedia.org/wiki/Encryption)
+>>>
 
 저장되거나 전송되는 고객의 정보가 절대 탈취당하지 않으면 좋겠지만, 불의의 사고는 항상 일어나기 마련입니다. 암호화는 누군가 저장되거나 전송되는 정보를 탈취하더라도, 그 정보를 해석할 수 없게 하여 최종적으로 고객 정보의 유출을 막기위해 사용됩니다.
 

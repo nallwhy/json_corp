@@ -10,9 +10,11 @@ tags: ["dev", "Elixir"]
 
 José Valim, the creator of the Elixir language, mentioned that they had completed the last scheduled feature in Elixir v1.9.
 
-> "Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
->
-> \- José Valim [^1]
+>>>
+"Releases was the last planned feature for Elixir. We don’t have any major user-facing feature in the works nor planned."
+
+\- José Valim [^1]
+>>>
 
 In this post, I'm going to talk about how a language that began development in 2011 could declare, less than a decade later, that there were no more features left to be built.
 
@@ -50,14 +52,16 @@ With Java 17 having 67 and Python 3 having 38, it's evident that Elixir is compr
 
 A smaller number of reserved words is one indicator of a language's simplicity. Paul Graham remarks on this in his book, 'Hackers & Painters':
 
-> Any programming language can be divided into two parts: some set of fundamental operators that play the role of axioms, and the rest of the language, which could in principle be written in terms of these fundamental operators.
-> I think the fundamental operators are the most important factor in a language’s long term survival. The rest you can change.
-> ...
-> It’s important not just that the axioms be well chosen, but that there be few of them.
-> ...
-> I have a hunch that the main branches of the evolutionary tree pass through the languages that have the smallest, cleanest cores. The more of a language you can write in itself, the better.
->
-> \- <Hackers & Painters> - 11. The Hundred-Year Language
+>>>
+Any programming language can be divided into two parts: some set of fundamental operators that play the role of axioms, and the rest of the language, which could in principle be written in terms of these fundamental operators.
+I think the fundamental operators are the most important factor in a language’s long term survival. The rest you can change.
+...
+It’s important not just that the axioms be well chosen, but that there be few of them.
+...
+I have a hunch that the main branches of the evolutionary tree pass through the languages that have the smallest, cleanest cores. The more of a language you can write in itself, the better.
+
+\- <Hackers & Painters> - 11. The Hundred-Year Language
+>>>
 
 Elixir is a language constructed with a very minimal set of axioms. For instance, even the `def` keyword, which is used to declare functions, is not a reserved word, allowing programmers to modify it. To put it in JavaScript terms, it's like being able to change the `function` keyword.
 

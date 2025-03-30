@@ -21,9 +21,11 @@ Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 경험한 내
 
 **'Multi-Tenancy'** 는 B2B SaaS 개발에서 떼어낼 수 없는 키워드입니다.
 
-> Multitenancy is a requirement for a SaaS vendor to be successful.
->
-> \- Marc Benioff, Salesforce 공동 창업자
+>>>
+Multitenancy is a requirement for a SaaS vendor to be successful.
+
+\- Marc Benioff, Salesforce 공동 창업자
+>>>
 
 이번 글에서는 Multi-Tenancy 가 무엇이고 왜 B2B SaaS 에서 중요한지, 그리고 Elixir 에서 Multi-Tenancy 를 어떻게 쉽게 구현할 수 있는지 알아봅니다.
 
@@ -31,9 +33,11 @@ Elixir 로 B2B SaaS [reflow](https://reflow.work) 를 만들면서 경험한 내
 
 **Multi-Tenancy** 는 하나의 어플리케이션에서 여러 고객에게 서비스를 제공하는 소프트웨어 아키텍처를 이야기합니다.
 
-> The term "software multi tenancy" refers to a software architecture in which a single instance of the software runs on a server and serves multiple tenants.
->
-> \- [Wikipedia - Multitenancy](https://en.wikipedia.org/wiki/Multitenancy)
+>>>
+The term "software multi tenancy" refers to a software architecture in which a single instance of the software runs on a server and serves multiple tenants.
+
+\- [Wikipedia - Multitenancy](https://en.wikipedia.org/wiki/Multitenancy)
+>>>
 
 감이 안오니 반대 개념인 **Single-Tenancy** 를 알아보겠습니다.
 

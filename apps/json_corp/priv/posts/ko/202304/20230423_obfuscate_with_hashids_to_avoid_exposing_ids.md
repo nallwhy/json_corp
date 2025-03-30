@@ -102,10 +102,12 @@ numbers = Hashids.decode!(hashids, id)   # [1, 2, 3]
 
 참고로 `Hashids` 는 hash 와 아무 관련이 없다.
 
-> ### why "hashids"?
->
-> Originally the project referred to generated ids as hashes, and obviously the name hashids has the word hash in it. Technically, these generated ids cannot be called hashes since a cryptographic hash has one-way mapping (cannot be decrypted).
->
-> However, when people search for a solution, like a "youtube hash" or "bitly short id", they usually don't really care of the technical details. So hashids stuck as a term — an algorithm to obfuscate numbers.
+>>>
+### why "hashids"?
+
+Originally the project referred to generated ids as hashes, and obviously the name hashids has the word hash in it. Technically, these generated ids cannot be called hashes since a cryptographic hash has one-way mapping (cannot be decrypted).
+
+However, when people search for a solution, like a "youtube hash" or "bitly short id", they usually don't really care of the technical details. So hashids stuck as a term — an algorithm to obfuscate numbers.
+>>>
 
 https://hashids.org/

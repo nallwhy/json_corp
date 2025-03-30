@@ -29,7 +29,9 @@ React 를 이용한 Web application 을 만들기 위한 framework 임을 나타
 `React` 와 곧잘 비교되는 `Angular` 의 설명은 아래와 같다.\
 (https://angular.io/docs)
 
-> Angular is an application-design framework and development platform for creating efficient and sophisticated single-page apps.
+>>>
+Angular is an application-design framework and development platform for creating efficient and sophisticated single-page apps.
+>>>
 
 `React` 는 library 로 표현되고, `Angular` 는 framework, platform 으로 표현된다.\
 이는 `Angular` 와는 달리 `React` 가 application 이 아닌 그 중 일부인 UI 만 담당한다는 사실이 드러나는 부분이다.
