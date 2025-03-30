@@ -2,14 +2,20 @@ defmodule JsonCorp.Blog.MarkdownRenderer do
   alias JsonCorp.Blog.HTML
 
   def html(markdown) do
+    extension = [
+      strikethrough: true,
+      table: true,
+      superscript: true,
+      header_ids: "post-header-",
+      footnotes: true,
+      multiline_block_quotes: true,
+      subscript: true
+    ]
+
     markdown
-    |> MDEx.parse_document!(
-      extension: [
-        footnotes: true
-      ]
-    )
+    |> MDEx.parse_document!(extension: extension)
     |> customize()
-    |> MDEx.to_html!(render: [unsafe_: true])
+    |> MDEx.to_html!(extension: extension, render: [unsafe_: true])
   end
 
   # def highlighted_html(markdown) do
