@@ -2,7 +2,7 @@
   overflow-wrap: break-word;
 }
 
-.tag {
+.prose .tag {
   background-color: rgba(110, 118, 129, 0.4);
   padding: 2px 6px;
   border-radius: 0.4rem;
@@ -17,7 +17,7 @@
   border-radius: 0.4rem;
 }
 
-.footnotes {
+.prose .footnotes {
   @apply border-t-2;
 
   li {
@@ -27,6 +27,35 @@
   p {
     @apply mt-0 mb-0;
   }
+}
+
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  position: relative;
+}
+
+.prose a.anchor,
+.prose a.anchor,
+.prose a.anchor,
+.prose a.anchor,
+.prose a.anchor {
+  position: absolute;
+  left: -1.2em;
+  top: -0.05em;
+  opacity: 0;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.prose :hover>a.anchor,
+.prose :hover>a.anchor,
+.prose :hover>a.anchor,
+.prose :hover>a.anchor,
+.prose :hover>a.anchor {
+  opacity: 1;
 }
 
 /* 

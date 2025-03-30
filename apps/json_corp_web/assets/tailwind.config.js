@@ -80,6 +80,7 @@ module.exports = {
       }, { values })
     })
   ],
+  safelist: ["hero-link"],
   daisyui: {
     themes: [
       "bumblebee",
