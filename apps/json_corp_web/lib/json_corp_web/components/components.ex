@@ -158,7 +158,7 @@ defmodule JsonCorpWeb.Components do
   end
 
   defp languages() do
-    [{"ko", "🇰🇷"}, {"en", "🇺🇸"}]
+    [{"ko", "🇰🇷"}, {"en", "🇺🇸"}, {"ja", "🇯🇵"}]
   end
 
   # Fluxon components

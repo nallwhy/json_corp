@@ -1,6 +1,6 @@
 defmodule JsonCorp.Core.Cldr do
   use Cldr,
-    locales: [:en, :ko],
+    locales: [:en, :ko, :ja],
     default_locale: :en,
     providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime, Cldr.LocaleDisplay]
 
