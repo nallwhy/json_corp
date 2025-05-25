@@ -16,7 +16,8 @@ defmodule JsonCorp.Blog.MarkdownRenderer do
     |> MDEx.parse_document!(extension: extension)
     |> customize_document()
     |> MDEx.to_html!(extension: extension, render: [unsafe_: true])
-    |> customize_html()
+
+    # |> customize_html()
   end
 
   # def highlighted_html(markdown) do
@@ -46,25 +47,25 @@ defmodule JsonCorp.Blog.MarkdownRenderer do
     end)
   end
 
-  defp customize_html(html) do
-    Floki.parse_document!(html)
-    |> Floki.traverse_and_update(fn
-      {header_tag, h_attrs, [{"a", a_attrs, []}, text]}
-      when header_tag in ["h1", "h2", "h3", "h4", "h5", "h6"] ->
-        {"id", id} = a_attrs |> List.keyfind!("id", 0)
+  # defp customize_html(html) do
+  #   Floki.parse_document!(html)
+  #   |> Floki.traverse_and_update(fn
+  #     {header_tag, h_attrs, [{"a", a_attrs, []}, text]}
+  #     when header_tag in ["h1", "h2", "h3", "h4", "h5", "h6"] ->
+  #       {"id", id} = a_attrs |> List.keyfind!("id", 0)
 
-        {header_tag, [{"id", id} | h_attrs],
-         [
-           {"a", [{"href", "##{id}"}, {"class", "anchor"}],
-            [{"i", [{"class", "hero-link"}, {"aria-hidden", "true"}], []}]},
-           text
-         ]}
+  #       {header_tag, [{"id", id} | h_attrs],
+  #        [
+  #          {"a", [{"href", "##{id}"}, {"class", "anchor"}],
+  #           [{"i", [{"class", "hero-link"}, {"aria-hidden", "true"}], []}]},
+  #          text
+  #        ]}
 
-      other ->
-        other
-    end)
-    |> Floki.raw_html()
-  end
+  #     other ->
+  #       other
+  #   end)
+  #   |> Floki.raw_html(pretty: false)
+  # end
 
   defp parse_new_window_link(node) do
     regex = ~r/(?:\[(?<name>.*?)\])?\+\((?<link>.*?)\)/
