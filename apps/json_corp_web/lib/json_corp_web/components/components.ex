@@ -95,7 +95,7 @@ defmodule JsonCorpWeb.Components do
 
   def h1(assigns) do
     ~H"""
-    <h1 class="text-2xl mb-4 font-bold">{render_slot(@inner_block)}</h1>
+    <h1 class="text-3xl mb-6 font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 
@@ -103,7 +103,7 @@ defmodule JsonCorpWeb.Components do
 
   def h2(assigns) do
     ~H"""
-    <h1 class="text-xl mb-4 font-bold">{render_slot(@inner_block)}</h1>
+    <h1 class="text-xl mb-6 font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 

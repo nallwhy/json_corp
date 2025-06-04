@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       case language in Cldr.known_languages() do
         true ->
           socket
-          |> assign(:language, language)
+          |> assign(:blog_language, language)
           |> assign(:categories, Blog.list_categories())
           |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
           |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
@@ -84,9 +84,15 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="flex justify-between items-baseline">
-      <.h1>{gettext("blog") |> String.capitalize()}</.h1>
-      <.link navigate={~p"/blog/#{@language}?random"}>?</.link>
+    <div class="flex items-baseline justify-between">
+      <div class="flex items-center gap-x-4">
+        <.h1>{gettext("blog") |> String.capitalize()}</.h1>
+      </div>
+      <div>
+        <.link navigate={~p"/blog/#{@language}?random"}>
+          <.icon name="hero-sparkles" class="w-6 h-6" />
+        </.link>
+      </div>
     </div>
 
     <div class="mb-4 flex">
@@ -130,7 +136,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   defp assign_posts(socket) do
     filtered_posts =
-      Blog.list_posts_by_language(socket.assigns.language)
+      Blog.list_posts_by_language(socket.assigns.blog_language)
       |> filter_posts(socket.assigns |> Map.take([:category, :tag]))
 
     socket
