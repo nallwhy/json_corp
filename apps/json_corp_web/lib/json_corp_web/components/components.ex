@@ -81,9 +81,12 @@ defmodule JsonCorpWeb.Components do
     <footer class="footer max-w-6xl mx-auto p-8">
       <div>
         <span class="footer-title">{gettext("Social")}</span>
-        <div class="grid grid-flow-col gap-4">
+        <div class="grid grid-flow-col gap-2">
           <a href="https://github.com/nallwhy" target="_blank">
             <Icon.github class="fill-gray-400 hover:fill-black" width="24" height="24" />
+          </a>
+          <a href="https://www.linkedin.com/in/jinkyou-son/" target="_blank">
+            <Icon.linkedin class="fill-gray-400 hover:fill-black" width="26" height="26" />
           </a>
         </div>
       </div>
