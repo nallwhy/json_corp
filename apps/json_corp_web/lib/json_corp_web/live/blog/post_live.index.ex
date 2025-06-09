@@ -8,11 +8,19 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     socket =
       case language in Cldr.known_languages() do
         true ->
-          socket
-          |> assign(:blog_language, language)
-          |> assign(:categories, Blog.list_categories())
-          |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
-          |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
+          case socket.assigns.language do
+            ^language ->
+              socket
+              |> assign(:blog_language, language)
+              |> assign(:categories, Blog.list_categories())
+              |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
+              |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
+
+            _ ->
+              # TODO: go back not working(needs previous language)
+              socket
+              |> push_navigate(to: ~p"/blog/#{socket.assigns.language}", replace: true)
+          end
 
         false ->
           # redirect to PostLive.Show

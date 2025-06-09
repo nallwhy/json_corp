@@ -10,6 +10,8 @@ defmodule JsonCorp.Blog do
     end
   end
 
+  @default_language_order ["en", "ko", "ja"]
+
   @decorate cacheable(
               cache: Cache.Local,
               key: {Blog, :list_posts_by_language, [language, posts_path]},
@@ -17,8 +19,16 @@ defmodule JsonCorp.Blog do
             )
   @spec list_posts_by_language(language :: String.t()) :: [Post.t()]
   def list_posts_by_language(language, posts_path \\ posts_path()) do
+    language_order = [language | @default_language_order]
+
     list_posts(posts_path)
-    |> Enum.filter(&(&1.language == language))
+    |> Enum.group_by(& &1.slug)
+    |> Enum.map(fn {_slug, posts} ->
+      posts
+      |> Enum.sort_by(fn post -> Enum.find_index(language_order, &(&1 == post.language)) end)
+      |> List.first()
+    end)
+    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
   @spec list_posts() :: [Post.t()]
@@ -26,7 +36,6 @@ defmodule JsonCorp.Blog do
     list_post_paths(posts_path)
     |> Enum.map(&Post.read/1)
     |> Enum.filter(&(&1.category in list_categories() and &1.status == :published))
-    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
   @decorate cacheable(
