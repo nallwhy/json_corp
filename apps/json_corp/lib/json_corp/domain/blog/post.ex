@@ -85,7 +85,7 @@ defmodule JsonCorp.Blog.Post do
   defp extract_meta(post_path) do
     %{"language" => language, "date_created" => date_created_str, "slug" => slug_with_underscore} =
       Regex.named_captures(
-        ~r/\/(?<language>[^\/]+)\/[^\/]+\/(?<date_created>\d{8})_(?<slug>.+)\.(md|livemd)$/,
+        ~r/\/(?<date_created>\d{8})_(?<slug>.+)\.(?<language>.+)\.(md|livemd)$/,
         post_path
       )
 

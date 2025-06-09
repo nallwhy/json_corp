@@ -18,16 +18,14 @@ defmodule JsonCorp.Blog do
   @spec list_posts_by_language(language :: String.t()) :: [Post.t()]
   def list_posts_by_language(language, posts_path \\ posts_path()) do
     list_posts(posts_path)
-    |> Enum.group_by(& &1.language)
-    |> Map.get(language, [])
+    |> Enum.filter(&(&1.language == language))
   end
 
   @spec list_posts() :: [Post.t()]
   def list_posts(posts_path \\ posts_path()) do
     list_post_paths(posts_path)
     |> Enum.map(&Post.read/1)
-    |> Enum.filter(&(&1.category in list_categories()))
-    |> Enum.filter(&(&1.status == :published))
+    |> Enum.filter(&(&1.category in list_categories() and &1.status == :published))
     |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
