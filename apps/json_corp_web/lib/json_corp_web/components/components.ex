@@ -39,7 +39,7 @@ defmodule JsonCorpWeb.Components do
       <div class="flex-none w-32">
         <.link navigate={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
-      <div class="hidden sm:flex flex-row justify-between flex-1 pl-12">
+      <div class="hidden sm:flex flex-row items-center justify-between flex-1 pl-12">
         <div>
           <ul class="flex">
             <li
@@ -54,9 +54,9 @@ defmodule JsonCorpWeb.Components do
           <.language_dropdown current_language={@language} />
         </div>
       </div>
-      <div class="sm:hidden flex-none">
+      <div class="sm:hidden flex-none flex">
         <div>
-          {@language |> Cldr.LocaleDisplay.display_name!()}
+          <.language_dropdown current_language={@language} />
         </div>
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost">

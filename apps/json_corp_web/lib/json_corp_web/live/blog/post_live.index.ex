@@ -92,7 +92,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="flex items-baseline justify-between">
+    <div class="flex items-start justify-between">
       <div class="flex items-center gap-x-4">
         <.h1>{gettext("blog") |> String.capitalize()}</.h1>
       </div>
