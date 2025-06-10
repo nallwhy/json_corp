@@ -53,14 +53,13 @@ config :esbuild,
   ]
 
 config :tailwind,
-  version: "3.4.17",
+  version: "4.1.8",
   default: [
     args: ~w(
-      --config=tailwind.config.js
-      --input=css/app.css
-      --output=../priv/static/assets/app.css
+      --input=assets/css/app.css
+      --output=priv/static/assets/app.css
     ),
-    cd: Path.expand("../apps/json_corp_web/assets", __DIR__)
+    cd: Path.expand("../apps/json_corp_web", __DIR__)
   ]
 
 # Configures Elixir's Logger

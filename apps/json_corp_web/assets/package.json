@@ -1,6 +1,6 @@
 {
   "scripts": {},
-  "dependencies": {
-    "daisyui": "^2.20.0"
+  "devDependencies": {
+    "daisyui": "^5.0.43"
   }
 }
