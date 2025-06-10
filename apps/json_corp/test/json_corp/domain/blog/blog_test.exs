@@ -6,31 +6,40 @@ defmodule JsonCorp.BlogTest do
 
   test "list_posts_by_language/2" do
     assert fetched_posts = Blog.list_posts_by_language("ko", @fixture_path)
-    assert fetched_posts |> Enum.count() == 2
+    assert fetched_posts |> Enum.count() == 3
 
-    [fetched_post | _] = fetched_posts
+    [fetched_post0, fetched_post1, fetched_post2] = fetched_posts
 
-    assert fetched_post.title == "Test Title 1"
-    assert fetched_post.description == "description 1"
-    assert fetched_post.category == :dev
-    assert fetched_post.slug == "post-0"
-    assert fetched_post.body =~ "# Test Body"
-    assert fetched_post.date_created == ~D[2022-07-24]
-    assert fetched_post.cover_url == nil
-    assert fetched_post.tags == nil
-    assert fetched_post.aliases == ["post_0"]
-    assert fetched_post.status == :published
+    assert fetched_post0.title == "테스트 제목 3"
+    assert fetched_post1.title == "테스트 제목 1"
+    assert fetched_post2.title == "테스트 제목 0"
+
+    assert fetched_post2.description == "설명 0"
+    assert fetched_post2.category == :consulting
+    assert fetched_post2.slug == "post-00"
+    assert fetched_post2.body =~ "# Test Body"
+    assert fetched_post2.date_created == ~D[2022-06-26]
+    assert fetched_post2.cover_url == "/images/blog/example.jpg"
+    assert fetched_post2.tags == ["tag0", "tag1"]
+    assert fetched_post2.aliases == ["post_00", "post-000"]
+    assert fetched_post2.status == :published
 
     assert fetched_posts = Blog.list_posts_by_language("en", @fixture_path)
-    assert fetched_posts |> Enum.count() == 1
+    assert fetched_posts |> Enum.count() == 3
+
+    [fetched_post0, fetched_post1, fetched_post2] = fetched_posts
+
+    assert fetched_post0.title == "Test Title 3"
+    assert fetched_post1.title == "테스트 제목 1"
+    assert fetched_post2.title == "테스트 제목 0"
   end
 
   describe "fetch_post/2" do
     test "with valid slug" do
       assert {:ok, fetched_post} = Blog.fetch_post("ko", "post-00", @fixture_path)
 
-      assert fetched_post.title == "Test Title 0"
-      assert fetched_post.description == "description 0"
+      assert fetched_post.title == "테스트 제목 0"
+      assert fetched_post.description == "설명 0"
       assert fetched_post.category == :consulting
       assert fetched_post.slug == "post-00"
       assert fetched_post.body =~ "# Test Body"
@@ -44,7 +53,7 @@ defmodule JsonCorp.BlogTest do
     test "with valid alias" do
       assert {:redirect, fetched_post} = Blog.fetch_post("ko", "post-000", @fixture_path)
 
-      assert fetched_post.title == "Test Title 0"
+      assert fetched_post.title == "테스트 제목 0"
     end
 
     test "with valid secret slug" do
