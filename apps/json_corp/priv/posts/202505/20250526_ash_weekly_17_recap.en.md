@@ -58,7 +58,7 @@ This year’s ElixirConf EU seemed to focus more on running AtomVM in browsers, 
 
 Whereas LiveView handles almost everything on the back-end and keeps the front-end thin, Hologram takes a different approach—allowing you to build front-ends with their own state, but all in Elixir. I haven’t fully wrapped my head around the concept yet, but I’m curious to see how far this approach can go.
 
-## Project Spotlight
+## Project Spotlight - [LangSchema]+(https://github.com/nallwhy/lang_schema)
 
 Currently, Ash AI supports only OpenAI models. This is because each AI provider’s JSON schema spec is different. To solve this, I’ve developed a library called [LangSchema]+(https://github.com/nallwhy/lang_schema).
 By introducing the concept of an abstract schema, you can write your code once and have it converted to the JSON schema required by each AI provider.

@@ -62,7 +62,7 @@ ElixirConf EU 2025 에서는 브라우저에서의 구동에 좀 더 포커스 �
 LiveView 가 back-end 로 대부분을 처리하고 매우 얇은 front-end 를 추구하는 것에 비해, Hologram 은 기존의 어플리케이션들과 같이 front-end 도 자체 state 를 갖는 방향으로 가지만 이를 Elixir 로 쉽게 작성하게 하려는 것 같네요.
 처음 출시되었을 때 설명을 읽어보았지만 아직 컨셉을 완전히 이해하지는 못하고 있는데, 과연 이런 방법으로 어느 정도 수준까지의 구현이 가능할까 궁금합니다.
 
-## 프로젝트 홍보
+## 프로젝트 홍보 - [LangSchema]+(https://github.com/nallwhy/lang_schema)
 
 Ash AI 는 현재 여러 기능들이 OpenAI 의 모델만 사용할 수 있게 되어있습니다.
 이는 AI provider 의 JSON schema spec 이 서로 다르기 때문인데요, 이런 문제를 해결하기 위해 [LangSchema]+(https://github.com/nallwhy/lang_schema) 라는 library 를 구현했습니다.
