@@ -36,6 +36,7 @@ defmodule JsonCorp.Blog do
     list_post_paths(posts_path)
     |> Enum.map(&Post.read/1)
     |> Enum.filter(&(&1.category in list_categories() and &1.status == :published))
+    |> Enum.sort_by(fn %Post{date_created: date_created} -> date_created end, {:desc, Date})
   end
 
   @decorate cacheable(
