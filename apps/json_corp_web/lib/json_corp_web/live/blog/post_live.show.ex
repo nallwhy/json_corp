@@ -9,7 +9,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def mount(%{"language" => language, "slug" => slug}, _session, socket) do
     socket =
       socket
-      |> assign(:language, language)
+      |> assign(:blog_language, language)
       |> assign(:slug, slug)
       |> init_comment_form()
       |> load_post()
@@ -249,37 +249,44 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   end
 
   defp load_post(socket) do
-    case Blog.fetch_post(socket.assigns.language, socket.assigns.slug) do
+    case Blog.fetch_post(
+           socket.assigns.language,
+           socket.assigns.blog_language,
+           socket.assigns.slug
+         ) do
       {:ok, post} ->
-        socket
-        |> assign(:post, post)
-        |> assign_new(:locked, fn
-          %{post: %SecretPost{}} -> true
-          %{post: %Post{}} -> false
-        end)
-        |> assign_new(:page_meta, fn %{
-                                       post: %Post{
-                                         title: title,
-                                         description: description,
-                                         cover_url: cover_url,
-                                         tags: tags
-                                       }
-                                     } ->
-          %{
-            title: title,
-            description: description,
-            image: cover_url,
-            keyword: tags
-          }
-        end)
+        case post.language == socket.assigns.blog_language do
+          true ->
+            socket
+            |> assign(:post, post)
+            |> assign_new(:locked, fn
+              %{post: %SecretPost{}} -> true
+              %{post: %Post{}} -> false
+            end)
+            |> assign_new(:page_meta, fn %{
+                                           post: %Post{
+                                             title: title,
+                                             description: description,
+                                             cover_url: cover_url,
+                                             tags: tags
+                                           }
+                                         } ->
+              %{
+                title: title,
+                description: description,
+                image: cover_url,
+                keyword: tags
+              }
+            end)
 
-      {:redirect, post} ->
-        socket
-        |> push_navigate(to: ~p"/blog/#{post}")
+          false ->
+            socket
+            |> push_navigate(to: ~p"/blog/#{socket.assigns.language}/#{post.slug}", replace: true)
+        end
 
       _ ->
         socket
-        |> push_navigate(to: ~p"/blog/#{socket.assigns.language}")
+        |> push_navigate(to: ~p"/blog/#{socket.assigns.language}", replace: true)
     end
   end
 

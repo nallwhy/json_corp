@@ -36,7 +36,7 @@ defmodule JsonCorp.BlogTest do
 
   describe "fetch_post/2" do
     test "with valid slug" do
-      assert {:ok, fetched_post} = Blog.fetch_post("ko", "post-00", @fixture_path)
+      assert {:ok, fetched_post} = Blog.fetch_post("ko", "ko", "post-00", @fixture_path)
 
       assert fetched_post.title == "테스트 제목 0"
       assert fetched_post.description == "설명 0"
@@ -51,7 +51,7 @@ defmodule JsonCorp.BlogTest do
     end
 
     test "with valid alias" do
-      assert {:redirect, fetched_post} = Blog.fetch_post("ko", "post-000", @fixture_path)
+      assert {:ok, fetched_post} = Blog.fetch_post("ko", "ko", "post-000", @fixture_path)
 
       assert fetched_post.title == "테스트 제목 0"
     end
@@ -59,7 +59,8 @@ defmodule JsonCorp.BlogTest do
     test "with valid secret slug" do
       secret_post = insert(:secret_post)
 
-      assert {:ok, fetched_secret_post} = Blog.fetch_post("any", secret_post.slug, @fixture_path)
+      assert {:ok, fetched_secret_post} =
+               Blog.fetch_post("any", "any", secret_post.slug, @fixture_path)
 
       assert same_fields?(fetched_secret_post, secret_post, [
                :title,
@@ -74,7 +75,7 @@ defmodule JsonCorp.BlogTest do
     end
 
     test "with invalid slug" do
-      assert :error = Blog.fetch_post("ko", "post", @fixture_path)
+      assert {:error, :not_found} = Blog.fetch_post("ko", "ko", "post", @fixture_path)
     end
   end
 

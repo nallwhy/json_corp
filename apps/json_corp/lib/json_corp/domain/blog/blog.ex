@@ -41,30 +41,46 @@ defmodule JsonCorp.Blog do
 
   @decorate cacheable(
               cache: Cache.Local,
-              key: {Blog, :fetch_post, [language, slug, posts_path]},
+              key: {Blog, :fetch_post, [prefrered_language, blog_language, slug, posts_path]},
               match: &Cache.default_matcher/1,
               opts: cache_opts()
             )
-  @spec fetch_post(language :: String.t(), slug :: String.t()) ::
-          {:ok, %Post{} | %SecretPost{}} | {:redirect, %Post{}} | :error
-  def fetch_post(language, slug, posts_path \\ posts_path()) do
-    list_posts_by_language(language, posts_path)
-    |> Enum.find_value(fn
-      %Post{slug: ^slug} = post ->
-        {:ok, post}
-
-      %Post{aliases: aliases} = post ->
-        case slug in aliases do
-          true -> {:redirect, post}
-          false -> nil
+  @spec fetch_post(
+          prefrered_language :: String.t(),
+          blog_language :: String.t(),
+          slug :: String.t()
+        ) ::
+          {:ok, %Post{} | %SecretPost{}} | {:error, :not_found}
+  def fetch_post(prefrered_language, blog_language, slug, posts_path \\ posts_path()) do
+    list_posts(posts_path)
+    |> Enum.map(fn post ->
+      slug_score =
+        cond do
+          post.slug == slug -> 0
+          slug in post.aliases -> 10
+          true -> nil
         end
 
-      _ ->
-        nil
+      language_score =
+        cond do
+          post.language == prefrered_language -> 0
+          post.language == blog_language -> 1
+          true -> nil
+        end
+
+      score =
+        if slug_score && language_score do
+          slug_score + language_score
+        else
+          nil
+        end
+
+      {score, post}
     end)
+    |> Enum.min_by(fn {score, _post} -> score end, fn -> {nil, nil} end)
     |> case do
-      nil -> fetch_secret_post(slug)
-      result -> result
+      {nil, _} -> fetch_secret_post(slug)
+      {_, post} -> {:ok, post}
     end
   end
 
@@ -111,7 +127,7 @@ defmodule JsonCorp.Blog do
     |> Repo.one()
     |> case do
       %SecretPost{} = secret_post -> {:ok, secret_post}
-      nil -> :error
+      nil -> {:error, :not_found}
     end
   end
 

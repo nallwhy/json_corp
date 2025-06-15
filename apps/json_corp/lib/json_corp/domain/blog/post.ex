@@ -16,7 +16,6 @@ defmodule JsonCorp.Blog.Post do
           status: [:published | :deleted]
         }
 
-  @derive Jason.Encoder
   @enforce_keys [
     :id,
     :title,
