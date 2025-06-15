@@ -1,9 +1,9 @@
 %{
-title: "Ash Weekly: 第17号 まとめ",
+title: "Ash Weekly: 第17号まとめ",
 description: "Ash AI、ElixirConf EU 2025、Phoenix.new、Phoenix.Sync、AtomVM、Hologram、LangSchema。",
 category: :dev,
 cover_url: "/images/blog/20250526_ash_weekly_17_recap_cover_ja.png",
-tags: ["Ash", "Ash Weekly", "Elixir"]
+tags: ["Ash", "Ash Weekly", "Ash AI", "ElixirConf", "Elixir"]
 }
 
 ---

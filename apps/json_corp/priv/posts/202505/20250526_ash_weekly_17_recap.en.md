@@ -3,7 +3,7 @@ title: "Ash Weekly: Issue #17 Recap",
 description: "Ash AI, ElixirConf EU 2025, Phoenix.new, Phoenix.Sync, AtomVM, Hologram, LangSchema.",
 category: :dev,
 cover_url: "/images/blog/20250526_ash_weekly_17_recap_cover_en.png",
-tags: ["Ash", "Ash Weekly", "Elixir"]
+tags: ["Ash", "Ash Weekly", "Ash AI", "ElixirConf", "Elixir"]
 }
 
 ---
