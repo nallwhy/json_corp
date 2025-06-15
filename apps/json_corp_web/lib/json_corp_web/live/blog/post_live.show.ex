@@ -164,7 +164,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def render(assigns) do
     ~H"""
     <div class="pb-4">
-      <.link navigate={~p"/blog/#{@post.language}"} class="block mb-6">
+      <.link navigate={~p"/blog/#{@language}"} class="block mb-6">
         <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
       </.link>
       <div class="prose">
