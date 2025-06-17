@@ -164,9 +164,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def render(assigns) do
     ~H"""
     <div class="pb-4">
-      <.link navigate={~p"/blog/#{@language}"} class="block mb-6">
-        <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">{gettext("Back to posts")}</span>
-      </.link>
+      <div class="flex items-center gap-x-6 mb-6">
+        <.link navigate={~p"/blog/#{@language}"} class="block">
+          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">{gettext("Back to posts")}</span>
+        </.link>
+        <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}/#{@post.slug}"}>
+          <.button>{gettext("How about %{language}?", language: @language |> Cldr.LocaleDisplay.display_name!())}</.button>
+        </.link>
+      </div>
       <div class="prose">
         <h1>{@post.title}</h1>
         <p>{@post.description}</p>
@@ -249,40 +254,32 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   end
 
   defp load_post(socket) do
-    case Blog.fetch_post(
-           socket.assigns.language,
-           socket.assigns.blog_language,
-           socket.assigns.slug
-         ) do
-      {:ok, post} ->
-        case post.language == socket.assigns.blog_language do
-          true ->
-            socket
-            |> assign(:post, post)
-            |> assign_new(:locked, fn
-              %{post: %SecretPost{}} -> true
-              %{post: %Post{}} -> false
-            end)
-            |> assign_new(:page_meta, fn %{
-                                           post: %Post{
-                                             title: title,
-                                             description: description,
-                                             cover_url: cover_url,
-                                             tags: tags
-                                           }
-                                         } ->
-              %{
-                title: title,
-                description: description,
-                image: cover_url,
-                keyword: tags
-              }
-            end)
+    case Blog.fetch_post(socket.assigns.blog_language, socket.assigns.slug) do
+      {:ok, post, candidates} ->
+        has_transl = candidates |> Enum.any?(&(&1.language == socket.assigns.language))
 
-          false ->
-            socket
-            |> push_navigate(to: ~p"/blog/#{socket.assigns.language}/#{post.slug}", replace: true)
-        end
+        socket
+        |> assign(:post, post)
+        |> assign(:has_transl, has_transl)
+        |> assign_new(:locked, fn
+          %{post: %SecretPost{}} -> true
+          %{post: %Post{}} -> false
+        end)
+        |> assign_new(:page_meta, fn %{
+                                       post: %Post{
+                                         title: title,
+                                         description: description,
+                                         cover_url: cover_url,
+                                         tags: tags
+                                       }
+                                     } ->
+          %{
+            title: title,
+            description: description,
+            image: cover_url,
+            keyword: tags
+          }
+        end)
 
       _ ->
         socket

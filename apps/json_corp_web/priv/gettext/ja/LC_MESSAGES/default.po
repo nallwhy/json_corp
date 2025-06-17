@@ -88,8 +88,8 @@ msgstr "プレイグラウンド"
 msgid "projects"
 msgstr "プロジェクト"
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #, elixir-autogen, elixir-format
@@ -107,3 +107,9 @@ msgstr "閲覧数"
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
 msgstr "一覧へ"
+
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#, elixir-autogen, elixir-format
+msgid "How about %{language}?"
+msgstr "%{language}ではいかがですか？"

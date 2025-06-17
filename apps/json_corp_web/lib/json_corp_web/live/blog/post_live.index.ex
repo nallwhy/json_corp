@@ -8,19 +8,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     socket =
       case language in Cldr.known_languages() do
         true ->
-          case socket.assigns.language do
-            ^language ->
-              socket
-              |> assign(:blog_language, language)
-              |> assign(:categories, Blog.list_categories())
-              |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
-              |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
-
-            _ ->
-              # TODO: go back not working(needs previous language)
-              socket
-              |> push_navigate(to: ~p"/blog/#{socket.assigns.language}", replace: true)
-          end
+          socket
+          |> assign(:blog_language, language)
+          |> assign(:categories, Blog.list_categories())
+          |> stream_configure(:posts, dom_id: &"post-#{&1.slug}")
+          |> assign(:page_meta, %{title: "Blog", description: "Json's talks"})
 
         false ->
           # redirect to PostLive.Show
@@ -93,8 +85,11 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   def render(assigns) do
     ~H"""
     <div class="flex items-start justify-between">
-      <div class="flex items-center gap-x-4">
+      <div class="flex items-start gap-x-6">
         <.h1>{gettext("blog") |> String.capitalize()}</.h1>
+        <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
+          <.button>{gettext("How about %{language}?", language: @language |> Cldr.LocaleDisplay.display_name!())}</.button>
+        </.link>
       </div>
       <div>
         <.link navigate={~p"/blog/#{@language}?random"}>

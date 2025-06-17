@@ -88,8 +88,8 @@ msgstr "실험실"
 msgid "projects"
 msgstr "프로젝트"
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #, elixir-autogen, elixir-format
@@ -107,3 +107,9 @@ msgstr "조회수"
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
 msgstr "목록으로"
+
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#, elixir-autogen, elixir-format
+msgid "How about %{language}?"
+msgstr "%{language}로 보기"

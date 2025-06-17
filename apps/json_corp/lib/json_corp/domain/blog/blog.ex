@@ -41,46 +41,27 @@ defmodule JsonCorp.Blog do
 
   @decorate cacheable(
               cache: Cache.Local,
-              key: {Blog, :fetch_post, [prefrered_language, blog_language, slug, posts_path]},
+              key: {Blog, :fetch_post, [language, slug, posts_path]},
               match: &Cache.default_matcher/1,
               opts: cache_opts()
             )
-  @spec fetch_post(
-          prefrered_language :: String.t(),
-          blog_language :: String.t(),
-          slug :: String.t()
-        ) ::
-          {:ok, %Post{} | %SecretPost{}} | {:error, :not_found}
-  def fetch_post(prefrered_language, blog_language, slug, posts_path \\ posts_path()) do
-    list_posts(posts_path)
-    |> Enum.map(fn post ->
-      slug_score =
-        cond do
-          post.slug == slug -> 0
-          slug in post.aliases -> 10
-          true -> nil
-        end
+  @spec fetch_post(language :: String.t(), slug :: String.t()) ::
+          {:ok, %Post{} | %SecretPost{}, list(%Post{} | %SecretPost{})} | {:error, :not_found}
+  def fetch_post(language, slug, posts_path \\ posts_path()) do
+    posts =
+      list_posts(posts_path)
+      |> Enum.filter(fn post -> slug == post.slug or slug in post.aliases end)
 
-      language_score =
-        cond do
-          post.language == prefrered_language -> 0
-          post.language == blog_language -> 1
-          true -> nil
-        end
-
-      score =
-        if slug_score && language_score do
-          slug_score + language_score
-        else
-          nil
-        end
-
-      {score, post}
-    end)
-    |> Enum.min_by(fn {score, _post} -> score end, fn -> {nil, nil} end)
+    posts
+    |> Enum.find_index(&(&1.language == language))
     |> case do
-      {nil, _} -> fetch_secret_post(slug)
-      {_, post} -> {:ok, post}
+      nil ->
+        fetch_secret_post(slug)
+
+      index ->
+        {post, candidates} = posts |> List.pop_at(index)
+
+        {:ok, post, candidates}
     end
   end
 
@@ -126,7 +107,7 @@ defmodule JsonCorp.Blog do
     SecretPost.fetch(slug)
     |> Repo.one()
     |> case do
-      %SecretPost{} = secret_post -> {:ok, secret_post}
+      %SecretPost{} = secret_post -> {:ok, secret_post, []}
       nil -> {:error, :not_found}
     end
   end

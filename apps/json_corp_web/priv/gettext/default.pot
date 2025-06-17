@@ -88,8 +88,8 @@ msgstr ""
 msgid "projects"
 msgstr ""
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
-#: lib/json_corp_web/live/blog/post_live.index.ex:122
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
+#: lib/json_corp_web/live/blog/post_live.index.ex:125
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #: lib/json_corp_web/live/blog/post_live.show.ex:173
 #, elixir-autogen, elixir-format
@@ -106,4 +106,10 @@ msgstr ""
 #: lib/json_corp_web/live/blog/post_live.show.ex:168
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
+msgstr ""
+
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#, elixir-autogen, elixir-format
+msgid "How about %{language}?"
 msgstr ""
