@@ -165,14 +165,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="pb-4">
       <.link navigate={~p"/blog/#{@language}"} class="block mb-6">
-        <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">Back to posts</span>
+        <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">{gettext("Back to posts")}</span>
       </.link>
       <div class="prose">
         <h1>{@post.title}</h1>
         <p>{@post.description}</p>
-        <div><time>Date created: {@post.date_created}</time></div>
+        <div><time>{gettext("Date created")}: {@post.date_created}</time></div>
         <div>
-          View count:
+          {gettext("View count")}:
           <.async_result :let={view_count} assign={@view_count}>
             <:loading>-</:loading>
             {view_count}

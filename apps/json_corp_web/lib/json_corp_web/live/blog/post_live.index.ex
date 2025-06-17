@@ -127,7 +127,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
               <h2 class="text-xl">{post.title}</h2>
               <p :if={post.description} class="mt-2">{post.description}</p>
               <div class="mt-6">
-                Date created: <time>{post.date_created}</time>
+                {gettext("Date created")}: <time>{post.date_created}</time>
               </div>
               <div :if={post.tags} class="mt-6">
                 <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>

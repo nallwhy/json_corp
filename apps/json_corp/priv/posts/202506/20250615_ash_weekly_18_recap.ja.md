@@ -2,7 +2,7 @@
 title: "Ash Weekly: 第18号まとめ",
 description: "AshPhoenix.Plug.CheckCodegenStatus、mix ash.codegen --dev、Shared Action Context、UsageRules、ash_ai.gen.chatの改善、Igniter.Scribe。",
 category: :dev,
-cover_url: "/images/blog/20250615_ash_weekly_18_recap_cover_ko.png",
+cover_url: "/images/blog/20250615_ash_weekly_18_recap_cover_ja.png",
 tags: ["Ash", "Ash Weekly", "UsageRules", "Elixir"]
 }
 

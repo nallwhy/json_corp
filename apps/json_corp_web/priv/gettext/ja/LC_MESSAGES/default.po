@@ -59,33 +59,51 @@ msgid "close"
 msgstr ""
 
 #: lib/json_corp_web/components/components.ex:83
-#: lib/json_corp_web/components/components.ex:83
 #, elixir-autogen, elixir-format
 msgid "Social"
 msgstr "ソーシャル"
 
-#: lib/json_corp_web/components/components.ex:126
-#: lib/json_corp_web/components/components.ex:126
-#: lib/json_corp_web/live/blog/post_live.index.ex:88
-#: lib/json_corp_web/live/blog/post_live.index.ex:88
+#: lib/json_corp_web/components/components.ex:129
+#: lib/json_corp_web/live/blog/post_live.index.ex:89
+#: lib/json_corp_web/live/blog/post_live.index.ex:89
 #, elixir-autogen, elixir-format, fuzzy
 msgid "blog"
 msgstr "ブログ"
 
-#: lib/json_corp_web/components/components.ex:127
-#: lib/json_corp_web/components/components.ex:127
+#: lib/json_corp_web/components/components.ex:130
+#: lib/json_corp_web/live/consulting_live.ex:12
 #, elixir-autogen, elixir-format, fuzzy
 msgid "consulting"
 msgstr "コンサルティング"
 
-#: lib/json_corp_web/components/components.ex:128
-#: lib/json_corp_web/components/components.ex:128
+#: lib/json_corp_web/components/components.ex:131
+#: lib/json_corp_web/live/playgrounds/playground_live.ex:12
 #, elixir-autogen, elixir-format, fuzzy
 msgid "playgrounds"
 msgstr "プレイグラウンド"
 
-#: lib/json_corp_web/components/components.ex:129
-#: lib/json_corp_web/components/components.ex:129
+#: lib/json_corp_web/components/components.ex:132
+#: lib/json_corp_web/live/project_live.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "projects"
 msgstr "プロジェクト"
+
+#: lib/json_corp_web/live/blog/post_live.index.ex:122
+#: lib/json_corp_web/live/blog/post_live.index.ex:122
+#: lib/json_corp_web/live/blog/post_live.show.ex:173
+#: lib/json_corp_web/live/blog/post_live.show.ex:173
+#, elixir-autogen, elixir-format
+msgid "Date created"
+msgstr "作成日"
+
+#: lib/json_corp_web/live/blog/post_live.show.ex:175
+#: lib/json_corp_web/live/blog/post_live.show.ex:175
+#, elixir-autogen, elixir-format
+msgid "View count"
+msgstr "閲覧数"
+
+#: lib/json_corp_web/live/blog/post_live.show.ex:168
+#: lib/json_corp_web/live/blog/post_live.show.ex:168
+#, elixir-autogen, elixir-format
+msgid "Back to posts"
+msgstr "一覧へ"
