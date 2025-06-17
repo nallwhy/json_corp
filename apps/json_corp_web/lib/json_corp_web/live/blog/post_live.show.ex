@@ -165,7 +165,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
     ~H"""
     <div class="pb-4">
       <div class="flex items-center gap-x-6 mb-6">
-        <.link navigate={~p"/blog/#{@language}"} class="block">
+        <.link navigate={~p"/blog/#{@blog_language}"} class="block">
           <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">{gettext("Back to posts")}</span>
         </.link>
         <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}/#{@post.slug}"}>
