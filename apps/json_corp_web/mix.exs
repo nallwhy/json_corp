@@ -40,7 +40,7 @@ defmodule JsonCorpWeb.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
-      {:phoenix_live_view, "~> 1.0"},
+      {:phoenix_live_view, "~> 1.0", override: true},
       {:phoenix_view, "~> 2.0"},
       {:floki, ">= 0.30.0"},
       {:phoenix_live_dashboard, "~> 0.8.1"},
