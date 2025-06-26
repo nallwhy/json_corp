@@ -38,7 +38,7 @@ if config_env() == :prod do
 
   host = System.get_env("PHX_HOST") || "example.com"
 
-  config :json_corp_web, JsonCorpWeb.Endpoint,
+  config :json_corp, JsonCorpWeb.Endpoint,
     url: [host: host, scheme: "https", port: 443],
     http: [
       # Enable IPv6 and bind on all interfaces.

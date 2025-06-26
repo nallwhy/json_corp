@@ -44,8 +44,6 @@ RUN --mount=type=secret,id=FLUXON_KEY_FINGERPRINT \
 
 # install mix dependencies
 COPY mix.exs mix.lock ./
-COPY apps/${APP_NAME}/mix.exs ./apps/${APP_NAME}/mix.exs
-COPY apps/${APP_NAME}_web/mix.exs ./apps/${APP_NAME}_web/mix.exs
 RUN mix deps.get --only $MIX_ENV
 RUN mkdir config
 
@@ -55,13 +53,11 @@ RUN mkdir config
 COPY config/config.exs config/${MIX_ENV}.exs config/
 RUN mix deps.compile
 
-COPY apps/${APP_NAME}/priv ./apps/${APP_NAME}/priv
-COPY apps/${APP_NAME}_web/priv ./apps/${APP_NAME}_web/priv
+COPY priv priv
 
-COPY apps/${APP_NAME}/lib ./apps/${APP_NAME}/lib
-COPY apps/${APP_NAME}_web/lib ./apps/${APP_NAME}_web/lib
+COPY lib lib
 
-COPY apps/${APP_NAME}_web/assets ./apps/${APP_NAME}_web/assets
+COPY assets assets
 
 # release setup (ex. compile assets)
 RUN mix release.setup

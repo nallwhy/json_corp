@@ -16,7 +16,7 @@ config :json_corp, JsonCorp.Repo,
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :json_corp_web, JsonCorpWeb.Endpoint,
+config :json_corp, JsonCorpWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "7cPg5FxtvNSnCEJMjE9lSLF1ncmUBuw17RSHNyLWCHk15i2ZdJ4HXR2UZ3IqRdV6",
   server: false

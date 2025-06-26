@@ -27,12 +27,12 @@ config :json_corp, JsonCorp.Mailer, adapter: Swoosh.Adapters.Local
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
-config :json_corp_web,
+config :json_corp,
   ecto_repos: [JsonCorp.Repo],
   generators: [context_app: :json_corp]
 
 # Configures the endpoint
-config :json_corp_web, JsonCorpWeb.Endpoint,
+config :json_corp, JsonCorpWeb.Endpoint,
   url: [host: "localhost", port: 4000],
   render_errors: [
     formats: [html: JsonCorpWeb.ErrorHTML, json: JsonCorpWeb.ErrorJSON],
@@ -48,7 +48,7 @@ config :esbuild,
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
-    cd: Path.expand("../apps/json_corp_web/assets", __DIR__),
+    cd: Path.expand("../assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
@@ -59,7 +59,7 @@ config :tailwind,
       --input=assets/css/app.css
       --output=priv/static/assets/app.css
     ),
-    cd: Path.expand("../apps/json_corp_web", __DIR__)
+    cd: Path.expand("..", __DIR__)
   ]
 
 # Configures Elixir's Logger
