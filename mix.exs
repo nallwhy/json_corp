@@ -10,7 +10,8 @@ defmodule JsonCorp.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
-      releases: releases()
+      releases: releases(),
+      consolidate_protocols: Mix.env() != :dev
     ]
   end
 
@@ -33,6 +34,8 @@ defmodule JsonCorp.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:sourceror, "~> 1.8", only: [:dev, :test]},
+      {:ash, "~> 3.0"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:jason, "~> 1.2"},
@@ -87,7 +90,8 @@ defmodule JsonCorp.MixProject do
        compile: false,
        depth: 1},
       {:fluxon, "~> 1.1.0", repo: :fluxon},
-      {:tailwind_formatter, "~> 0.4.2"}
+      {:tailwind_formatter, "~> 0.4.2"},
+      {:igniter, "~> 0.6"}
     ]
   end
 
