@@ -86,7 +86,8 @@ defmodule JsonCorp.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:fluxon, "~> 1.1.0", repo: :fluxon}
+      {:fluxon, "~> 1.1.0", repo: :fluxon},
+      {:tailwind_formatter, "~> 0.4.2"}
     ]
   end
 
