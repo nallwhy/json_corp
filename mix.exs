@@ -34,7 +34,8 @@ defmodule JsonCorp.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:sourceror, "~> 1.8", only: [:dev, :test]},
+      {:usage_rules, "~> 0.1", only: [:dev]},
+      {:sourceror, "~> 1.8"},
       {:ash, "~> 3.0"},
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
