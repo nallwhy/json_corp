@@ -195,7 +195,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         </.link>
       </div>
     </div>
-    <hr class="prose" />
+    <hr class="border-1 border-secondary prose" />
     <div class="prose pt-4">
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       {@post.body |> MarkdownRenderer.html() |> raw()}

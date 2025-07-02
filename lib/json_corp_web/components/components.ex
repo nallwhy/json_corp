@@ -44,7 +44,7 @@ defmodule JsonCorpWeb.Components do
           <ul class="flex">
             <li
               :for={{menu_name, menu_route} <- list_menus()}
-              class="border-y-4 border-transparent px-2 hover:border-b-accent"
+              class="border-y-4 border-transparent px-2 py-1 hover:border-b-accent"
             >
               <.link navigate={menu_route}>{menu_name |> String.capitalize()}</.link>
             </li>
@@ -83,10 +83,10 @@ defmodule JsonCorpWeb.Components do
         <span class="footer-title">{gettext("Social")}</span>
         <div class="grid grid-flow-col gap-2">
           <a href="https://github.com/nallwhy" target="_blank">
-            <Icon.github class="fill-gray-400 hover:fill-accent" width="24" height="24" />
+            <Icon.github class="fill-secondary hover:fill-accent" width="24" height="24" />
           </a>
           <a href="https://www.linkedin.com/in/jinkyou-son/" target="_blank">
-            <Icon.linkedin class="fill-gray-400 hover:fill-accent" width="26" height="26" />
+            <Icon.linkedin class="fill-secondary hover:fill-accent" width="26" height="26" />
           </a>
         </div>
       </div>
@@ -112,7 +112,7 @@ defmodule JsonCorpWeb.Components do
 
   def hr(assigns) do
     ~H"""
-    <hr class="mx-auto mt-4 h-px max-w-6xl border-0 bg-gray-200 dark:bg-gray-700" />
+    <hr class="border-1 border-primary mx-auto mt-4 h-px max-w-6xl" />
     """
   end
 
@@ -141,11 +141,11 @@ defmodule JsonCorpWeb.Components do
     <.dropdown
       label={language_label(@current_language)}
       placement="bottom-end"
-      toggle_class="!bg-base-200 !border-base-content/10 !text-base-content !hover:after:bg-base-300"
-      class="!bg-base-200 !border-base-content/10"
+      toggle_class="bg-base-200 border-base-content/10 text-base-content hover:after:bg-base-300"
+      class="bg-base-200 border-base-content/10"
     >
       <.link :for={{language, _} <- languages()} href={"?locale=#{language}"}>
-        <.dropdown_button class="!text-base-content !data-highlighted:bg-base-300">
+        <.dropdown_button class="text-base-content data-highlighted:bg-base-300">
           {language_label(language)}
         </.dropdown_button>
       </.link>
