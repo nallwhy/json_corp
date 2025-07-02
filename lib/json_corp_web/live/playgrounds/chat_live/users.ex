@@ -24,7 +24,7 @@ defmodule JsonCorpWeb.Playgrounds.ChatLive.Users do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="px-4 py-2 rounded-md bg-slate-50">
+    <div class="rounded-md bg-slate-50 px-4 py-2">
       Users
       <li :if={@me}>
         {@me.name} <span class="ml-1">(Me)</span> ({@me.channels |> Enum.join(", ")})

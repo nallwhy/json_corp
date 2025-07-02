@@ -35,16 +35,16 @@ defmodule JsonCorpWeb.Components do
 
   def header(assigns) do
     ~H"""
-    <header class="navbar max-w-6xl mx-auto px-8 py-6 place-content-between">
-      <div class="flex-none w-32">
+    <header class="navbar mx-auto max-w-6xl place-content-between px-8 py-6">
+      <div class="w-32 flex-none">
         <.link navigate={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
       </div>
-      <div class="hidden sm:flex flex-row items-center justify-between flex-1 pl-12">
+      <div class="hidden flex-1 flex-row items-center justify-between pl-12 sm:flex">
         <div>
           <ul class="flex">
             <li
               :for={{menu_name, menu_route} <- list_menus()}
-              class="px-2 border-y-2 border-transparent hover:border-b-primary"
+              class="border-y-2 border-transparent px-2 hover:border-b-primary"
             >
               <.link navigate={menu_route}>{menu_name |> String.capitalize()}</.link>
             </li>
@@ -54,7 +54,7 @@ defmodule JsonCorpWeb.Components do
           <.language_dropdown current_language={@language} />
         </div>
       </div>
-      <div class="sm:hidden flex-none flex">
+      <div class="flex flex-none sm:hidden">
         <div>
           <.language_dropdown current_language={@language} />
         </div>
@@ -64,7 +64,7 @@ defmodule JsonCorpWeb.Components do
           </label>
           <ul
             tabindex="0"
-            class="menu menu-compact dropdown-content p-2 shadow bg-base-100 rounded-box w-52 border-2"
+            class="menu menu-compact dropdown-content bg-base-100 rounded-box w-52 border-2 p-2 shadow"
           >
             <li :for={{menu_name, menu_route} <- list_menus()}>
               <.link navigate={menu_route}>{menu_name}</.link>
@@ -78,7 +78,7 @@ defmodule JsonCorpWeb.Components do
 
   def footer(assigns) do
     ~H"""
-    <footer class="footer max-w-6xl mx-auto p-8">
+    <footer class="footer mx-auto max-w-6xl p-8">
       <div>
         <span class="footer-title">{gettext("Social")}</span>
         <div class="grid grid-flow-col gap-2">
@@ -98,7 +98,7 @@ defmodule JsonCorpWeb.Components do
 
   def h1(assigns) do
     ~H"""
-    <h1 class="text-3xl mb-6 font-bold">{render_slot(@inner_block)}</h1>
+    <h1 class="mb-6 text-3xl font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 
@@ -106,13 +106,13 @@ defmodule JsonCorpWeb.Components do
 
   def h2(assigns) do
     ~H"""
-    <h1 class="text-xl mb-6 font-bold">{render_slot(@inner_block)}</h1>
+    <h1 class="mb-6 text-xl font-bold">{render_slot(@inner_block)}</h1>
     """
   end
 
   def hr(assigns) do
     ~H"""
-    <hr class="max-w-6xl mx-auto mt-4 h-px bg-gray-200 border-0 dark:bg-gray-700" />
+    <hr class="mx-auto mt-4 h-px max-w-6xl border-0 bg-gray-200 dark:bg-gray-700" />
     """
   end
 

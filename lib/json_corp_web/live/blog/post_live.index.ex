@@ -88,12 +88,16 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       <div class="flex items-start gap-x-6">
         <.h1>{gettext("blog") |> String.capitalize()}</.h1>
         <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
-          <.button>{gettext("How about %{language}?", language: @language |> Cldr.LocaleDisplay.display_name!())}</.button>
+          <.button>
+            {gettext("How about %{language}?",
+              language: @language |> Cldr.LocaleDisplay.display_name!()
+            )}
+          </.button>
         </.link>
       </div>
       <div>
         <.link navigate={~p"/blog/#{@language}?random"}>
-          <.icon name="hero-sparkles" class="w-6 h-6" />
+          <.icon name="hero-sparkles" class="h-6 w-6" />
         </.link>
       </div>
     </div>
@@ -101,14 +105,14 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
     <div class="mb-4 flex">
       <.link
         patch={~p"/blog/#{@language}"}
-        class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == nil, do: "font-bold"}"}
+        class={"#{if @category == nil, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
       >
         All
       </.link>
       <.link
         :for={category <- @categories}
         patch={~p"/blog/#{@language}?category=#{category}"}
-        class={"px-4 first:pl-0 border-r-2 last:border-r-0 #{if @category == category, do: "font-bold"}"}
+        class={"#{if @category == category, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
       >
         {category}
       </.link>
@@ -118,7 +122,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       <div id="posts" class="divide-y" phx-update="stream">
         <div :for={{dom_id, post} <- @streams.posts} id={dom_id}>
           <.link navigate={~p"/blog/#{post.language}/#{post.slug}"}>
-            <article class="py-4 cursor-pointer">
+            <article class="cursor-pointer py-4">
               <h2 class="text-xl">{post.title}</h2>
               <p :if={post.description} class="mt-2">{post.description}</p>
               <div class="mt-6">
@@ -126,7 +130,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
               </div>
               <div :if={post.tags} class="mt-6">
                 <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
-                  <span class="mr-2 tag">#{tag}</span>
+                  <span class="tag mr-2">#{tag}</span>
                 </.link>
               </div>
             </article>

@@ -33,12 +33,12 @@ defmodule JsonCorpWeb.CursorLive do
         <li
           :if={user.position != nil}
           style={"color: #{color}; left: #{user.position.x + user.position.base_x}px; top: #{user.position.y + user.position.base_y}px"}
-          class="flex flex-col absolute pointer-events-none whitespace-nowrap overflow-hidden z-50 opacity-70"
+          class="pointer-events-none absolute z-50 flex flex-col overflow-hidden whitespace-nowrap opacity-70"
         >
           <Icon.cursor />
           <span
             style={"background-color: #{color};"}
-            class="mt-0 ml-2 px-2 py-1 text-sm rounded-md text-white"
+            class="mt-0 ml-2 rounded-md px-2 py-1 text-sm text-white"
           >
             {user.name}
           </span>

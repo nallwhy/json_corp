@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="bumblebee">
   <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.head_meta_tags page_meta={assigns[:page_meta] || %{}} default={%{
-      title: "Json Media",
-      description: "Json's Playground",
-      keyword: ["Json Media","Software","Developer Productivity","B2B SaaS","reflow","Consulting","Elixir","손진규"],
-      image: url(~p"/images/json-logo.png")
-    }} title_suffix={" · Json Media"} />
-    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"}/>
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="alternate" type="application/rss+xml" href="/feed_ko.xml" title="Json Media Feed (Korean)" hreflang="ko">
-    <link rel="alternate" type="application/rss+xml" href="/feed_en.xml" title="Json Media Feed (English)" hreflang="en">
-    <link rel="alternate" type="application/rss+xml" href="/feed_ja.xml" title="Json Media Feed (Japaness)" hreflang="ja">
+    <.head_meta_tags
+      page_meta={assigns[:page_meta] || %{}}
+      default={
+        %{
+          title: "Json Media",
+          description: "Json's Playground",
+          keyword: [
+            "Json Media",
+            "Software",
+            "Developer Productivity",
+            "B2B SaaS",
+            "reflow",
+            "Consulting",
+            "Elixir",
+            "손진규"
+          ],
+          image: url(~p"/images/json-logo.png")
+        }
+      }
+      title_suffix=" · Json Media"
+    />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/feed_ko.xml"
+      title="Json Media Feed (Korean)"
+      hreflang="ko"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/feed_en.xml"
+      title="Json Media Feed (English)"
+      hreflang="en"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/feed_ja.xml"
+      title="Json Media Feed (Japaness)"
+      hreflang="ja"
+    />
     <!-- Trix Editor -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css" />
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js">
@@ -26,7 +60,7 @@
   </head>
   <body>
     <.header language={@language} />
-    { @inner_content }
+    {@inner_content}
     <.hr />
     <.footer />
   </body>

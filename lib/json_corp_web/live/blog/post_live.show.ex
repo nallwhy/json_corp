@@ -164,12 +164,18 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
   def render(assigns) do
     ~H"""
     <div class="pb-4">
-      <div class="flex items-center gap-x-6 mb-6">
+      <div class="mb-6 flex items-center gap-x-6">
         <.link navigate={~p"/blog/#{@blog_language}"} class="block">
-          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">{gettext("Back to posts")}</span>
+          <Icon.arrow_left class="icon mr-1" /><span class="text-gray-400">
+            {gettext("Back to posts")}
+          </span>
         </.link>
         <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}/#{@post.slug}"}>
-          <.button>{gettext("How about %{language}?", language: @language |> Cldr.LocaleDisplay.display_name!())}</.button>
+          <.button>
+            {gettext("How about %{language}?",
+              language: @language |> Cldr.LocaleDisplay.display_name!()
+            )}
+          </.button>
         </.link>
       </div>
       <div class="prose">
@@ -186,7 +192,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       </div>
       <div :if={@post.tags} class="mt-2">
         <.link :for={tag <- @post.tags} navigate={~p"/blog/#{@post.language}?tag=#{tag}"}>
-          <span class="mr-2 tag">#{tag}</span>
+          <span class="tag mr-2">#{tag}</span>
         </.link>
       </div>
     </div>
@@ -195,7 +201,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       <img :if={@post.cover_url} src={@post.cover_url} alt={@post.title} class="w-full" />
       {@post.body |> MarkdownRenderer.html() |> raw()}
     </div>
-    <div :if={false} class="max-w-2xl mt-12">
+    <div :if={false} class="mt-12 max-w-2xl">
       <.h2>Comments</.h2>
       <.simple_form for={@comment_form} phx-change="validate_comment" phx-submit="save_comment">
         <div class="flex space-x-8">
@@ -220,7 +226,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
         <div
           :for={{comment_dom_id, %Comment{} = comment} <- @streams.comments}
           id={comment_dom_id}
-          class="py-4 space-y-2"
+          class="space-y-2 py-4"
         >
           <p>{comment.name}</p>
           <p>{comment.inserted_at |> ago()}</p>
