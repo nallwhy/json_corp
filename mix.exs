@@ -127,8 +127,7 @@ defmodule JsonCorp.MixProject do
     [
       json_corp_app: [
         applications: [
-          json_corp: :permanent,
-          json_corp_web: :permanent
+          json_corp: :permanent
         ]
       ]
     ]
