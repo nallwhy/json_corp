@@ -36,15 +36,15 @@ defmodule JsonCorpWeb.Components do
   def header(assigns) do
     ~H"""
     <header class="navbar mx-auto max-w-6xl place-content-between px-8 py-6">
-      <div class="w-32 flex-none">
-        <.link navigate={~p"/"} class="cursor-pointer text-xl hover:font-bold">Json Media</.link>
+      <div class="hover-scale-110 w-32 flex-none">
+        <.link navigate={~p"/"} class="cursor-pointer text-xl">Json Media</.link>
       </div>
       <div class="hidden flex-1 flex-row items-center justify-between pl-12 sm:flex">
         <div>
           <ul class="flex">
             <li
               :for={{menu_name, menu_route} <- list_menus()}
-              class="border-y-2 border-transparent px-2 hover:border-b-primary"
+              class="border-y-4 border-transparent px-2 hover:border-b-accent"
             >
               <.link navigate={menu_route}>{menu_name |> String.capitalize()}</.link>
             </li>
@@ -60,11 +60,11 @@ defmodule JsonCorpWeb.Components do
         </div>
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-ghost">
-            <Icon.bar_3 class="hover:fill-black" width="24" height="24" />
+            <Icon.bar_3 class="hover:fill-base-content" width="24" height="24" />
           </label>
           <ul
             tabindex="0"
-            class="menu menu-compact dropdown-content bg-base-100 rounded-box w-52 border-2 p-2 shadow"
+            class="menu menu-compact dropdown-content bg-base-100 rounded-box border-base-content/10 w-52 border p-2 shadow"
           >
             <li :for={{menu_name, menu_route} <- list_menus()}>
               <.link navigate={menu_route}>{menu_name}</.link>
@@ -83,10 +83,10 @@ defmodule JsonCorpWeb.Components do
         <span class="footer-title">{gettext("Social")}</span>
         <div class="grid grid-flow-col gap-2">
           <a href="https://github.com/nallwhy" target="_blank">
-            <Icon.github class="fill-gray-400 hover:fill-black" width="24" height="24" />
+            <Icon.github class="fill-gray-400 hover:fill-accent" width="24" height="24" />
           </a>
           <a href="https://www.linkedin.com/in/jinkyou-son/" target="_blank">
-            <Icon.linkedin class="fill-gray-400 hover:fill-black" width="26" height="26" />
+            <Icon.linkedin class="fill-gray-400 hover:fill-accent" width="26" height="26" />
           </a>
         </div>
       </div>
@@ -135,11 +135,17 @@ defmodule JsonCorpWeb.Components do
 
   attr :current_language, :map, required: true
 
+  # hover, highlight 시의 css 가 제대로 먹히지 않음
   defp language_dropdown(assigns) do
     ~H"""
-    <.dropdown label={language_label(@current_language)} placement="bottom-end">
+    <.dropdown
+      label={language_label(@current_language)}
+      placement="bottom-end"
+      toggle_class="!bg-base-200 !border-base-content/10 !text-base-content !hover:after:bg-base-300"
+      class="!bg-base-200 !border-base-content/10"
+    >
       <.link :for={{language, _} <- languages()} href={"?locale=#{language}"}>
-        <.dropdown_button>
+        <.dropdown_button class="!text-base-content !data-highlighted:bg-base-300">
           {language_label(language)}
         </.dropdown_button>
       </.link>

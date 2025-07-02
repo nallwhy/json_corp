@@ -56,6 +56,7 @@ defmodule JsonCorpWeb do
       use Phoenix.Component
 
       import Phoenix.HTML
+      import JsonCorpWeb.CoreComponents
 
       alias Phoenix.LiveView.JS
 

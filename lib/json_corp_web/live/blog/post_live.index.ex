@@ -95,7 +95,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
           </.button>
         </.link>
       </div>
-      <div>
+      <div class="hover-scale-110">
         <.link navigate={~p"/blog/#{@language}?random"}>
           <.icon name="hero-sparkles" class="h-6 w-6" />
         </.link>

@@ -7,7 +7,44 @@
 @source "../../lib/json_corp_web";
 
 @plugin "../vendor/heroicons";
+
 @plugin "daisyui";
+
+/* https: //daisyui.com/theme-generator/#theme=eJx9lGFugzAMha-CkCZtUkGJIS30NimYEpUmKAGt27S7Lw0VDZDup-3vPezY4ieW_IrxMe7EuR3iXVypTunEVC26dM31xWaTZMqfuMGEEmIr6tJV7XtZvEUkJZRFBftYg-CDuQMhxGU-RyYuaFgpOaAcZjgnQdNeiyvXXzN2gDsGESMBamNaltNIK9ygBWvftmDBr8_gxhnCAl5VPsUOU7ewTwPY63ah9GmJ46B5N2N0en_CIihYWkAWgLfeMIlyK9qnGfgaIRs1g3s3me0hI2vmn4aXsBntgMY8Pd1p0SKijAW4174r_pNrKeR5tTaAqCQBbHtj1LVBIcpZWpLc16DWSj_PbCLLPKJZmkOxIbcH4VZN7VIopKR8eGtei9HYO-qwGpw_SZnGq19sBHa1q8C6dFK3pcSIb1y6wbIWMjspXeOdpv3NJWrsh_Yeu0gqYfAR1djwsbNTDXrEXdxrbFAb9-c4Nrwz-PsHKAxDmw */
+@plugin "daisyui/theme" {
+    name: "dieter-rams";
+    default: true;
+    prefersdark: false;
+    color-scheme: "light";
+    --color-base-100: oklch(98% 0.015 85);
+    --color-base-200: oklch(94% 0.02 85);
+    --color-base-300: oklch(90% 0.025 85);
+    --color-base-content: oklch(40% 0.02 85);
+    --color-primary: oklch(0.7837 0.1587 72.99);
+    --color-primary-content: oklch(99% 0.01 50);
+    --color-secondary: oklch(85% 0.02 85);
+    --color-secondary-content: oklch(25% 0.02 85);
+    --color-accent: oklch(57% 0.2 26.5);
+    --color-accent-content: oklch(99% 0.01 29);
+    --color-neutral: oklch(14% 0.005 285.823);
+    --color-neutral-content: oklch(92% 0.004 286.32);
+    --color-info: oklch(65% 0.1 230);
+    --color-info-content: oklch(99% 0.01 230);
+    --color-success: oklch(68% 0.18 155);
+    --color-success-content: oklch(99% 0.01 155);
+    --color-warning: oklch(85% 0.22 90);
+    --color-warning-content: oklch(41% 0.112 45.904);
+    --color-error: oklch(71% 0.194 13.428);
+    --color-error-content: oklch(27% 0.105 12.094);
+    --radius-selector: 0.5rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 1;
+}
 
 /* Add variants based on LiveView classes */
 @custom-variant phx-click-loading ([".phx-click-loading&", ".phx-click-loading &"]);
@@ -24,6 +61,22 @@
 @plugin "@tailwindcss/forms";
 
 @source "../../deps/fluxon/**/*.*ex";
+
+@layer components {
+    html {
+        /* @apply text-default-black; */
+    }
+
+    *:not(button) {
+        @apply border-primary;
+    }
+}
+
+@layer utilities {
+    .hover-scale-110 {
+        @apply transition-transform duration-200 hover:scale-110
+    }
+}
 
 @import "./blog.css";
 
