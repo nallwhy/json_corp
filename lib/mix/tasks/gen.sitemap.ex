@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Gen.Sitemap do
     ]
 
     sitemaps =
-      ["/", "/blog/ko", "/blog/en", "/consulting", "/playground", "/projects"]
+      ["/", "/blog/ko", "/blog/en", "/appearances", "/playground", "/projects"]
       |> Enum.map(fn path ->
         %Sitemapper.URL{
           loc: "#{url}#{path}"
