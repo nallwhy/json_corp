@@ -10,32 +10,56 @@
 
 @plugin "daisyui";
 
-/* https: //daisyui.com/theme-generator/#theme=eJx9lGFugzAMha-CkCZtUkGJIS30NimYEpUmKAGt27S7Lw0VDZDup-3vPezY4ieW_IrxMe7EuR3iXVypTunEVC26dM31xWaTZMqfuMGEEmIr6tJV7XtZvEUkJZRFBftYg-CDuQMhxGU-RyYuaFgpOaAcZjgnQdNeiyvXXzN2gDsGESMBamNaltNIK9ygBWvftmDBr8_gxhnCAl5VPsUOU7ewTwPY63ah9GmJ46B5N2N0en_CIihYWkAWgLfeMIlyK9qnGfgaIRs1g3s3me0hI2vmn4aXsBntgMY8Pd1p0SKijAW4174r_pNrKeR5tTaAqCQBbHtj1LVBIcpZWpLc16DWSj_PbCLLPKJZmkOxIbcH4VZN7VIopKR8eGtei9HYO-qwGpw_SZnGq19sBHa1q8C6dFK3pcSIb1y6wbIWMjspXeOdpv3NJWrsh_Yeu0gqYfAR1djwsbNTDXrEXdxrbFAb9-c4Nrwz-PsHKAxDmw */
+/* https://daisyui.com/theme-generator/#theme=eJx9lGFugzAMha-CkCZtUkGJIS30NimYEpUmKAGt27S7Lw0VDZDup-3vPezY4ieW_IrxMe7EuR3iXVypTunEVC26dM31xWaTZMqfuMGEEmIr6tJV7XtZvEUkJZRFBftYg-CDuQMhxGU-RyYuaFgpOaAcZjgnQdNeiyvXXzN2gDsGESMBamNaltNIK9ygBWvftmDBr8_gxhnCAl5VPsUOU7ewTwPY63ah9GmJ46B5N2N0en_CIihYWkAWgLfeMIlyK9qnGfgaIRs1g3s3me0hI2vmn4aXsBntgMY8Pd1p0SKijAW4174r_pNrKeR5tTaAqCQBbHtj1LVBIcpZWpLc16DWSj_PbCLLPKJZmkOxIbcH4VZN7VIopKR8eGtei9HYO-qwGpw_SZnGq19sBHa1q8C6dFK3pcSIb1y6wbIWMjspXeOdpv3NJWrsh_Yeu0gqYfAR1djwsbNTDXrEXdxrbFAb9-c4Nrwz-PsHKAxDmw */
 @plugin "daisyui/theme" {
-    name: "dieter-rams";
+    name: "dieter-rams-dr06";
     default: true;
     prefersdark: false;
     color-scheme: "light";
-    --color-base-100: oklch(98% 0.015 85);
-    --color-base-200: oklch(94% 0.02 85);
-    --color-base-300: oklch(90% 0.025 85);
-    --color-base-content: oklch(40% 0.02 85);
-    --color-primary: oklch(0.7837 0.1587 72.99);
-    --color-primary-content: oklch(99% 0.01 50);
-    --color-secondary: oklch(85% 0.02 85);
-    --color-secondary-content: oklch(25% 0.02 85);
-    --color-accent: oklch(57% 0.2 26.5);
-    --color-accent-content: oklch(99% 0.01 29);
-    --color-neutral: oklch(14% 0.005 285.823);
-    --color-neutral-content: oklch(92% 0.004 286.32);
-    --color-info: oklch(65% 0.1 230);
+
+    /* Base Colors: 밝고 깨끗한 무채색 계열로 통일하여 안정감 부여 */
+    --color-base-100: oklch(96.5% 0.005 115);
+    /* #F5F5F5 - 가장 밝은 기본 배경 */
+    --color-base-200: oklch(92% 0.007 115);
+    /* #EAEAEA - 카드, 섹션 배경 등 */
+    --color-base-300: oklch(88% 0.01 115);
+    /* #DDDDDD - 호버, 활성 상태 등 */
+    --color-base-content: oklch(34.52% 0 0);
+    /* #404040 - 높은 가독성의 텍스트 */
+
+    /* --- 포인트 색상은 그대로 유지 --- */
+    --color-primary: oklch(69.8% 0.149 65.37);
+    /* Vibrant Orange (#ED8008) */
+    --color-primary-content: oklch(98% 0.01 85);
+
+    --color-secondary: oklch(53.29% 0.074 105.35);
+    /* Olive Green (#736B1E) */
+    --color-secondary-content: oklch(98% 0.01 85);
+
+    --color-accent: oklch(64.57% 0.198 29.35);
+    /* Tomato Red (#ED3F1C) */
+    --color-accent-content: oklch(98% 0.01 85);
+
+    --color-neutral: oklch(34.52% 0 0);
+    /* Dark Gray, same as base-content */
+    --color-neutral-content: var(--color-base-100);
+    /* base-100과 동기화하여 유지보수 용이 */
+
+    /* --- 기능 색상 --- */
+    --color-info: oklch(65% 0.09 230);
     --color-info-content: oklch(99% 0.01 230);
-    --color-success: oklch(68% 0.18 155);
-    --color-success-content: oklch(99% 0.01 155);
-    --color-warning: oklch(85% 0.22 90);
-    --color-warning-content: oklch(41% 0.112 45.904);
-    --color-error: oklch(71% 0.194 13.428);
-    --color-error-content: oklch(27% 0.105 12.094);
+
+    --color-success: var(--color-secondary);
+    --color-success-content: var(--color-secondary-content);
+
+    --color-warning: var(--color-primary);
+    --color-warning-content: var(--color-base-content);
+
+    --color-error: oklch(50.31% 0.134 24.89);
+    /* Classic Red (#BF1B1B) */
+    --color-error-content: oklch(98% 0.01 85);
+
+    /* Unchanged properties */
     --radius-selector: 0.5rem;
     --radius-field: 0.25rem;
     --radius-box: 0.5rem;
