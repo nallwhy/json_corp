@@ -59,9 +59,11 @@
     <!-- End Trix Editor -->
   </head>
   <body>
-    <.header language={@language} />
-    {@inner_content}
-    <.hr />
-    <.footer />
+    <div class="mx-auto flex max-w-6xl flex-col justify-center">
+      <.header language={@language} />
+      {@inner_content}
+      <hr class="border-1 border-primary mt-8 w-full" />
+      <.footer />
+    </div>
   </body>
 </html>

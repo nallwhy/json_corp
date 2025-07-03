@@ -35,7 +35,7 @@ defmodule JsonCorpWeb.Components do
 
   def header(assigns) do
     ~H"""
-    <header class="navbar mx-auto max-w-6xl place-content-between px-8 py-6">
+    <header class="navbar w-full place-content-between px-8 py-6">
       <div class="hover-scale-110 w-32 flex-none">
         <.link navigate={~p"/"} class="cursor-pointer text-xl">Json Media</.link>
       </div>
@@ -78,7 +78,7 @@ defmodule JsonCorpWeb.Components do
 
   def footer(assigns) do
     ~H"""
-    <footer class="footer mx-auto max-w-6xl p-8">
+    <footer class="footer w-full p-8">
       <div>
         <span class="footer-title">{gettext("Social")}</span>
         <div class="grid grid-flow-col gap-2">
@@ -107,12 +107,6 @@ defmodule JsonCorpWeb.Components do
   def h2(assigns) do
     ~H"""
     <h1 class="mb-6 text-xl font-bold">{render_slot(@inner_block)}</h1>
-    """
-  end
-
-  def hr(assigns) do
-    ~H"""
-    <hr class="border-1 border-primary mx-auto mt-4 h-px max-w-6xl" />
     """
   end
 
