@@ -15,26 +15,12 @@ defmodule JsonCorpWeb.ProjectLive do
     ~H"""
     <.h1>{gettext("projects") |> String.capitalize()}</.h1>
     <div class="flex flex-wrap gap-6">
-      <.project_card
-        :for={project <- @projects}
-        name={project.name}
-        description={project.description}
-        url={project.url}
-      />
-    </div>
-    """
-  end
-
-  defp project_card(assigns) do
-    ~H"""
-    <div class="card bg-base-100 mx-4 w-96 shadow-xl">
-      <div class="card-body">
-        <h2 class="card-title">{@name}</h2>
-        <p>{@description}</p>
-        <div class="card-actions mt-4 justify-end">
-          <.link href={@url} class="btn btn-primary" target="_blank">Go to Project</.link>
-        </div>
-      </div>
+      <.card :for={project <- @projects} title={project.name}>
+        <p>{project.description}</p>
+        <:actions>
+          <.link href={project.url} class="btn btn-primary" target="_blank">Go to Project</.link>
+        </:actions>
+      </.card>
     </div>
     """
   end

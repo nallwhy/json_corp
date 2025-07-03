@@ -110,6 +110,25 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  attr :title, :string, required: true
+
+  slot :inner_block, required: true
+  slot :actions
+
+  def card(assigns) do
+    ~H"""
+    <div class="card border-secondary mx-4 w-96 border shadow">
+      <div class="card-body">
+        <h2 class="card-title">{@title}</h2>
+        {render_slot(@inner_block)}
+        <div class="card-actions mt-4 justify-end">
+          {render_slot(@actions)}
+        </div>
+      </div>
+    </div>
+    """
+  end
+
   defp normalize_image(image) do
     cond do
       image == nil -> nil
