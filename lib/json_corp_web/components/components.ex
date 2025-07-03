@@ -140,7 +140,7 @@ defmodule JsonCorpWeb.Components do
   defp list_menus() do
     [
       {gettext("blog"), ~p"/blog"},
-      {gettext("consulting"), ~p"/consulting"},
+      {gettext("appearances"), ~p"/appearances"},
       {gettext("playgrounds"), ~p"/playgrounds"},
       {gettext("projects"), ~p"/projects"}
     ]

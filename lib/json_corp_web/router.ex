@@ -42,7 +42,7 @@ defmodule JsonCorpWeb.Router do
         JsonCorpWeb.CursorHook
       ] do
       live "/", HomeLive
-      live "/consulting", ConsultingLive
+      live "/appearances", AppearancesLive
       live "/projects", ProjectLive
 
       scope "/blog", Blog do

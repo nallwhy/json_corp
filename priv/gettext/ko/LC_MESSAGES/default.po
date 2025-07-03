@@ -11,37 +11,37 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: lib/json_corp_web/components/core_components.ex:530
+#: lib/json_corp_web/components/core_components.ex:513
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:159
+#: lib/json_corp_web/components/core_components.ex:155
 #, elixir-autogen, elixir-format
 msgid "Attempting to reconnect"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:150
+#: lib/json_corp_web/components/core_components.ex:146
 #, elixir-autogen, elixir-format
 msgid "Error!"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:171
+#: lib/json_corp_web/components/core_components.ex:167
 #, elixir-autogen, elixir-format
 msgid "Hang in there while we get back on track"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:166
+#: lib/json_corp_web/components/core_components.ex:162
 #, elixir-autogen, elixir-format
 msgid "Something went wrong!"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:149
+#: lib/json_corp_web/components/core_components.ex:145
 #, elixir-autogen, elixir-format
 msgid "Success!"
 msgstr ""
 
-#: lib/json_corp_web/components/core_components.ex:154
+#: lib/json_corp_web/components/core_components.ex:150
 #, elixir-autogen, elixir-format
 msgid "We can't find the internet"
 msgstr ""
@@ -53,7 +53,7 @@ msgid "Welcome to %{name}!"
 msgstr ""
 
 #: lib/json_corp_web/components/core_components.ex:76
-#: lib/json_corp_web/components/core_components.ex:129
+#: lib/json_corp_web/components/core_components.ex:125
 #, elixir-autogen, elixir-format
 msgid "close"
 msgstr ""
@@ -63,53 +63,63 @@ msgstr ""
 msgid "Social"
 msgstr "소셜"
 
-#: lib/json_corp_web/components/components.ex:129
-#: lib/json_corp_web/live/blog/post_live.index.ex:89
+#: lib/json_corp_web/components/components.ex:142
 #: lib/json_corp_web/live/blog/post_live.index.ex:89
 #, elixir-autogen, elixir-format, fuzzy
 msgid "blog"
 msgstr "블로그"
 
-#: lib/json_corp_web/components/components.ex:130
 #: lib/json_corp_web/live/consulting_live.ex:12
 #, elixir-autogen, elixir-format, fuzzy
 msgid "consulting"
 msgstr "컨설팅"
 
-#: lib/json_corp_web/components/components.ex:131
+#: lib/json_corp_web/components/components.ex:144
 #: lib/json_corp_web/live/playgrounds/playground_live.ex:12
 #, elixir-autogen, elixir-format, fuzzy
 msgid "playgrounds"
 msgstr "실험실"
 
-#: lib/json_corp_web/components/components.ex:132
+#: lib/json_corp_web/components/components.ex:145
 #: lib/json_corp_web/live/project_live.ex:16
 #, elixir-autogen, elixir-format, fuzzy
 msgid "projects"
 msgstr "프로젝트"
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:125
-#: lib/json_corp_web/live/blog/post_live.index.ex:125
-#: lib/json_corp_web/live/blog/post_live.show.ex:173
-#: lib/json_corp_web/live/blog/post_live.show.ex:173
+#: lib/json_corp_web/live/blog/post_live.index.ex:129
+#: lib/json_corp_web/live/blog/post_live.show.ex:183
 #, elixir-autogen, elixir-format
 msgid "Date created"
 msgstr "작성일자"
 
-#: lib/json_corp_web/live/blog/post_live.show.ex:175
-#: lib/json_corp_web/live/blog/post_live.show.ex:175
+#: lib/json_corp_web/live/blog/post_live.show.ex:185
 #, elixir-autogen, elixir-format
 msgid "View count"
 msgstr "조회수"
 
-#: lib/json_corp_web/live/blog/post_live.show.ex:168
-#: lib/json_corp_web/live/blog/post_live.show.ex:168
+#: lib/json_corp_web/live/blog/post_live.show.ex:170
 #, elixir-autogen, elixir-format
 msgid "Back to posts"
 msgstr "목록으로"
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:91
-#: lib/json_corp_web/live/blog/post_live.index.ex:91
+#: lib/json_corp_web/live/blog/post_live.index.ex:92
+#: lib/json_corp_web/live/blog/post_live.show.ex:174
 #, elixir-autogen, elixir-format
 msgid "How about %{language}?"
 msgstr "%{language}로 보기"
+
+#: lib/json_corp_web/components/components.ex:143
+#: lib/json_corp_web/live/apprearances_live.ex:16
+#, elixir-autogen, elixir-format
+msgid "appearances"
+msgstr "외부 활동"
+
+#: lib/json_corp_web/live/apprearances_live.ex:32
+#, elixir-autogen, elixir-format
+msgid "publications"
+msgstr "기고"
+
+#: lib/json_corp_web/live/apprearances_live.ex:20
+#, elixir-autogen, elixir-format
+msgid "talks"
+msgstr "발표"
