@@ -183,6 +183,60 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  attr :color, :string,
+    values: ["primary", "secondary", "accent", "neutral", "info", "success", "warning", "error"],
+    default: "primary"
+
+  attr :variant, :string, values: ["solid", "soft", "outline", "ghost", "dash"], default: "solid"
+
+  attr :size, :string, values: ["xs", "sm", "md", "lg", "xl"], default: "md"
+
+  slot :inner_block, required: true
+
+  def badge(assigns) do
+    variant_class =
+      case assigns.variant do
+        "solid" -> nil
+        "soft" -> "badge-soft"
+        "outline" -> "badge-outline"
+        "ghost" -> "badge-ghost"
+        "dash" -> "badge-dash"
+      end
+
+    color_class =
+      case assigns.color do
+        "primary" -> "badge-primary"
+        "secondary" -> "badge-secondary"
+        "accent" -> "badge-accent"
+        "neutral" -> "badge-neutral"
+        "info" -> "badge-info"
+        "success" -> "badge-success"
+        "warning" -> "badge-warning"
+        "error" -> "badge-error"
+      end
+
+    size_class =
+      case assigns.size do
+        "xs" -> "badge-xs"
+        "sm" -> "badge-sm"
+        "md" -> "badge-md"
+        "lg" -> "badge-lg"
+        "xl" -> "badge-xl"
+      end
+
+    assigns =
+      assigns
+      |> assign(variant_class: variant_class, color_class: color_class, size_class: size_class)
+
+    ~H"""
+    <div class={["badge", @variant_class, @color_class, @size_class]}>
+      {render_slot(@inner_block)}
+    </div>
+    """
+  end
+
+  ## Private
+
   defp normalize_image(image) do
     cond do
       image == nil -> nil

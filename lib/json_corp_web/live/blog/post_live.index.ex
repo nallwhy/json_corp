@@ -130,7 +130,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
               </div>
               <div :if={post.tags} class="mt-6">
                 <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
-                  <span class="tag mr-2">#{tag}</span>
+                  <.badge color="neutral">#{tag}</.badge>
                 </.link>
               </div>
             </article>
