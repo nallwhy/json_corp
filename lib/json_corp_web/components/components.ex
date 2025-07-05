@@ -265,11 +265,14 @@ defmodule JsonCorpWeb.Components do
       toggle_class="bg-base-200 border-base-content/10 text-base-content hover:after:bg-base-300"
       class="bg-base-200 border-base-content/10"
     >
-      <.link :for={{language, _} <- languages()} href={"?locale=#{language}"}>
+      <div
+        :for={{language, _} <- languages()}
+        phx-click={JS.dispatch("phx:change-language", detail: %{language: language})}
+      >
         <.dropdown_button class="text-base-content data-highlighted:bg-base-300">
           {language_label(language)}
         </.dropdown_button>
-      </.link>
+      </div>
     </.dropdown>
     """
   end

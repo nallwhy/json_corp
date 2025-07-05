@@ -43,6 +43,17 @@ topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" })
 window.addEventListener("phx:page-loading-start", info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
 
+// custon
+window.addEventListener("phx:change-language", ({ detail }) => {
+    const { language } = detail
+
+    console.log("change language", language)
+
+    const params = new URLSearchParams(window.location.search)
+    params.set('locale', language)
+    window.location = window.location.pathname + '?' + params.toString();
+})
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
@@ -51,4 +62,3 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
-
