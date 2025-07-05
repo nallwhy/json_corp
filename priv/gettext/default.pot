@@ -63,8 +63,8 @@ msgstr ""
 msgid "Social"
 msgstr ""
 
-#: lib/json_corp_web/components/components.ex:142
-#: lib/json_corp_web/live/blog/post_live.index.ex:89
+#: lib/json_corp_web/components/components.ex:251
+#: lib/json_corp_web/live/blog/post_live.index.ex:90
 #, elixir-autogen, elixir-format
 msgid "blog"
 msgstr ""
@@ -74,19 +74,19 @@ msgstr ""
 msgid "consulting"
 msgstr ""
 
-#: lib/json_corp_web/components/components.ex:144
+#: lib/json_corp_web/components/components.ex:253
 #: lib/json_corp_web/live/playgrounds/playground_live.ex:12
 #, elixir-autogen, elixir-format
 msgid "playgrounds"
 msgstr ""
 
-#: lib/json_corp_web/components/components.ex:145
+#: lib/json_corp_web/components/components.ex:254
 #: lib/json_corp_web/live/project_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "projects"
 msgstr ""
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:129
+#: lib/json_corp_web/live/blog/post_live.index.ex:135
 #: lib/json_corp_web/live/blog/post_live.show.ex:183
 #, elixir-autogen, elixir-format
 msgid "Date created"
@@ -102,13 +102,13 @@ msgstr ""
 msgid "Back to posts"
 msgstr ""
 
-#: lib/json_corp_web/live/blog/post_live.index.ex:92
+#: lib/json_corp_web/live/blog/post_live.index.ex:93
 #: lib/json_corp_web/live/blog/post_live.show.ex:174
 #, elixir-autogen, elixir-format
 msgid "How about %{language}?"
 msgstr ""
 
-#: lib/json_corp_web/components/components.ex:143
+#: lib/json_corp_web/components/components.ex:252
 #: lib/json_corp_web/live/apprearances_live.ex:16
 #, elixir-autogen, elixir-format
 msgid "appearances"
@@ -122,4 +122,9 @@ msgstr ""
 #: lib/json_corp_web/live/apprearances_live.ex:20
 #, elixir-autogen, elixir-format
 msgid "talks"
+msgstr ""
+
+#: lib/json_corp_web/live/blog/post_live.index.ex:123
+#, elixir-autogen, elixir-format
+msgid "Selected tag"
 msgstr ""

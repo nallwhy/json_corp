@@ -84,57 +84,64 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="flex items-start justify-between">
-      <div class="flex items-start gap-x-6">
-        <.h1>{gettext("blog") |> String.capitalize()}</.h1>
-        <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
-          <.button color="info">
-            {gettext("How about %{language}?",
-              language: @language |> Cldr.LocaleDisplay.display_name!()
-            )}
-          </.button>
-        </.link>
-      </div>
-      <div class="hover-scale-110">
-        <.link navigate={~p"/blog/#{@language}?random"}>
-          <.icon name="hero-sparkles" class="h-6 w-6" />
-        </.link>
-      </div>
-    </div>
-
-    <div class="mb-4 flex">
-      <.link
-        patch={~p"/blog/#{@language}"}
-        class={"#{if @category == nil, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
-      >
-        All
-      </.link>
-      <.link
-        :for={category <- @categories}
-        patch={~p"/blog/#{@language}?category=#{category}"}
-        class={"#{if @category == category, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
-      >
-        {category}
-      </.link>
-    </div>
-
-    <div>
-      <div id="posts" class="divide-y-2" phx-update="stream">
-        <div :for={{dom_id, post} <- @streams.posts} id={dom_id} class="border-secondary">
-          <.link navigate={~p"/blog/#{post.language}/#{post.slug}"}>
-            <article class="cursor-pointer py-4">
-              <h2 class="text-xl">{post.title}</h2>
-              <p :if={post.description} class="mt-2">{post.description}</p>
-              <div class="mt-6">
-                {gettext("Date created")}: <time>{post.date_created}</time>
-              </div>
-              <div :if={post.tags} class="mt-6">
-                <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
-                  <.badge color="neutral">#{tag}</.badge>
-                </.link>
-              </div>
-            </article>
+    <div class="space-y-4">
+      <div class="flex items-start justify-between">
+        <div class="flex items-start gap-x-6">
+          <.h1>{gettext("blog") |> String.capitalize()}</.h1>
+          <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
+            <.button color="info">
+              {gettext("How about %{language}?",
+                language: @language |> Cldr.LocaleDisplay.display_name!()
+              )}
+            </.button>
           </.link>
+        </div>
+        <div class="hover-scale-110">
+          <.link navigate={~p"/blog/#{@language}?random"}>
+            <.icon name="hero-sparkles" class="h-6 w-6" />
+          </.link>
+        </div>
+      </div>
+
+      <div class="mb-6 flex py-2">
+        <.link
+          patch={~p"/blog/#{@language}"}
+          class={"#{if @category == nil, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
+        >
+          All
+        </.link>
+        <.link
+          :for={category <- @categories}
+          patch={~p"/blog/#{@language}?category=#{category}"}
+          class={"#{if @category == category, do: "font-bold"} border-r-2 px-4 first:pl-0 last:border-r-0"}
+        >
+          {category}
+        </.link>
+      </div>
+
+      <div :if={@tag} class="flex items-baseline gap-x-2">
+        {gettext("Selected tag")}:
+        <.badge>#{@tag}</.badge>
+      </div>
+
+      <div>
+        <div id="posts" class="divide-y-2" phx-update="stream">
+          <div :for={{dom_id, post} <- @streams.posts} id={dom_id} class="border-secondary">
+            <.link navigate={~p"/blog/#{post.language}/#{post.slug}"}>
+              <article class="cursor-pointer py-4">
+                <h2 class="text-xl">{post.title}</h2>
+                <p :if={post.description} class="mt-2">{post.description}</p>
+                <div class="mt-6">
+                  {gettext("Date created")}: <time>{post.date_created}</time>
+                </div>
+                <div :if={post.tags} class="mt-6">
+                  <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
+                    <.badge color="neutral">#{tag}</.badge>
+                  </.link>
+                </div>
+              </article>
+            </.link>
+          </div>
         </div>
       </div>
     </div>
