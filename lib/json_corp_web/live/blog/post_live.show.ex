@@ -170,7 +170,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
           <span class="text-base-content">{gettext("Back to posts")}</span>
         </.link>
         <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}/#{@post.slug}"}>
-          <.button>
+          <.button color="info">
             {gettext("How about %{language}?",
               language: @language |> Cldr.LocaleDisplay.display_name!()
             )}

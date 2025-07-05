@@ -129,6 +129,60 @@ defmodule JsonCorpWeb.Components do
     """
   end
 
+  attr :color, :string,
+    values: ["primary", "secondary", "accent", "neutral", "info", "success", "warning", "error"],
+    default: "primary"
+
+  attr :variant, :string, values: ["solid", "soft", "outline", "ghost", "dash"], default: "solid"
+
+  attr :size, :string, values: ["xs", "sm", "md", "lg", "xl"], default: "md"
+
+  attr :rest, :global, include: ~w(disabled)
+
+  slot :inner_block, required: true
+
+  def button(assigns) do
+    variant_class =
+      case assigns.variant do
+        "solid" -> nil
+        "soft" -> "btn-soft"
+        "outline" -> "btn-outline"
+        "ghost" -> "btn-ghost"
+        "dash" -> "btn-dash"
+      end
+
+    color_class =
+      case assigns.color do
+        "primary" -> "btn-primary"
+        "secondary" -> "btn-secondary"
+        "accent" -> "btn-accent"
+        "neutral" -> "btn-neutral"
+        "info" -> "btn-info"
+        "success" -> "btn-success"
+        "warning" -> "btn-warning"
+        "error" -> "btn-error"
+      end
+
+    size_class =
+      case assigns.size do
+        "xs" -> "btn-xs"
+        "sm" -> "btn-sm"
+        "md" -> "btn-md"
+        "lg" -> "btn-lg"
+        "xl" -> "btn-xl"
+      end
+
+    assigns =
+      assigns
+      |> assign(variant_class: variant_class, color_class: color_class, size_class: size_class)
+
+    ~H"""
+    <button class={["btn", @variant_class, @color_class, @size_class]}>
+      {render_slot(@inner_block)}
+    </button>
+    """
+  end
+
   defp normalize_image(image) do
     cond do
       image == nil -> nil

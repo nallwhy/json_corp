@@ -88,7 +88,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       <div class="flex items-start gap-x-6">
         <.h1>{gettext("blog") |> String.capitalize()}</.h1>
         <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
-          <.button>
+          <.button color="info">
             {gettext("How about %{language}?",
               language: @language |> Cldr.LocaleDisplay.display_name!()
             )}
