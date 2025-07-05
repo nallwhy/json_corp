@@ -62,7 +62,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
   @impl true
   def handle_params(%{"random" => _}, _uri, socket) do
-    post = Blog.list_posts_by_language(socket.assigns.language) |> Enum.random()
+    post = Blog.list_posts_by_language(socket.assigns.blog_language) |> Enum.random()
 
     socket =
       socket
@@ -88,7 +88,12 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
       <div class="flex items-start justify-between">
         <div class="flex items-start gap-x-6">
           <.h1>{gettext("blog") |> String.capitalize()}</.h1>
-          <.link :if={@blog_language != @language} navigate={~p"/blog/#{@language}"}>
+          <.link
+            :if={@blog_language != @language}
+            navigate={
+              ~p"/blog/#{@language}?#{%{category: @category, tag: @tag} |> Map.reject(fn {_k, v} -> is_nil(v) end)}"
+            }
+          >
             <.button color="info">
               {gettext("How about %{language}?",
                 language: @language |> Cldr.LocaleDisplay.display_name!()
@@ -97,7 +102,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
           </.link>
         </div>
         <div class="hover-scale-110">
-          <.link navigate={~p"/blog/#{@language}?random"}>
+          <.link navigate={~p"/blog/#{@blog_language}?random"}>
             <.icon name="hero-sparkles" class="h-6 w-6" />
           </.link>
         </div>
