@@ -91,4 +91,11 @@ _OTP (Open Telecom Platform) behaviors and patterns_
 - Use `Task.async_stream/3` for concurrent enumeration with back-pressure
 
 <!-- otp-end -->
+<!-- ash_ai-start -->
+## ash_ai usage
+_Integrated LLM features for your Ash application.
+_
+
+[ash_ai usage rules](docs/rules/ash_ai.md)
+<!-- ash_ai-end -->
 <!-- usage-rules-end -->
