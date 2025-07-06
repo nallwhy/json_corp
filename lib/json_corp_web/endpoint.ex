@@ -26,6 +26,10 @@ defmodule JsonCorpWeb.Endpoint do
     gzip: true,
     only_matching: JsonCorpWeb.static_paths()
 
+  if Code.ensure_loaded?(Tidewave) do
+    plug Tidewave
+  end
+
   # plug Plug.Static,
   #   at: "/test_api",
   #   from: {:json_corp, "priv/static/test_api"},
