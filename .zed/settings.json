@@ -1,0 +1,18 @@
+{
+  "context_servers": {
+    "tidewave": {
+      "source": "custom",
+      "command": {
+        "path": "mcp-proxy",
+        "args": ["http://localhost:4000/tidewave/mcp"]
+      }
+    },
+    "AshAI.MCP.Dev": {
+      "source": "custom",
+      "command": {
+        "path": "mcp-proxy",
+        "args": ["http://localhost:4000/ash_ai/mcp"]
+      }
+    }
+  }
+}
