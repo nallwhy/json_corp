@@ -20,6 +20,9 @@ config :ash,
   read_action_after_action_hooks_in_order?: true,
   bulk_actions_default_to_errors?: true
 
+config :json_corp,
+  ash_domains: [JsonCorp.Domain.Blog]
+
 config :spark,
   formatter: [
     remove_parens?: true,
