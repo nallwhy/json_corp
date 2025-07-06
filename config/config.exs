@@ -28,20 +28,20 @@ config :spark,
     remove_parens?: true,
     "Ash.Resource": [
       section_order: [
-        :resource,
-        :code_interface,
-        :actions,
-        :policies,
-        :pub_sub,
-        :preparations,
-        :changes,
-        :validations,
         :multitenancy,
         :attributes,
         :relationships,
         :calculations,
         :aggregates,
-        :identities
+        :actions,
+        :preparations,
+        :changes,
+        :validations,
+        :code_interface,
+        :identities,
+        :policies,
+        :pub_sub,
+        :resource
       ]
     ],
     "Ash.Domain": [section_order: [:resources, :policies, :authorization, :domain, :execution]]
