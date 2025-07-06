@@ -41,13 +41,13 @@
 
 #### Tasks:
 1. **Post Resource Creation**
-   - [ ] Create `JsonCorp.Domain.BlogAsh.Resources.Post`
-   - [ ] Map existing Post struct fields to Ash attributes
+   - [x] Create `JsonCorp.Domain.Blog.Post` resource
+   - [x] Map existing Post struct fields to Ash attributes
    - [ ] Implement custom file-based data layer
 
 2. **Post Attributes**
    ```elixir
-   attribute :id, :string, primary_key?: true
+   attribute :id, :string, primary_key?: true, allow_nil?: true
    attribute :title, :string, allow_nil?: false
    attribute :description, :string
    attribute :language, :string, allow_nil?: false
@@ -73,7 +73,7 @@
    - [ ] `matching_aliases` - Alias matching logic
 
 #### Deliverables:
-- `lib/json_corp/domain/blog_ash/resources/post.ex`
+- `lib/json_corp/domain/blog/post.ash.ex` ✅
 - `lib/json_corp/domain/blog_ash/data_layers/file_system.ex`
 - Test suite for Post resource
 
@@ -260,4 +260,4 @@
 
 **Created**: 2024-01-XX
 **Last Updated**: 2024-01-XX
-**Status**: Phase 1 In Progress - Domain Created & Configured ✅
+**Status**: Phase 2 In Progress - Post Resource Created ✅

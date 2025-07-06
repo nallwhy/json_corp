@@ -8,6 +8,6 @@ defmodule JsonCorp.Domain.Blog do
   use Ash.Domain
 
   resources do
-    # Resources will be added here as we migrate
+    resource JsonCorp.Domain.Blog.Post
   end
 end
