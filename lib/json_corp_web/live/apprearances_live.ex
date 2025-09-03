@@ -46,9 +46,14 @@ defmodule JsonCorpWeb.AppearancesLive do
   defp talks() do
     [
       %{
+        title: "Hey Ash, Let’s Chat! - Building Conversational AI with Ash AI",
+        description: "ElixirConf US 2025",
+        url: "https://www.youtube.com/watch?v=g9rWEbyHTRo"
+      },
+      %{
         title: "Ash - Declarative Design Framework",
         description: "liftIO 2024",
-        url: "https://www.youtube.com/watch?v=S-WNIhcp5tM,"
+        url: "https://www.youtube.com/watch?v=S-WNIhcp5tM"
       },
       %{
         title: "How Easy is Implementing Multi-Tenancy in Ecto?",
