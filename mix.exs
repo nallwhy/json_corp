@@ -11,7 +11,8 @@ defmodule JsonCorp.MixProject do
       deps: deps(),
       aliases: aliases(),
       releases: releases(),
-      consolidate_protocols: Mix.env() != :dev
+      consolidate_protocols: Mix.env() != :dev,
+      listeners: [Phoenix.CodeReloader]
     ]
   end
 
@@ -57,13 +58,13 @@ defmodule JsonCorp.MixProject do
       {:ex_cldr_dates_times, "~> 2.14"},
       {:ex_cldr_locale_display, "~> 1.1"},
       {:xml_builder, "~> 2.1"},
-      {:sentry, "~> 10.0"},
+      {:sentry, "~> 11.0"},
       # for sentry
       {:hackney, "~> 1.20"},
       {:datix, "~> 0.3"},
-      {:mdex, "~> 0.7.0"},
+      {:mdex, "~> 0.10"},
       {:lens2, "~> 0.2.1"},
-      {:phoenix, "~> 1.7.0"},
+      {:phoenix, "~> 1.8.0"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 4.0"},
       {:phoenix_live_reload, "~> 1.4", only: :dev},
@@ -74,10 +75,10 @@ defmodule JsonCorp.MixProject do
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.18"},
+      {:gettext, "~> 1.0"},
       {:plug_cowboy, "~> 2.5"},
       # {:test_api, github: "nallwhy/test_api", tag: "v0.5"},
-      {:tailwind, "~> 0.3.0", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.3", runtime: Mix.env() == :dev},
       {:doumi_phoenix_svg, "~> 0.1"},
       {:ecto_psql_extras, "~> 0.6"},
       {:plug_canonical_host, "~> 2.0"},
@@ -92,7 +93,7 @@ defmodule JsonCorp.MixProject do
        app: false,
        compile: false,
        depth: 1},
-      {:fluxon, "~> 1.1.0", repo: :fluxon},
+      {:fluxon, "~> 2.3", repo: :fluxon},
       {:tailwind_formatter, "~> 0.4.2"},
       {:igniter, "~> 0.6"}
     ]

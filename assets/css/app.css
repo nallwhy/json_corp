@@ -86,6 +86,12 @@
 @plugin "@tailwindcss/forms";
 
 @source "../../deps/fluxon/**/*.*ex";
+@import "../../deps/fluxon/priv/static/theme";
+
+/* Fluxon 테마가 --color-primary를 재정의하므로, DaisyUI의 primary 색상을 복원 */
+@theme inline {
+  --color-primary: oklch(69.8% 0.149 65.37);
+}
 
 @layer components {
     html {

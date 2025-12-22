@@ -82,7 +82,7 @@ config :json_corp, JsonCorpWeb.Endpoint,
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.24.2",
+  version: "0.25.11",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -91,7 +91,7 @@ config :esbuild,
   ]
 
 config :tailwind,
-  version: "4.1.8",
+  version: "4.1.16",
   default: [
     args: ~w(
       --input=assets/css/app.css

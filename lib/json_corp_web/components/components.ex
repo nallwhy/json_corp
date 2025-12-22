@@ -262,7 +262,7 @@ defmodule JsonCorpWeb.Components do
     <.dropdown
       label={language_label(@current_language)}
       placement="bottom-end"
-      toggle_class="bg-base-200 border-base-content/10 text-base-content hover:after:bg-base-300"
+      toggle_class="bg-base-200 border-base-content/10 text-base-content hover:bg-base-300"
       class="bg-base-200 border-base-content/10"
     >
       <div
