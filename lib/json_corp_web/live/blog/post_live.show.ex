@@ -191,7 +191,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Show do
       </div>
       <div :if={@post.tags} class="mt-2">
         <.link :for={tag <- @post.tags} navigate={~p"/blog/#{@post.language}?tag=#{tag}"}>
-          <.badge color="neutral">#{tag}</.badge>
+          <.badge color="neutral"># {tag}</.badge>
         </.link>
       </div>
     </div>

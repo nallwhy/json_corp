@@ -126,7 +126,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
 
       <div :if={@tag} class="flex items-baseline gap-x-2">
         {gettext("Selected tag")}:
-        <.badge>#{@tag}</.badge>
+        <.badge># {@tag}</.badge>
       </div>
 
       <div>
@@ -141,7 +141,7 @@ defmodule JsonCorpWeb.Blog.PostLive.Index do
                 </div>
                 <div :if={post.tags} class="mt-6">
                   <.link :for={tag <- post.tags} patch={~p"/blog/#{@language}?tag=#{tag}"}>
-                    <.badge color="neutral">#{tag}</.badge>
+                    <.badge color="neutral"># {tag}</.badge>
                   </.link>
                 </div>
               </article>
