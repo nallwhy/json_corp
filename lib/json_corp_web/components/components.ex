@@ -43,10 +43,13 @@ defmodule JsonCorpWeb.Components do
         <div>
           <ul class="flex">
             <li
-              :for={{menu_name, menu_route} <- list_menus()}
+              :for={{menu_name, menu_route, icon_name} <- list_menus()}
               class="border-y-4 border-transparent px-2 py-1 hover:border-b-accent"
             >
-              <.link navigate={menu_route}>{menu_name |> String.capitalize()}</.link>
+              <.link navigate={menu_route} class="flex items-center gap-1.5">
+                <.icon name={icon_name} class="h-4 w-4" />
+                {menu_name |> String.capitalize()}
+              </.link>
             </li>
           </ul>
         </div>
@@ -64,10 +67,13 @@ defmodule JsonCorpWeb.Components do
           </label>
           <ul
             tabindex="0"
-            class="menu menu-compact dropdown-content bg-base-100 rounded-box border-base-content/10 w-52 border p-2 shadow"
+            class="menu menu-compact dropdown-content bg-base-100 rounded-box border-base-content/10 w-40 border p-2 shadow"
           >
-            <li :for={{menu_name, menu_route} <- list_menus()}>
-              <.link navigate={menu_route}>{menu_name}</.link>
+            <li :for={{menu_name, menu_route, icon_name} <- list_menus()}>
+              <.link navigate={menu_route} class="flex items-center gap-2">
+                <.icon name={icon_name} class="h-4 w-4" />
+                {menu_name}
+              </.link>
             </li>
           </ul>
         </div>
@@ -247,10 +253,10 @@ defmodule JsonCorpWeb.Components do
 
   defp list_menus() do
     [
-      {gettext("blog"), ~p"/blog"},
-      {gettext("appearances"), ~p"/appearances"},
-      {gettext("playgrounds"), ~p"/playgrounds"},
-      {gettext("projects"), ~p"/projects"}
+      {gettext("blog"), ~p"/blog", "lucide-newspaper"},
+      {gettext("appearances"), ~p"/appearances", "lucide-megaphone"},
+      {gettext("playgrounds"), ~p"/playgrounds", "lucide-flask-conical"},
+      {gettext("projects"), ~p"/projects", "lucide-package"}
     ]
   end
 

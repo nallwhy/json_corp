@@ -93,6 +93,15 @@ defmodule JsonCorp.MixProject do
        app: false,
        compile: false,
        depth: 1},
+      {
+        :lucide,
+        github: "lucide-icons/lucide",
+        tag: "0.562.0",
+        sparse: "icons",
+        app: false,
+        compile: false,
+        depth: 1
+      },
       {:fluxon, "~> 2.3", repo: :fluxon},
       {:tailwind_formatter, "~> 0.4.2"},
       {:igniter, "~> 0.6"}
