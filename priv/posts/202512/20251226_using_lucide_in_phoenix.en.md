@@ -164,4 +164,6 @@ You can now use Lucide icons as simply as the existing Heroicons.
   <figcaption>Applied directly to the header.</figcaption>
 </figure>
 
+You can see the full code that applies Lucide to this site [here](https://github.com/nallwhy/json_corp/commit/f2843f1923c0bd3713c3bdf5c14762e6d5d3dafd).
+
 Now you can use the massive Lucide icon set without running out. Since the icon library keeps growing quickly, update the Lucide version periodically as needed.

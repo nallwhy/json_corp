@@ -164,4 +164,6 @@ end
   <figcaption>ヘッダーにそのまま適用。</figcaption>
 </figure>
 
+実際にこのサイトにLucideを適用した全コードは[こちら](https://github.com/nallwhy/json_corp/commit/f2843f1923c0bd3713c3bdf5c14762e6d5d3dafd)で確認できます。
+
 これでアイコン不足から解放され、Lucideの大量のアイコンを使えるようになりました。Lucideのアイコンは今後も速いペースで増えていくので、必要に応じて定期的にLucideのバージョンを更新して使ってください。

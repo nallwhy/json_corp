@@ -164,4 +164,6 @@ end
   <figcaption>header 에 바로 적용</figcaption>
 </figure>
 
+실제로 이 사이트에 Lucide 를 적용한 전체 코드는 [여기](https://github.com/nallwhy/json_corp/commit/f2843f1923c0bd3713c3bdf5c14762e6d5d3dafd)서 확인하실 수 있습니다.
+
 이제 아이콘 부족에서 벗어나 Lucide 의 수많은 아이콘들을 사용할 수 있게 되었습니다. Lucide 에 아이콘들이 계속해서 빠르게 늘어나고 있으니, 필요하면 주기적으로 Lucide version 을 업데이트 해서 사용하시면 됩니다.
