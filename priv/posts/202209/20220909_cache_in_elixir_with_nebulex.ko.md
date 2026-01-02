@@ -7,11 +7,11 @@ tags: ["개발", "Elixir", "Nebulex", "Cache"]
 
 ---
 
-이 블로그는 웹에서 요청을 받았을 때 [코드 안에 markdown 파일로 저장되어 있는 글들](https://github.com/nallwhy/json_corp/tree/main/apps/json_corp/priv/posts)을 불러와서 보여준다.
+이 블로그는 웹에서 요청을 받았을 때 [코드 안에 markdown 파일로 저장되어 있는 글들]+(https://github.com/nallwhy/json_corp/tree/main/apps/json_corp/priv/posts)을 불러와서 보여준다.
 
 아직은 글이 몇 개 안되어서 상관 없지만, 서버가 새로 배포되어 markdown 파일이 변경되기 전까지는 항상 같은 글 데이터를 불러와서 보여주기 때문에 cache 를 설정하는 것이 장기적으로 적절하다.
 
-이번 글에서는 Elixir 에서 [`Nebulex`](https://github.com/cabol/nebulex) 로 cache 설정하는 것을 정리해보았다.
+이번 글에서는 Elixir 에서 [Nebulex]+(https://github.com/cabol/nebulex) 로 cache 설정하는 것을 정리해보았다.
 
 ## Nebulex
 
@@ -21,7 +21,7 @@ tags: ["개발", "Elixir", "Nebulex", "Cache"]
 
 ### Add `nebulex` to dependency
 
-먼저 `nebulex` 를 dependency 에 추가한다. local adapter 나 partiAttribute 를 이용해 cache 를 설정하고 싶다면 `decorator`, Telemetry event([Elixir 에서 Telemetry 로 Ecto 의 Slow Query 로깅하기 참조](./logging-slow-queries-with-telemetry)) 로 Nebulex stats 를 보려면 `telemetry` 도 추가해준다.
+먼저 `nebulex` 를 dependency 에 추가한다. local adapter 나 partiAttribute 를 이용해 cache 를 설정하고 싶다면 `decorator`, Telemetry event([Elixir 에서 Telemetry 로 Ecto 의 Slow Query 로깅하기 참조]+(./logging-slow-queries-with-telemetry)) 로 Nebulex stats 를 보려면 `telemetry` 도 추가해준다.
 
 ```elixir
 defmodule MyApp.MixProject do
@@ -39,7 +39,7 @@ defmodule MyApp.MixProject do
 end
 ```
 
-`Nebulex` 는 여러가지 adapter 를 지원한다. 사용하고자 하는 adapter 를 선택하고, 그에 맞는 dependency 를 추가해줘야할 수도 있다. [참조](https://github.com/cabol/nebulex#usage). 이 글에서는 가장 간단한(그렇지만 대부분 경우 충분한) `Nebulex.Adapters.Local` 을 이용해서 구현할 것이다.
+`Nebulex` 는 여러가지 adapter 를 지원한다. 사용하고자 하는 adapter 를 선택하고, 그에 맞는 dependency 를 추가해줘야할 수도 있다. [참조]+(https://github.com/cabol/nebulex#usage). 이 글에서는 가장 간단한(그렇지만 대부분 경우 충분한) `Nebulex.Adapters.Local` 을 이용해서 구현할 것이다.
 
 ### Create a cache module
 
@@ -55,7 +55,7 @@ end
 
 ### Config the cache module
 
-adapter 에 대한 추가 설정을 하고자 하는 경우 `config.exs` 에 추가한다. adapter 별로 설정할 수 있는 option 들은 document 에서 확인할 수 있다. 이번에 사용할 [`Nebulex.Adapters.Local` document](https://hexdocs.pm/nebulex/Nebulex.Adapters.Local.html) 를 확인하고 설정해보자.
+adapter 에 대한 추가 설정을 하고자 하는 경우 `config.exs` 에 추가한다. adapter 별로 설정할 수 있는 option 들은 document 에서 확인할 수 있다. 이번에 사용할 [Nebulex.Adapters.Local document]+(https://hexdocs.pm/nebulex/Nebulex.Adapters.Local.html) 를 확인하고 설정해보자.
 
 ```elixir
 config :my_app, MyApp.Cache,
@@ -194,7 +194,6 @@ defmodule MyApp.Blog do
     end
   end
 
-  @decorate cache_evict(cache: Cache, key: {Post, slug})
   def delete_post(%Post{slug: slug} = post) do
     cache_key = {Post, slug}
 
@@ -224,6 +223,6 @@ end
 
 Nebulex 함수를 직접 사용해서 cache 를 적용하면 코드가 더 복잡해지지만 더 다양한 구현이 가능하다.
 
-참고: https://hexdocs.pm/nebulex/getting-started.html
+참고: [Nebulex - Getting Started]+(https://hexdocs.pm/nebulex/getting-started.html)
 
 끝!
